@@ -21,6 +21,7 @@ const config = {
   organizationName: "dosimpact", // Usually your GitHub org/user name.
   projectName: "dosimpact.github.io", // Usually your repo name.
   trailingSlash: false,
+
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
