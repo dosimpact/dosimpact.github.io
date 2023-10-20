@@ -1457,7 +1457,7 @@
     "@docusaurus/utils-validation" "2.4.3"
     tslib "^2.4.0"
 
-"@docusaurus/plugin-google-gtag@2.4.3":
+"@docusaurus/plugin-google-gtag@2.4.3", "@docusaurus/plugin-google-gtag@^2.4.3":
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-google-gtag/-/plugin-google-gtag-2.4.3.tgz#e1a80b0696771b488562e5b60eff21c9932d9e1c"
   integrity sha512-5FMg0rT7sDy4i9AGsvJC71MQrqQZwgLNdDetLEGDHLfSHLvJhQbTCUGbGXknUgWXQJckcV/AILYeJy+HhxeIFA==
@@ -1477,7 +1477,7 @@
     "@docusaurus/utils-validation" "2.4.3"
     tslib "^2.4.0"
 
-"@docusaurus/plugin-sitemap@2.4.3":
+"@docusaurus/plugin-sitemap@2.4.3", "@docusaurus/plugin-sitemap@^2.4.3":
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-sitemap/-/plugin-sitemap-2.4.3.tgz#1b3930900a8f89670ce7e8f83fb4730cd3298c32"
   integrity sha512-LRQYrK1oH1rNfr4YvWBmRzTL0LN9UAPxBbghgeFRBm5yloF6P+zv1tm2pe2hQTX/QP5bSKdnajCvfnScgKXMZQ==

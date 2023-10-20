@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dodokyo.github.io/sitemap.xml
