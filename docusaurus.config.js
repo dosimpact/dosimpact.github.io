@@ -6,8 +6,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "DoDo(도도)의 개발 블로그",
+  tagline: "Drink Coffee, Make Code",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -86,7 +86,7 @@ const config = {
         },
       ],
       navbar: {
-        title: "My Site",
+        title: "DoDo",
         logo: {
           alt: "My Site Logo",
           src: "img/logo.svg",
@@ -94,13 +94,31 @@ const config = {
         items: [
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
+            sidebarId: "frontEnd",
             position: "left",
-            label: "Tutorial",
+            label: "👒Front End",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            type: "docSidebar",
+            sidebarId: "backEnd",
+            position: "left",
+            label: "🛰️Backend End",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "devOps",
+            position: "left",
+            label: "🚧DevOps",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "softSkill",
+            position: "left",
+            label: "🔅Soft Skill",
+          },
+          { to: "/blog", label: "📝Blog", position: "left" },
+          {
+            href: "https://github.com/dosimpact",
             label: "GitHub",
             position: "right",
           },

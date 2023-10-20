@@ -1,0 +1,10 @@
+{
+  "label": "Psychology",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "psychology - cognitive bias"
+  }
+}
