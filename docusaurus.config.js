@@ -74,6 +74,17 @@ const config = {
     ({
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
+      metadata: [
+        {
+          name: "keywords",
+          content:
+            "frontend, 취업가이드, 개발자 취업, 포트폴리오, 코테 공부, 개발자 현실, 프론트 개발자",
+        },
+        {
+          name: "google-site-verification",
+          content: "Ov_hk6LqaaE5KiwXnqF2gTKwPxBE3qG5Zr3o5UWZXc8",
+        },
+      ],
       navbar: {
         title: "My Site",
         logo: {
