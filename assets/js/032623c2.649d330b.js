@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[8611],{4141:o=>{o.exports=JSON.parse('{"title":"Psychology","description":"psychology - cognitive bias","slug":"/category/psychology","permalink":"/docs/category/psychology","navigation":{"next":{"title":"SideProject","permalink":"/docs/category/sideproject"}}}')}}]);
