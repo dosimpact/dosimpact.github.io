@@ -1,0 +1,11 @@
+{
+  "label": "MBA",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "1인 비즈니스들의 성공 과정을 소개합니다.",
+    "description": "Side Project를 어떻게 성공 시켰을까?"
+  }
+}
