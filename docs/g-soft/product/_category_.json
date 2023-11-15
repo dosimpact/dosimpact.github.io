@@ -1,11 +1,11 @@
 {
-  "label": "Node.js",
-  "position": 2,
+  "label": "Product",
+  "position": 3,
   "collapsible": true,
   "collapsed": false,
   "link": {
     "type": "generated-index",
-    "title": "Node.js",
-    "description": "Node.js"
+    "title": "Product",
+    "description": "Product"
   }
 }
