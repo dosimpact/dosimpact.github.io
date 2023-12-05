@@ -112,6 +112,18 @@ const config = {
           },
           {
             type: "docSidebar",
+            sidebarId: "dataAnalytics",
+            position: "left",
+            label: "💎DA",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "hardSkill",
+            position: "left",
+            label: "💻Hard Skill",
+          },
+          {
+            type: "docSidebar",
             sidebarId: "softSkill",
             position: "left",
             label: "🔅Soft Skill",

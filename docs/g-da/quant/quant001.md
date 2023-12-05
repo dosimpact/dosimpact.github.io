@@ -160,3 +160,4 @@ np['signal'] = np.select( [ rsi <50, rsi > 50], [1,-1], 0)
 - if, elif, else 를 한문장으로 가능.
 
 ```
+
