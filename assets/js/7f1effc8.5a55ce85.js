@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[766],{3805:t=>{t.exports=JSON.parse('{"title":"Quant","description":"Quant","slug":"/category/quant","permalink":"/docs/category/quant","navigation":{"next":{"title":"\ubc31\ud14c\uc2a4\ud305 \ub77c\uc774\ube0c\ub7ec\ub9ac vectorbt 1","permalink":"/docs/g-da/quant/quant001"}}}')}}]);
