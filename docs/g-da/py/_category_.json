@@ -1,11 +1,11 @@
 {
-  "label": "아웃풋",
+  "label": "Python",
   "position": 1,
   "collapsible": true,
   "collapsed": false,
   "link": {
     "type": "generated-index",
-    "title": "아웃풋",
-    "description": "아웃풋"
+    "title": "Python",
+    "description": "Python"
   }
 }
