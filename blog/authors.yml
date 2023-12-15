@@ -15,3 +15,9 @@ slorber:
   title: Docusaurus maintainer
   url: https://sebastienlorber.com
   image_url: https://github.com/slorber.png
+
+dodo:
+  name: dodo
+  title: dodo blog maintainer
+  url: https://dosimpact.github.io
+  image_url: https://github.com/dosimpact.png
