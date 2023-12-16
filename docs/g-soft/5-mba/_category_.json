@@ -1,11 +1,11 @@
 {
-  "label": "Product",
-  "position": 3,
+  "label": "MBA",
+  "position": 5,
   "collapsible": true,
   "collapsed": false,
   "link": {
     "type": "generated-index",
-    "title": "Product",
-    "description": "Product"
+    "title": "MBA",
+    "description": "MBA"
   }
 }

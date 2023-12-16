@@ -1,0 +1,11 @@
+{
+  "label": "회고록",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "회고록",
+    "description": "회고록"
+  }
+}
