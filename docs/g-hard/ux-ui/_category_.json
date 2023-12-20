@@ -1,11 +1,11 @@
 {
-  "label": "eg",
-  "position": 1,
+  "label": "UX/UI",
+  "position": 6,
   "collapsible": true,
   "collapsed": false,
   "link": {
     "type": "generated-index",
-    "title": "eg",
-    "description": "eg"
+    "title": "UX/UI",
+    "description": "UX/UI"
   }
 }
