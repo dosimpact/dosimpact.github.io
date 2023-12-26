@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[5868],{7306:e=>{e.exports=JSON.parse('{"title":"Docker","description":"Docker","slug":"/category/docker","permalink":"/docs/category/docker","navigation":{"next":{"title":"Docker","permalink":"/docs/g-devops/docker/sp001"}}}')}}]);
