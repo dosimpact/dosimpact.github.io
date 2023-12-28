@@ -1,0 +1,11 @@
+{
+  "label": "HomeServer",
+  "position": 5,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "HomeServer",
+    "description": "HomeServer"
+  }
+}
