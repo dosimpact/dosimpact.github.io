@@ -1,3 +1,8 @@
+---
+sidebar_position: 1
+---
+
+
 # NextJS Install
 
 - [NextJS Install](#nextjs-install)
