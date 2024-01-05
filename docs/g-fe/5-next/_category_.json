@@ -1,10 +1,10 @@
 {
-  "label": "Psychology",
-  "position": 2,
+  "label": "NextJS",
+  "position": 5,
   "collapsible": true,
   "collapsed": false,
   "link": {
     "type": "generated-index",
-    "description": "psychology - cognitive bias"
+    "description": "NextJS"
   }
 }
