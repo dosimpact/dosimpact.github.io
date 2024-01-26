@@ -45,6 +45,9 @@ source ~/.zshrc
 - 설정에서 자동으로 user(계정) 로그인 켜기  
 - [how-to-turn-off-password-on-mac](https://www.fonedog.com/ko/powermymac/how-to-turn-off-password-on-mac.html)
 
+```
+설정 > 사용자 및 그룹 > 다음으로 자동 로그인 > (계정선택)
+```
 
 <br/>
 
@@ -68,7 +71,13 @@ brew install 및 brew services로 설치하자.
 
 ```
 brew install code-server
-brew services start code-server 
+
+# 서비스 백그라운드로 실행
+brew services start code-server
+
+# 8080포트 (기본) 접속 후 config파일 수정 
+# host, port, password 수정하기  
+brew services restart code-server
 ```
 <br/>
 
