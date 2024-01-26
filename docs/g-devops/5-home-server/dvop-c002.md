@@ -20,6 +20,14 @@ sidebar_position: 3
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 애러 해결 - zsh: command not found: brew
+vi ~/.zshrc
+
+# .zshrc 파일에서 다음을 추가해준다.
+export PATH=/opt/homebrew/bin:$PATH
+
+source ~/.zshrc
 ```
 
 <br/>
