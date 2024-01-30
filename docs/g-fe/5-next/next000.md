@@ -6,7 +6,7 @@ sidebar_position: 0
 - [NextJS 2024 FullStack](#nextjs-2024-fullstack)
   - [MLP/MVP 등의 프로덕트를 빠르게 개발할 수 있는 기술 스택은 ?](#mlpmvp-등의-프로덕트를-빠르게-개발할-수-있는-기술-스택은-)
   - [1.Typescript + Javascript](#1typescript--javascript)
-  - [2.Superbase (postgreSQL)](#2superbase-postgresql)
+  - [2.Supabase (postgreSQL)](#2supabase-postgresql)
   - [3.NextJS 14의 강력한 기능](#3nextjs-14의-강력한-기능)
     - [Server API Level](#server-api-level)
     - [Server Rendering Level](#server-rendering-level)
@@ -18,7 +18,7 @@ sidebar_position: 0
 
 
 점점 더 개발 도구들이 발전한다.  
-- 이러한 도구들을 이용하면 개발 속도가 빨라진다.  
+- 이러한 도구들을 이용하면 개발 속도가 빨라진다.   
 - 빠르게 시장검증이 가능하다.  
 - 사용자의 반응을 보고, PMF를 찾기 적절한 기술 풀스택을 정하자.  
 
@@ -27,7 +27,7 @@ sidebar_position: 0
 
 웹 풀스택 with NextJS   
 
-NextJS 14 + TS + TailwindCSS + RadixUI + Zustand + Superbase(OAuth, CRUD, Storage) + Stripe   
+NextJS 14 + TS + TailwindCSS + RadixUI + Zustand + Supabase(OAuth, CRUD, Storage) + Stripe   
 
 
 ## 1.Typescript + Javascript  
@@ -35,11 +35,11 @@ NextJS 14 + TS + TailwindCSS + RadixUI + Zustand + Superbase(OAuth, CRUD, Storag
 빠른 개발이 필요한 부분, 유연성이 필요한 부분은 JS를 통해서 개발하자. eg)UI개발  
 안정성이 필요한 부분은 TS를 이용해서 개발하자. eg)DB 접근, API 정의, 결제시스템   
 
-## 2.Superbase (postgreSQL)  
+## 2.Supabase (postgreSQL)  
 
-Superbase 를 사용하자.!  
+Supabase 를 사용하자.!  
 - 내부적으로는 postgreSQL를 사용한다.  
-- 오픈소스라서 직접 온프레미스로 docker를 활용해서 superbase를 구축할 수 있다.  
+- 오픈소스라서 직접 온프레미스로 docker를 활용해서 Supabase를 구축할 수 있다.  
 - 재미있을것 같지만 많은 부분들을 이해해야 해서 당장은 프리티어 플린으로 가자. 
 
 빠르게 구현할 수 있는 기능들  
