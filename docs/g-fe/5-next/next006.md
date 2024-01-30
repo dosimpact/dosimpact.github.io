@@ -2,14 +2,17 @@
 sidebar_position: 6
 ---
 
-# TailwindCSS
+# Next + TailwindCSS
 
-- [TailwindCSS](#tailwindcss)
+- [Next + TailwindCSS](#next--tailwindcss)
+  - [playground](#playground)
+  - [단위체계](#단위체계)
   - [twMerge](#twmerge)
   - [반응형 UI만드는 방법](#반응형-ui만드는-방법)
   - [flex](#flex)
-  - [width, heigth, padding, margin, border, round](#width-heigth-padding-margin-border-round)
-  - [color, background, font-size, font-weight, cursor](#color-background-font-size-font-weight-cursor)
+  - [width, heigth, padding, margin](#width-heigth-padding-margin)
+  - [background, border, round](#background-border-round)
+  - [color, font-size, font-weight, cursor](#color-font-size-font-weight-cursor)
   - [transition, :hover, :disabled](#transition-hover-disabled)
   - [overflow](#overflow)
   - [group](#group)
@@ -17,6 +20,30 @@ sidebar_position: 6
   - [etc](#etc)
     - [truncate](#truncate)
     - [color-scheme](#color-scheme)
+
+## playground
+
+아래 사이트에서 연습이 가능하다.  
+- https://play.tailwindcss.com/
+
+
+## 단위체계
+
+tailwind css 에서는 rem 단위를 사용한다.  
+- 1은 0.25 rem, 4는 1rem 이다. 
+- 디폴트 값으로 1rem은 16px이다. 
+- 고정된 px단위도 사용 가능하다.  
+
+```js
+# gap-1 은 0.25rem 만큼 떨어진다. 
+# px단위는 []을 이용해서 사용한다.  
+<div class="flex flex-row gap-1 gap-[5px]">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+```
 
 ## twMerge
 
@@ -30,6 +57,9 @@ className={twMerge(``,active && "text-white")}
 ## 반응형 UI만드는 방법  
 
 https://tailwindcss.com/docs/responsive-design
+- UI는 Mobile우선 작업을 한다. 그리고 PC로 확장을 한다.   
+- Mobile에서 구동 가능한 화면은 PC에서 볼 수 있지만 반대의 경우는 그렇지 않다.  
+
 
 ```js
 # md:hidden : @media (min-width: 768px) { ... }
@@ -47,44 +77,81 @@ className="hidden md:flex gap-x-2 items-center"
 ## flex
 
 ```js
-# flex, justify-content(main-axis), align-items(cross-axis)
-className="flex flex-col gap-y-4"
+# display:flex
+className="flex"
 
-# main-axis(justify)
+# justify-content(main-axis)
 className="flex justify-between"
 
-# cross-axios(items)
-className="flex flex-row items-center gap-x"
+# align-items(cross-axis)
+className="flex items-center"
+
+# direction
+className="flex flex-row"
+className="flex flex-col"
+
+# gap
+className="flex flex-col gap-y-4"
 
 # flex:1 1 0%
 className="flex flex-1"
 
+# eg)
+<div class="flex flex-row items-center justify-between gap-[5px]">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
 ```
 
-## width, heigth, padding, margin, border, round
+## width, heigth, padding, margin 
 
 ```js
-className="h-auto w-full py-1"
-className="h-[130px]"
-className="px-5 py-4"
-className="rounded-lg"
-className="border border-transparent rounded-full"
-className="cursor-pointer rounded-full hover:opacity-75 transition"
+# extrinsic 
+className="h-auto h-5 h-[40px]"
+# intrinsic - 내부 요소에 의해 크기 결정
+className="h-fit h-min h-max"
+className="w-auto w-full w-5 w-[40px]"
+className="p-8 p-[40px] px-8 py-8"
+className="m-8 m-[40px] mx-8 my-8"
 ```
 
-## color, background, font-size, font-weight, cursor
+## background, border, round
+
+```js
+className="bg-red-200"
+className="bg-red-200 bg-opacity-50"
+className="border border-solid border-red-300"
+className="border-2 border-red-300"
+className="rounded-full"
+className="border border-transparent rounded-full"
+className="cursor-pointer rounded-full hover:opacity-75 transition"
+
+eg)
+<div class="h-40 w-40 cursor-pointer rounded-full border border-transparent bg-red-200 transition-colors hover:bg-red-300"></div>
+```
+
+## color, font-size, font-weight, cursor
 
 ```js
 # color
 className="text-green-500"
-# font-size (text-sm, text-md, text-lg)
-className="text-neutral-400 text-md font-medium cursor-pointer"
-className="text-black bg-green-500 font-bold"
+
+# font-size (text-sm, text-md, text-lg..)
+className="text-sm text-md text-2xl text-[50px]"
+
+# weight, font-bold(700)
+className="font-medium font-[500] font-bold font-[700]"
+
+className="cursor-pointer"
 ```
+
 ## transition, :hover, :disabled
 
 ```js
-className="hover:text-white transition"
+className="transition"
+className="hover:text-white"
 className="disabled:cursor-not-allowed disabled:opacity-50"
 ```
 
