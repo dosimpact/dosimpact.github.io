@@ -7,16 +7,16 @@ sidebar_position: 6
 - [Next + TailwindCSS](#next--tailwindcss)
   - [playground](#playground)
   - [단위체계](#단위체계)
-  - [twMerge](#twmerge)
-  - [반응형 UI만드는 방법](#반응형-ui만드는-방법)
-  - [flex](#flex)
-  - [width, heigth, padding, margin](#width-heigth-padding-margin)
   - [background, border, round](#background-border-round)
+  - [width, heigth, padding, margin](#width-heigth-padding-margin)
   - [color, font-size, font-weight, cursor](#color-font-size-font-weight-cursor)
+  - [flex](#flex)
   - [transition, :hover, :disabled](#transition-hover-disabled)
+  - [반응형 UI만드는 방법](#반응형-ui만드는-방법)
   - [overflow](#overflow)
   - [group](#group)
   - [backdrop-filter](#backdrop-filter)
+  - [twMerge](#twmerge)
   - [etc](#etc)
     - [truncate](#truncate)
     - [color-scheme](#color-scheme)
@@ -25,7 +25,6 @@ sidebar_position: 6
 
 아래 사이트에서 연습이 가능하다.  
 - https://play.tailwindcss.com/
-
 
 ## 단위체계
 
@@ -45,33 +44,46 @@ tailwind css 에서는 rem 단위를 사용한다.
 
 ```
 
-## twMerge
-
-- 조건에 따라 선택적으로 className을 넣을 수 있다.  
+## background, border, round
 
 ```js
-import { twMerge } from "tailwind-merge";
-className={twMerge(``,active && "text-white")}
+className="bg-red-200"
+className="bg-red-200 bg-opacity-50"
+className="border border-solid border-red-300"
+className="border-2 border-red-300"
+className="rounded-full"
+className="border border-transparent rounded-full"
+className="cursor-pointer rounded-full hover:opacity-75 transition"
+
+eg)
+<div class="h-40 w-40 cursor-pointer rounded-full border border-transparent bg-red-200 transition-colors hover:bg-red-300"></div>
 ```
 
-## 반응형 UI만드는 방법  
-
-https://tailwindcss.com/docs/responsive-design
-- UI는 Mobile우선 작업을 한다. 그리고 PC로 확장을 한다.   
-- Mobile에서 구동 가능한 화면은 PC에서 볼 수 있지만 반대의 경우는 그렇지 않다.  
-
+## width, heigth, padding, margin 
 
 ```js
-# md:hidden : @media (min-width: 768px) { ... }
-- 최소 768px 이상의 너비를 가진 화면이라면,(예 PC) 작동하는 로직
-- 모바일을 기준으로 작업을한다. 모바일에서 보이는건 PC에서 보이지만 반대의 경우에는 그렇진 않기 떄문. 
+# extrinsic 
+className="h-auto h-5 h-[40px]"
+# intrinsic - 내부 요소에 의해 크기 결정
+className="h-fit h-min h-max"
+className="w-auto w-full w-5 w-[40px]"
+className="p-8 p-[40px] px-8 py-8"
+className="m-8 m-[40px] mx-8 my-8"
+```
 
-# mobile 보여주다가, PC 숨긴다.
-className="flex md:hidden gap-x-2 items-center"
+## color, font-size, font-weight, cursor
 
-# PC에서 보여주다가, mobile의 경우 숨긴다.
-className="hidden md:flex gap-x-2 items-center"
+```js
+# color
+className="text-green-500"
 
+# font-size (text-sm, text-md, text-lg..)
+className="text-sm text-md text-2xl text-[50px]"
+
+# weight, font-bold(700)
+className="font-medium font-[500] font-bold font-[700]"
+
+className="cursor-pointer"
 ```
 
 ## flex
@@ -102,50 +114,8 @@ className="flex flex-1"
   <div>2</div>
   <div>3</div>
 </div>
-
 ```
 
-## width, heigth, padding, margin 
-
-```js
-# extrinsic 
-className="h-auto h-5 h-[40px]"
-# intrinsic - 내부 요소에 의해 크기 결정
-className="h-fit h-min h-max"
-className="w-auto w-full w-5 w-[40px]"
-className="p-8 p-[40px] px-8 py-8"
-className="m-8 m-[40px] mx-8 my-8"
-```
-
-## background, border, round
-
-```js
-className="bg-red-200"
-className="bg-red-200 bg-opacity-50"
-className="border border-solid border-red-300"
-className="border-2 border-red-300"
-className="rounded-full"
-className="border border-transparent rounded-full"
-className="cursor-pointer rounded-full hover:opacity-75 transition"
-
-eg)
-<div class="h-40 w-40 cursor-pointer rounded-full border border-transparent bg-red-200 transition-colors hover:bg-red-300"></div>
-```
-
-## color, font-size, font-weight, cursor
-
-```js
-# color
-className="text-green-500"
-
-# font-size (text-sm, text-md, text-lg..)
-className="text-sm text-md text-2xl text-[50px]"
-
-# weight, font-bold(700)
-className="font-medium font-[500] font-bold font-[700]"
-
-className="cursor-pointer"
-```
 
 ## transition, :hover, :disabled
 
@@ -154,6 +124,26 @@ className="transition"
 className="hover:text-white"
 className="disabled:cursor-not-allowed disabled:opacity-50"
 ```
+
+## 반응형 UI만드는 방법  
+
+https://tailwindcss.com/docs/responsive-design
+- UI는 Mobile우선 작업을 한다. 그리고 PC로 확장을 한다.   
+- Mobile에서 구동 가능한 화면은 PC에서 볼 수 있지만 반대의 경우는 그렇지 않다.  
+
+```js
+# md:hidden : @media (min-width: 768px) { ... }
+- 최소 768px 이상의 너비를 가진 화면이라면,(예 PC) 작동하는 로직
+- 모바일을 기준으로 작업을한다. 모바일에서 보이는건 PC에서 보이지만 반대의 경우에는 그렇진 않기 떄문. 
+
+# mobile 보여주다가, PC 숨긴다.
+className="flex md:hidden gap-x-2 items-center"
+
+# PC에서 보여주다가, mobile의 경우 숨긴다.
+className="hidden md:flex gap-x-2 items-center"
+
+```
+
 
 ## overflow
 
@@ -176,6 +166,16 @@ https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-paren
 # backdrop-filter: blur(10px);
 # position: absolute; inset: 10px 20px 30px 40px;
 className="bg-neutral-900/90 backdrop-blur-sm fixed inset-0"
+```
+
+## twMerge
+
+React, NextJS에서 사용한다.  
+- 조건에 따라 선택적으로 className을 넣을 수 있다.  
+
+```js
+import { twMerge } from "tailwind-merge";
+className={twMerge(``,active && "text-white")}
 ```
 
 ## etc
