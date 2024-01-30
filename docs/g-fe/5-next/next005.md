@@ -53,3 +53,16 @@ npm install @radix-ui/react-dialog
 npm install @radix-ui/react-dropdown-menu
 npm install @radix-ui/react-tooltip
 ```
+
+
+## composition (asChild)
+
+https://www.radix-ui.com/primitives/docs/guides/composition
+
+- DOM 요소를 렌더링하는 모든 Radix 기본 부분은 asChild prop을 허용.   
+- asChild로 설정되면 Radix는 기본 DOM 요소를 렌더링하지 않고 대신 부품의 하위 요소를 복제하고 해당 요소를 작동시키는 데 필요한 소품과 동작을 전달합니다.  
+
+예를들어 툴팁같은 경우에 툴팁을 트리거링 해주는 버튼 요소가 있다.
+- 버튼 포커싱 -> 툴팁이 나온다.  
+- 근데 트리거링 버튼 자체는 Radix 에서 기본적으로 제공해준다.  
+- 기본 버튼 자체를 커스터 마이징 하려면 asChild를 넣어 다른 요소로 툴팁컴포넌트와 사용 가능 
