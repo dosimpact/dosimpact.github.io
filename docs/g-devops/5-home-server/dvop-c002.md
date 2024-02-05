@@ -46,7 +46,14 @@ source ~/.zshrc
 - [how-to-turn-off-password-on-mac](https://www.fonedog.com/ko/powermymac/how-to-turn-off-password-on-mac.html)
 
 ```
+# 자동로그인 시도 설정
 설정 > 사용자 및 그룹 > 다음으로 자동 로그인 > (계정선택)
+# 자동로그인 시도 + 로그인 설정
+비밀번호 재설정 > 빈칸으로 두기 > 엔터
+
+# 전원 강제 on/off 시 자동 부팅
+설정 > 에너지 절약 > 정전 후 자동으로 시작하기
+ref : https://extrememanual.net/33485
 ```
 
 <br/>
