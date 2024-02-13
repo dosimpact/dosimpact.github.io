@@ -7,11 +7,11 @@ sidebar_position: 6
 - [Next + TailwindCSS](#next--tailwindcss)
   - [playground](#playground)
   - [단위체계](#단위체계)
-  - [background, border, round](#background-border-round)
-  - [width, heigth, padding, margin](#width-heigth-padding-margin)
-  - [color, font-size, font-weight, cursor](#color-font-size-font-weight-cursor)
-  - [flex](#flex)
-  - [transition, :hover, :disabled](#transition-hover-disabled)
+  - [bg, border, border-color, rounded](#bg-border-border-color-rounded)
+  - [w, h, p, m](#w-h-p-m)
+  - [text-color, text-size, font-bold, cursor](#text-color-text-size-font-bold-cursor)
+  - [flex, flex-col, justify, items, gap](#flex-flex-col-justify-items-gap)
+  - [hover, transition, :disabled](#hover-transition-disabled)
   - [반응형 UI만드는 방법](#반응형-ui만드는-방법)
   - [overflow](#overflow)
   - [group](#group)
@@ -20,6 +20,7 @@ sidebar_position: 6
   - [etc](#etc)
     - [truncate](#truncate)
     - [color-scheme](#color-scheme)
+  - [eg) 픽토그램 - 신호등, 횡단보드](#eg-픽토그램---신호등-횡단보드)
 
 ## playground
 
@@ -44,7 +45,7 @@ tailwind css 에서는 rem 단위를 사용한다.
 
 ```
 
-## background, border, round
+## bg, border, border-color, rounded
 
 ```js
 className="bg-red-200"
@@ -59,7 +60,7 @@ eg)
 <div class="h-40 w-40 cursor-pointer rounded-full border border-transparent bg-red-200 transition-colors hover:bg-red-300"></div>
 ```
 
-## width, heigth, padding, margin 
+## w, h, p, m 
 
 ```js
 # extrinsic 
@@ -71,7 +72,7 @@ className="p-8 p-[40px] px-8 py-8"
 className="m-8 m-[40px] mx-8 my-8"
 ```
 
-## color, font-size, font-weight, cursor
+## text-color, text-size, font-bold, cursor
 
 ```js
 # color
@@ -86,7 +87,7 @@ className="font-medium font-[500] font-bold font-[700]"
 className="cursor-pointer"
 ```
 
-## flex
+## flex, flex-col, justify, items, gap
 
 ```js
 # display:flex
@@ -117,7 +118,7 @@ className="flex flex-1"
 ```
 
 
-## transition, :hover, :disabled
+## hover, transition, :disabled
 
 ```js
 className="transition"
@@ -206,4 +207,32 @@ html,body,:root{
   background-color: black;
   color-scheme: dark;
 }
+```
+
+## eg) 픽토그램 - 신호등, 횡단보드 
+
+```
+<!-- eg) 픽토그램 - 신호등, 횡단보드  -->
+
+<div class="group flex h-[250px] w-full flex-row items-center justify-between bg-black">
+  <div class="flex flex-row gap-4 group-hover:bg-pink-300">
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+  </div>
+  <div class="flex flex-row items-center justify-center gap-3">
+    <div class="h-40 w-40 rounded-full border-2 border-white bg-red-400 transition hover:bg-red-200"></div>
+    <div class="h-40 w-40 rounded-full border-2 border-white bg-yellow-400 transition hover:bg-yellow-200"></div>
+    <div class="h-40 w-40 rounded-full border-2 border-white bg-green-400 transition hover:bg-green-200"></div>
+  </div>
+  <div class="flex flex-row gap-4 group-hover:bg-yellow-300">
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+    <div class="h-[150px] w-4 bg-white"></div>
+  </div>
+</div>
 ```
