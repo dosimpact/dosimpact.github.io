@@ -1,9 +1,9 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
-# Etc
-- [Etc](#etc)
+# Next + Lib
+- [Next + Lib](#next--lib)
   - [react-spinners](#react-spinners)
     - [useage](#useage)
     - [ref](#ref)

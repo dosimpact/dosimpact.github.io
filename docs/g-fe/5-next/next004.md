@@ -5,6 +5,7 @@ sidebar_position: 4
 # NextJS + Zustand
 
 - App의 전역상태관리가 가능  
+- git : https://github.com/pmndrs/zustand  
 
 ## usage
 
@@ -54,7 +55,7 @@ export default useAuthModal;
 ## example
 
 ```
-dialog만들기 
+dialog 만들기 
 https://www.radix-ui.com/primitives/docs/components/dialog
 
 
@@ -62,7 +63,7 @@ https://www.radix-ui.com/primitives/docs/components/dialog
 
 ## ref
 
-github : https://github.com/pmndrs/zustand
-React 상태 관리 라이브러리 Zustand의 코드를 파헤쳐보자 : https://ui.toast.com/weekly-pick/ko_20210812
-zustand deep dive : https://www.nextree.io/zustand/
+github : https://github.com/pmndrs/zustand  
+React 상태 관리 라이브러리 Zustand의 코드를 파헤쳐보자 : https://ui.toast.com/weekly-pick/ko_20210812  
+zustand deep dive : https://www.nextree.io/zustand/  
 
