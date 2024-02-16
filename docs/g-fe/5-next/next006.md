@@ -8,6 +8,7 @@ sidebar_position: 6
   - [playground](#playground)
   - [단위체계](#단위체계)
   - [bg, border, border-color, rounded](#bg-border-border-color-rounded)
+    - [bg-gradient-to-t from-black](#bg-gradient-to-t-from-black)
   - [w, h, p, m](#w-h-p-m)
   - [text-color, text-size, font-bold, cursor](#text-color-text-size-font-bold-cursor)
   - [flex, flex-col, justify, items, gap](#flex-flex-col-justify-items-gap)
@@ -21,6 +22,7 @@ sidebar_position: 6
     - [truncate](#truncate)
     - [color-scheme](#color-scheme)
   - [eg) 픽토그램 - 신호등, 횡단보드](#eg-픽토그램---신호등-횡단보드)
+  - [eg) Next Image + gradient](#eg-next-image--gradient)
 
 ## playground
 
@@ -58,6 +60,12 @@ className="cursor-pointer rounded-full hover:opacity-75 transition"
 
 eg)
 <div class="h-40 w-40 cursor-pointer rounded-full border border-transparent bg-red-200 transition-colors hover:bg-red-300"></div>
+
+```
+### bg-gradient-to-t from-black
+
+```js
+className="w-full h-full absolute top-0 bg-gradient-to-t from-black"
 ```
 
 ## w, h, p, m 
@@ -211,7 +219,7 @@ html,body,:root{
 
 ## eg) 픽토그램 - 신호등, 횡단보드 
 
-```
+```js
 <!-- eg) 픽토그램 - 신호등, 횡단보드  -->
 
 <div class="group flex h-[250px] w-full flex-row items-center justify-between bg-black">
@@ -235,4 +243,26 @@ html,body,:root{
     <div class="h-[150px] w-4 bg-white"></div>
   </div>
 </div>
+```
+
+## eg) Next Image + gradient
+
+```js
+const Header = () => {
+  return (
+    <div className="w-full h-[400px] relative">
+      <Image
+        alt="MediaItem "
+        className="object-cover"
+        fill
+        src={
+          "https://images.unsplash.com/photo-1707833558984-3293e794031c?q=80&w=2033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+      />
+      <div className="w-full h-full bg-black opacity-40 absolute top-0"></div>
+      <div className="w-full h-full absolute top-0 bg-gradient-to-t from-black"></div>
+    </div>
+  );
+};
+
 ```
