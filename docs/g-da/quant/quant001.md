@@ -2,23 +2,20 @@
 sidebar_position: 1
 ---
 
-# 백테스팅 라이브러리 vectorbt 1
+# vectorbt - 백테스팅 라이브러리
 
-## 소개
----
+## Goal   
 
-### Gooal vectorbt lecture   
-
-- 주요 라이브러리로 매매전략 구현 방법  
+- 백테스팅 라이브러리(vectorbt)로 매매전략 구현 방법  
 - 대표적인 지표의 개념 및 구현 방법  
 - 최적화된 지표로 나만의 input 찾는 법 
 - 고정 Take Profit / Stop Loss 설정법  
 - 전략 비교하기  
-- 텔레그램 매매 시그널 전송   
+- 텔레그램으로 매매 시그널 전송  
 
 <br/>
 
-### 라이브러리 리스트 및 설명
+## 라이브러리 리스트 및 설명
 
 - ccxt : 가격 데이터 API 
 - ta : 기술적 분석 라이브러리 
@@ -28,9 +25,7 @@ sidebar_position: 1
   - https://vectorbt.dev/api/data/custom/#vectorbt.data.custom.CCXTData 
 - QuantStats : 리포트 라이브러리  
 
-
 ## 구현 예제
-
 
 ### 개발환경 
 
@@ -161,3 +156,10 @@ np['signal'] = np.select( [ rsi <50, rsi > 50], [1,-1], 0)
 
 ```
 
+## 래퍼런스  
+
+[암호화폐 자동매매를 위한 파이썬과 CCXT ](https://wikidocs.net/179464)  
+[직장인도 쉽게하는 파이썬 비트코인 백테스팅 | 국내 최초 Vectorbt 강의 | 알고리즘 트레이딩 | 퀀트](https://www.udemy.com/course/vectorbt/)  
+[upbitAPI](https://docs.upbit.com/reference/%EB%B6%84minute-%EC%BA%94%EB%93%A4-1)  
+[VectorBtDocs](https://vectorbt.dev/api/). 
+[VectorBtExample](https://github.com/polakowo/vectorbt/blob/master/examples/BitcoinDMAC.ipynb)
