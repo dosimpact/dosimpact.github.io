@@ -2,8 +2,7 @@
 sidebar_position: 5
 ---
 
-# vectorbt - qs
-
+# vectorbt - quantstats
 
 - vectorbt의 포트폴리오 객체는 quantstats을 내장하고 있다.  
 - QSAdapter을 이용하면 된다.  
