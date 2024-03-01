@@ -41,8 +41,3 @@ https://api.telegram.org/bot7021912362:AAET_sNfiUfUPpIsWiS2xyfCPgJZWH-0WKc/getup
 ### 4 테스트 메시지 보내기 
 https://api.telegram.org/bot7021924962:AAET_sNfiUfUPpIsWiS2xyfCPgJZWH-0WKc/sendmessage?chat_id=-4112350884&text=test-message
 
-
-----
-
-https://api.telegram.org/bot7021924962:AAET_sNfiUfUPpIsWiS2xyfCPgJZWH-0WKc/getupdates
--4112350884
