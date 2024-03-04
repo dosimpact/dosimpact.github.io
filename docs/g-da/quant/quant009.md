@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # vectorbt - 정배열 SMAIndicator
@@ -15,6 +15,7 @@ sidebar_position: 8
 - https://technical-analysis-library-in-python.readthedocs.io/en/latest/ta.html#ta.trend.SMAIndicator
 
 
+1일 1회 체크  
 
 ### Long Position  
 
@@ -24,13 +25,15 @@ sidebar_position: 8
 - 현재 가격 > 10일 이평선  
 - 현재 가격 > 20일 이평선  
 
-1일 1회 체크  
 
 
 ### Short Position
-- Condition  
-- StopLoss
 
+매수 조건 : 
+- 현재 가격 < 3일 이평선  
+- 현재 가격 < 5일 이평선  
+- 현재 가격 < 10일 이평선  
+- 현재 가격 < 20일 이평선  
 
 ## Result - BTC/USDT, 1d  
 

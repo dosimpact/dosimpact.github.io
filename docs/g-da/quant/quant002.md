@@ -53,3 +53,44 @@ df = vbt.CCXTData.download_symbol(
     tqdm_kwargs=None
 )
 ```
+### ccxt.upbit.hourly
+
+
+```py
+import numpy as np
+import pandas as pd
+import ccxt
+from datetime import datetime, timedelta
+import time
+
+
+
+def getHourlyOHLCV(days=100, ticker='BTC/USDT'):
+  startSince = datetime.now() - timedelta(days)
+  dfOHLCV = pd.DataFrame(columns=['Time', 'Open', 'High', 'Low', 'Close', 'Volume'])
+  since = int(startSince.timestamp() * 1000)
+  prevSince = None
+
+  while True:
+      data = ccxt.upbit().fetch_ohlcv(ticker, '1h', since)
+      df = pd.DataFrame(data, columns=['Time', 'Open', 'High', 'Low', 'Close', 'Volume'])
+      df['Time'] = pd.to_datetime(df['Time'], unit='ms')  # ms(long) > datetime
+      
+      dfOHLCV = pd.concat([dfOHLCV, df], ignore_index=True)
+      since = int(dfOHLCV['Time'].iloc[-1].timestamp() * 1000) + 1 # +1ms for no dedup
+      
+      if since != None and prevSince == since:
+        break
+      
+      prevSince = since
+      time.sleep(0.1)
+  
+  dfOHLCV = dfOHLCV.drop_duplicates(subset=['Time']) # dedup
+  # dfOHLCV = dfOHLCV.set_index('Time').resample('1H').asfreq()
+  dfOHLCV = dfOHLCV.set_index('Time').resample('1H').ffill() # backfill prev data
+  return dfOHLCV
+  # return dfOHLCV 
+
+dfOHLCV = getHourlyOHLCV()
+dfOHLCV
+```
