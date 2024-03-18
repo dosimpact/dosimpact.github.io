@@ -1,8 +1,8 @@
 {
   "label": "NestJS",
-  "position": 3,
+  "position": 1,
   "collapsible": true,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "NestJS",
