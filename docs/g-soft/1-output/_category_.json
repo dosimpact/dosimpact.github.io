@@ -2,7 +2,7 @@
   "label": "아웃풋",
   "position": 1,
   "collapsible": true,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "아웃풋",
