@@ -8,8 +8,8 @@ sidebar_position: 0
   - [1.Typescript + Javascript](#1typescript--javascript)
   - [2.Supabase (postgreSQL)](#2supabase-postgresql)
   - [3.NextJS 14의 강력한 기능](#3nextjs-14의-강력한-기능)
-    - [Server API Level](#server-api-level)
-    - [Server Rendering Level](#server-rendering-level)
+    - [Server Level](#server-level)
+    - [Rendering Level](#rendering-level)
       - [1.React Server Component 도입](#1react-server-component-도입)
       - [2.다양한 SSR(Server Side Rending) 사용](#2다양한-ssrserver-side-rending-사용)
   - [4.TailwindCSS 의 가능성](#4tailwindcss-의-가능성)
@@ -52,7 +52,7 @@ Supabase 를 사용하자.!
 
 ## 3.NextJS 14의 강력한 기능  
 
-### Server API Level  
+### Server Level  
 
 1.Router Handler  
 - 정적인 REST API 에 대한 처리가 가능하다.  
@@ -66,7 +66,7 @@ Supabase 를 사용하자.!
 - 그냥 서버의 함수 import 후 부르는것으로 개발자 경험이 향상된다.  
 
 
-### Server Rendering Level  
+### Rendering Level  
 
 #### 1.React Server Component 도입  
 - 줄여서  RSC 라고 한다.  
@@ -86,7 +86,7 @@ Supabase 를 사용하자.!
 - 이후 hydration 과정을 거처 CSR이 완성된다.  
 
 
-1.2 Sub Page Loading  
+1.2 Subpage subsequent  
 - 하위 경로에 대해서 NextJS는 필요한 부분만 랜더링 하게 된다.  
 - RootLayout에서 클라이언트 컴포넌트는 유지 된다.  
 
@@ -94,7 +94,7 @@ Supabase 를 사용하자.!
 
 #### 2.다양한 SSR(Server Side Rending) 사용  
 
-2.1 SSR 종류 (구지 나누자면 )  
+2.1 랜더링 종류 ( 구지 나누자면 )    
 
 SSG : 정적사이트 생성  
 - 앞으로 웹 페이지가 불변하다.  
