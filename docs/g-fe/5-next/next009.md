@@ -10,7 +10,7 @@ sidebar_position: 9
   - [db connection with DBeaver](#db-connection-with-dbeaver)
   - [install](#install)
   - [env settings](#env-settings)
-  - [@supabase/ssr setup](#supabasessr-setup)
+  - [next + @supabase/ssr setup](#next--supabasessr-setup)
     - [1.주의사항](#1주의사항)
     - [2.주의사항](#2주의사항)
     - [supabase클라이언트는 여러버전 만들어야 한다.](#supabase클라이언트는-여러버전-만들어야-한다)
@@ -18,6 +18,7 @@ sidebar_position: 9
     - [createServerClient](#createserverclient)
       - [미들웨어 createServerSideClientRSC 따로 만든 이유](#미들웨어-createserversideclientrsc-따로-만든-이유)
       - [미들웨어 createServerClient 따로 만든 이유](#미들웨어-createserverclient-따로-만든-이유)
+    - [트러블슈팅](#트러블슈팅)
 
 ## create supabase project  
 
@@ -71,7 +72,7 @@ SUPABASE_SERVICE_ROLE_KEY=xxxx
 ```
 
 
-## @supabase/ssr setup
+## next + @supabase/ssr setup
 
 ![Alt text](image-2.png)  
 - 참고 : https://www.youtube.com/watch?v=XIj7nmIYtbo
@@ -202,3 +203,12 @@ export const createServerSideClientMiddleware = async (
 - before code : https://supabase.com/docs/guides/auth/server-side/creating-a-client?environment=middleware
 
 
+### 트러블슈팅 
+
+- 서버액션을 사용하는데, SSR 과정에서 쿠키를 조작했다.  
+- 서버액션을 이곳저곳에서 사용해서 그렇다. ctx라는 변수를 주자.  
+
+```
+ ⨯ unhandledRejection: td [Error]: Cookies can only be modified in a Server Action or Route Handler. Read more: https://nextjs.org/docs/app/api-reference/functions/cookies#cookiessetname-value-options
+    at Proxy.callable (/Users/dodonet-2/workspace/projects/supabase-next-poc/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:36:12724)
+```
