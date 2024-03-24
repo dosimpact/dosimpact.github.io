@@ -18,11 +18,6 @@ sidebar_position: 9
     - [createServerClient](#createserverclient)
       - [미들웨어 createServerSideClientRSC 따로 만든 이유](#미들웨어-createserversideclientrsc-따로-만든-이유)
       - [미들웨어 createServerClient 따로 만든 이유](#미들웨어-createserverclient-따로-만든-이유)
-    - [anonClient/adminClient + RLS](#anonclientadminclient--rls)
-  - [code - auth](#code---auth)
-    - [주의](#주의)
-  - [middleware](#middleware)
-    - [기본](#기본)
 
 ## create supabase project  
 
@@ -207,49 +202,3 @@ export const createServerSideClientMiddleware = async (
 - before code : https://supabase.com/docs/guides/auth/server-side/creating-a-client?environment=middleware
 
 
-### anonClient/adminClient + RLS
-
-INSERT - anon - true : anonClient쓰기 가능  
-INSERT - authenticated - true : anonClient가 로그인 해야 쓰기 가능  
-INSERT : adminClient는 RLS 정책에 영향없이 쓰기 가능   
-
-*service_role 왜 있는거지..?! 
-// INSERT - service_role - true : adminClient 쓰기 가능  
-
-## code - auth  
-
-### 주의  
-- *주의 : 여러가지 sdk가 있는데 하나만 사용할 것  
-- @supabase/supabase-js"와 "@supabase/ssr" 을 혼용하면 안된다.  
-
-
-
-
----
-
-## middleware
-
-미들웨어  
-- 특정 경로에 대해서 미들웨어를 통과시킬 수 있다.  
-- 예를들어 로그인 된 사용자만 들어올 수 있는 경로, 
-  - 로그인 안됨, 로그인 세션 풀림 -> 다시 로그인하라고 로그인 페이지로 리다이렉트  
-
-
-### 기본
-
-https://nextjs.org/docs/app/building-your-application/routing/middleware
-
-```js
-import { NextResponse, NextRequest } from "next/server";
-
-export function middleware(request: NextRequest) {
-  const res = NextResponse.next();
-  console.log("middleware passed : reqeust pathname", request.nextUrl.pathname);
-  return res;
-}
-
-export const config = {
-  matcher: "/",
-};
-
-```
