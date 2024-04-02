@@ -15,6 +15,8 @@ sidebar_position: 8
     - [BOLA](#bola)
   - [필수 datatypes](#필수-datatypes)
   - [typescript - typegen](#typescript---typegen)
+  - [Authentication](#authentication)
+  - [Architecture](#architecture)
   - [참고자료](#참고자료)
 
 ## Docs 
@@ -57,6 +59,12 @@ AI 및 벡터:
 - 시작은 FREE 이다.!   
 - 용량 500MB 혹은 MAU 5만 넘어가면, 이후 PRO 사용하면 된다.    
 - https://supabase.com/pricing  
+
+Free 버전에서 문제 
+- 클라우드 리소스를 절약하기 위해 현재 7일 이상 비활성 상태인 무료 계층 프로젝트를 일시 중지하고 있습니다.
+
+그럼 유료 버전에서는 ?  
+- TBD
 
 
 ## RLS (Row-Level Security)
@@ -154,6 +162,31 @@ export const supaBrowserClient = createBrowserClient<Database>(
 
 ```
 
+## Authentication
+
+Authentication
+- Supabase는 JWT와 키 인증을 혼합하여 작동합니다.
+- Authorization 헤더가 포함되어 있지 않으면 API는 익명 사용자에게 요청을 하는 것으로 가정합니다.
+- Authorization 헤더가 포함된 경우 API는 요청을 수행하는 사용자의 역할로 "전환"됩니다.(키를 환경 변수로 설정하는 것이 좋습니다.)
+
+Client API Keys
+- 클라이언트 키는 사용자가 로그인할 때까지 데이터베이스에 대한 "익명 액세스"를 허용합니다. 로그인한 후 키는 사용자 자신의 로그인 토큰으로 전환됩니다.
+- 이 문서에서는 SUPABASE_KEY라는 이름을 사용하여 키를 참조합니다.
+- 시작할 수 있도록 클라이언트 키를 제공했습니다. 곧 원하는 만큼 키를 추가할 수 있게 될 것입니다. 
+- API 설정 페이지에서 anon 키를 찾을 수 있습니다.
+
+Service Keys
+- 서비스 키는 모든 보안 정책을 우회하여 데이터에 대한 전체 액세스 권한을 갖습니다. 이러한 키를 노출할 때에는 매우 주의하십시오. 서버에서만 사용해야 하며 클라이언트나 브라우저에서는 절대 사용해서는 안 됩니다.
+- 이 문서에서는 SERVICE_KEY라는 이름을 사용하여 키를 참조합니다.
+- 시작할 수 있도록 서비스 키를 제공했습니다. 곧 원하는 만큼 키를 추가할 수 있게 될 것입니다. 
+- API 설정 페이지에서 service_role을 찾을 수 있습니다.
+
+
+## Architecture
+
+![altImg](https://supabase.com/docs/_next/image?url=%2Fdocs%2Fimg%2Fsupabase-architecture.svg&w=2048&q=75)
+ 
+https://supabase.com/docs/guides/getting-started/architecture
 
 ## 참고자료
 
