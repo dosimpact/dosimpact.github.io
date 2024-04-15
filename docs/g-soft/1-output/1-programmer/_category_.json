@@ -1,0 +1,11 @@
+{
+  "label": "Programmer",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Programmer",
+    "description": "Effective & Impactive Programmer"
+  }
+}
