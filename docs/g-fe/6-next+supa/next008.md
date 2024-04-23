@@ -13,7 +13,7 @@ sidebar_position: 8
     - [Pricing](#pricing)
   - [RLS (Row-Level Security)](#rls-row-level-security)
     - [BOLA](#bola)
-  - [필수 datatypes](#필수-datatypes)
+  - [필수 data types](#필수-data-types)
   - [typescript - typegen](#typescript---typegen)
   - [Authentication](#authentication)
   - [Architecture](#architecture)
@@ -115,7 +115,7 @@ BOLA - Broken Object Level Authorization.
 
 ref : 11개 API 취약점 > https://jusths.tistory.com/330   
 
-## 필수 datatypes 
+## 필수 data types 
 
 https://supabase.com/docs/guides/database/tables#data-types
 
@@ -134,7 +134,7 @@ json 저장 : json
 
 ## typescript - typegen
 
-DB 스키마에 따라서 타입 제너레이팅이 가능하다.  
+DB 스키마를 바탕으로 타입 제너레이팅이 가능하다.  
 - 정말 유용한 기능!!   
 - https://supabase.com/docs/guides/api/rest/generating-types
 
@@ -156,8 +156,7 @@ import { createBrowserClient } from "@supabase/ssr";
 import { Database } from "@/types/supabase";
 
 export const supaBrowserClient = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_URL!
 );
 
 ```
@@ -168,6 +167,25 @@ Authentication
 - Supabase는 JWT와 키 인증을 혼합하여 작동합니다.
 - Authorization 헤더가 포함되어 있지 않으면 API는 익명 사용자에게 요청을 하는 것으로 가정합니다.
 - Authorization 헤더가 포함된 경우 API는 요청을 수행하는 사용자의 역할로 "전환"됩니다.(키를 환경 변수로 설정하는 것이 좋습니다.)
+
+```
+예)
+// 로그인 전 요청, apiKey를 헤더에 넣어서 요청한다. ( apiKey는 anon key, service role key  )
+curl 'https://xscduanzzfseqszwzhcy.supabase.co/rest/v1/colors?select=name' \
+-H "apikey: eyxx..xc" \
+
+// 로그인을 하면 JWT 토큰이 발급된다.  
+supabase.auth.signIn({
+  email: 'lao.gimmie@gov.sg',
+  password: 'They_Live_1988!',
+})
+
+// 로그인 요청 후, apiKey + Authorization 와 함께 요청을 보낸다.  
+curl 'https://xscduanzzfseqszwzhcy.supabase.co/rest/v1/colors?select=name' \
+-H "apikey: eyxx..xc" \
+-H "Authorization: Bearer eyx..xs"
+
+```
 
 Client API Keys
 - 클라이언트 키는 사용자가 로그인할 때까지 데이터베이스에 대한 "익명 액세스"를 허용합니다. 로그인한 후 키는 사용자 자신의 로그인 토큰으로 전환됩니다.
