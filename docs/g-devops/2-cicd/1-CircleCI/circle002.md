@@ -24,23 +24,24 @@ Job : 하나 이상의 step의 조합이다.
 Executor
 - Executor는 Docker 컨테이너 또는 Linux, Windows 또는 macOS를 실행하는 가상 머신이 될 수 있습니다.  
 - Executor는 각 Job마다 할당된다.  
-
+- Executor에는 여러개의 도커 이미지를 올릴 수 있지만, 첫번째 컨테이너가 메인이고 나머지는 보조이다.  
 
 
 
 ```yml
-version: 2.1 
-executors: # executors 정의, docker로 구성된 2개의 executor를 볼 수 있다.   
+
+version: 2.1
+executors:
   node-executor:
     docker:
       - image: circleci/node:latest
-  db-executor:
-    docker:
+        environment:
+          DATABASE_URL: postgresql://root@localhost:5432/test_db
       - image: circleci/postgres:latest
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: test_db
-jobs: # 2개의 job을 만든다. 
+jobs:
   install-dependencies:
     executor: node-executor
     steps:
@@ -53,10 +54,11 @@ jobs: # 2개의 job을 만든다.
       - run: npm test
 workflows:
   version: 2
-  build-and-test: # 위에서 만든 2개의 job을 순차적으로 연결한다.  
+  build-and-test:
     jobs:
       - install-dependencies
       - test:
           requires:
             - install-dependencies
+
 ```
