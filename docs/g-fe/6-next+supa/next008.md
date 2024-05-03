@@ -12,7 +12,7 @@ sidebar_position: 8
     - [클라우스 서비스 구조](#클라우스-서비스-구조)
     - [Pricing](#pricing)
   - [RLS (Row-Level Security)](#rls-row-level-security)
-    - [BOLA](#bola)
+    - [RLS 로 해결하는 API 취약점](#rls-로-해결하는-api-취약점)
   - [필수 data types](#필수-data-types)
   - [typescript - typegen](#typescript---typegen)
   - [Authentication](#authentication)
@@ -57,15 +57,20 @@ AI 및 벡터:
 ### Pricing  
 
 - 시작은 FREE 이다.!   
-- 용량 500MB 혹은 MAU 5만 넘어가면, 이후 PRO 사용하면 된다.    
+- DB의 용량을 500MB 혹은 1 GB file storage 혹은 MAU 5만 넘어가면, 이후 PRO 사용하면 된다.    
 - https://supabase.com/pricing  
 
 Free 버전에서 문제 
-- 클라우드 리소스를 절약하기 위해 현재 7일 이상 비활성 상태인 무료 계층 프로젝트를 일시 중지하고 있습니다.
+- 클라우드 리소스를 절약하기 위해 현재 7일 이상 비활성 상태인 무료 계층 프로젝트를 일시 중지하고 있습니다.  
 
 그럼 유료 버전에서는 ?  
-- TBD
-
+- 100,000 monthly active users 
+- 8 GB database space 
+- 250 GB bandwidth 
+- 100 GB file storage 
+- Email support
+- Daily backups stored for 7 days
+- 7-day log retention
 
 ## RLS (Row-Level Security)
 
@@ -73,13 +78,12 @@ Supabase의 RLS는 "Row-Level Security"의 약자.
 - 데이터베이스 테이블의 행에 대한 보안을 관리하는 기능
 - 사용자 또는 역할이 특정 행에 접근할 수 있는지 여부를 제어.  
 
-
 행 수준의 보안 장점   
 - 블로그 포스팅이라는 테이블이 있다라고 가정 하면  
 - 포스팅이라는 하나의 테이블에는 다른 사람들의 포스팅도 있음    
-- 원래는 서버단에서 내 포스팅과 다른 사람의 포스팅이 섞이지 않도록 권한체크 해야 한다.    
+- 원래는 서버단에서 내 포스팅과 다른 사람의 포스팅이 섞이지 않도록 권한체크 해야 한다.     
 - 근데 DB Level에서 이를 해주는 거임  
-- 보안이 향상된 인프라가 있으니 맘놓고 개발 가능!  
+- 보안이 향상된 인프라가 있으니 맘놓고 개발 가능!   
 
 예)  
 - Todo테이블의 Todo 정보에 대해서 다음 규칙을 DB Level에서 적용 가능  
@@ -93,7 +97,6 @@ Supabase의 RLS는 "Row-Level Security"의 약자.
 - 로그인 후 + select * from post 라고 조회하면 로그인 한 사용자것만 나옴  
 - sql이 실제랑 다르다.  
 
-
 ```js
 # App 요청
 select * from todos
@@ -104,16 +107,19 @@ where auth.uid() = todos.user_id; -- Policy is implicitly added.
 ```
 참조 : https://supabase.com/docs/guides/database/postgres/row-level-security#policies
 
-
-### BOLA
+### RLS 로 해결하는 API 취약점  
 
 BOLA - Broken Object Level Authorization. 
 - 접근 권한이 없는 데이터에 접근을 하는 경우이다.  
 - 예를 들어, A 사용자는 자신의 정보만 볼 수 있어야 하는 데, 같은 권한 수준을 가진 B 사용자의 정보까지 볼 수 있는 경우를 말한다.  
 
-* postgreSQL의 RLS 기능을 이용해서 BOLA를 예방할 수 있다.  
+BFLA - Broken Function Level Authorization
+- BOLA가 Access - 데이터 접근에 대한 문제라면 BFLA는 Action - 작업 수행에 대한 문제이다. 즉, 권한이 없는 작업을 수행하는 것이다.
 
-ref : 11개 API 취약점 > https://jusths.tistory.com/330   
+* postgreSQL의 RLS 기능을 이용해서 BOLA, BFLA 예방할 수 있다.  
+
+
+ref : [11개 API 취약점](https://jusths.tistory.com/330)
 
 ## 필수 data types 
 
