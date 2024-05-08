@@ -1,0 +1,11 @@
+{
+  "label": "Auth",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "Auth Core",
+    "description": "Auth Core"
+  }
+}
