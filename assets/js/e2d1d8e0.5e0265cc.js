@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[6045],{9404:i=>{i.exports=JSON.parse('{"title":"UX/UI","description":"UX/UI","slug":"/category/uxui","permalink":"/docs/category/uxui","navigation":{"next":{"title":"UX Writing","permalink":"/docs/g-hard/ux-ui/\\bux-write-001"}}}')}}]);
