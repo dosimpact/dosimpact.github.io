@@ -214,7 +214,7 @@ console.log(window.x); // undefined
 - AMD(Asynchronous Module Definition): 비동기적인 특징으로 클라이언트 사이드에서 사용하기 용기합니다.
 - UMD(Universal Module Definition): CJS와 AMD 모두 사용 가능한 모듈을 만들기 위해 사용됩니다.
 - ESM(ECMAScript Module): 자바스크립트 공식 모듈 시스템입니다.
-  - `<script type="module" src="index.mjs">`을 사용하여 브라우저에서도 모듈 시스템을 사용할 수 있습니다.
+  - ```<script type="module" src="index.mjs">```을 사용하여 브라우저에서도 모듈 시스템을 사용할 수 있습니다.
 
 참고) https://beomy.github.io/tech/javascript/cjs-amd-umd-esm/#umd-universal-module-definition
 

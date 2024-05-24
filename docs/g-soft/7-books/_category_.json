@@ -1,11 +1,11 @@
 {
-  "label": "Book",
+  "label": "Book&Lectures",
   "position": 7,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Book",
-    "description": "Book"
+    "title": "Book&Lectures",
+    "description": "Book&Lectures"
   }
 }
