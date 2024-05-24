@@ -1,11 +1,11 @@
 {
-  "label": "패키지 매니저",
+  "label": "Bundler",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "패키지 매니저",
-    "description": "패키지 매니저"
+    "title": "Bundler",
+    "description": "Bundler"
   }
 }
