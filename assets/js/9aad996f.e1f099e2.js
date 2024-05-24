@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[2500],{9588:a=>{a.exports=JSON.parse('{"title":"MBA","description":"MBA","slug":"/category/mba","permalink":"/docs/category/mba","navigation":{"next":{"title":"1:\ud68c\uc0ac \ucc3d\uc5c5","permalink":"/docs/g-hard/mba/mba001"}}}')}}]);
