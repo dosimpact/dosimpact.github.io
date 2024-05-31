@@ -2,7 +2,7 @@
   "label": "JS 추가 주제",
   "position": 1,
   "collapsible": true,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "JS 추가 주제",
