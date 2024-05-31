@@ -1,0 +1,11 @@
+{
+  "label": "Cloud SW 아키텍처",
+  "position": 0,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Cloud SW 아키텍처.",
+    "description": "Cloud SW 아키텍처"
+  }
+}

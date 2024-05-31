@@ -2,7 +2,7 @@
   "label": "Kafka",
   "position": 3,
   "collapsible": true,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Kafka",
