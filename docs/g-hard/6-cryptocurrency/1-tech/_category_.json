@@ -1,0 +1,11 @@
+{
+  "label": "암호화폐 Tech",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "암호화폐 Tech",
+    "description": "암호화폐 Tech"
+  }
+}
