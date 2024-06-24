@@ -1,0 +1,11 @@
+{
+  "label": "Quant",
+  "position": 3,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Quant",
+    "description": "Quant"
+  }
+}
