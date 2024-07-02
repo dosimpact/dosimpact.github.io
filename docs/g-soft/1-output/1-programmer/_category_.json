@@ -1,11 +1,11 @@
 {
-  "label": "Programmer",
+  "label": "커리어",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Programmer",
+    "title": "커리어",
     "description": "Effective & Impactive Programmer"
   }
 }
