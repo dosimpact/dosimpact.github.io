@@ -1,11 +1,11 @@
 {
-  "label": "Quant",
-  "position": 3,
+  "label": "1.OnChain Indicators",
+  "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Quant",
-    "description": "Quant"
+    "title": "1.OnChain Indicators",
+    "description": "1.OnChain Indicators"
   }
 }
