@@ -4,6 +4,51 @@ sidebar_position: 1
 
 # CS Interview Web    
 
+- [CS Interview Web](#cs-interview-web)
+  - [프런트엔드 빌드 시스템에 대해서 설명해보세요.](#프런트엔드-빌드-시스템에-대해서-설명해보세요)
+    - [(추가) Task Runners vs Module Bundler](#추가-task-runners-vs-module-bundler)
+    - [ref](#ref)
+  - [바벨이란?](#바벨이란)
+  - [폴리필이란?](#폴리필이란)
+  - [Node.js란?](#nodejs란)
+  - [NPM이란?](#npm이란)
+  - [ESLint, Prettier란?](#eslint-prettier란)
+  - [🌕 웹 태스크 매니저란?](#-웹-태스크-매니저란)
+    - [🌕 크롬은 멀티프로세스 아키텍처 사용](#-크롬은-멀티프로세스-아키텍처-사용)
+  - [웹팩이란? 모듈 번들러가 무엇인가요?](#웹팩이란-모듈-번들러가-무엇인가요)
+  - [🌕 웹 접근성과 시맨틱 마크업이란? 이 2가지를 지키기 위해 보통 어떤식으로 마크업을 작성하는지?](#-웹-접근성과-시맨틱-마크업이란-이-2가지를-지키기-위해-보통-어떤식으로-마크업을-작성하는지)
+    - [(추가) 일반적인 접근성 테스트 목록](#추가-일반적인-접근성-테스트-목록)
+    - [(추가) ARIA(Accessible Rich Internet Applications) 속성](#추가-ariaaccessible-rich-internet-applications-속성)
+    - [1. 역할 (Roles)](#1-역할-roles)
+    - [2. 상태 (States)](#2-상태-states)
+    - [3. 속성 (Properties)](#3-속성-properties)
+    - [예시](#예시)
+- [토이프로젝트](#토이프로젝트)
+  - [웹 서비스를 기획부터 배포까지 모두 스스로 해본 경험이 있는가? 토이 프로젝트나 회사 서비스 등](#웹-서비스를-기획부터-배포까지-모두-스스로-해본-경험이-있는가-토이-프로젝트나-회사-서비스-등)
+    - [(꼬리 질문) 구체적으로 어떤 역할을 수행했는지 설명](#꼬리-질문-구체적으로-어떤-역할을-수행했는지-설명)
+- [Web](#web)
+  - [SEO(검색 엔진 최적화)란? 적용 사례가 있으면 구체적인 적용 방법도 같이 설명](#seo검색-엔진-최적화란-적용-사례가-있으면-구체적인-적용-방법도-같이-설명)
+  - [REST API로 받은 객체와 배열은 보통 어떤 자바스크립트 API나 로직을 이용해서 화면에 맞게 가공을 하는지?](#rest-api로-받은-객체와-배열은-보통-어떤-자바스크립트-api나-로직을-이용해서-화면에-맞게-가공을-하는지)
+  - [🌕함수형 프로그래밍이란?](#함수형-프로그래밍이란)
+    - [🌕(꼬리 질문) 자바스크립트 클로저란?](#꼬리-질문-자바스크립트-클로저란)
+    - [🌕(꼬리 질문) 자바스크립트 프로토타입이란?](#꼬리-질문-자바스크립트-프로토타입이란)
+  - [서버 사이드 렌더링과 싱글 페이지 애플리케이션의 차이점?](#서버-사이드-렌더링과-싱글-페이지-애플리케이션의-차이점)
+    - [GPT)](#gpt)
+    - [(꼬리 질문) 서버 사이드 렌더링이나 SPA로 각각 구현해 본 경험이 있는지?](#꼬리-질문-서버-사이드-렌더링이나-spa로-각각-구현해-본-경험이-있는지)
+  - [타입 시스템에 대해서 알고 있는지? 타입스크립트를 써봤는지?](#타입-시스템에-대해서-알고-있는지-타입스크립트를-써봤는지)
+    - [(꼬리 질문) 자바스크립트와 타입스크립트의 차이점?](#꼬리-질문-자바스크립트와-타입스크립트의-차이점)
+    - [(꼬리 질문) 타입스크립트의 장점과 단점?](#꼬리-질문-타입스크립트의-장점과-단점)
+  - [Q. Nodejs 스케일업 방법?](#q-nodejs-스케일업-방법)
+  - [Q. 사파리 브라우저의 랜더링 엔진은?](#q-사파리-브라우저의-랜더링-엔진은)
+  - [Q.브라우저의 캐시 전략](#q브라우저의-캐시-전략)
+    - [주요 캐싱 헤더](#주요-캐싱-헤더)
+    - [캐싱 제어 예시](#캐싱-제어-예시)
+    - [실전 예시](#실전-예시)
+  - [CSS - image-rendering](#css---image-rendering)
+- [TS](#ts)
+  - [react 에서 children을 타이핑 할때 ReactNode 가 맞아 ReactElemet가 맞아요?](#react-에서-children을-타이핑-할때-reactnode-가-맞아-reactelemet가-맞아요)
+
+
 ## 프런트엔드 빌드 시스템에 대해서 설명해보세요.  
 
 빌드 시스템은 개발+배포 과정에 필요한 도구들 모아둔 시스템이다.  
@@ -548,3 +593,55 @@ HTTP/1.1 304 Not Modified
 https://drafts.csswg.org/css-images-3/#the-image-rendering
 
 ![Alt text](image.png)
+
+
+# TS  
+
+## react 에서 children을 타이핑 할때 ReactNode 가 맞아 ReactElemet가 맞아요?
+
+React에서 `children` 프로퍼티를 타이핑할 때, `ReactNode`와 `ReactElement` 중 어느 것을 사용하는지가 중요한데, 이 둘은 약간의 차이가 있습니다.
+
+- **`ReactNode`**: `ReactNode`는 React가 렌더링할 수 있는 모든 것을 포함합니다. 이는 문자열, 숫자, `ReactElement`, 배열 또는 null과 undefined를 포함할 수 있습니다. 즉, `children`으로 전달될 수 있는 모든 종류의 값을 표현할 수 있습니다.
+
+- **`ReactElement`**: `ReactElement`는 React 컴포넌트의 인스턴스를 의미합니다. 이는 JSX로 작성된 단일 컴포넌트나 요소를 나타냅니다.
+
+일반적으로 `children` 프로퍼티를 정의할 때는 `ReactNode`를 사용하는 것이 맞습니다. 이렇게 하면 React가 렌더링할 수 있는 모든 타입의 자식을 허용할 수 있습니다.
+
+TypeScript로 작성된 React 컴포넌트에서 `children` 프로퍼티를 타이핑할 때 `ReactNode`를 사용하는 예제입니다.
+
+```tsx
+import React, { ReactNode } from 'react';
+
+interface MyComponentProps {
+  children: ReactNode;
+}
+
+const MyComponent: React.FC<MyComponentProps> = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+export default MyComponent;
+```
+
+이 예제에서는 `children` 프로퍼티가 `ReactNode`로 정의되어 있습니다. 이는 이 컴포넌트가 문자열, 숫자, `ReactElement` 등 모든 종류의 자식을 받을 수 있게 합니다.
+
+`ReactNode`와 `ReactElement`의 차이점
+
+```tsx
+import React, { ReactElement, ReactNode } from 'react';
+
+const element: ReactElement = <div>Hello World</div>; // Valid ReactElement
+const node: ReactNode = <div>Hello World</div>;       // Valid ReactNode
+
+const stringNode: ReactNode = "Hello World";          // Valid ReactNode
+const numberNode: ReactNode = 123;                    // Valid ReactNode
+const nullNode: ReactNode = null;                     // Valid ReactNode
+const undefinedNode: ReactNode = undefined;           // Valid ReactNode
+const arrayNode: ReactNode = [<div key="1">1</div>, <div key="2">2</div>]; // Valid ReactNode
+```
+
+위 코드에서 볼 수 있듯이, `ReactNode`는 `ReactElement`를 포함한 다양한 타입을 수용할 수 있지만, `ReactElement`는 JSX로 작성된 단일 요소나 컴포넌트만을 나타냅니다.
+
+따라서, `children` 프로퍼티를 타이핑할 때는 `ReactNode`를 사용하는 것이 맞습니다. 이는 더 다양한 종류의 자식을 허용하며, React 컴포넌트가 보다 유연하게 사용할 수 있게 합니다.
+
+
