@@ -1,11 +1,11 @@
 {
-  "label": "CS Interview",
+  "label": "BaseKnowledge",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "CS Interview",
-    "description": "CS Interview"
+    "title": "BaseKnowledge",
+    "description": "BaseKnowledge"
   }
 }
