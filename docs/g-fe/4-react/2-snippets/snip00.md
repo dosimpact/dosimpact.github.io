@@ -28,14 +28,13 @@ const AppWithComponentReference = ({
 const AppWithComponentInstance = ({
   Component,
 }: {
-  Component: () => React.ReactNode;
+  Component: React.ComponentType; // () => React.ReactElement;
 }) => (
   <div>
     <h1>Using Component Instance</h1>
     <Component /> {/* 실제로 컴포넌트를 렌더링 */}
   </div>
 );
-
 // 실제 렌더링
 export const Test01 = () => {
   return (
@@ -53,14 +52,16 @@ export const Test01 = () => {
 Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
 
 2.
-children 처럼 특별한 props는 리액트 Element이다. (React.ReactNode 로 타이핑)  
-- React.Element 는 <></> 등 JSX의 결과물이다.   
-- 반면 React.Node 는 JSX 뿐 아니라, string, null, number등도 가능하다.   
+컴포넌트는 React.Element를 리턴하는 함수이다.    
+const component = ()=> <h1>Hello, World!</h1>;  
+엘리먼트는 함수가 아니다. 불변하는 JSX 그 자체이다.  
+const element = <h1>Hello, World!</h1>;  
 
 3.
-컴포넌트는 Element를 리턴하는 함수이다.    
-const element = <h1>Hello, World!</h1>;  
-const component = ()=> <h1>Hello, World!</h1>;  
+children 처럼 특별한 props는 리액트 Element 뿐 아니라 다른 유형도 가능.
+- 그래서 React.ReactNode 로 타이핑 한다.
+- React 요소뿐만 아니라 문자열, 숫자, null, undefined, 배열 등 다양한 유형의 값들을 포함  
+- React.Element 는 <></> 등 JSX의 결과물이다.   
 
 ```
 
