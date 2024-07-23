@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# React Snippets
+# Hooks Snippets
 
 ## useShadowDOM  
 
