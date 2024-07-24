@@ -8,8 +8,13 @@ sidebar_position: 7
 
 ```js
 x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-console.log(numberWithCommas(1234567)); // "1,234,567"
+console.log(numberWithCommas(1234567)); // "1,234,567"  
 ```
+논리  
+- 단어 경계를 제외해서 선택한다.  
+- 조건:LookForward를 통해서 적어도 1개 이상의 숫자 3개 셋트가 반복되어야 한다.  
+  - 위 조건에 조건을 하나 더 붙인다.   
+  - (Neg)LookForward를 통해서 3개 숫자 셋트 뒤에는 숫자 1~2개가 나오면 안된다.  
 
 - \B: 단어 경계 반대 클래스  
 - (\d{3})+: 세 자리 숫자 그룹을 하나 이상 찾습니다.
