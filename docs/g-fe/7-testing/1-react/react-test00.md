@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# React Testing  
+# Basic React Testing 01
 
-- [React Testing](#react-testing)
+- [Basic React Testing 01](#basic-react-testing-01)
   - [준비사항](#준비사항)
       - [1.Mock Router](#1mock-router)
       - [2.Mock API with MSW](#2mock-api-with-msw)
