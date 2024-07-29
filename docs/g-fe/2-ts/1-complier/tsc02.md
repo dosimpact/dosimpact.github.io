@@ -6,6 +6,22 @@ sidebar_position: 2
 
 Goal : 타입스크립트 기반의 라이브러리를 배포합니다.      
 
+
+- [Typescript Lib Publish Guide](#typescript-lib-publish-guide)
+  - [Background](#background)
+  - [Inint](#inint)
+  - [package.json](#packagejson)
+  - [tsconfig.json, tsconfig.esm.json](#tsconfigjson-tsconfigesmjson)
+  - [.npmignore](#npmignore)
+  - [src](#src)
+  - [Prettier \& eslint 설정](#prettier--eslint-설정)
+    - [Prettier 설정](#prettier-설정)
+    - [ESLint 설정](#eslint-설정)
+    - [Prettier와 ESLint 통합](#prettier와-eslint-통합)
+    - [ESLint 세부 규칙 조정하기](#eslint-세부-규칙-조정하기)
+    - [모든 규칙](#모든-규칙)
+
+
 ## Background  
 
 error 객체는 typescript에서 unknown으로 처리된다.  
@@ -117,3 +133,128 @@ export function assertAxiosError(e: unknown): asserts e is AxiosError {
 }
 
 ```
+
+## Prettier & eslint 설정  
+
+### Prettier 설정  
+
+Prettier는 코드 포맷터로, 코드를 일관된 스타일로 자동으로 정리해줍니다.   
+- Install VS Code Prettier Extension  
+
+```bash
+# 0.설치
+yarn add prettier -D
+
+# 1.설정 파일을 루트에 추가
+# .prettierrc
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "arrowParens": "avoid"
+}
+
+---
+# 2.포멧팅 제외 파일(선택사항)
+# .prettierignore
+node_modules
+dist
+tsconfig.json
+tsconfig.esm.json
+
+---
+# 3.package.json 스크립트 추가
+"prettier": "prettier --write ./src"
+```
+
+### ESLint 설정  
+
+ESLint는 JavaScript 코드의 문제를 찾아내고 스타일을 강제하는 도구입니다.  
+- Install VS Code Eslint Extension and restart VS Code
+
+```bash
+# 1. ESLint 설치
+yarn add eslint -D
+
+
+# 2. ESLint 초기화
+# ESLint를 초기화하여 기본 설정 파일을 생성합니다. 다음 명령어를 실행하세요:
+npx eslint --init
+# eslint, globals, @eslint/js, typescript-eslint 가 추가됨
+# eslint.config.mjs 설정파일이 생성됨.
+
+# 3. ESLint 실행 스크립트 추가
+  "scripts": {
+    "lint": "eslint --fix ./src"
+  },
+
+```
+
+### Prettier와 ESLint 통합
+
+- Prettier와 ESLint를 함께 사용하면 코드 스타일과 코드 품질을 동시에 유지할 수 있습니다. 
+- 이를 위해 `eslint-config-prettier`와 `eslint-plugin-prettier` 패키지를 설치합니다:   
+- **eslint-config-prettier**를 사용하여 충돌하는 ESLint 규칙을 비활성화하고 Prettier가 형식 지정을 처리하도록 합니다.
+- **eslint-plugin-prettier**를 사용하여 Prettier를 ESLint 규칙으로 실행하고 형식 지정 문제를 ESLint 출력 내에서 보고합니다.
+- 두 가지를 결합하여 Prettier가 형식 지정을 처리하고 ESLint가 코드 품질에 집중할 수 있도록 하여 충돌 없이 원활한 통합을 보장합니다.
+
+
+```js
+yarn add eslint-config-prettier eslint-plugin-prettier -D
+
+---
+# 그리고 `.eslintrc.json` 파일을 다음과 같이 수정합니다:
+
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+
+export default [
+  { files: ['**/*.js'], languageOptions: { sourceType: 'script' } },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  eslintConfigPrettier,               // 추가
+  eslintPluginPrettierRecommended,   // 추가
+];
+
+```
+
+### ESLint 세부 규칙 조정하기    
+
+- 규칙설정배열은 후속 구성 객체가 앞서 정의된 설정을 덮어쓸 수 있다.  
+
+예) let 선언 후 변수에 재할당이 없다면 오류 발생, 이는 autofix 가능.  
+
+```js
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+
+export default [
+  { files: ['**/*.js'], languageOptions: { sourceType: 'script' } },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  eslintConfigPrettier,
+  eslintPluginPrettierRecommended,
+  {
+    files: ['**/*.{js,mjs,cjs,ts}'],
+    rules: {
+      'prefer-const': ['error', { ignoreReadBeforeAssign: true }],
+    },
+  },
+];
+
+```
+
+### 모든 규칙  
+https://eslint.org/docs/latest/rules/    
