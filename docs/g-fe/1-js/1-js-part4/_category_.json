@@ -1,0 +1,11 @@
+{
+  "label": "ESNext",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "ESNext",
+    "description": "모던 JavaScript 튜토리얼 없는 ESNext"
+  }
+}
