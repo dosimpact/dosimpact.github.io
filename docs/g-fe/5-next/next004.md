@@ -48,7 +48,7 @@ const useAuthModal = create<AuthModalStore>((set) => ({
 export default useAuthModal;
 ---
   const authModal = useAuthModal();
-  <Button  onClick={authModal.onOpen} />
+  <Button onClick={authModal.onOpen} />
 
 ```
 
