@@ -8,6 +8,7 @@ sidebar_position: 2
   - [About Monorepo](#about-monorepo)
   - [원리1. 모듈 탐색](#원리1-모듈-탐색)
   - [원리2. Symlink](#원리2-symlink)
+    - [yarn 에서 사용하는 방법](#yarn-에서-사용하는-방법)
   - [About Workspaces](#about-workspaces)
   - [yarn v1 으로 모노레포 만들기 실습](#yarn-v1-으로-모노레포-만들기-실습)
     - [1.모노레포 설정](#1모노레포-설정)
@@ -93,6 +94,26 @@ console.log("module-b");
 ---
 module-a
 module-b
+```
+
+### yarn 에서 사용하는 방법
+
+```js
+시나리오  
+- 라이브러리를 개발하고 있다. 데모 프로젝트를 하나 만들어서 테스트를 하고 싶은 상황이다.  
+- 데모 프로젝트는 별도의 package.json을 가져야 하며, 라이브러리 패키지의 빌드 결과물을 참조해야 한다.  
+
+yarn link를 통해서 다른 폴더(패키지)를 참조할 수 있다.     
+
+# 1.Symlink 생성 (글로벌 Yarn 링크로 생성)  
+cd path/to/your/package
+yarn link
+
+# 2.Symlink 사용  
+cd path/to/your/other/project
+yarn link "@dosimpact/axios-error" # your package.json > name  
+
+
 ```
 
 ![Alt text](image.png)
