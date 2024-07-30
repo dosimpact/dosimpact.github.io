@@ -43,6 +43,18 @@ const result = str.match(regex); // 결과: ["3"]
 - (?!) 구문을 사용하여 표현    
 - 특정 패턴이 뒤따르지 않는 경우를 조건으로 내세울 수 있다.    
 
+## 숫자를 콤마가 포함된 문자열로 치환 2  
+
+```js
+function numberWithCommas(x) {
+    return x.toString().replace(/\d(?=(\d{3})+$)/g, '$&,');
+}
+// 예제
+console.log(numberWithCommas(1234567890)); // "1,234,567,890"
+
+```
+
+
 ## 숫자 Validator  
 
 ### 양의 정수 Validator  
