@@ -51,4 +51,10 @@ import { setupServer } from "msw/node";
 import { handlers } from "./handler";
 
 export const server = setupServer(...handlers());
+
+---
+
+// 4.App 진입점에 시작합니다.  
+// src/index.js
+server.start({ onUnhandledRequest: 'bypass' });
 ```

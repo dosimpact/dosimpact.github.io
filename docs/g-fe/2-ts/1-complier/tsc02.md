@@ -9,11 +9,13 @@ Goal : 타입스크립트 기반의 라이브러리를 배포합니다.
 
 - [Typescript Lib Publish Guide](#typescript-lib-publish-guide)
   - [Background](#background)
-  - [Inint](#inint)
-  - [package.json](#packagejson)
-  - [tsconfig.json, tsconfig.esm.json](#tsconfigjson-tsconfigesmjson)
-  - [.npmignore](#npmignore)
-  - [src](#src)
+    - [init](#init)
+    - [package.json](#packagejson)
+      - [single entry, multi entry](#single-entry-multi-entry)
+    - [tsconfig.json, tsconfig.esm.json](#tsconfigjson-tsconfigesmjson)
+    - [.npmignore](#npmignore)
+    - [src](#src)
+  - [Background Knowledge](#background-knowledge)
   - [Prettier \& eslint 설정](#prettier--eslint-설정)
     - [Prettier 설정](#prettier-설정)
     - [ESLint 설정](#eslint-설정)
@@ -28,7 +30,7 @@ error 객체는 typescript에서 unknown으로 처리된다.
 - 타입 가드를 통해서 특정 타입으로 좁혀야 한다.    
 - 타입가드 함수를 통해서, 특정 타입에 대한 필드검사 등을 마치면 'asserts e is AxiosError' 같은 syntax를 통해서 Type을 명시한다.   
 
-## Inint
+### init
 
 ```
 yarn init -y
@@ -37,7 +39,7 @@ yarn add typescript -D
 npx tsc --init  
 ```
 
-## package.json  
+### package.json  
 
 ```json
 {
@@ -66,13 +68,52 @@ npx tsc --init
 - scripts부분에서는 빌드는 cjs, esm 모듈 모두 emit 할 수 있습니다.  
 - deploy는 npm registry로 배포하며 access=public 옵션을 통해서 공개 저장소에 배포합니다.  
 - private 설정을 false로 변경해서 배포합니다.  
+
 - types 필드는 타입정의 파일 경로를 지정합니다.  
 - main 필드는 cjs entry point 입니다.  
 - module 필드는 esm entry point 입니다.  
 
-## tsconfig.json, tsconfig.esm.json
+#### single entry, multi entry  
+
+- single : types, main, module    
+- multi : exports, require, import  
+
+```js
+// case1. 진입점이 1개인 경우  
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/esm"
+
+// case2. 진입점이 2개 이상인 경우
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      },
+      "import": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      }
+    },
+    "./feature": {
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      },
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./index.mjs"
+      }
+    }
+  }
+```
+
+### tsconfig.json, tsconfig.esm.json
+
 
 ```json
+---tsconfig.json
 {
   "include": ["src"],
   "exclude": ["**/__test___/**"],
@@ -81,7 +122,7 @@ npx tsc --init
     "lib": ["DOM","DOM.Iterable","ESNext"],         /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "jsx": "react",                                /* Specify what JSX code is generated. */
     "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
-    "module": "commonjs",                                /* Specify what module code is generated. */
+    "module": "NodeNext",                                /* Specify what module code is generated. */
     "moduleResolution": "nodenext",                          /* Specify how TypeScript looks up a file from a given module specifier. */
     "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
@@ -98,25 +139,26 @@ npx tsc --init
   }
 }
 
----
+---tsconfig.esm.json
 {
   "extends":"./tsconfig.json",
   "include": ["src"],
   "exclude": ["**/__test___/**"],
   "compilerOptions": {
     "outDir": "./dist/esm",
-    "module": "ESNext"                 /* Skip type checking all .d.ts files. */
+    "module": "ESNext",                 /* Skip type checking all .d.ts files. */
+    "moduleResolution": "Bundler"
   }
 }
 ```
 
-## .npmignore
+### .npmignore
 
 ```
 src
 ```
 
-## src
+### src
 
 ```ts
 // src/index.ts
@@ -133,6 +175,9 @@ export function assertAxiosError(e: unknown): asserts e is AxiosError {
 }
 
 ```
+
+## Background Knowledge
+
 
 ## Prettier & eslint 설정  
 

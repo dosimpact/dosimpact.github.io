@@ -4,6 +4,30 @@ sidebar_position: 1
 
 # tsconfig.json   
 
+- [tsconfig.json](#tsconfigjson)
+  - [Install](#install)
+  - [tsconfig.json](#tsconfigjson-1)
+    - [주요 옵션](#주요-옵션)
+    - [모든 옵션](#모든-옵션)
+  - [CommonJS vs ESM](#commonjs-vs-esm)
+      - [CommonJS](#commonjs)
+      - [ESNext (ES Modules)](#esnext-es-modules)
+      - [종합 비교](#종합-비교)
+  - [module, moduleResolution](#module-moduleresolution)
+      - [`module`](#module)
+      - [`moduleResolution`](#moduleresolution)
+      - [예시](#예시)
+  - [esModuleInterop(true), allowSyntheticDefaultImports(true)](#esmoduleinteroptrue-allowsyntheticdefaultimportstrue)
+      - [기본 설정(`esModuleInterop: false`)에서의 문제점](#기본-설정esmoduleinterop-false에서의-문제점)
+    - [`esModuleInterop`를 켰을 때의 동작 (`esModuleInterop: true`)](#esmoduleinterop를-켰을-때의-동작-esmoduleinterop-true)
+  - [절대경로설정](#절대경로설정)
+    - [1. `tsconfig.json` 파일 설정](#1-tsconfigjson-파일-설정)
+    - [예시](#예시-1)
+    - [2. 모듈 가져오기](#2-모듈-가져오기)
+    - [3. Jest 설정 (선택 사항)](#3-jest-설정-선택-사항)
+    - [4. ESLint 설정 (선택 사항)](#4-eslint-설정-선택-사항)
+
+
 ## Install  
 
 ```
@@ -193,13 +217,187 @@ namespace와 default import 설정에서 발생하는 문제를 해결,
 
 ```
 
-## 참고 (esModuleInterop)  
 
-### ES Module Interop - `esModuleInterop`
+## CommonJS vs ESM  
 
-`esModuleInterop`는 TypeScript에서 CommonJS, AMD, UMD 모듈을 ES6 모듈과 상호 운용할 수 있도록 돕는 설정입니다. 
-- 기본적으로 이 설정이 꺼져 있거나(`false`로 설정되거나 설정되지 않은 경우) TypeScript는 CommonJS/AMD/UMD 모듈을 ES6 모듈과 유사하게 처리합니다. 
-- 하지만 이는 몇 가지 문제를 일으킬 수 있습니다. 
+- CommonJS(NodeNext)
+- ESM(ESNext)  
+
+#### CommonJS
+
+CommonJS는 주로 Node.js 환경에서 사용되는 모듈 시스템입니다.
+- CommonJS 모듈은 `require` 함수와 `module.exports` 객체를 사용하여 모듈을 로드하고 내보냅니다.
+  ```javascript
+  // module1.js
+  const module2 = require('./module2');
+  module.exports = {
+    greet: () => console.log('Hello from module1')
+  };
+  
+  // module2.js
+  module.exports = {
+    greet: () => console.log('Hello from module2')
+  };
+  
+  // main.js
+  const module1 = require('./module1');
+  module1.greet(); // "Hello from module1"
+  ```
+
+- **동기적 로딩**: 
+  - CommonJS 모듈은 동기적으로 로드됩니다. 즉, 모듈이 로드될 때까지 코드 실행이 중단 
+  - 동기적 로딩은 파일을 로드할 때 블로킹이 발생하므로, 브라우저 환경에서는 비효율적일 수 있습니다.
+- **브라우저 호환성 부족**: 
+  - 브라우저 환경에서는 기본적으로 지원되지 않으며, 브라우저에서 사용하려면 번들러(예: Webpack)와 같은 도구가 필요.
+  - *Webpack의 CommonJS 처리 과정  
+    - 모듈들을 하나의 번들 파일로 만든다. 모듈리스트들은 webpack_modules 변수에 들어간다. (in memory)  
+    - 모듈들이 필요하면 모듈 리스트에서 찾아서 리턴해준다. webpack_require 라는 함수가 이를 처리한다. 필요시 캐싱  
+    - *마치 node.js 에서 동작하는 require, exports를 bundle.js에서 인메모리 상에 구현함.  
+
+
+#### ESNext (ES Modules)
+
+ESNext(또는 ECMAScript Modules, ESM)는 최신 ECMAScript 표준에 정의된 모듈 시스템입니다.  
+- 브라우저와 Node.js 모두에서 사용할 수 있도록 설계. 
+- ES 모듈은 `import`와 `export` 키워드를 사용하여 모듈을 로드하고 내보냅니다.
+
+  ```javascript
+  // module1.mjs
+  import { greet as greet2 } from './module2.mjs';
+  export const greet = () => console.log('Hello from module1');
+  
+  // module2.mjs
+  export const greet = () => console.log('Hello from module2');
+  
+  // main.mjs
+  import { greet as greet1 } from './module1.mjs';
+  greet1(); // "Hello from module1"
+  ```
+
+- **비동기적 로딩**: ES 모듈은 비동기적으로 로드되며, 이는 브라우저 환경에서 효율적입니다.  
+- **트리 쉐이킹(Tree Shaking)**: 번들러가 사용되지 않는 코드를 제거하여 최적화할 수 있습니다.  
+- **엄격 모드**: 모든 ES 모듈은 자동으로 엄격 모드('use strict')에서 실행됩니다.  
+
+- **브라우저 및 Node.js 지원**: 최신 브라우저와 Node.js(버전 12 이상)에서 기본적으로 지원됩니다.  
+- **표준화**: 공식 ECMAScript 표준의 일부로, 앞으로의 JavaScript 발전에 맞춰 지속적으로 개선될 것입니다.  
+- **호환성 문제**: 오래된 JavaScript 환경이나 도구에서 호환성 문제가 발생할 수 있습니다.  
+
+
+#### 종합 비교
+
+| 특징             | CommonJS                                 | ESNext (ES Modules)                        |
+|------------------|------------------------------------------|--------------------------------------------|
+| 사용 환경        | Node.js, 서버 사이드                      | 최신 브라우저, Node.js                      |
+| 로딩 방식        | 동기적                                    | 비동기적                                    |
+| 구문             | `require`, `module.exports`               | `import`, `export`                         |
+| 트리 쉐이킹      | 지원하지 않음                             | 지원                                       |
+| 모듈 스코프      | 고유 스코프                               | 고유 스코프, 엄격 모드                      |
+| 표준화 여부      | 비표준                                    | 표준 (ECMAScript)                          |
+| 호환성           | 브라우저에서 번들러 필요                 | 최신 브라우저와 Node.js에서 기본 지원        |
+
+
+## module, moduleResolution
+
+TypeScript 컴파일러가 모듈을 처리하는 방식을 정의.
+
+#### `module`
+
+`module` 옵션은 TypeScript 컴파일러가 생성할 JavaScript 모듈 시스템을 지정.
+
+- `CommonJS`: Node.js 및 대부분의 서버측 JavaScript 환경에서 사용됩니다. 모듈은 `require`와 `module.exports`를 통해 로드되고 내보내집니다.
+- `ESNext`: 최신 ECMAScript 모듈 시스템을 사용합니다. 이 옵션은 최신 ES 모듈 기능을 사용할 수 있도록 합니다.
+- `ES6`/`ES2015`: ES6 모듈 시스템을 사용합니다. 모듈은 `import`와 `export`를 통해 로드되고 내보내집니다.
+- `AMD`: Asynchronous Module Definition을 사용합니다. 주로 브라우저 환경에서 사용됩니다.
+- `UMD`: Universal Module Definition을 사용합니다. AMD와 CommonJS를 모두 지원하는 방식으로, 브라우저와 서버 모두에서 사용할 수 있습니다.
+- `System`: SystemJS를 사용하여 모듈을 로드합니다.
+- `None`: 모듈 시스템을 사용하지 않습니다. 이 설정은 모듈화되지 않은 글로벌 스코프 코드를 생성합니다.
+
+#### `moduleResolution`
+
+`moduleResolution` 옵션은 TypeScript 컴파일러가 모듈 경로를 해석하는 방식을 지정.  
+- 일반적으로 옵션은 node를 사용한다. 이는 모듈시스템(cjs,mjs)에 상관없이 모듈을 찾을 수 있다.   
+  - CommonJS 모듈은 require이 아닌 import로 가져오고 싶다면 > esModuleInterop  
+  - 
+
+- `classic`: TypeScript 1.6 이전의 기본 모듈 해석 전략을 사용합니다. 이 모드에서는 `node_modules` 폴더를 검색하지 않고, 상대 경로로만 모듈을 찾습니다.
+- `node`: Node.js 모듈 해석 전략을 사용합니다. Node.js의 `require` 방식과 동일하게 동작하며, `node_modules` 폴더를 검색하고, 패키지의 `package.json` 파일을 참조하여 `main` 필드를 찾습니다.
+- `bundler`: TypeScript 5.0부터 사용 가능한 옵션으로, 번들러(webpack, rollup 등)와 유사한 모듈 해석 전략을 사용합니다. 이 모드에서는 `.ts`, `.tsx`, `.js`, `.jsx`, `.d.ts` 확장자를 가진 파일을 우선적으로 찾습니다.
+
+#### 예시
+
+```json
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node"
+  }
+}
+---
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  }
+}
+```
+
+## esModuleInterop(true), allowSyntheticDefaultImports(true)
+
+esModuleInterop(default = true)  
+- node_modules를 가져올때 세부 설정
+- CommonJS 모듈을 ES 모듈처럼 사용 가능   
+- https://www.typescriptlang.org/tsconfig/#esModuleInterop  
+
+```js
+// node_modules/some-library/index.js
+module.exports = {
+  libraryFunction: function() {
+    console.log("Library function called");
+  }
+};
+---
+import { greet } from './utils';
+import * as someLibrary from 'some-library';
+console.log(greet('TypeScript'));
+someLibrary.libraryFunction();
+```
+
+allowSyntheticDefaultImports (default = true)
+- node_modules를 가져올때 세부 설정  
+- CommonJS 모듈을 ES 모듈처럼 사용할때, default import 구문을 사용할 수 있다.   
+- https://www.typescriptlang.org/tsconfig/#Interop_Constraints_6252
+
+
+```js
+// node_modules/some-library/index.js
+module.exports = {
+  libraryFunction: function() {
+    console.log("Library function called");
+  }
+};
+--- allowSyntheticDefaultImports:true
+import { greet } from './utils';
+import someLibrary from 'some-library';
+
+console.log(greet('TypeScript'));
+someLibrary.libraryFunction();
+
+--- allowSyntheticDefaultImports:false
+// 1.require을 쓰던가
+import { greet } from './utils';
+const someLibrary = require('some-library');
+
+console.log(greet('TypeScript'));
+someLibrary.libraryFunction();
+// 2. namespace 구문(* as)을 사용하던가   
+import { greet } from './utils';
+import * as someLibrary from 'some-library';
+
+console.log(greet('TypeScript'));
+someLibrary.libraryFunction();
+```
+
+esModuleInterop = false
 
 #### 기본 설정(`esModuleInterop: false`)에서의 문제점
 
@@ -225,11 +423,9 @@ namespace와 default import 설정에서 발생하는 문제를 해결,
 2. **디폴트 import**:
    - TypeScript가 CommonJS/AMD/UMD 모듈의 디폴트 export를 올바르게 처리하여, 호환성을 유지합니다.
 
-
-### 예제
-
-#### 문제 발생 코드 (`esModuleInterop: false`):
 ```typescript
+// 문제 발생 코드 (`esModuleInterop: false`):
+
 // 네임스페이스 import
 import * as moment from "moment";
 moment();  // TypeScript에서는 오류 없음, 런타임에서 오류 발생
@@ -237,10 +433,8 @@ moment();  // TypeScript에서는 오류 없음, 런타임에서 오류 발생
 // 디폴트 import
 import moment from "moment";
 moment().format();  // 모듈이 .default 속성을 가지지 않는 경우 오류 발생
-```
-
-#### 해결된 코드 (`esModuleInterop: true`):
-```typescript
+``
+// 해결된 코드 (`esModuleInterop: true`):
 // 네임스페이스 import
 import * as moment from "moment";
 moment();  // 컴파일 오류: 네임스페이스 객체는 호출할 수 없음
@@ -250,16 +444,8 @@ import moment from "moment";
 moment().format();  // 올바르게 작동
 ```
 
-### 요약
 
-- **`esModuleInterop: false`**: TypeScript는 CommonJS/AMD/UMD 모듈을 ES6 모듈과 유사하게 처리합니다. 그러나 이는 몇 가지 호환성 문제를 일으킬 수 있습니다.
-- **`esModuleInterop: true`**: TypeScript가 모듈을 올바르게 처리하도록 하여, 호환성 문제를 해결합니다.
-
-이 설정을 통해 TypeScript 프로젝트에서 CommonJS/AMD/UMD 모듈과 ES6 모듈 간의 상호 운용성을 개선할 수 있습니다. 이로 인해 코드의 안정성과 호환성이 향상됩니다.
-
-
-
-## 참고(절대경로설정)
+## 절대경로설정  
 
 TypeScript에서 절대 경로를 설정하면 프로젝트 파일을 더 쉽게 관리하고, 상대 경로의 복잡성을 줄일 수 있습니다. 이를 위해 `tsconfig.json` 파일을 설정해야 합니다. 다음은 절대 경로를 설정하는 방법입니다.
 
