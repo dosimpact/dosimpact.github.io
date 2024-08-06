@@ -171,3 +171,88 @@ const App = () => {
 export default App;
 
 ```
+
+
+## useBreakpoint
+
+- throttling : https://github.com/lodash/lodash/blob/4.17.21-es/throttle.js  
+
+```js
+import { useEffect, useState } from 'react';
+
+// 브레이크포인트 타입 정의
+type Breakpoint = 'mobile' | 'tablet' | 'desktop';
+
+// 브레이크포인트 정의
+const breakpoints = {
+  mobile: 0,
+  tablet: 768,
+  desktop: 1024,
+};
+
+// 현재 뷰포트에 따라 브레이크포인트를 반환하는 함수
+const getBreakpoint = (width: number): Breakpoint => {
+  if (width < breakpoints.tablet) return 'mobile';
+  if (width < breakpoints.desktop) return 'tablet';
+  return 'desktop';
+};
+
+// 쓰로틀링 유틸리티 함수
+const throttle = (func: (...args: any[]) => void, limit: number) => {
+  let lastFunc: ReturnType<typeof setTimeout>;
+  let lastRan: number;
+
+  return function (...args: any[]) {
+    if (!lastRan) {
+      func(...args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function () {
+        if ((Date.now() - lastRan) >= limit) {
+          func(...args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  };
+};
+
+// useBreakpoint 훅 정의
+const useBreakpoint = (): Breakpoint => {
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>(getBreakpoint(window.innerWidth));
+
+  useEffect(() => {
+    const handleResize = throttle(() => {
+      setBreakpoint(getBreakpoint(window.innerWidth));
+    }, 200); // 200ms 쓰로틀링
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return breakpoint;
+};
+
+export default useBreakpoint;
+---
+import React from 'react';
+import useBreakpoint from './useBreakpoint';
+
+const MyResponsiveComponent: React.FC = () => {
+  const breakpoint = useBreakpoint();
+
+  return (
+    <div>
+      {breakpoint === 'mobile' && <p>Mobile View</p>}
+      {breakpoint === 'tablet' && <p>Tablet View</p>}
+      {breakpoint === 'desktop' && <p>Desktop View</p>}
+    </div>
+  );
+};
+
+export default MyResponsiveComponent;
+
+```
