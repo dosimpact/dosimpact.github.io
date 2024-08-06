@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Zustand
+# Zustand Basic
 
 - App의 전역상태관리가 가능  
 - git : https://github.com/pmndrs/zustand  
@@ -11,7 +11,7 @@ sidebar_position: 1
 
 ## Example  
 
-### useBearStore, create, set
+### Basic1 (create, set)  
 
 ```js
 import { create } from 'zustand'
@@ -58,7 +58,7 @@ export default useAuthModal;
 
 ```
 
-### counter 
+### Counter 
 
 ```js
 import { create } from "zustand";
@@ -109,7 +109,7 @@ export const todoListStore = create<TodoListProps>((set) => ({
 }));
 ```
 
-### create, AbortController, AxiosError, debouncedFetch  
+### Fetch (create, AbortController, AxiosError, debouncedFetch)  
 
 기존의 요청을 취소하고 새로운 요청을 보내는 로직.  
 - abort를 호출했다면 AbortController를 다시 생성해야한다.  
