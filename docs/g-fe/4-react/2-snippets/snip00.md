@@ -65,3 +65,63 @@ children 처럼 특별한 props는 리액트 Element 뿐 아니라 다른 유형
 
 ```
 
+
+## Namespace Pattern, Slot Pattern  
+
+```js 
+import React from 'react';
+import styled from '@emotion/styled';
+
+export const DesktopDetailLayoutSlot = ({
+  LeftComponent,
+  RightComponent,
+}: {
+  LeftComponent: React.ReactNode;
+  RightComponent: React.ReactNode;
+}) => {
+  return (
+    <div>
+      <Wrapper>
+        <LeftContentWrapper>{LeftComponent}</LeftContentWrapper>
+        <RightContentWrapper>{RightComponent}</RightContentWrapper>
+      </Wrapper>
+    </div>
+  );
+};
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 40px 0;
+`;
+
+const LeftContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 512px;
+  height: calc(100vh - 71px);
+  padding: 40px 40px 40px 0;
+`;
+
+const RightContentWrapper = styled.div`
+  display: flex;
+  width: 50%;
+  max-width: 512px;
+  height: calc(100vh - 71px);
+`;
+
+export const DesktopDetailLayout = {
+  Wrapper: React.forwardRef((props: any, ref) => (
+    <Wrapper align="center" justify="center" {...props} ref={ref} />
+  )),
+  LeftContentWrapper: React.forwardRef((props: any, ref) => (
+    <LeftContentWrapper align="center" {...props} ref={ref} />
+  )),
+  RightContentWrapper: React.forwardRef((props: any, ref) => (
+    <RightContentWrapper justify="center" {...props} ref={ref} />
+  )),
+};
+
+```
