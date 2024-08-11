@@ -629,6 +629,9 @@ configure arguments: --prefix=/opt/homebrew/Cellar/nginx/1.25.1_1 ...
 하지만 해당 디렉터리의 html 폴더는 링크가 걸려 있다. 
 최종적으로 /opt/homebrew/var/www 라는 곳에 index.html 이 있다. 
 
+# 환경 설정 변경 후 리로드 명령어  
+nginx -s reload
+
 ---
 [certbot]
 
@@ -661,6 +664,9 @@ sudo certbot renew --dry-run -d www.domain.com
 # 인증서 갱신
 ( 발급시 90일 연장, 30일 남았을때 연장 가능 )
 sudo certbot renew
+
+## tip, nginx 설정, nginx 설정파일 경로 지정 
+sudo certbot --nginx --nginx-server-root /opt/homebrew/etc/nginx renew
 
 # 인증서 삭제
 sudo certbot delete --cert-name yourdomain.com
