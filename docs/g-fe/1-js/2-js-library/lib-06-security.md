@@ -2,9 +2,9 @@
 sidebar_position: 6
 ---
 
-# Security  
+# Web Security  
 
-- [Security](#security)
+- [Web Security](#web-security)
   - [1.Security Details in Your Code](#1security-details-in-your-code)
   - [2.Cross-Site Scripting Attacks(XSS)](#2cross-site-scripting-attacksxss)
     - [2.1 X-XSS-Protection 헤더가 권장되지 않나요?](#21-x-xss-protection-헤더가-권장되지-않나요)
@@ -119,11 +119,23 @@ Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'
 
 - XSS 연관될 수 있지만, 반드시 그렇지 않다.    
 - 사용자를 속여서 자격증명은 로컬 페이지의 쿠키를 이용하고, 해커가 준비한 페이지로 요청을 보내도록 하는것.  
-- 그러면 자격증명이 포함되어 
+- 그러면 사용자의 자격증명이 포함되어 페이지에 요청을 보내게 된다.  
 
 CSRF 토큰 사용: 서버는 각 요청에 고유한 CSRF 토큰을 포함시키고, 이 토큰이 유효한 경우에만 요청을 처리합니다. 이는 양식 제출 시 일반적으로 사용됩니다.
 SameSite 쿠키 속성 설정: 쿠키에 SameSite 속성을 설정하여, 동일한 사이트에서만 쿠키가 전송되도록 제한함으로써 CSRF 공격을 예방할 수 있습니다.
 이중 제출 쿠키: 요청 본문에 CSRF 토큰을 포함시키고, 동일한 토큰을 쿠키로도 전송하여 일치 여부를 확인하는 방법입니다.
 
+시나리오  
+- fake.com 에서 b.com 로 CSRF을 하려고 한다.  
+
+1.fake.com 에서 `withCredentials` 설정:
+   - AJAX 요청에서 쿠키를 포함하려면 `XMLHttpRequest` 또는 `fetch` 요청 시 `withCredentials` 속성을 `true`로 설정해야 합니다.
+2.b.com 서버의 CORS 설정:
+  - `b.com` 서버가 CORS 헤더에서 `Access-Control-Allow-Origin`을 적절히 설정.  
+  - cors("*")을 해버리는 경우.  
+3.SameSite 쿠키 속성:
+   - 쿠키가 `SameSite=None`으로 설정.   
+   - `Secure` 속성도 함께 설정되어 있어야 합니다.(HTTPS).    
 
 ## 4.Cross-Site Resource Sharing (CORS)  
+
