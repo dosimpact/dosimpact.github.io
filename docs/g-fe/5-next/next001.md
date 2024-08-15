@@ -16,6 +16,8 @@ sidebar_position: 1
     - [zero install](#zero-install)
     - [yarn v4 을 사용하면 좋은 점](#yarn-v4-을-사용하면-좋은-점)
   - [2.2 yarn berry migration](#22-yarn-berry-migration)
+  - [3.More config tip](#3more-config-tip)
+    - [특정 경로를 빌드에서 무시하기](#특정-경로를-빌드에서-무시하기)
   - [ref](#ref)
 
 
@@ -131,6 +133,42 @@ yarn
 yarn dev
 ```
 --- 
+
+
+## 3.More config tip  
+
+### 특정 경로를 빌드에서 무시하기  
+
+
+만약에 supabase 서브디렉터리가 있고, 이는 nextjs와 무관하다면 이를 빌드 싸이클에서 제외해야 한다.  
+- tsconfig, next build 모두 설정해야 한다.  
+- 모노래포로 만들어도 좋을것 같다.  
+
+```js
+#
+yarn add ignore-loader
+
+# tsconfig.json
+  "exclude": ["node_modules","supabase"]
+
+# next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /$\/supabase\/.*/, // 'supabase' 폴더 및 하위 경로를 무시하도록 정규식 지정
+      use: "ignore-loader",
+    });
+    return config;
+  },
+};
+
+export default nextConfig;
+```
+주의 
+- `test: /supabase\/.*/,`  -> @supabase/ssr 과 같은 모듈의 경로도 무시하는 패턴이다.  
+- `test: /^\/supabase\/.*/,` -> ignore-loader가 supabase라는  경로로 시작하는 모듈의 경우를 무시한다.  
+  - 다행이도 @supabase라는 네임스페이스 때문에 의존성을 사용할 수 있다.  
 
 ## ref
 
