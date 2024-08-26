@@ -256,3 +256,66 @@ const MyResponsiveComponent: React.FC = () => {
 export default MyResponsiveComponent;
 
 ```
+
+## usePortal
+
+- React의 컨텍스트를 유지시키면서 특정 컴포넌트를 다른 DOM에 연결시킬 수 있다.  
+- 모달, 툴팁, 드롭다운 등 부모 스타일에 영향을 받지 않도록 할 때  
+
+
+```js
+import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+
+const usePortal = id => {
+  const rootElemRef = useRef(null);
+
+  const createRootElement = id => {
+    const rootContainer = document.createElement('div');
+    rootContainer.setAttribute('id', id);
+    return rootContainer;
+  };
+
+  const addRootElement = rootElem => {
+    document.body.insertBefore(rootElem, document.body.lastElementChild.nextElementSibling);
+  };
+
+  const getRootElem = () => {
+    if (!rootElemRef.current) {
+      rootElemRef.current = document.createElement('div');
+    }
+    return rootElemRef.current;
+  };
+
+    useEffect(() => {
+    // DOM에 포털 노드가 있는지 확인
+    const existingParent = document.querySelector(`#${id}`);
+    const parentElem = existingParent || createRootElement(id);
+
+    if (!existingParent) {
+      addRootElement(parentElem);
+    }
+
+    parentElem.appendChild(rootElemRef.current);
+
+    return () => {
+      rootElemRef.current.remove();
+      if (!parentElem.childElementCount) {
+        parentElem.remove();
+      }
+    };
+  }, [id]);
+
+  return getRootElem();
+};
+
+export default usePortal;
+
+---
+
+export const Portal = ({ id, children }) => {
+  const target = usePortal(id); 
+  return createPortal(children, target);
+};
+
+```

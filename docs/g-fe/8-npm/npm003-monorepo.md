@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Monorepo 2
+# Monorepo yarn & lerna  
 
 
 ## Goal  

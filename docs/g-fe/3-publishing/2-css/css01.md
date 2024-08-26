@@ -4,10 +4,21 @@ sidebar_position: 1
 
 # CSS  
 
-
 ## Text  
 
 ### Ellipsis Basic  
+
+```js
+export const Ellipsis = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+<div style={{width:"100px"}}> # container width 지정 필수
+  <Ellipsis>...</Ellipsis>
+</div>
+```
 
 ### Ellipsis 2행  
 
@@ -16,28 +27,18 @@ sidebar_position: 1
 
 
 ```js
-import React from "react";
-import styled from "@emotion/styled";
-
-const SLineEllipsis = styled.div`
-  width: 200px;
+export const EllipsisLine2 = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
 
-const LineEllipsis = () => {
-  return (
-    <SLineEllipsis>
-      [HTML/CSS] 말줄임 표시 하는 방법: 1줄, 2줄 예제 [HTML/CSS] 말줄임 표시
-      하는 방법: 1줄, 2줄 예제 [HTML/CSS] 말줄임 표시 하는 방법: 1줄, 2줄 예제
-    </SLineEllipsis>
-  );
-};
-
-export default LineEllipsis;
+<div style={{width:"100px"}}> # container width 지정 필수
+  <EllipsisLine2>...</EllipsisLine2>
+</div>
 
 ```
 

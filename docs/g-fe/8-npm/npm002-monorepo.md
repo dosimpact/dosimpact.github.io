@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Monorepo 1  
+# Monorepo 기본 원리  
 
-- [Monorepo 1](#monorepo-1)
+- [Monorepo 기본 원리](#monorepo-기본-원리)
   - [About Monorepo](#about-monorepo)
   - [원리1. 모듈 탐색](#원리1-모듈-탐색)
   - [원리2. Symlink](#원리2-symlink)
