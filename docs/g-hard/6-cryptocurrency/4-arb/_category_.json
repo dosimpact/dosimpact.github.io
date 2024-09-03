@@ -1,11 +1,11 @@
 {
-  "label": "Beefy",
-  "position": 3,
+  "label": "ARB",
+  "position": 4,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Beefy",
-    "description": "Beefy"
+    "title": "ARB",
+    "description": "ARB"
   }
 }
