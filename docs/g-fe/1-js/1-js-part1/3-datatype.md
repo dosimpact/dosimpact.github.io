@@ -4,6 +4,33 @@ sidebar_position: 3
 
 # JS 데이터 타입  
 
+## Boolean
+
+### &&, || 을 이용한 논리  
+
+```js
+1. && (AND) 연산자는 앞의 조건이 만족하면 뒤로 넘어간다.  
+
+true && true && 1 // 1
+// 예, 프리미엄 유저 판단  
+hasBilling && hasPaid && "PREMIUM"
+
+2. || (OR) 연산자는 앞의 조건이 Falsy 하면, 뒤로 넘어간다.  
+- fallback 기능, default 값 기능을 할 수 있다.  
+
+// 예, page 값이 넘어오지 않으면 1이 디폴트값  
+props?.page || 1
+
+// 예, 기본 유저 타입
+(hasBilling && hasPaid && "PREMIUM") || "BASIC". 
+
+3. 위 구문을 if 로 풀어써도 된다.  
+const getUserType = ()=>{
+  if(hasBilling && hasPaid) return "PREMIUM"
+  return "BASIC"
+}
+```
+
 ## 실수 표현  
 
 컴퓨터에서 실수를 표현하는 방법은 2가지가 있다.  
