@@ -4,24 +4,26 @@ sidebar_position: 3
 
 # (Stream) 3. Browser Stream Saver
 
-## 배경지식
 
 
 ## Stream Saver   
 
-https://github.com/jimmywarting/StreamSaver.js?
+https://github.com/jimmywarting/StreamSaver.js?   
 
-### How does it work?
+문제점 : 스트림 다운로드 + 브라우저 다운로드 다이어로그를 같이 구현 해야 한다.  
+( 일반적으로 브라우저의 다운로드 다이얼로그를 통해 스트림 다운로드를 직접적으로 처리할 수는 없다. )  
+
+### How does it work?  
 
 
-브라우저가 파일을 저장을 저장하는 방법1. ObjectURLs + a link  
+브라우저가 다운로드 다이어로그로 파일을 저장을 저장하는 방법1. ObjectURLs + a link  
 
 stream, file, blob을 저장하는 마법같은 추상화된 함수는 아직 없다.  
 - 현재는 ObjectURLs + a link로 blob(file,image,sound..) 다운로드 링크를 만들 수 있다.  
 - 하지만 stream 은 ObjectURLs을 만드는것이 불가능하다.  
 
 
-브라우저가 파일을 저장을 저장하는 방법2. HTTP Content-Disposition Header 사용  
+브라우저가 다운로드 다이어로그로 파일을 저장을 저장하는 방법2. HTTP Content-Disposition Header 사용  
 
 서버에서 스트림을 처리하는것 처럼, 브라우저에서도 스트림 다운로드를 처리하는 것이다.  
 브라우저에는 우리가 생각하는 개념의 서버가 없는 대신 이 역할을 해줄 '서비스 워커'가 있다. 
@@ -31,44 +33,46 @@ stream, file, blob을 저장하는 마법같은 추상화된 함수는 아직 �
 - Header name: Content-Disposition.
 - Header value: attachment;filename=FileName.txt.
 
+### 전체 로직  
+
+1.서버로부터 스트림 데이터를 받는다. 브라우저의 ReadableStream (StreamSaver.js)   
+
+2.스트림 데이터를 service worker 에게 넘긴다.    
+- 이때 mitm.html의 도움을 받는다.   
+- mitm.html는 iframe(보안컨텍스트), popup(비보안컨텍스트) 에 열려있다.  
+- window의 message 채널을 통해서 전달한다. ( 브라우저는 window간 메시지 전송을 지원 )  
+
+3.서비스 워커가 데이터를 받아서 스트림 다운로드를 구현  
+- Content-Disposition 으로 다운로드 다이어 로그 생성  
 
 ### 구현상 문제점
 
 - 1. 서비스 워커는 secure contexts 에서만 작동
 - 2. 서비스 워커는 작업이 없으면 5분 후 IDLE 상태로 빠짐
 
-1. StreamSaver는 mitm 만듭니다 (이는 보안 컨텍스트을 가지고, github 정적 페이지에서 호스팅되는 HTML 파일이고, 서비스 작업자를 설치하는 코드가 있다.)
-( iframe(보안 컨텍스트에서) 또는 페이지가 안전하지 않은 경우 새 팝업에서 )  
+1. StreamSaver는 mitm.html을 만듭니다 (이는 보안 컨텍스트을 가지고, github 정적 페이지에서 호스팅되는 HTML 파일이고, 서비스 작업자를 설치하는 코드가 있다.)
+( 보안 컨텍스트에서 iframe 통해서 html 처리, 안전하지 않은 경우 새 팝업에서 html을 처리한다. )    
 1. postMessage를 사용하여 스트림(또는 DataChannel)을 service worker로 전송합니다.  
 2. 그런 다음 service worker는 다운로드 링크를 만듭니다.  
 3. IDLE로 빠지지 않도록 지속적으로 Ping을 날려준다.  
 
 
---- 
-
-## mitm.html
-
-https://jimmywarting.github.io/StreamSaver.js/mitm.html?version=2.0.0
-
 mitm.html is the lite "man in the middle"
 
-signal the opener's messageChannel to the service worker
-- service worker : stream 수신역할
-- 작업자는 오프너(원래의 브라우저)에게 다운로드를 시작할 링크를 열도록 지시합니다.
+signal the opener's messageChannel to the service worker  
+- service worker : stream 수신역할  
+- 작업자는 오프너(원래의 브라우저)에게 다운로드를 시작할 링크를 열도록 지시합니다.  
 
 
-https://github.com/jimmywarting/StreamSaver.js?  
+- 3. 일부 브라우저에는 ReadableStream이 있지만 WritableStream은 없습니다.
+- 해결 방법 : 폴리필 web-streams-polyfill 
+- 기본 ReadableStream이 서비스 워커로 전송될 때 StreamSaver가 더 잘 작동하기 때문에 polyfill 대신 ponyfill을 로드하고 기존 구현을 재정의하는 것이 좋습니다.    
 
-
-일부 브라우저에는 ReadableStream이 있지만 WritableStream은 없습니다.
-- web-streams-polyfill은 이 차이를 해결
-- 기본 ReadableStream이 서비스 워커로 전송될 때 StreamSaver가 더 잘 작동하기 때문에 polyfill 대신 ponyfill을 로드하고 기존 구현을 재정의하는 것이 좋습니다.  
-
+Ref : https://github.com/jimmywarting/StreamSaver.js/blob/master/mitm.html  
 
 ---   
 
-
-## Terms
+## 배경지식
 
 ### Content-Disposition
 
