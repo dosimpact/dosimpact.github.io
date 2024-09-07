@@ -1,11 +1,11 @@
 {
-  "label": "snippets",
+  "label": "Stream",
   "position": 1,
   "collapsible": true,
-  "collapsed": false,
+  "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "snippets",
+    "title": "Stream",
     "description": "snippets"
   }
 }
