@@ -1,49 +1,62 @@
-import React from 'react';
-import clsx from 'clsx';
-import styles from './styles.module.css';
+import React from "react";
+import clsx from "clsx";
+import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: "DeepDive 브라우저, 리액트, 서버 렌더링",
+    description: <></>,
+    imgSrc: "/img/th-stream-render.png",
+    linkTo: "/docs/g-fe/common/deepdive/de01-2",
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: "Cloud SW 아키텍처 패턴:소개",
+    description: <></>,
+    imgSrc: "/img/th-arch.png",
+    linkTo: "/docs/g-be/common/architecture-pattern/co030-cc1",
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: "정규표현식",
+    description: <></>,
+    imgSrc: "/img/th-reg.png",
+    linkTo: "/docs/g-fe/js/js-part3/07-1-reg",
+  },
+  {
+    title: "Next + TailwindCSS",
+    description: <></>,
+    imgSrc: "/img/th-tail.png",
+    linkTo: "/docs/g-fe/next/next006",
+  },
+  {
+    title: "Supabase Concepts",
+    description: <></>,
+    imgSrc: "/img/th-supabase.png",
+    linkTo: "/docs/g-fe/next+supa/next008",
+  },
+  {
+    title: "개발자와 협업을 위한 kafka의 핵심 개념",
+    description: <></>,
+    imgSrc: "/img/th-kafka.png",
+    linkTo: "/docs/g-be/kafka/ka002",
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({ imgSrc, title, description, linkTo, linkTitle }) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
+    <div className={clsx("col col--4")}>
+      <Link to={linkTo}>
+        {imgSrc && (
+          <div className="text--center">
+            <img style={{ objectFit: "contain" }} height={200} src={imgSrc} />
+          </div>
+        )}
+      </Link>
+      <div
+        className="text--center padding-horiz--md"
+        style={{ marginBottom: "30px" }}
+      >
         <h3>{title}</h3>
-        <p>{description}</p>
       </div>
     </div>
   );
@@ -51,14 +64,19 @@ function Feature({Svg, title, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+    <div>
+      <section>
+        <h2 className={styles.pinned}>📌 Pinned</h2>
+      </section>
+      <section className={styles.features}>
+        <div className="container">
+          <div className="row">
+            {FeatureList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
