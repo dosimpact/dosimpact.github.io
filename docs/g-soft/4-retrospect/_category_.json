@@ -1,0 +1,11 @@
+{
+  "label": "커뮤니케이션 스킬",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "커뮤니케이션 스킬",
+    "description": "커뮤니케이션 스킬"
+  }
+}
