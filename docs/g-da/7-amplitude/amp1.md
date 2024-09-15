@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Amplitude 사용법   
 
 사용 목적 : 퍼널추적을 하기 위해서 Amplitude 사용한다.  
