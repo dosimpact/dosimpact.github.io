@@ -128,7 +128,6 @@ const config = {
             position: "left",
             label: "🔅Soft Skill",
           },
-          { to: "/blog", label: "📝Blog", position: "left" },
           {
             href: "https://github.com/dosimpact",
             label: "GitHub",
