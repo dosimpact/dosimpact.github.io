@@ -232,10 +232,12 @@ URL : https://github.com/vercel/turborepo/tree/main/examples/with-nestjs
 - npm workspaces : 심볼릭 링크를 npm 에게 위임한다.  
 - yarn workspaces : symlink 또는 **PnP (Plug’n’Play)**라는 방식을 사용.  
 - pnpm workspaces : pnpm은 패키지를 링크할 때 하드 링크 사용.  
-  - 하드 링크 : 원본 파일과 하드 링크 파일이 동일한 inode.  
+  - 하드 링크 : 원본 파일과 하드 링크 파일이 동일한 inode. (하드 링크는 같은 inode 번호를 공유하는 여러 파일 이름)  
   - symlink : 원본 파일과 별개로 다른 inode 생성, 디렉터리도 가능
   - *하드 링크로 연결된 모든 참조가 삭제되어야 디스크에서 파일의 실제 데이터가 정리.  
-  - *inode : 디스크 블록에 대한 참조 정보.  
+  - *inode : 파일이름과 inode 번호가 연결된다. 
+    - inode에는 디스크 블록에 대한 메타 정보(크기, 권한, 생성일, 하드링크 수, 파일의 데이터가 저장된 블록 번호를 가리키는 포인터 등) 저장    
+
 
 
 ## 2. Managing dependencies
