@@ -2,7 +2,19 @@
 sidebar_position: 1
 ---
 
-# Hooks Snippets
+# Hooks Snippets  
+
+
+- [Hooks Snippets](#hooks-snippets)
+  - [useShadowDOM](#useshadowdom)
+    - [Shadow DOM 개념](#shadow-dom-개념)
+    - [예제](#예제)
+    - [예제 with React](#예제-with-react)
+    - [예제 with React + StyledComponent](#예제-with-react--styledcomponent)
+  - [useBreakpoint](#usebreakpoint)
+  - [usePortal](#useportal)
+  - [useClickOutside](#useclickoutside)
+
 
 ## useShadowDOM  
 
@@ -317,5 +329,44 @@ export const Portal = ({ id, children }) => {
   const target = usePortal(id); 
   return createPortal(children, target);
 };
+
+```
+
+
+## useClickOutside  
+
+- 1.event에 target(실제 이벤트 발생 노드), currentTaget(리스너가 걸린 노드)  
+- 2.document.body에 mousedown 이벤트를 리슨한다.    
+- 3.boxRef가 event.target을 contains 하는지 판단한다.   
+
+- document vs document.body 차이 ?  document는 브라우저 창 클릭도 감지한다?!  
+
+```js
+import { useEffect, useRef } from "react";
+
+interface UseClickOutsideProps {
+  onClickOutside?: () => void;
+}
+
+const useClickOutside = ({ onClickOutside }: UseClickOutsideProps = {}) => {
+  const boxRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (boxRef.current && !boxRef.current?.contains(event.target as Node)) {
+        onClickOutside && onClickOutside();
+      }
+    }
+    document.body.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [boxRef, onClickOutside]);
+
+  return { boxRef };
+};
+
+export default useClickOutside;
 
 ```
