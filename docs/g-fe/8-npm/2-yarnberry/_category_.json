@@ -1,10 +1,11 @@
 {
-  "label": "3.TS",
+  "label": "YarnBerry",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "3.TS"
+    "title": "YarnBerry",
+    "description": "YarnBerry"
   }
 }

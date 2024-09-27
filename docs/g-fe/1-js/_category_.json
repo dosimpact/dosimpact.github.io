@@ -1,10 +1,10 @@
 {
-  "label": "JS",
+  "label": "2.JS",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "JS"
+    "description": "2.JS"
   }
 }

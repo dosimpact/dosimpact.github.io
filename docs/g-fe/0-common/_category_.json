@@ -1,10 +1,10 @@
 {
-  "label": "Common",
+  "label": "1.Common",
   "position": 0,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "Common"
+    "description": "1.Common"
   }
 }

@@ -1,10 +1,10 @@
 {
-  "label": "NextJS",
+  "label": "6.NextJS",
   "position": 5,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "NextJS"
+    "description": "6.NextJS"
   }
 }

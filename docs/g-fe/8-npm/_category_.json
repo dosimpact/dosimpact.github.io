@@ -1,10 +1,10 @@
 {
-  "label": "PackageManager",
+  "label": "9.PackageManager",
   "position": 8,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "PackageManager"
+    "description": "9.PackageManager"
   }
 }

@@ -1,10 +1,10 @@
 {
-  "label": "ReactJS",
+  "label": "5.ReactJS",
   "position": 4,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "ReactJS"
+    "description": "5.ReactJS"
   }
 }

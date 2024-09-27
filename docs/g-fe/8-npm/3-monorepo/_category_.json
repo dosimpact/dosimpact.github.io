@@ -1,10 +1,11 @@
 {
-  "label": "3.TS",
+  "label": "Monorepo",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "3.TS"
+    "title": "Monorepo",
+    "description": "Monorepo"
   }
 }
