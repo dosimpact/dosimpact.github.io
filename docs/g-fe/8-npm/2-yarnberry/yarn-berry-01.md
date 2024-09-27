@@ -36,8 +36,8 @@ yarn
 - Yarn은 플러그인 기반으로 동작하므로, 추가 기능이 필요할 때 이곳에 플러그인을 설치해요.  
 
 .pnp.cjs 또는 .pnp.js: Plug’n’Play(PnP) 기능을 사용할 때 생성되는 파일
-- Node.js의 require 메커니즘을 대체하여 의존성 경로를 관리해요.    
-- 이 파일을 통해 Yarn이 의존성 트리를 관리하고 패키지를 찾아요.   
+- Node.js의 require 메커니즘을 대체하여 의존성 경로를 관리.     
+- node_modules을 안쓰니, 어떻게 cache에서 의존성을 찾아야 할지 메타 정보 기록.  
 
 .yarnrc.yml: Yarn의 설정 파일이에요.  
 - Yarn의 설정, PnP 여부, 플러그인 목록 등을 정의할 수 있어요.  
