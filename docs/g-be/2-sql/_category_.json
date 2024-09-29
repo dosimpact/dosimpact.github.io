@@ -1,11 +1,11 @@
 {
-  "label": "Sql",
+  "label": "2.Sql",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Sql",
-    "description": "Sql"
+    "title": "2.Sql",
+    "description": "2.Sql"
   }
 }

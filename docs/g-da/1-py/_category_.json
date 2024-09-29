@@ -1,11 +1,11 @@
 {
-  "label": "Python",
+  "label": "1.Python",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Python",
-    "description": "Python"
+    "title": "1.Python",
+    "description": "1.Python"
   }
 }

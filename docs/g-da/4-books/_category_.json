@@ -1,11 +1,11 @@
 {
-  "label": "경제 Book",
+  "label": "4.경제 Book",
   "position": 4,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "경제 Book",
-    "description": "경제 Book"
+    "title": "4.경제 Book",
+    "description": "4.경제 Book"
   }
 }

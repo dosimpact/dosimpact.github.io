@@ -1,11 +1,11 @@
 {
-  "label": "ElasticSearch",
+  "label": "4.ElasticSearch",
   "position": 4,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "ElasticSearch",
-    "description": "ElasticSearch"
+    "title": "4.ElasticSearch",
+    "description": "4.ElasticSearch"
   }
 }

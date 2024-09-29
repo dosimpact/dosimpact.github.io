@@ -1,11 +1,11 @@
 {
-  "label": "Kafka",
+  "label": "3.Kafka",
   "position": 3,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Kafka",
-    "description": "Kafka"
+    "title": "3.Kafka",
+    "description": "3.Kafka"
   }
 }

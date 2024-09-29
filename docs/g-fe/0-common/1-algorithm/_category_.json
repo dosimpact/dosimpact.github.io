@@ -1,11 +1,11 @@
 {
-  "label": "알고리즘 문법 정리",
+  "label": "1.알고리즘 문법 정리",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "알고리즘 문법 정리",
-    "description": "알고리즘 문법 정리"
+    "title": "1.알고리즘 문법 정리",
+    "description": "1.알고리즘 문법 정리"
   }
 }

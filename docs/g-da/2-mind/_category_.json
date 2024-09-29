@@ -1,11 +1,11 @@
 {
-  "label": "Mind",
+  "label": "2.Mind",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Mind",
-    "description": "Mind"
+    "title": "2.Mind",
+    "description": "2.Mind"
   }
 }

@@ -1,11 +1,11 @@
 {
-  "label": "GPT",
+  "label": "6.GPT",
   "position": 7,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "GPT",
-    "description": "GPT"
+    "title": "6.GPT",
+    "description": "6.GPT"
   }
 }
