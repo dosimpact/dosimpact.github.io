@@ -1,11 +1,11 @@
 {
-  "label": "MBA",
-  "position": 5,
+  "label": "2.MBA",
+  "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "MBA",
-    "description": "MBA"
+    "title": "2.MBA",
+    "description": "2.MBA"
   }
 }

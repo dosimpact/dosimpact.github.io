@@ -305,50 +305,61 @@ export function useFadeIn(ref, duration) {
 
 ```js
 export class FadeInAnimation {
-  constructor(node) {
+  private node: HTMLElement;
+  private duration: number = 1000; // 1sec delay
+  private startTime: number | null = null;
+  private frameId: number | null = null;
+
+  constructor(node: HTMLElement) {
     this.node = node;
   }
-  start(duration) {
+  start(duration: number) {
     this.duration = duration;
-    this.onProgress(0);
     this.startTime = performance.now();
+    this.onProgress(0);
+    // (x) this.frameId = requestAnimationFrame(this.onFrame);
+    // (x) this.frameId = requestAnimationFrame(() => this.onFrame);
     this.frameId = requestAnimationFrame(() => this.onFrame());
   }
-  onFrame() {
+  stop(): void {
+    if (this.frameId) cancelAnimationFrame(this.frameId);
+    this.startTime = null;
+    this.duration = 1;
+    this.frameId = null;
+  }
+  private onFrame() {
+    if (!this.startTime) return;
+
     const timePassed = performance.now() - this.startTime;
     const progress = Math.min(timePassed / this.duration, 1);
+
     this.onProgress(progress);
-    if (progress === 1) {
-      this.stop();
-    } else {
-      // We still have more frames to paint
+    if (progress < 1) {
       this.frameId = requestAnimationFrame(() => this.onFrame());
+    } else {
+      this.stop();
     }
   }
-  onProgress(progress) {
-    this.node.style.opacity = progress;
-  }
-  stop() {
-    cancelAnimationFrame(this.frameId);
-    this.startTime = null;
-    this.frameId = null;
-    this.duration = 0;
+  private onProgress(progress: number) {
+    this.node.style.opacity = progress.toString();
   }
 }
+
 ---
-import { useState, useEffect } from 'react';
-import { FadeInAnimation } from './animation.js';
+import { useEffect, RefObject } from 'react';
+import { FadeInAnimation } from './FadeInAnimation';
 
-export function useFadeIn(ref, duration) {
-
+export function useFadeIn(ref: RefObject<HTMLElement>, duration: number): void {
   useEffect(() => {
+    if (!ref.current) return;
     const animation = new FadeInAnimation(ref.current);
     animation.start(duration);
 
-    return () => { animation.stop(); };
+    return () => {
+      animation.stop();
+    };
   }, [ref, duration]);
 }
-
 ```
 
 

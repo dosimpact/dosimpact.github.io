@@ -1,11 +1,11 @@
 {
-  "label": "Solopreneur",
+  "label": "5.Solopreneur",
   "position": 6,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Solopreneur",
+    "title": "5.Solopreneur",
     "description": "Solopreneur를 위한 시스템 만들기"
   }
 }

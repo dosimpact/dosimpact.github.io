@@ -1,11 +1,11 @@
 {
-  "label": "UX/UI",
-  "position": 6,
+  "label": "1.UX/UI",
+  "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "UX/UI",
-    "description": "UX/UI"
+    "title": "1.UX/UI",
+    "description": "1.UX/UI"
   }
 }

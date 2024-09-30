@@ -1,11 +1,11 @@
 {
-  "label": "Product",
+  "label": "4.Product",
   "position": 4,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Product",
-    "description": "Product"
+    "title": "4.Product",
+    "description": "4.Product"
   }
 }
