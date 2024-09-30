@@ -1,11 +1,11 @@
 {
-  "label": "JS 브라우저: 문서, 이벤트, 인터페이스",
+  "label": "2.JS 브라우저: 문서, 이벤트, 인터페이스",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "JS 브라우저: 문서, 이벤트, 인터페이스",
+    "title": "2.JS 브라우저: 문서, 이벤트, 인터페이스",
     "description": "모던 JavaScript 튜토리얼 JS 브라우저: 문서, 이벤트, 인터페이스"
   }
 }

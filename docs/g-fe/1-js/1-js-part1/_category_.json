@@ -1,11 +1,11 @@
 {
-  "label": "코어 JS",
+  "label": "1.코어 JS",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "코어 JS",
+    "title": "1.코어 JS",
     "description": "모던 JavaScript 튜토리얼 코어 JS"
   }
 }
