@@ -12,8 +12,9 @@ sidebar_position: 1
     - [예제 with React](#예제-with-react)
     - [예제 with React + StyledComponent](#예제-with-react--styledcomponent)
   - [useBreakpoint](#usebreakpoint)
-  - [usePortal](#useportal)
+  - [usePortal (dynamic target DOM)](#useportal-dynamic-target-dom)
   - [useClickOutside](#useclickoutside)
+  - [useIntersectionObserver](#useintersectionobserver)
 
 
 ## useShadowDOM  
@@ -269,66 +270,87 @@ export default MyResponsiveComponent;
 
 ```
 
-## usePortal
+## usePortal (dynamic target DOM)  
 
 - React의 컨텍스트를 유지시키면서 특정 컴포넌트를 다른 DOM에 연결시킬 수 있다.  
 - 모달, 툴팁, 드롭다운 등 부모 스타일에 영향을 받지 않도록 할 때  
 
+동작원리  
+- createPortal의 target domNode을 동적으로 생성하는 경우.
+- step1. createPortal : 리액트 엘리먼트를 컨테이너 HTMLElement 에 붙이는 단계
+- ㄴDOM에 안보이는데 리액트 컴포넌트는 작동한다.
+- step2. 컨테이너 HTMLElement 을 RealDOM에 붙이는 단계
+- ㄴ렌더링이 되어 보인다.
 
 ```js
-import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
-const usePortal = id => {
-  const rootElemRef = useRef(null);
+// createPortal의 target domNode을 동적으로 생성하는 경우.
+// step1. createPortal : 리액트 엘리먼트를 컨테이너 HTMLElement 에 붙이는 단계
+// ㄴDOM에 안보이는데 리액트 컴포넌트는 작동한다.
+// step2. 컨테이너 HTMLElement 을 RealDOM에 붙이는 단계
+// ㄴ렌더링이 되어 보인다.
 
-  const createRootElement = id => {
-    const rootContainer = document.createElement('div');
-    rootContainer.setAttribute('id', id);
+const usePortal = (id: string): HTMLElement => {
+  const containerElemRef = useRef<HTMLElement | null>(null);
+
+  const createRootElement = (id: string): HTMLElement => {
+    const rootContainer = document.createElement("div");
+    rootContainer.setAttribute("id", id);
     return rootContainer;
   };
 
-  const addRootElement = rootElem => {
-    document.body.insertBefore(rootElem, document.body.lastElementChild.nextElementSibling);
+  const addRootElement = (rootElem: HTMLElement): void => {
+    document.body.insertBefore(
+      rootElem,
+      document.body.lastElementChild?.nextElementSibling || null
+    );
   };
 
-  const getRootElem = () => {
-    if (!rootElemRef.current) {
-      rootElemRef.current = document.createElement('div');
+  const getContainerElem = (): HTMLElement => {
+    if (!containerElemRef.current) {
+      containerElemRef.current = document.createElement("div");
     }
-    return rootElemRef.current;
+
+    return containerElemRef.current;
   };
 
-    useEffect(() => {
-    // DOM에 포털 노드가 있는지 확인
-    const existingParent = document.querySelector(`#${id}`);
-    const parentElem = existingParent || createRootElement(id);
+  useEffect(() => {
+    const existingRootElement = document.querySelector<HTMLElement>(`#${id}`);
+    const rootElement = existingRootElement || createRootElement(id);
 
-    if (!existingParent) {
-      addRootElement(parentElem);
-    }
+    if (!existingRootElement) addRootElement(rootElement);
 
-    parentElem.appendChild(rootElemRef.current);
+    if (rootElement && containerElemRef.current)
+      rootElement.appendChild(containerElemRef.current);
 
     return () => {
-      rootElemRef.current.remove();
-      if (!parentElem.childElementCount) {
-        parentElem.remove();
+      // container Level 초기화
+      if (containerElemRef.current) {
+        containerElemRef.current.remove();
+      }
+      // root Level 초기화
+      if (!rootElement.childElementCount) {
+        rootElement.remove();
       }
     };
   }, [id]);
 
-  return getRootElem();
+  return getContainerElem();
 };
 
 export default usePortal;
 
----
+export const Portal: React.FC<{ id: string; children: React.ReactNode }> = ({
+  id,
+  children,
+}) => {
+  const target = usePortal(id);
 
-export const Portal = ({ id, children }) => {
-  const target = usePortal(id); 
   return createPortal(children, target);
 };
+
 
 ```
 
@@ -368,5 +390,47 @@ const useClickOutside = ({ onClickOutside }: UseClickOutsideProps = {}) => {
 };
 
 export default useClickOutside;
+
+```
+
+## useIntersectionObserver
+
+```js
+import { useState, useEffect, useRef } from "react";
+
+interface IntersectionObserverArgs {
+  root?: Element | null; // root: null, // 뷰포트를 root로 사용
+  rootMargin?: string; // rootMargin: '50px 0px', // 위아래로 50px의 여유를 두고 감지
+  threshold?: number | number[];
+}
+
+const useIntersectionObserver = (
+  options: IntersectionObserverArgs = {
+    root: null,
+    rootMargin: "",
+    threshold: 0,
+  }
+) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const targetRef = useRef<Element | null>();
+
+  useEffect(() => {
+    if (!targetRef.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, options);
+
+    observer.observe(targetRef.current);
+
+    return () => {
+      if (targetRef.current) observer.unobserve(targetRef.current);
+    };
+  }, [options]);
+
+  return { targetRef, isIntersecting };
+};
+
+export default useIntersectionObserver;
 
 ```
