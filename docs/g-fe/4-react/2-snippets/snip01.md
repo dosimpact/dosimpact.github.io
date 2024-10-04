@@ -361,7 +361,9 @@ export const Portal: React.FC<{ id: string; children: React.ReactNode }> = ({
 - 2.document.body에 mousedown 이벤트를 리슨한다.    
 - 3.boxRef가 event.target을 contains 하는지 판단한다.   
 
-- document vs document.body 차이 ?  document는 브라우저 창 클릭도 감지한다?!  
+- document vs document.body 차이 
+  - document.body는 html안의 body 태그까지만 클릭을 감지한다. 
+  - CSS 문제로 body태그를 넘어가는 요소가 생기면 전체 document 클릭의 빈큼이 생길 수 있다.  
 
 ```js
 import { useEffect, useRef } from "react";
@@ -379,10 +381,10 @@ const useClickOutside = ({ onClickOutside }: UseClickOutsideProps = {}) => {
         onClickOutside && onClickOutside();
       }
     }
-    document.body.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.body.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [boxRef, onClickOutside]);
 
