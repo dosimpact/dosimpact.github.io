@@ -2,27 +2,44 @@
 sidebar_position: 1
 ---
 
-## Beefy 1
+# Beefy 소개서 1편  
 
-- [Beefy 1](#beefy-1)
-- [1.비피(Beefy)란 무엇인가요?](#1비피beefy란-무엇인가요)
-- [2.How to set up a wallet](#2how-to-set-up-a-wallet)
-  - [MetaMask](#metamask)
-  - [Trust Wallet](#trust-wallet)
-  - [Rabby Wallet](#rabby-wallet)
-- [3.Risk Deepdive : Multichain 프로토콜의 붕괴](#3risk-deepdive--multichain-프로토콜의-붕괴)
-- [4.Introduction to Beefy](#4introduction-to-beefy)
-  - [비피(Beefy)란 무엇인가요?](#비피beefy란-무엇인가요)
-  - [비피의 역사](#비피의-역사)
-  - [비피의 독창성은 무엇인가요?](#비피의-독창성은-무엇인가요)
-  - [다른 체인에서의 자동 복리](#다른-체인에서의-자동-복리)
-- [Beefy Protocol](#beefy-protocol)
-  - ["프로토콜"이란 무엇을 의미하나요?](#프로토콜이란-무엇을-의미하나요)
-  - [비피 프로토콜의 구조](#비피-프로토콜의-구조)
-  - [프로토콜은 어떻게 작동하나요?](#프로토콜은-어떻게-작동하나요)
+- [Beefy 소개서 1편](#beefy-소개서-1편)
+  - [DeFi란?](#defi란)
+  - [1.비피(Beefy)란 무엇인가요?](#1비피beefy란-무엇인가요)
+  - [2.How to set up a wallet](#2how-to-set-up-a-wallet)
+    - [MetaMask](#metamask)
+    - [Trust Wallet](#trust-wallet)
+    - [Rabby Wallet](#rabby-wallet)
+  - [3.Risk Deepdive : Multichain 프로토콜의 붕괴](#3risk-deepdive--multichain-프로토콜의-붕괴)
+  - [4.Introduction to Beefy](#4introduction-to-beefy)
+    - [비피(Beefy)란 무엇인가요?](#비피beefy란-무엇인가요)
+    - [비피의 역사](#비피의-역사)
+    - [비피의 독창성은 무엇인가요?](#비피의-독창성은-무엇인가요)
+    - [다른 체인에서의 자동 복리](#다른-체인에서의-자동-복리)
+  - [Beefy Protocol](#beefy-protocol)
+    - ["프로토콜"이란 무엇을 의미하나요?](#프로토콜이란-무엇을-의미하나요)
+    - [비피 프로토콜의 구조](#비피-프로토콜의-구조)
+    - [프로토콜은 어떻게 작동하나요?](#프로토콜은-어떻게-작동하나요)
 
+
+## DeFi란?  
+
+디파이 생태계  
+
+디파이(DeFi, Decentralized Finance)는 탈중앙화 금융    
+- 예금, 대출, 결제 등의 핀테크를 블록체인과 스마트 컨트렉으로 구현한 것 
+
+![Alt text](image-1.png)
+https://excalidraw.com/#json=gVB7i7R9YS_c9UtoU4x11,jA5tKZXPUZMQgiJmZqQSLw
+
+- 탈중앙화 거래소(DEX): 중앙 기관 없이 암호화폐를 거래할 수 있는 플랫폼이에요. 대표적으로 Uniswap, Sushiswap 등이 있어요. 
+- 대출 및 차입: 스마트 계약을 통해 담보를 제공하고, 이자를 받거나 대출을 받을 수 있어요. 대표적으로 Aave, Compound 등이 있어요. 
+- 스테이킹(Staking): 보유한 암호화폐를 네트워크에 예치하고, 그 대가로 보상을 받는 방식이에요.
 
 ## 1.비피(Beefy)란 무엇인가요?  
+
+멀티체인 수익률 최적화, 안전과 효율성을 염두에 두고 23개 체인에서 가장 높은 APY를 획득하세요.
 
 - 비피(Beefy)는 탈중앙화된 멀티체인 수익 최적화 플랫폼 
 - 복리 이자 받을 수 있음. 
