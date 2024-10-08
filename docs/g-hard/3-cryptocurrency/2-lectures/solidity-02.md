@@ -12,6 +12,7 @@ sidebar_position: 2
   - [solidity 예제 will.sol](#solidity-예제-willsol)
   - [solidity 예제 AddressWallets.sol](#solidity-예제-addresswalletssol)
   - [solidity 예제](#solidity-예제)
+  - [5.Solidity \& 스마트 계약 용어집](#5solidity--스마트-계약-용어집)
 
 
 ## Refs 
@@ -222,3 +223,38 @@ contract AddressWallets {
 ## solidity 예제   
 
 공개확률 기반 추첨 컨트랙  
+
+
+## 5.Solidity & 스마트 계약 용어집  
+
+>https://dev.to/gbengelebs/introduction-to-solidity-228c
+
+address : 20바이트 짜리 변수  
+
+```js
+address payable[] wallets
+```
+
+mppping : key-value 쌍 데이터  
+```js
+mapping(address => uint) public balances;
+```
+
+Scope : 변수의 유효 범위
+- State Variables : contract storage 안에 영구적으로 저장되는 변수  
+- Local Variables − 함수 내에서 유효한 변수  
+- Global Variables − 특별한 변수이다. 블록체인에 관련된 정보에 접근가능.
+예) block.gaslimit, msg.sender ...   
+
+
+Modifiers : 함성함수를 만들 수 있는 기능  
+
+```js
+// onlyOwner 함수는 test함수를 wrapping 하게 된다.  
+modifier onlyOwner() {
+  if (msg.sender == testAddress) {
+    _;
+  }
+
+function test() public onlyOwner { }
+```
