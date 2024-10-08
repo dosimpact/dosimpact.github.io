@@ -170,6 +170,56 @@ export const useRandomCatStore = create<RandomCatState>((set, get) => {
 ```
 
 
+### vanlia debounce, debounced state  
+
+```js
+export function debounce<T>(func: (args: T) => void, delay: number) {
+  let timer: number;
+
+  return (args: T) => {
+    if (timer) clearTimeout(timer);
+
+    timer = window.setTimeout(() => {
+      func(args);
+    }, delay);
+  };
+}
+---
+import { debounce } from "@/utils/debounce";
+import { create } from "zustand";
+
+interface SearchAreaStore {
+  keywordInput: string;
+  setKeywordInput: (keywordInput: string) => void;
+  debouncedKeyword: string;
+  setDebouncedKeyword: (keywordInput: string) => void;
+  reset: () => void;
+}
+
+const defaultState: Pick<SearchAreaStore, "keywordInput" | "debouncedKeyword"> =
+  {
+    keywordInput: "",
+    debouncedKeyword: "",
+  };
+
+export const useStoreSearchArea = create<SearchAreaStore>((set, get) => ({
+  keywordInput: "",
+  setKeywordInput: (keywordInput: string) => {
+    set({ keywordInput });
+    get().setDebouncedKeyword(keywordInput);
+  },
+  debouncedKeyword: "",
+  setDebouncedKeyword: debounce((keywordInput: string) => {
+    set({ debouncedKeyword: keywordInput });
+  }, 500),
+  reset: () => {
+    set({ ...defaultState });
+  },
+}));
+
+```
+
+
 ## ref  
 
 - github : https://github.com/pmndrs/zustand  
