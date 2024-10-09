@@ -15,6 +15,7 @@ sidebar_position: 1
   - [usePortal (dynamic target DOM)](#useportal-dynamic-target-dom)
   - [useClickOutside](#useclickoutside)
   - [useIntersectionObserver](#useintersectionobserver)
+  - [useFadeIn](#usefadein)
 
 
 ## useShadowDOM  
@@ -435,4 +436,66 @@ const useIntersectionObserver = (
 
 export default useIntersectionObserver;
 
+```
+
+## useFadeIn
+
+```js
+
+export class FadeInAnimation {
+  private node: HTMLElement;
+  private duration: number = 1000; // 1sec delay
+  private startTime: number | null = null;
+  private frameId: number | null = null;
+
+  constructor(node: HTMLElement) {
+    this.node = node;
+  }
+  start(duration: number) {
+    this.duration = duration;
+    this.startTime = performance.now();
+    this.onProgress(0);
+    // (x) this.frameId = requestAnimationFrame(this.onFrame);
+    // (x) this.frameId = requestAnimationFrame(() => this.onFrame);
+    this.frameId = requestAnimationFrame(() => this.onFrame());
+  }
+  stop(): void {
+    if (this.frameId) cancelAnimationFrame(this.frameId);
+    this.startTime = null;
+    this.duration = 1;
+    this.frameId = null;
+  }
+  private onFrame() {
+    if (!this.startTime) return;
+
+    const timePassed = performance.now() - this.startTime;
+    const progress = Math.min(timePassed / this.duration, 1);
+
+    this.onProgress(progress);
+    if (progress < 1) {
+      this.frameId = requestAnimationFrame(() => this.onFrame());
+    } else {
+      this.stop();
+    }
+  }
+  private onProgress(progress: number) {
+    this.node.style.opacity = progress.toString();
+  }
+}
+
+---
+import { useEffect, RefObject } from 'react';
+import { FadeInAnimation } from './FadeInAnimation';
+
+export function useFadeIn(ref: RefObject<HTMLElement>, duration: number): void {
+  useEffect(() => {
+    if (!ref.current) return;
+    const animation = new FadeInAnimation(ref.current);
+    animation.start(duration);
+
+    return () => {
+      animation.stop();
+    };
+  }, [ref, duration]);
+}
 ```

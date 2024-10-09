@@ -1,10 +1,10 @@
 {
-  "label": "9.PackageManager",
+  "label": "9.NPM, Bundler",
   "position": 8,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "9.PackageManager"
+    "description": "9.NPM, Bundler"
   }
 }

@@ -3,6 +3,17 @@ sidebar_position: 5
 ---
 
 # Intl
+  
+## insertComma
+
+```js
+const formatter = new Intl.NumberFormat('ko-KR');
+
+export function insertComma(num: number) {
+  return formatter.format(num);
+}
+
+```
 
 ## Intl.NumberFormat   
 
