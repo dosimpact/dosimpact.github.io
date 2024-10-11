@@ -4,6 +4,13 @@ sidebar_position: 1
 
 # react-native 개발 환경 구축  
 
+- [react-native 개발 환경 구축](#react-native-개발-환경-구축)
+  - [개발환경 설치하기](#개발환경-설치하기)
+    - [개발환경 셋팅 요약](#개발환경-셋팅-요약)
+    - [루비 버전 이슈](#루비-버전-이슈)
+  - [빌드](#빌드)
+
+
 
 ## 개발환경 설치하기  
 
@@ -92,4 +99,18 @@ source ~/.zshrc
 ruby -v
 ruby 2.7.6p219 (2022-04-12 revision c9c2245c0a) [arm64-darwin23]
 
+```
+
+
+## 빌드
+
+```
+# 빌드 캐시 초기화  
+
+cd android
+./gradlew clean
+
+
+# 안드로이드 빌드
+npx react-native run-android
 ```
