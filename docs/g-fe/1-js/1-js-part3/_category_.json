@@ -1,11 +1,11 @@
 {
-  "label": "JS 추가 주제",
+  "label": "3.JS 추가 주제",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "JS 추가 주제",
+    "title": "3.JS 추가 주제",
     "description": "모던 JavaScript 튜토리얼 JS 추가 주제"
   }
 }
