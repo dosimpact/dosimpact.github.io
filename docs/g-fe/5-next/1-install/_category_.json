@@ -1,0 +1,11 @@
+{
+  "label": "Next Install",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Next Install",
+    "description": "Next Install"
+  }
+}
