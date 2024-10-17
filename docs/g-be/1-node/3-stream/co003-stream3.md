@@ -16,14 +16,15 @@ https://github.com/jimmywarting/StreamSaver.js?
 ### How does it work?  
 
 
-브라우저가 다운로드 다이어로그로 파일을 저장을 저장하는 방법1. ObjectURLs + a link  
+브라우저가 다운로드 다이어로그로 파일을 저장을 저장하는 방법1. : ObjectURLs + a link  
 
 stream, file, blob을 저장하는 마법같은 추상화된 함수는 아직 없다.  
 - 현재는 ObjectURLs + a link로 blob(file,image,sound..) 다운로드 링크를 만들 수 있다.  
-- 하지만 stream 은 ObjectURLs을 만드는것이 불가능하다.  
+- 1. stream 은 ObjectURLs을 만드는것이 불가능하다. (blob 방식은 스트림 데이터를 다 모아야 하므로 오버플로가 발생 가능. )    
+- 2. Content-Disposition 헤더를 변경못하는 경우 다운로드 다이얼로그를 못 연다.    
 
 
-브라우저가 다운로드 다이어로그로 파일을 저장을 저장하는 방법2. HTTP Content-Disposition Header 사용  
+브라우저가 다운로드 다이어로그로 파일을 저장을 저장하는 방법2. : HTTP Content-Disposition Header 사용   
 
 서버에서 스트림을 처리하는것 처럼, 브라우저에서도 스트림 다운로드를 처리하는 것이다.  
 브라우저에는 우리가 생각하는 개념의 서버가 없는 대신 이 역할을 해줄 '서비스 워커'가 있다. 
