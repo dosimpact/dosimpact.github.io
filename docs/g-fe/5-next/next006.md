@@ -28,7 +28,16 @@ sidebar_position: 6
 ## playground
 
 아래 사이트에서 연습이 가능하다.  
-- https://play.tailwindcss.com/
+- https://play.tailwindcss.com/  
+
+
+📌 CSS 작성 규칙  
+- 1.w,h,p,m : 박스모델 만들기   
+- 2.flex : 내부 레이아웃    
+- 3.bg, border, rounded : 박스 모델 스타일   
+- 4.text, font, cursor : 콘텐츠 스타일    
+- 5.hover : 가상 클래스 작업    
+
 
 ## 단위체계
 
