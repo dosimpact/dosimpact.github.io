@@ -6,13 +6,14 @@ sidebar_position: 6
 
 - [Next + TailwindCSS](#next--tailwindcss)
   - [playground](#playground)
-  - [단위체계](#단위체계)
-  - [bg, border, border-color, rounded](#bg-border-border-color-rounded)
+  - [1.단위체계](#1단위체계)
+  - [2.bg, border, border-color, rounded](#2bg-border-border-color-rounded)
     - [bg-gradient-to-t from-black](#bg-gradient-to-t-from-black)
-  - [w, h, p, m](#w-h-p-m)
-  - [text-color, text-size, font-bold, cursor](#text-color-text-size-font-bold-cursor)
-  - [flex, flex-col, justify, items, gap](#flex-flex-col-justify-items-gap)
-  - [hover, transition, :disabled](#hover-transition-disabled)
+  - [3.w, h, p, m](#3w-h-p-m)
+  - [4.text-color, text-size, font-bold, cursor](#4text-color-text-size-font-bold-cursor)
+  - [5.flex, flex-col, justify, items, gap](#5flex-flex-col-justify-items-gap)
+  - [6.hover, transition, :disabled](#6hover-transition-disabled)
+  - [position, transform, translate](#position-transform-translate)
   - [반응형 UI만드는 방법](#반응형-ui만드는-방법)
     - [Responsive Design](#responsive-design)
   - [overflow](#overflow)
@@ -32,14 +33,15 @@ sidebar_position: 6
 
 
 📌 CSS 작성 규칙  
-- 1.w,h,p,m : 박스모델 만들기   
-- 2.flex : 내부 레이아웃    
-- 3.bg, border, rounded : 박스 모델 스타일   
-- 4.text, font, cursor : 콘텐츠 스타일    
-- 5.hover : 가상 클래스 작업    
+- 외부 레아웃에서 내부로 이동 스타일을 결정한다.  
+  - 1.w,h,p,m : 박스모델 만들기   
+  - 2.flex : 내부 레이아웃    
+  - 3.bg, border, rounded : 박스 모델 스타일   
+  - 4.text, font, cursor : 콘텐츠 스타일    
+  - 5.hover : 가상 클래스 작업    
 
 
-## 단위체계
+## 1.단위체계
 
 tailwind css 에서는 rem 단위를 사용한다.  
 - 1은 0.25 rem, 4는 1rem 이다. 
@@ -57,7 +59,7 @@ tailwind css 에서는 rem 단위를 사용한다.
 
 ```
 
-## bg, border, border-color, rounded
+## 2.bg, border, border-color, rounded
 
 ```js
 className="bg-red-200"
@@ -78,7 +80,7 @@ eg)
 className="w-full h-full absolute top-0 bg-gradient-to-t from-black"
 ```
 
-## w, h, p, m 
+## 3.w, h, p, m 
 
 ```js
 # extrinsic 
@@ -90,7 +92,7 @@ className="p-8 p-[40px] px-8 py-8"
 className="m-8 m-[40px] mx-8 my-8"
 ```
 
-## text-color, text-size, font-bold, cursor
+## 4.text-color, text-size, font-bold, cursor
 
 ```js
 # color
@@ -105,7 +107,7 @@ className="font-medium font-[500] font-bold font-[700]"
 className="cursor-pointer"
 ```
 
-## flex, flex-col, justify, items, gap
+## 5.flex, flex-col, justify, items, gap
 
 ```js
 # display:flex
@@ -136,13 +138,26 @@ className="flex flex-1"
 ```
 
 
-## hover, transition, :disabled
+## 6.hover, transition, :disabled
 
 ```js
 className="transition"
 className="hover:text-white"
 className="disabled:cursor-not-allowed disabled:opacity-50"
 ```
+
+## position, transform, translate
+
+```js
+// 중앙 정렬을 수행 한다.  
+<div
+  className="absolute
+  right-[0px] top-[50%] transform -translate-x-1/2 -translate-y-1/2"
+>
+  <PiWarningCircleLight color="#EE4700" size={16} />
+</div>
+```
+
 
 ## 반응형 UI만드는 방법  
 
