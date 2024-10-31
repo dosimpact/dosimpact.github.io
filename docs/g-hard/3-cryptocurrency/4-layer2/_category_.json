@@ -1,0 +1,11 @@
+{
+  "label": "Layer2",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Layer2",
+    "description": "Layer2"
+  }
+}

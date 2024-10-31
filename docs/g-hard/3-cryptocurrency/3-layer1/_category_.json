@@ -1,11 +1,11 @@
 {
-  "label": "Beefy",
+  "label": "Layer1",
   "position": 3,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Beefy",
-    "description": "Beefy"
+    "title": "Layer1",
+    "description": "Layer1"
   }
 }

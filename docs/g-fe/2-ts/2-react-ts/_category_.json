@@ -1,11 +1,10 @@
 {
-  "label": "ARB",
-  "position": 4,
+  "label": "TS+React ",
+  "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "ARB",
-    "description": "ARB"
+    "description": "TS+React "
   }
 }
