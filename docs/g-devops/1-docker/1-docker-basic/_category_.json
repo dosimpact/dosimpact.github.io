@@ -1,0 +1,11 @@
+{
+  "label": "Docker Base",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Docker Base",
+    "description": "Docker Base"
+  }
+}

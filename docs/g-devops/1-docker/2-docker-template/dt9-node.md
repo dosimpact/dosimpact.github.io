@@ -2,17 +2,21 @@
 sidebar_position: 9
 ---
 
-# verdaccio with docker
+# Docker & Node.js  
+
+
+## verdaccio with docker
 
 verdaccio 를 도커로 만들어 보고, npm 모듈을 업로드/다운로드 하는 온보딩 가이드
 
-- [verdaccio with docker](#verdaccio-with-docker)
-  - [1. open verdaccio server](#1-open-verdaccio-server)
-  - [2. publish module](#2-publish-module)
-  - [3. download module](#3-download-module)
+- [Docker \& Node.js](#docker--nodejs)
+  - [verdaccio with docker](#verdaccio-with-docker)
+    - [1. open verdaccio server](#1-open-verdaccio-server)
+    - [2. publish module](#2-publish-module)
+    - [3. download module](#3-download-module)
 
 
-## 1. open verdaccio server 
+### 1. open verdaccio server 
 
 ```
 # 1. docker-compose.yml
@@ -268,7 +272,7 @@ npm adduser --registry http://0.0.0.0:4873/
 
 ```
 
-## 2. publish module
+### 2. publish module
 
 ```
 # 0. adduser
@@ -333,7 +337,7 @@ npm publish --registry http://0.0.0.0:4873/
 npm unpublish --force verdaccio-onboarding--registry http://0.0.0.0:4873/
 ```
 
-## 3. download module
+### 3. download module
 
 ```
 
