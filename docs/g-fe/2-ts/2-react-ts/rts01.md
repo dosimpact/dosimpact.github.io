@@ -3,12 +3,36 @@ sidebar_position: 01
 ---
 # React Typescript   
 
-## ReactNode vs ReactElement
+- [React Typescript](#react-typescript)
+  - [React의 컴포넌트 타입들](#react의-컴포넌트-타입들)
+    - [ReactNode vs ReactElement](#reactnode-vs-reactelement)
+    - [ReactNode vs ()=\> React.ReactNode](#reactnode-vs--reactreactnode)
+  - [Discriminated Unions](#discriminated-unions)
+  - [Discriminated Unions Branding](#discriminated-unions-branding)
+  - [Undefined optional type union](#undefined-optional-type-union)
+  - [React Hook with Generic](#react-hook-with-generic)
+  - [React Component with Generic](#react-component-with-generic)
+  - [206](#206)
+  - [Interfaces vs Types](#interfaces-vs-types)
+    - [](#)
+  - [210 hoc](#210-hoc)
+  - [20](#20)
+  - [213 Limiting prop composition](#213-limiting-prop-composition)
+  - [214 Requiring props Composition](#214-requiring-props-composition)
+  - [215 Render Props](#215-render-props)
+  - [216 Polymorphic Component](#216-polymorphic-component)
+  - [221](#221)
+  - [225](#225)
+  - [226 Empty Object as Type](#226-empty-object-as-type)
 
-ReactNode는 ReactElement를 포함하는 더 큰 개념입니다.  
-- 심지어는 null, undefined도 올 수 있습니다.  
-- 이는 리액트 컴포넌트에서 null도 리턴할 수 있음을 의미합니다.  
-- 반면 ReactElement는 <></> 혹은 <div/> 등의 JSX를 리턴하는 함수입니다. createElement 함수라고도 볼수있습니다.  
+
+## React의 컴포넌트 타입들 
+
+### ReactNode vs ReactElement
+
+ReactNode는 ReactElement를 포함하는 더 큰 개념.    
+- 심지어는 null, undefined도 올 수 있다. (이는 리액트 컴포넌트에서 null도 리턴할 수 있음을 의미)
+- 반면 ReactElement는 <></> 혹은 <div/> 등의 JSX를 리턴하는 함수입니다. createElement 함수의 리턴값이다.  
 
 ```js
     type ReactNode =
@@ -26,9 +50,9 @@ ReactNode는 ReactElement를 포함하는 더 큰 개념입니다.
 ```
 
 
-## ReactNode vs ()=> React.ReactNode  
+### ReactNode vs ()=> React.ReactNode  
 
-1.React.ReactNode : 컴포넌트 리턴값  
+1.React.ReactNode : 컴포넌트 리턴값, 반면 아래 2개는 컴포넌트 자체의 타입   
 
 2.`React.ComponentType<MyComponentProps>` : 클래스 컴포넌트, 함수 컴포넌트 그 자체의 타입  
   - `type ComponentType<P = {}> = ComponentClass<P> | FunctionComponent<P>;`
@@ -42,7 +66,8 @@ import React from "react";
 const MyComponent = () => <div>Hello, World!</div>;
 
 // 예시 1: {Component} 사용
-// ReactNode를 인자로 받는다. 슬롯패턴처럼 컴포넌트를 {}으로 넣어야 한다.
+// ReactNode를 인자로 받는다. 슬롯패턴처럼 컴포넌트를 {}으로 넣어야 한다.  
+// {children}을 생각하면 쉽다. 컴포넌트 합성에 대한 방식은 이미 인스턴스화된 컴포넌트의 자리만 잡아주는 것.  
 const AppWithComponentReference = ({
   Component,
 }: {
@@ -81,53 +106,84 @@ export const Test01 = () => {
 
 ```
 
---- 📌 
 
+## Discriminated Unions  
 
-## 199
+>유니온 타입은 여러 타입이 포함된 타입인데, 식별 필드를 통해 타입을 구분할 수 있다.   
+
+- Discriminated Field는 숫자, 문자열, 불리언 가능  
+- interface에서도 유사하게 Discriminated Field 구현 가능   
+
+```js
+type Circle = {
+  kind: "circle";  // 구분을 위한 식별 필드, literal string
+  radius: number;
+};
+
+type Square = {
+  kind: "square";  // 구분을 위한 식별 필드
+  sideLength: number;
+};
+
+type Shape = Circle | Square;
+
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle": // Circle 타입으로 좁혀진다.  
+      return Math.PI * shape.radius ** 2;
+    case "square": // Square 타입으로 좁혀진다.  
+      return shape.sideLength ** 2;
+  }
+}
+```
+
+## Discriminated Unions Branding  
 
 ```js
 type Menu = "home" | "products" | "about";
 type ButtonVariant = "primary" | "secondary";
 
+//1.
+type FlexibleMenuFail = Menu | string;
+// 타이핑 실패, "home" | "products" | "about" 타이핑이 가능하되, string도 받게끔 하고 싶은데 전혀 타이핑이 안된다.
+// tsc에서 Menu | string; 는 아예 string으로 타입을 확장시켜 버린다.
+export const menus2: FlexibleMenuFail[] = [""];
+
+//2.
 type FlexibleMenu = Menu | (string & {});
 type FlexibleButtonVariant = ButtonVariant | (string & {});
 
+// 타입이 자동완성되면서(home" | "products" | "about") "other..."와 같은 추가적인 문자열도 넣기 가능.!
 export const menus: FlexibleMenu[] = ["home", "products", "about", "other..."];
 
-export const buttonVariants: FlexibleButtonVariant[] = [
-  "primary",
-  "secondary",
-  "other...",
-];
-
----
-type Menu = "home" | "products" | "about";
-type ButtonVariant = "primary" | "secondary";
-
-// Typescript helper
+//3.
+// Typescript helper 제너릭으로 리팩터링 가능
 type FlexibleAutoComplete<T> = T | (string & {});
+type FlexibleButtonVariantGeneric = FlexibleAutoComplete<ButtonVariant>;
 
-type FlexibleMenu = FlexibleAutoComplete<Menu>;
-type FlexibleButtonVariant = FlexibleAutoComplete<ButtonVariant>;
-
-export const menus: FlexibleMenu[] = ["home", "products", "about", "other..."];
-
-export const buttonVariants: FlexibleButtonVariant[] = [
+export const buttonVariants: FlexibleButtonVariantGeneric[] = [
   "primary",
-  "secondary",
-  "other...",
+  "other",
 ];
-
 ```
 
-## 200  
+## Undefined optional type union
 
 ```js
 import { ChangeEventHandler } from "react";
 
+//1.
+// value, onChange는 optional 값으로 ?를 사용할 수 있지만,
+// value가 받았더라면 onChange도 반드시 써야하는 상황이 있다.
+type InputPropsAsIs = {
+  value?: string;
+  onChange?: ChangeEventHandler;
+  label: string;
+};
 
-type InputProps = (
+//2. undefined optional field
+// 유니온 타입을 통해서 가능하다.
+type InputProps1 = (
   | {
       value: string;
       onChange: ChangeEventHandler;
@@ -140,69 +196,19 @@ type InputProps = (
   label: string;
 };
 
----
-
-
-type TightProps<T> = T | OptionalUndefined<T>;
-
-type OptionalUndefined<T> = Partial<Record<keyof T, undefined>>;
-
-// type을 정의했으나, optional 하게 props를 받아도 되는 상황이다.
-type InputProps = TightProps<{
-  value: string;
-  onChange: ChangeEventHandler;
-}> & {
-  label: string;
-};
-
-
-const Input = ({ label, ...props }: InputProps) => {
-  return (
-    <div>
-      <label>
-        {label}
-        <input {...props} />
-      </label>
-    </div>
-  );
-};
-
-export default Input;
-
-
-```
-
-
-## 201  
-
-```js
-
-import { ChangeEventHandler } from "react";
-
-type TightProps<T> = T | OptionalUndefined<T>;
-
-type OptionalUndefined<T> = Partial<Record<keyof T, undefined>>;
-
-type InputProps = TightProps<{
-  value: string;
-  onChange: ChangeEventHandler;
-}> & {
-  label: string;
-};
-
----
+//3. generic
 type TightProps<T extends object> = T | OptionalUndefined<T>;
-
 type OptionalUndefined<T extends object> = Partial<Record<keyof T, undefined>>;
 
-type InputProps = TightProps<{
+// type을 정의했으나, optional 하게 props를 받아도 되는 상황이다.
+type InputProps2 = TightProps<{
   value: string;
   onChange: ChangeEventHandler;
 }> & {
   label: string;
 };
 
-const Input = ({ label, ...props }: InputProps) => {
+const InputExG = ({ label, ...props }: InputProps2) => {
   return (
     <div>
       <label>
@@ -212,12 +218,12 @@ const Input = ({ label, ...props }: InputProps) => {
     </div>
   );
 };
-
-export default Input;
+export default InputExG;
 
 ```
 
-## 202  
+
+## React Hook with Generic 
 
 ```js
 const useLocalStorage = (identifier: string) => {
@@ -230,9 +236,7 @@ const useLocalStorage = (identifier: string) => {
   };
   return { set, get };
 };
-
 ---
-
 const useLocalStorage = <T,>(identifier: string) => {
   const set = (key: string, value: T) => {
     window.localStorage.setItem(key + identifier, JSON.stringify(value));
@@ -243,12 +247,10 @@ const useLocalStorage = <T,>(identifier: string) => {
   };
   return { set, get };
 };
-
+---
 function App() {
   const client = useLocalStorage<{ level: string }>("client");
-
   client.set("level", { level: "student" });
-
   const clientLevel = client.get("level");
 
   return <></>;
@@ -258,34 +260,24 @@ export default App;
 
 ```
 
-## 203
-
 ```js
 
 export const useStateObject = (initial: any) => {
   const [value, set] = useState(initial);
-
-  return {
-    value,
-    set,
-  };
+  ...
 };
 ---
 export const useStateObject = <T,>(initial: T) => {
   const [value, set] = useState(initial);
-
-  return {
-    value,
-    set,
-  };
+  ...
 };
-
 ```
 
 
-## 204
+## React Component with Generic 
 
 ```js
+// 1.before
 import { ReactNode } from "react";
 
 interface ProductListProps {
@@ -317,17 +309,8 @@ function App() {
     </div>
   );
 }
-
-export default App;
-
-```
-
-
-## 205
-
-```js
-import { ReactNode } from "react";
-
+---
+// 1.after
 interface ProductListProps<T> {
   rows: T[];
   renderRow: (row: T) => ReactNode;
@@ -346,6 +329,7 @@ interface Product {
 function App() {
   return (
     <div>
+      {/* 타입오류 */}
       <ProductList<Product>
         rows={[1, 2, 3, 4]}
         renderRow={(row) => <li>{row.title}</li>}
@@ -353,19 +337,17 @@ function App() {
       <ProductList<Product>
         rows={[
           { id: 1, title: "blabla", price: 99 },
+          // 타입 오류
           { id: "2", title: "blabla2", price: "29" },
         ]}
         renderRow={(row) => {
+          // 타입 오류, Product 추론됨   
           return <li>{row.nonExistingProp}</li>;
         }}
       ></ProductList>
     </div>
   );
 }
-
-export default App;
-
-
 ```
 
 

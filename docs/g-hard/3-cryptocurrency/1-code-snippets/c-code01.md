@@ -7,9 +7,12 @@ sidebar_position: 1
 ## Nnemonic > privateKey
 
 ```js
-// npm init -y
-// npm i @babel/node @babel/cli @babel/core @babel/preset-env -D
-// npm i @scure/bip39 ethers@^5.4.0
+/*
+  npm init -y
+  npm i @babel/node @babel/cli @babel/core @babel/preset-env -D
+  npm i @scure/bip39 ethers@^5.4.0
+  npx babel --presets @babel/env getPrivateKeyfromMnemonic.js | node
+*/
 import * as bip39 from "@scure/bip39";
 import { wordlist as enWordList } from "@scure/bip39/wordlists/english";
 import { wordlist as koWordList } from "@scure/bip39/wordlists/korean";
@@ -32,9 +35,7 @@ const bootstrap = async () => {
   const wallet = ethers.Wallet.fromMnemonic(enNnemonic, "m/44'/60'/0'/0/0");
 
   console.log("-->wallet.privateKey : ", wallet.privateKey);
-};y 5
+};
 bootstrap();
-
-// npx babel --presets @babel/env getPrivateKeyfromMnemonic.js | node
 
 ```

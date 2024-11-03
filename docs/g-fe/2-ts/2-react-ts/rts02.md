@@ -3,6 +3,12 @@ sidebar_position: 02
 ---
 
 # Typescript Props Pattern  
+- [Typescript Props Pattern](#typescript-props-pattern)
+  - [Background](#background)
+    - [satisfies](#satisfies)
+    - [Extracting Types with const](#extracting-types-with-const)
+  - [Empty Object and Requiring props](#empty-object-and-requiring-props)
+  - [Dynamic Props](#dynamic-props)
 
 
 ## Background
