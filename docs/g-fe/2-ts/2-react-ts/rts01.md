@@ -12,12 +12,10 @@ sidebar_position: 01
   - [Undefined optional type union](#undefined-optional-type-union)
   - [React Hook with Generic](#react-hook-with-generic)
   - [React Component with Generic](#react-component-with-generic)
-  - [206](#206)
-  - [Interfaces vs Types](#interfaces-vs-types)
-    - [](#)
-  - [210 hoc](#210-hoc)
-  - [20](#20)
-  - [213 Limiting prop composition](#213-limiting-prop-composition)
+  - [리팩토링: 삼항연산자 \> Discriminated Unions](#리팩토링-삼항연산자--discriminated-unions)
+  - [Typing HoC](#typing-hoc)
+  - [RenderProps Pattern](#renderprops-pattern)
+  - [Limiting prop composition](#limiting-prop-composition)
   - [214 Requiring props Composition](#214-requiring-props-composition)
   - [215 Render Props](#215-render-props)
   - [216 Polymorphic Component](#216-polymorphic-component)
@@ -351,10 +349,13 @@ function App() {
 ```
 
 
-## 206
+## 리팩토링: 삼항연산자 > Discriminated Unions  
 
 ```js
+export type AllowedVariants = "with-controls" | "no-controls";
 
+//1.
+//삼항연산자로 타입 조건 
 export type PopupProps<T extends AllowedVariants> = {
   isOpen: boolean;
   variant: T;
@@ -365,14 +366,7 @@ export type PopupProps<T extends AllowedVariants> = {
     }
   : {});
 
-export type AllowedVariants = "with-controls" | "no-controls";
-
-export const Popup = <T extends AllowedVariants>(props: PopupProps<T>) => {
-  return <></>;
-};
-
 ---
-
 // extends + 삼항연산자 없이도 간단하게 리팩토링 가능.  
 export type PopupProps = {
   isOpen: boolean;
@@ -387,73 +381,44 @@ export type PopupProps = {
     }
 );
 
-```
 
-## Interfaces vs Types
+export const Popup = <T extends AllowedVariants>(props: PopupProps<T>) => {
+  return <></>;
+};
 
-
-Interfaces
-- objects, class의 구조를 정의하는데 사용.  
-- extends를 이용해서 확장 가능하다. 
-
-Types  
-- 데이터의 구체적인 유형을 정의 한다.    
-- reopened or extended 불가능 (extends 키워드가 불가능)  
-
-언제 사용 ?  
-- interface : 공개 API를 정의하는 경우 인터페이스를 사용하여, 필요에따라 확장에 열려있게끔 한다.  
-- interface : function overriding 가능  
-
-### 
-
-```js
-type callback = (result: number) => void;
-
-function add(a: number, b: number): Promise<number>;
-function add(a: number, b: number, fn: callback): void;
-
-function add(a: number, b: number, fn?: callback) {
-  const result = a + b;
-  if (fn) fn(result);
-  else return Promise.resolve(result);
-}
-
----
-//js
-"use strict";
-function add(a, b, fn) {
-    const result = a + b;
-    if (fn)
-        fn(result);
-    else
-        return Promise.resolve(result);
-}
-```
-
-```js
-function add(a: number): (b: number) => number;
-function add(a: number, b: number): number;
-function add(a: number, b?: number): (b: number) => number | number {
-  if (b === undefined) return (b: number) => add(a, b);
-  return a + b;
-}
 
 ```
 
 
-## 210 hoc
+
+## Typing HoC 
 
 ```js
-import { MouseEventHandler, useCallback, useState } from "react";
-import { getPosition } from "../get-pos";
-import { DisplayMousePositionProps } from "./displayMousePosition";
+import { MouseEventHandler, MouseEvent, useCallback, useState } from "react";
 
+const getPosition = (event: MouseEvent): { x: number; y: number } => {
+  return {
+    x: event.clientX,
+    y: event.clientY,
+  };
+};
 
 const initialState = { x: 0, y: 0 };
 
+// 1.
+// HoC에서 제공해주는 props를 정의한다.
+// HoC에서 props를 받는 자식 컴포넌트는 아래 인터페이스를 확장해야 한다.
+export interface WithMouseMoveProps {
+  x: number;
+  y: number;
+  onMouseMove: MouseEventHandler;
+}
+
+// 2.HoC 정의
+// 함수를 리턴 함수를 작성한다. Component의 props는 hoc props를 포함한다.
 const withMouseMove =
-  <T extends {}>(Component: React.ComponentType<DisplayMousePositionProps>) =>
-  (props: Omit<T, keyof DisplayMousePositionProps>) => {
+  <T extends object>(Component: React.ComponentType<WithMouseMoveProps & T>) =>
+  (props: Omit<T, keyof WithMouseMoveProps>) => {
     const [{ x, y }, setPosition] = useState(initialState);
 
     const updatePosition = useCallback<MouseEventHandler>(
@@ -471,40 +436,24 @@ const withMouseMove =
 
 export default withMouseMove;
 
-```
-```js
-import withMouseMove from './components/hoc/withPosition'
-import "./App.css";
-import { DisplayMousePosition } from './components/hoc/displayMousePosition';
-
-
-function App() {
-  const Wrapper = withMouseMove(DisplayMousePosition);
-  return (
-    <div className="container">
-      <Wrapper/>
-    </div>
-  );
-}
-
-export default App;
----
-import "../style.css";
-import { MouseEventHandler } from "react";
+--- 
+import { WithMouseMoveProps } from "./withMouseMove";
 
 export type DisplayMousePositionProps = {
-  x: number;
-  y: number;
-  onMouseMove: MouseEventHandler;
+  title: string;
 };
 
+// 3.
+// HoC에서 받은 props를 타이핑 해준다.
 export const DisplayMousePosition = ({
   x,
   y,
   onMouseMove,
-}: DisplayMousePositionProps) => {
+  title,
+}: WithMouseMoveProps & DisplayMousePositionProps) => {
   return (
     <div className="relative-container" onMouseMove={onMouseMove}>
+      {title}
       <section className="absolute-section">
         <p>
           <span className="bold-span">X</span>: {x}
@@ -516,10 +465,23 @@ export const DisplayMousePosition = ({
     </div>
   );
 };
+---
+// 4.
+const EnhancedDisplayMousePosition =
+  withMouseMove<DisplayMousePositionProps>(DisplayMousePosition);
 
+function App() {
+  return (
+    <>
+      <EnhancedDisplayMousePosition title="hello" />
+    </>
+  );
+}
 ```
 
-## 20
+
+
+## RenderProps Pattern   
 
 ```js
 import { MouseEventHandler, useState } from "react";
@@ -572,11 +534,11 @@ export default App;
 
 ```
 
-## 213 Limiting prop composition
+## Limiting prop composition  
+
+>상호베타적인 타입을 선언할때 사용한다.  
 
 ```js
-
-
 type ButtonProps = {
   children: string;
 };

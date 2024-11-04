@@ -91,6 +91,22 @@ console.log(getProperty(person, "name")); // "Alice"
 console.log(getProperty(person, "age")); // 25
 ```  
 
+## Type 연산자  
+
+### 삼항연산자
+
+```js
+export type PopupProps<T extends AllowedVariants> = {
+  isOpen: boolean;
+  variant: T;
+} & (T extends "with-controls"
+  ? {
+      label: string;
+      onClick: () => void;
+    }
+  : {});
+// Discriminated Unions으로 리팩터링 가능   
+```
 
 ## Generic Example  
 
