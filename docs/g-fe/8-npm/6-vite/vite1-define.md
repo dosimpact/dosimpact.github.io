@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # Vite define 
 
-```
+## define 사용시 유의 사항  
+
+```js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -58,7 +60,11 @@ export default defineConfig({
   },
 })
 
-/*
+```
+
+## define 처리 코드  
+
+```js
 const context = ( () => {
     if (typeof globalThis !== "undefined") {
         return globalThis;
@@ -103,6 +109,5 @@ Object.keys(defines).forEach( (key) => {
     }
 }
 );
-*/
 
 ```
