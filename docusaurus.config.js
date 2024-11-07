@@ -84,6 +84,10 @@ const config = {
           name: "google-site-verification",
           content: "Ov_hk6LqaaE5KiwXnqF2gTKwPxBE3qG5Zr3o5UWZXc8",
         },
+        {
+          name: "google-adsense-account",
+          content: "ca-pub-7124760459431977",
+        },
       ],
       navbar: {
         title: "DoDo",
