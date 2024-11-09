@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 20
 ---
 
 # Beefy 소개서 1편  
