@@ -1,11 +1,11 @@
 {
-  "label": "회고록",
+  "label": "2.회고&짧은생각",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "회고록",
-    "description": "회고록"
+    "title": "2.회고&짧은생각",
+    "description": "2.회고&짧은생각"
   }
 }

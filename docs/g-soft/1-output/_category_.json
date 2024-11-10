@@ -1,11 +1,11 @@
 {
-  "label": "아웃풋",
+  "label": "1.아웃풋",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "아웃풋",
+    "title": "1.아웃풋",
     "description": "최고의 아웃풋을 내는 시스템 만들기, 멘탈 잡기"
   }
 }
