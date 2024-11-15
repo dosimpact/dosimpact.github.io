@@ -7,6 +7,7 @@ sidebar_position: 01
   - [React의 컴포넌트 타입들](#react의-컴포넌트-타입들)
     - [ReactNode vs ReactElement](#reactnode-vs-reactelement)
     - [ReactNode vs ()=\> React.ReactNode](#reactnode-vs--reactreactnode)
+  - [Extract Unions](#extract-unions)
   - [Discriminated Unions](#discriminated-unions)
   - [Discriminated Unions Branding](#discriminated-unions-branding)
   - [Undefined optional type union](#undefined-optional-type-union)
@@ -104,6 +105,31 @@ export const Test01 = () => {
 
 ```
 
+## Extract Unions
+
+```js
+// readonly
+// readonly 는 해당 변수를 읽기 전용으로 만들어줍니다.
+// - readonly Array 는 enum 처럼 생각.
+// - readonly Object 는 freezed object 처럼 생각.
+
+// Extarct Union Literal
+const exampleList1 = ['v1', 'v2', 'v3'];
+// type : string[]
+
+const exampleList2 = ['v1', 'v2', 'v3'] as const; // string[]
+// type : readonly ['v1', 'v2', 'v3']
+
+type ExampleList2Union = (typeof exampleList2)[number]; // 'v1' | 'v2' | 'v3'
+
+const exampleObj1 = {
+  key1: 'v1',
+  key2: 'v2'
+} as const;
+
+type KeyUnion = keyof typeof exampleObj1;
+type ValueUnion = (typeof exampleObj1)[KeyUnion];
+```
 
 ## Discriminated Unions  
 
