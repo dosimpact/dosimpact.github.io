@@ -2,7 +2,14 @@
 sidebar_position: 2
 ---
 
-# TS 4 - Asserts
+# TS 4 - TypeGuard, Assert  
+
+## Goal  
+
+타입을 좁히거나 단언  
+- [ ] assert 함수 : asserts error is AxiosError 등의 구문 
+- [ ] 타입 가드 : 타입 가드는 반환 타입으로 obj is Type 형태 + in 연산자를 사용하여 객체에 특정 속성 체크
+- [ ] instanceof : 클래스 기반 객체의 타입 
 
 
 ## asserts

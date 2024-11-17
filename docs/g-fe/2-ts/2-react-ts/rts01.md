@@ -23,6 +23,7 @@ sidebar_position: 01
   - [221](#221)
   - [225](#225)
   - [226 Empty Object as Type](#226-empty-object-as-type)
+  - [Mapped Types](#mapped-types)
 
 
 ## React의 컴포넌트 타입들 
@@ -850,4 +851,50 @@ function App() {
 }
 
 export default App;
+```
+
+
+## Mapped Types
+
+```js
+// 뼈대 타입을 선언한다.  
+export const NewsTypeEnum = {
+  Eco: 'Eco',
+  Quick: 'Quick',
+  Global: 'Global',
+} as const;
+
+export type NewsType = PickKeys<typeof NewsTypeEnum>;
+
+type Content = {
+  Eco: EcoContent;
+  Quick: QuickContent;
+  Global: GlobalContent;
+};
+
+// Point.1
+type ContentByNewsType = {
+  [K in NewsType]: Content[K];
+};
+
+// Point.2
+type ContentDebug = {
+  Eco: any; // EcoContent;
+  Global: any; // GlobalContent;
+  Quick: any; // QuickContent;
+};
+
+type ContentDebugByNewsType = {
+  [K in NewsType]: ContentDebug[K];
+};
+
+export type NewsCard<R extends NewsType> = {
+  id: number;
+  NewsType?: R;
+  version?: string;
+  content?: ContentByNewsType[R];
+  debugContent?: ContentDebugByNewsType[R];
+  logId?: string;
+  relatedCards?: NewsCard<NewsType>[];
+};
 ```
