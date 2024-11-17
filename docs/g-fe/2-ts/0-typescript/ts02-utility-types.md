@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# TS 2 Until
+# TS 2 Utility Types
 
-- [TS 2 Until](#ts-2-until)
+- [TS 2 Utility Types](#ts-2-utility-types)
   - [Intersection (`&`), Union(`|`), Tagged Union](#intersection--union-tagged-union)
       - [인터섹션 타입 예시](#인터섹션-타입-예시)
       - [유니언 타입 (`|`) 예시](#유니언-타입--예시)
