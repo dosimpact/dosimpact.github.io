@@ -258,9 +258,14 @@ sudo certbot renew --dry-run
 # 인증서 갱신 (--apache, --nginx 등으로 자동 발급한 경우)
 sudo certbot renew
 
+# 인증서 갱신 (자동 발급, --nginx 경로를 지정해야 하는 경우 )
+sudo certbot renew --nginx --nginx-server-root /opt/homebrew/etc/nginx
+
 # 인증서 갱신 (--manual 로 발급한 경우)
 sudo certbot certonly --manual --dry-run -d www.your-domain.com
 - /opt/homebrew/etc/nginx
+
+
 
 ```
 
