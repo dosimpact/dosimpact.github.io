@@ -53,8 +53,10 @@ df = vbt.CCXTData.download_symbol(
     tqdm_kwargs=None
 )
 ```
-### ccxt.upbit.hourly
 
+### upbit candle collector (ccxt, hourly)   
+
+ccxt.upbit.hourly
 
 ```py
 import numpy as np

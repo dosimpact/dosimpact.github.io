@@ -1,0 +1,11 @@
+{
+  "label": "0.Maker",
+  "position": 6,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "0.Maker",
+    "description": "Maker"
+  }
+}
