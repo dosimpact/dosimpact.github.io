@@ -1,0 +1,11 @@
+{
+  "label": "2.Article",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "2.Article",
+    "description": "Solopreneur를 위한 시스템 만들기"
+  }
+}
