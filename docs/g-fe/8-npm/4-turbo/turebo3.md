@@ -11,8 +11,9 @@ sidebar_position: 2
     - [workspace](#workspace)
   - [turbo 주요 명령어](#turbo-주요-명령어)
   - [Setup tsup](#setup-tsup)
-  - [Setup tsup (Single Entry)](#setup-tsup-single-entry)
-  - [Setup tsup (Multiple Entry)](#setup-tsup-multiple-entry)
+    - [Setup tsup (Single Entry)](#setup-tsup-single-entry)
+    - [Setup tsup (Multiple Entry)](#setup-tsup-multiple-entry)
+    - [Setup tsup with bin script (npx cli)](#setup-tsup-with-bin-script-npx-cli)
   - [Local test](#local-test)
     - [Test in another project](#test-in-another-project)
   - [publish to npm regitry](#publish-to-npm-regitry)
@@ -41,31 +42,42 @@ Ref
 ```js
 // 1.설치
 pnpm i
-// 모노레포의 경우 루트에서 한번만 실행시켜주면 된다.  
+// 1.1 -r 
+// -r은 모든 워크스페이스를 순환시켜주는 명령어 이다. 아래처럼 모든 워크스페이스 마다 pnpm i 명령어 실행
+// 하지만 특별히 모노레포의 경우, 루트에서 pnpm i으로만 충분
 pnpm i -r
 
-// 2.의존성 link
+// 2.모노레포의 의존성 link
+// 2.1 로컬 의존성 설치하는 방법  
 pnpm add package-name  
 pnpm add package-name -D  
-// 여러 레포에 한번에 의존성 링크하기  
+// 2.2 여러 레포에 한번에 의존성 링크하기  
 pnpm add @org/ui --filter apps/web  
-// 수동으로 설치하기
+// 2.3 수동으로 설치하기
 - "@org/ui":"workspace:*" -> pnpm i  
 
-// 2.1 의존성 확인  
-pnpm link package-name  
-pnpm unlink package-name
+// 2.4 의존성 링크 확인  
 pnpm list  
-pnpm list --global  
 
-// 3.캐시 클리어 
+// 참고
+pnpm link package-name  // 의존성 링크 만들기 
+pnpm unlink package-name // 의존성 링크 제거  
+pnpm list // 현재 의존성 리스트  
+
+// 3.글로벌 의존성 만들기
+// 로컬의 의존성을 다른 레포에서 테스트 할수 있다.  
+pnpm link --global              // (로컬모듈) 글로벌 링크 만들기
+pnpm link package-name --global // (test) 글로벌의 로컬모듈을 test 레포에 설치(하드 링크 방식)   
+//? pnpm list --global              // (test) 링크 확인  
+pnpm unlink --global            // (로컬모듈) 글로벌 링크 제거
+
+// 캐시 클리어 
 pnpm store prune 
 
-// 4.워크스페이스 명령어
+// 워크스페이스 명령어
 pnpm install -r  
 // 모든 워크스페이스에서 node_modules 제거하기  
 pnpm -r exec rm -rf node_mouldes  
-
 
 // 의존성 제거, 업데이트
 pnpm remove 
@@ -138,7 +150,7 @@ package.json
   },
 ```
 
-## Setup tsup (Single Entry)
+### Setup tsup (Single Entry)
 
 ```js
 // 0.src/index.ts  
@@ -240,7 +252,7 @@ export default defineConfig({
 }
 ```
 
-## Setup tsup (Multiple Entry)  
+### Setup tsup (Multiple Entry)  
 
 - 단점 : 모듈이 늘어날때마다 베이스 코드작업을 해야한다.  
 
@@ -305,28 +317,89 @@ export * from './calcuator-v2/index.js';
 
 ```
 
+
+### Setup tsup with bin script (npx cli)
+
+
+```js
+// 1.
+// src/scripts/indext.ts
+
+#!/usr/bin/env node
+
+import { Command } from 'commander';
+
+const program = new Command();
+
+program
+  .name('@dodolabs/blocks')
+  .description('CLI tool for math operations')
+  .version('1.0.0');
+
+// `adder` 명령어 정의
+program
+  .command('adder')
+  .description('Add two numbers')
+  .option('--a <number>', 'First number', '0')
+  .option('--b <number>', 'Second number', '0')
+  .action((options) => {
+    const a = parseFloat(options.a);
+    const b = parseFloat(options.b);
+    console.log(`Result: ${a + b}`);
+  });
+
+// 명령어 파싱
+program.parse(process.argv);
+
+// 2.package.json
+// add bin field  
+  "bin": {
+    "@dodolabs/blocks": "./dist/scripts/index.js"
+  },
+
+// 3.build
+// "build": "NODE_ENV=production tsup",
+
+// 4.Local Test in inside Module 
+node ./dist/scripts/index.js
+
+// 📕 현재 선언된 모듈이 type:"module" 이므로 ESM 스크립으를 구동한다.  
+
+// 5.Local test in outside Module  
+// pnpm link --global  
+// pnpm link @dodolabs/blocks --global  
+// npx @dodolabs/blocks adder --a=1 --b=2  
+// pnpm unlink @dodolabs/blocks --global    
+
+// 6.publish  
+    "npm-publish": "pnpm build && npm publish"
+
+```
+
 ## Local test
 
 
 ### Test in another project  
 
 ```js
+// 1.
 // pnpm setup 명령어를 실행하여 pnpm이 자동으로 전역 바이너리 디렉토리를 설정하도록 합니다.
 pnpm setup
 source ~/.zshrc 
 
-// 
+// 2.
+// 로컬모듈에서 글로벌 링크 만들기  
 pnpm link --global
 
+// 3.
+// 테스트 레포로 가서 방금 만든 로컬 모듈 연결하기  
+// pnpm install 은 필요없다.  
 pnpm link --global @dodo/blocks
-# pnpm install 은 필요없다.  
-
-//2.확인 
+//확인해보기 (잘안된다.?)
 pnpm list
 
-//3. 링크제거
+// 4. 테스트 후 링크제거
 pnpm unlink --global @dodo/blocks
-
 
 ```
 
@@ -369,9 +442,6 @@ npm login
 
 // 3.
 npm publish
-
-
-// 4. Reulst  
 
 ```
 
