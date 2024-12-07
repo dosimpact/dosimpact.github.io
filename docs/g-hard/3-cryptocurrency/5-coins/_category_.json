@@ -1,11 +1,11 @@
 {
-  "label": "5.Coins",
+  "label": "5.CoinOverview",
   "position": 5,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "5.Coins",
-    "description": "5.Coins"
+    "title": "5.CoinOverview",
+    "description": "5.CoinOverview"
   }
 }
