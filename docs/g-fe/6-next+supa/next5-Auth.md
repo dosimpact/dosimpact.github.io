@@ -16,6 +16,7 @@ sidebar_position: 5
   - [📌 Google Login](#-google-login)
       - [1.구글 클라우드 셋팅 + supabase Provider 셋팅](#1구글-클라우드-셋팅--supabase-provider-셋팅)
   - [📌 kakao Login](#-kakao-login)
+  - [📌 Github Login](#-github-login)
   - [📌 Email login](#-email-login)
       - [1.AuthUI or signInWithPassword](#1authui-or-signinwithpassword)
       - [2.callback 처리](#2callback-처리)
@@ -305,6 +306,34 @@ kakao developers 설정
 
 ![Alt text](image-10.png)
 
+
+이하 공통로직를 따른다.    
+- 2.1 로그인 코드 작성  - 공통로직의 AuthUI 코드  
+- 2.2 Redirect URLs 설정  - 공통로직 = White Listing Redirect URLs  
+- 3.1 PKCE Callback - 공통로직 = PKCE Callback 
+
+
+
+## 📌 Github Login  
+
+OAuth App -> https://github.com/settings/developers
+
+```
+Github OAuth App 설정   
+- *New OAuth App 
+
+1.Register a new OAuth app 탭 
+- *Application name : 원하는 것으로   
+- *Homepage URL : http://localhost:3000/  
+- (supabase 정보 --> Github OAuth App 설정)
+  - *Authorization callback URL : Project_URL.supabase.co  
+
+2.General 탭
+  - (Github OAuth App 정보 --> supabase 설정)
+  - 1.Client ID > Client ID 
+  - 2.Client secrets > Client Secret  
+
+```
 
 이하 공통로직를 따른다.    
 - 2.1 로그인 코드 작성  - 공통로직의 AuthUI 코드  
