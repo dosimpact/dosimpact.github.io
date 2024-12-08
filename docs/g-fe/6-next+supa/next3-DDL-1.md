@@ -2,24 +2,16 @@
 sidebar_position: 3
 ---
 
-
 # Supabase DDL
 
 - [Supabase DDL](#supabase-ddl)
   - [📌 Row Level Security - RLS](#-row-level-security---rls)
       - [RLS 로 해결하는 API 취약점](#rls-로-해결하는-api-취약점)
   - [RLS 문법](#rls-문법)
-  - [📌 todos with no-RLS](#-todos-with-no-rls)
-    - [REST API](#rest-api)
-  - [todos with RLS](#todos-with-rls)
-    - [DDL with editor](#ddl-with-editor)
-      - [user relations](#user-relations)
-      - [조회 정책](#조회-정책)
-      - [Mutation 정책](#mutation-정책)
+  - [📌 RLS - SELECT POLICY](#-rls---select-policy)
     - [USING expression](#using-expression)
+  - [📌 RLS - INSERT, UPDATE, DELETE POLICY](#-rls---insert-update-delete-policy)
     - [WITH CHECK expression](#with-check-expression)
-    - [응용, 공개 설정 처리](#응용-공개-설정-처리)
-  - [TS - generating types](#ts---generating-types)
 
 
 ## 📌 Row Level Security - RLS  
@@ -76,134 +68,65 @@ DB에 트랜잭션이 들어가기 전후로 RLS이 적용된다.
 - 위 조건검사에 실패하면 오류가 발생하며, 트랜잭션 롤백된다.  
 
 
-## 📌 todos with no-RLS
-![Alt text](image-5.png)
+## 📌 RLS - SELECT POLICY  
 
-```
-[READ]
-select * from public."todos-no-rls";
+About Role 
+- anon : 로그인 안한 유저  
+- authenticated : 로그인 한 유저  
+- public : anon + authenticated  
+- owner : 데이터 행 소유자, auth.uid() = user_id  
+  - * public | authenticated | owner 3단계로 권한을 좁힌다고 생각하자.  
 
-- id를 내림차 순으로 public."todos-no-rls" 조회 해줘
-select  * from public."todos-no-rls" order by id desc;
-
-- public."todos-no-rls" 에서 deleted_at이 null 인것만 모두 조회해
-select  * from  public."todos-no-rls" where  deleted_at is null;
-
-- 빨래라는 단어가 포함되는 조건을 추가해줘  
-select * from  public."todos-no-rls" where  deleted_at is null and content like '%빨래%';
-
-[CREATE]
-insert into  public."todos-no-rls" (content) values  ('빨래를 세탁하기');
-
-[UPDATE]
-- content 값을 업데이트하는 sql 구문 만들어줘
-update public."todos-no-rls" set content = '신발 세탁 2' where  id = 5;
-
-- updated_at 을 현재시간으로 업데이트 하는 update 구문 만들어줘
-update public."todos-no-rls" set  content = '신발 세탁 2', updated_at = current_timestamp where  id = 5;
-
-[Delete]
-- 특정 행을 지우는 구문 만들어줘
-delete from public."todos-no-rls" where id = 5;
-
----
-
-```
-
-### REST API
-
-![Alt text](image-6.png)
-
-## todos with RLS
-
-### DDL with editor
-
-![Alt text](image-4.png)
-
-#### user relations  
-
-
-
-
-|Add foreign key relation|Foreign Keys|
-|------|---|
-|![Alt text](./img/image-3.png)  |![Alt text](./img/image-4.png)|
-
-
-#### 조회 정책
-
-```sql
----누구나 조회가 가능함  
-CREATE POLICY "Enable insert for authenticated users only" ON "public"."todos"
-AS PERMISSIVE FOR SELECT
-TO public  -- public | anon \ authenticated
-USING (true)
-
--- 로그인 한 사용자만 조회가 가능함.(위 조건 없음??)
-CREATE POLICY "Enable insert for authenticated users only" ON "public"."todos"
-AS PERMISSIVE FOR SELECT
-TO authenticated
-USING (true)
-
-
---소유권자만 조회가 가능함  
-CREATE POLICY "Enable insert for users based on user_id" ON "public"."todos"
-AS PERMISSIVE FOR SELECT
-TO public
-USING (auth.uid() = user_id)
-
--- 문서 
--- 변환 설명 : https://supabase.com/docs/guides/auth/row-level-security#policies
-create policy "Individuals can view their own todos."
-on todos for select
-using ( auth.uid() = user_id );
->>>.. 사용자가 todos 테이블에서 선택을 시도할 때마다 다음과 같이 변환됩니다.
-select *
-from todos
-where auth.uid() = todos.user_id;
--- Policy is implicitly added.
-
--- 모든 roles : https://supabase.com/docs/guides/database/postgres/roles#supabase-roles 
-```
-
-#### Mutation 정책
-
-- todo insert는 로그인 된 사용자만 가능하게 만들자.  
-- todo update는 만든 사람만 가능하게 하자.  
-- todo delete는 만든 사람만 가능하게 만들자.  
-
-```sql
-CREATE POLICY "Enable insert for authenticated users only" ON "public"."todos"
-AS PERMISSIVE FOR INSERT
-TO authenticated
-WITH CHECK (true) -- WITH CHECK expression
-
-CREATE POLICY "Enable update for users based on user_id" ON "public"."todos"
-AS PERMISSIVE FOR UPDATE
-TO public
-USING (auth.uid() = user_id)  -- USING expression
-WITH CHECK (auth.uid() = user_id) -- WITH CHECK expression
-
-CREATE POLICY "Enable delete for users based on user_id" ON "public"."todos"
-AS PERMISSIVE FOR DELETE
-TO public
-USING (auth.uid() = user_id) -- 로그인한 uid 랑 이 테이블의 user_id가 같은지 체크한다.  
-
-```
+*모든 roles : https://supabase.com/docs/guides/database/postgres/roles#supabase-roles 
 
 ### USING expression
 
-- where 처럼 생각하면 된다.  
-- SELECT, UPDATE, DELETE 연산을 하기 전에 해당 Where 절이 먼저 실행된다고 생각하면된다.  
-- 어떠한 작업을 하기 전에 사전에 실행되는 것이다.  
+- USING expression은 where절로 변환된다고 생각하면 된다. 
+- 즉, SELECT, UPDATE, DELETE 연산을 하기 전에 해당 Where 절이 먼저 실행된다.  
+- *트랜젝션 사전에 실행되는 것이다.  
 
 eg) SELECT에 auth.uid() = user_id을 걸면   
 - 로그인 한 사용자의 Row만 보인다.  
 
 설명  
-- 이 식은 행 수준 보안이 활성화된 경우 테이블을 참조하는 쿼리에 추가됩니다.
-- 표현식이 true를 반환하는 행이 표시됩니다. 식이 false 또는 null을 반환하는 모든 행은 사용자에게 표시되지 않으며(SELECT에서) 수정할 수 없습니다(UPDATE 또는 DELETE에서).
-- 이러한 행은 자동으로 표시되지 않으며 오류가 보고되지 않습니다.
+- USING expression은 행 수준 보안이 활성화된 경우 테이블을 참조하는 쿼리에 추가됩니다.
+- 표현식이 true를 반환하는 행이 표시됩니다. 식이 false 또는 null을 반환하는 모든 행은 사용자에게 표시되지 않으며(SELECT에서) 수정할 수 없습니다(UPDATE 또는 DELETE에서).  
+- 이러한 행은 자동으로 표시되지 않으며 **오류가 보고되지 않습니다.**  
+
+```sql
+--- 누구나 조회가 가능한 정책    
+CREATE POLICY "Enable select for authenticated users only" ON "public"."todos"
+AS PERMISSIVE FOR SELECT
+TO public  -- public | anon | authenticated
+USING (true)
+
+-- 로그인 한 사용자만 조회가 가능한 정책  
+CREATE POLICY "Enable select for authenticated users only" ON "public"."todos"
+AS PERMISSIVE FOR SELECT
+TO authenticated
+USING (true)
+
+-- 로그인 했으며, 행의 소유권자만 조회가 가능함   
+CREATE POLICY "Enable select for users based on user_id" ON "public"."todos"
+AS PERMISSIVE FOR SELECT
+TO public
+USING (auth.uid() = user_id)  
+-- * auth.uid() : 현재 인증된 사용자의 고유 ID  
+-- * user_id : 검사할 행의 user_id 값    
+
+-- 참고) using의 내부적인 변환 과정    
+-- https://supabase.com/docs/guides/auth/row-level-security#policies
+create policy "Individuals can view their own todos."
+on todos for select
+using ( auth.uid() = user_id );
+
+-- RLS(using 구문)이 적용된 select sql은 아래처럼 변환됩니다.  
+select * from todos
+where auth.uid() = todos.user_id; -- RLS Policy is implicitly added.
+```
+
+
+## 📌 RLS - INSERT, UPDATE, DELETE POLICY   
 
 ### WITH CHECK expression
 
@@ -212,45 +135,30 @@ eg) SELECT에 auth.uid() = user_id을 걸면
 설명  
 - 이 식은 행 수준 보안이 활성화된 경우 테이블에 대한 INSERT 및 UPDATE 쿼리에 사용됩니다.
 - 표현식이 true로 평가되는 행만 허용됩니다. 삽입된 레코드나 업데이트로 인해 생성된 레코드에 대해 표현식이 false 또는 null로 평가되면 오류가 발생합니다.
-- 이 표현식은 원래 내용이 아닌 행의 제안된 새 내용에 대해 평가됩니다.
+- 이 표현식은 원래 내용이 아닌 행의 제안된 새 내용에 대해 평가됩니다.  
 
+CHECK Expression 은 사후 처리 검증을 시도하고 오류라면 롤백한다.   
+- todos 테이블에 대해서 insert : authenticated (로그인 한 사용자만 가능)    
+- todos 테이블에 대해서 update : owner (만든 사람만 가능)  
+- todos 테이블에 대해서 delete : owner (만든 사람만 가능)  
 
-### 응용, 공개 설정 처리
+```sql
+-- INSERT는 사후 검증만 가능  
+CREATE POLICY "Enable insert for authenticated users only" ON "public"."todos"
+AS PERMISSIVE FOR INSERT
+TO authenticated
+WITH CHECK (true) -- WITH CHECK expression
 
-```
---공개 설정 처리  
-CREATE POLICY "Enable select for users based on is_open ON "public"."todos"
-AS PERMISSIVE FOR SELECT
+-- UPDATE는 더블체크  
+CREATE POLICY "Enable update for users based on user_id" ON "public"."todos"
+AS PERMISSIVE FOR UPDATE
 TO public
-USING (is_open)
-```
+USING (auth.uid() = user_id)  -- USING expression
+WITH CHECK (auth.uid() = user_id) -- WITH CHECK expression
 
-## TS - generating types  
-
-DB 스키마를 바탕으로 타입 제너레이팅이 가능하다.  
-- 정말 유용한 기능!!  
-- https://supabase.com/docs/guides/api/rest/generating-types  
-
-
-![Alt text](./img/image.png)
-알아야 할 정보  
-- Project Settings > General settings  
-  - Project name : next-todo  
-  - Reference ID : txigexxxxpllferqc  
-
-```js
-npm i supabase@">=1.8.1" --save-dev
-npx supabase login
-// mkdir ./types
-npx supabase gen types typescript --project-id txigexxxxpllferqc --schema public > types/supabase.ts
-
----
-// eg) type generic 
-import { createBrowserClient } from "@supabase/ssr";
-import { Database } from "@/types/supabase";
-
-export const supaBrowserClient = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!
-);
-
+-- DELETE는 사전 검증만 가능  
+CREATE POLICY "Enable delete for users based on user_id" ON "public"."todos"
+AS PERMISSIVE FOR DELETE
+TO public
+USING (auth.uid() = user_id) -- 로그인한 uid 랑 이 테이블의 user_id가 같은지 체크한다.  
 ```

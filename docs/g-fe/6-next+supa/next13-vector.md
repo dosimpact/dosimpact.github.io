@@ -7,6 +7,8 @@ sidebar_position: 13
 ## Goal  
 - Vector DB를 활용여 RAG를 구현한다.  
 
+Refs  
+- pgVector : https://velog.io/@bbkyoo/pgVector#5-query  
 
 문서 유사도 검색을 이용한
 
