@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 1
 ---
 
 
@@ -14,7 +14,6 @@ sidebar_position: 8
   - [RLS (Row-Level Security)](#rls-row-level-security)
     - [RLS 로 해결하는 API 취약점](#rls-로-해결하는-api-취약점)
   - [필수 data types](#필수-data-types)
-  - [typescript - typegen](#typescript---typegen)
   - [Authentication](#authentication)
   - [Architecture](#architecture)
   - [참고자료](#참고자료)
@@ -137,35 +136,6 @@ json 저장 : json
 
 ```
 
-
-## typescript - typegen
-
-DB 스키마를 바탕으로 타입 제너레이팅이 가능하다.  
-- 정말 유용한 기능!!   
-- https://supabase.com/docs/guides/api/rest/generating-types
-
-
-![Alt text](./img/image.png)
-알아야 할 정보 
-- Project Settings > General settings  
-- Project name : next-todo  
-- Reference ID : txigexxxxpllferqc  
-
-```js
-npm i supabase@">=1.8.1" --save-dev
-npx supabase login
-npx supabase gen types typescript --project-id txigexxxxpllferqc --schema public > types/supabase.ts
-
----
-
-import { createBrowserClient } from "@supabase/ssr";
-import { Database } from "@/types/supabase";
-
-export const supaBrowserClient = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!
-);
-
-```
 
 ## Authentication
 

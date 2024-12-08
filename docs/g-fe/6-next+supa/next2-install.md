@@ -2,15 +2,14 @@
 sidebar_position: 9
 ---
 
-
 # Supabase install
 
 - [Supabase install](#supabase-install)
   - [create supabase project](#create-supabase-project)
   - [db connection with DBeaver](#db-connection-with-dbeaver)
-  - [install](#install)
-  - [env settings](#env-settings)
-  - [next + @supabase/ssr setup](#next--supabasessr-setup)
+  - [Install with Nextjs AppRouter](#install-with-nextjs-approuter)
+    - [env settings](#env-settings)
+    - [next + @supabase/ssr setup](#next--supabasessr-setup)
     - [1.주의사항](#1주의사항)
     - [2.주의사항](#2주의사항)
     - [supabase클라이언트는 여러버전 만들어야 한다.](#supabase클라이언트는-여러버전-만들어야-한다)
@@ -34,7 +33,7 @@ with PostgreSQL JDBC Driver
 ```
 
 
-## install
+## Install with Nextjs AppRouter  
 
 ```js
 // javascript 클라이언트
@@ -55,7 +54,7 @@ yarn add @supabase/auth-ui-shared // 테마 제공
 
 ```
 
-## env settings
+### env settings
 
 Settings > API  
 - Project URL : A RESTful endpoint for querying and managing your database    
@@ -72,7 +71,7 @@ SUPABASE_SERVICE_ROLE_KEY=xxxx
 ```
 
 
-## next + @supabase/ssr setup
+### next + @supabase/ssr setup
 
 ![Alt text](image-2.png)  
 - 참고 : https://www.youtube.com/watch?v=XIj7nmIYtbo
