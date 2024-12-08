@@ -6,10 +6,10 @@ sidebar_position: 3
 # Supabase DDL
 
 - [Supabase DDL](#supabase-ddl)
-    - [Row Level Security - RLS](#row-level-security---rls)
-    - [anonClient/adminClient + RLS](#anonclientadminclient--rls)
-  - [middleware](#middleware)
-  - [todos with no-RLS](#todos-with-no-rls)
+  - [📌 Row Level Security - RLS](#-row-level-security---rls)
+      - [RLS 로 해결하는 API 취약점](#rls-로-해결하는-api-취약점)
+  - [RLS 문법](#rls-문법)
+  - [📌 todos with no-RLS](#-todos-with-no-rls)
     - [REST API](#rest-api)
   - [todos with RLS](#todos-with-rls)
     - [DDL with editor](#ddl-with-editor)
@@ -22,35 +22,61 @@ sidebar_position: 3
   - [TS - generating types](#ts---generating-types)
 
 
-### Row Level Security - RLS  
+## 📌 Row Level Security - RLS  
+
+Supabase의 RLS는 "Row-Level Security"의 약자.  
+- 데이터베이스 테이블의 행에 대한 유효성 검사를 관리하는 기능, 특히 권한에 대한 검사. 
+- 특정 사용자가 특정 행에 읽기, 쓰기 가능한지 체크하고 보호한다  
+
+행 수준의 보안 장점
+- 블로그 포스팅이라는 테이블이 있다라고 가정 해보자.  
+- 포스팅이라는 하나의 테이블에는 사실 다른 사람들의 포스팅도 있다.    
+- 보통 서버에서 내 포스팅과 다른 사람의 포스팅이 섞이지 않도록 권한체크를 한다.  
+- 근데 이러한 기능을 DB Level에서 제어하는 것.!  
+  - *권한에 대해서 Application Code가 아닌 DDL로 정의가 된다.  
+
 
 RLS는 테이블 단위로 적용시킬 수 있다.  
-- enable을 하는것을 강력하게 추천.  
-- RLS enalbe 되면 RLS 정책을 만들어야 테이블을 조회할 수 있다.  
-- *"누구나 그 테이블을 읽을 수 있어 라는 정책"
+- RLS enalbe 되면 RLS 정책을 만들어야 테이블을 조회할 수 있다.   
+  - >"누구나 그 테이블을 읽을 수 있어 라는 정책" 을 만들어야 한다.  
+    - *참고  
+    - anon : 누구나  
+    - authenticated : 인증된 사용자만  
+    - service_role : 어드민 (= RLS PASS권)  
 
-- authenticated : 인증된 사용자만 
-- anon : 누구나  
-- service_role : 어드민 
+
+#### RLS 로 해결하는 API 취약점  
+
+BOLA - Broken Object Level Authorization. 
+- 접근 권한이 없는 데이터에 접근을 하는 경우이다.  
+- 예를 들어, A 사용자는 자신의 정보만 볼 수 있어야 하는 데, 같은 권한 수준을 가진 B 사용자의 정보까지 볼 수 있는 경우를 말한다.  
+
+BFLA - Broken Function Level Authorization
+- BOLA가 Access - 데이터 접근에 대한 문제라면 BFLA는 Action - 작업 수행에 대한 문제이다. 즉, 권한이 없는 작업을 수행하는 것이다.
+
+* postgreSQL의 RLS 기능을 이용해서 BOLA, BFLA 예방할 수 있다.  
+
+ref : [11개 API 취약점](https://jusths.tistory.com/330)
+
+## RLS 문법   
+
+DB에 트랜잭션이 들어가기 전후로 RLS이 적용된다.  
+3단계로 생각하면 좋다.  
+
+1.준비
+- using expression 라는 문법구절을 이용한다.  
+- 위 조건에 맞는 데이터만 준비된다.  
+- *처음에 RLS를 잘못설정하여 데이터조차 조회가 안되는 실수를 범한다. 
+
+2.트랜잭션  
+- select, insert, update, delete 연산을 수행한다.  
+
+3.재확인  
+- with check expression 라는 문법구절을 이용한다.  
+- 위 조건검사에 실패하면 오류가 발생하며, 트랜잭션 롤백된다.  
 
 
-### anonClient/adminClient + RLS
-
-INSERT - anon - true : anonClient쓰기 가능  
-INSERT - authenticated - true : anonClient가 로그인 해야 쓰기 가능  
-INSERT : adminClient는 RLS 정책에 영향없이 쓰기 가능   
-
-*service_role 왜 있는거지..?! 
-// INSERT - service_role - true : adminClient 쓰기 가능  
-
-## middleware
-
-미들웨어  
-- 특정 경로에 대해서 미들웨어를 통과시킬 수 있다.  
-- 예를들어 로그인 된 사용자만 들어올 수 있는 경로, 
-  - 로그인 안됨, 로그인 세션 풀림 -> 다시 로그인하라고 로그인 페이지로 리다이렉트  
-
-## todos with no-RLS
+## 📌 todos with no-RLS
 ![Alt text](image-5.png)
 
 ```
@@ -82,29 +108,11 @@ delete from public."todos-no-rls" where id = 5;
 
 ---
 
-Hard delete를 지향해야 하는 이유는 다음과 같습니다:
-1. 데이터 보안: Hard delete를 사용하면 삭제된 데이터가 완전히 제거되므로 민감한 정보가 유출될 위험이 줄어듭니다. Soft delete의 경우 데이터가 여전히 시스템에 남아 있으므로 보안 문제가 발생할 수 있습니다.
-2. 데이터 무결성: Hard delete를 사용하면 시스템의 데이터 무결성을 유지할 수 있습니다. 삭제된 데이터가 완전히 제거되면 해당 데이터와 관련된 모든 연결이 끊어지므로 데이터베이스의 일관성이 유지됩니다.
-3. 용량 절약: Soft delete를 사용하면 삭제된 데이터가 여전히 시스템에 남아 있기 때문에 데이터베이스 용량을 낭비할 수 있습니다. 반면에 Hard delete를 사용하면 더 많은 공간을 확보할 수 있습니다.
-4. 개인정보 보호 규정 준수: 많은 규정 및 법률에서 개인정보를 보호하기 위해 데이터를 완전히 삭제해야 한다고 규정하고 있습니다. Hard delete를 사용하면 개인정보 보호 규정을 준수할 수 있습니다.
-5. 데이터 관리 및 복구: Hard delete를 사용하면 필요한 경우 데이터를 복구하는 것이 어렵습니다. 그러나 이는 일반적으로 데이터 손실의 위험을 줄이는 측면에서 긍정적으로 작용합니다. 데이터를 복구해야 하는 경우에는 백업이나 다른 데이터 관리 도구를 사용할 수 있습니다.
-따라서 민감한 정보를 다루는 시스템에서는 보안과 데이터 관리를 위해 Hard delete를 사용하는 것이 바람직합니다.
-
-hardDelete를 지양해야 하는 이유는 다음과 같습니다:
-1. 복구 가능성: 데이터를 완전히 삭제하면 복구할 수 없으므로 실수로 중요한 정보를 삭제했을 때 문제가 발생할 수 있습니다. softDelete를 사용하면 필요한 경우 데이터를 쉽게 복구할 수 있습니다.
-2. 데이터 추적: 삭제된 데이터를 유지하면 데이터의 변경 이력을 추적할 수 있습니다. softDelete를 사용하면 데이터의 수정 및 삭제 이력을 추적하여 필요한 경우 추적할 수 있습니다.
-3. 개인정보 보호: 일부 규정과 법률에서는 개인정보가 포함된 데이터를 영구적으로 삭제하는 것을 금지하고 있습니다. softDelete를 사용하면 개인정보를 보호하면서도 필요한 경우 데이터를 관리할 수 있습니다.
-4. 데이터 일관성: hardDelete를 사용하면 데이터베이스의 일관성이 깨질 수 있습니다. 삭제된 데이터와 관련된 다른 데이터의 무결성이 손상될 수 있습니다.
-5. 용량 관리: softDelete를 사용하면 데이터베이스 용량을 효율적으로 관리할 수 있습니다. 삭제된 데이터를 보관하면서도 용량을 효율적으로 활용할 수 있습니다.
-이러한 이유로 hardDelete를 지양하고 softDelete를 사용하는 것이 더 바람직할 수 있습니다.
-
 ```
 
 ### REST API
 
 ![Alt text](image-6.png)
-
-
 
 ## todos with RLS
 

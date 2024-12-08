@@ -26,13 +26,13 @@ const FeatureList = [
     title: "Next + TailwindCSS",
     description: <></>,
     imgSrc: "/img/th-tail.png",
-    linkTo: "/docs/g-fe/next/next006",
+    linkTo: "/docs/g-fe/next/next6-TailwindCSS",
   },
   {
     title: "Supabase Concepts",
     description: <></>,
     imgSrc: "/img/th-supabase.png",
-    linkTo: "/docs/g-fe/next+supa/next008",
+    linkTo: "/docs/g-fe/next+supa/next1-concept",
   },
   {
     title: "개발자와 협업을 위한 kafka의 핵심 개념",
