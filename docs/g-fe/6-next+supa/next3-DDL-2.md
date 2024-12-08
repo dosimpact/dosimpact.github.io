@@ -2,13 +2,11 @@
 sidebar_position: 3
 ---
 
+# Supabase DDL 
 
-# Supabase DDL Template
+## 📌 Todo Table DDL (without RLS)    
 
 
-
-
-## 📌 todos with no-RLS
 ![Alt text](image-5.png)
 
 ```

@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# Supabase DDL
+# Supabase DDL - RLS
 
-- [Supabase DDL](#supabase-ddl)
+- [Supabase DDL - RLS](#supabase-ddl---rls)
   - [📌 Row Level Security - RLS](#-row-level-security---rls)
       - [RLS 로 해결하는 API 취약점](#rls-로-해결하는-api-취약점)
   - [RLS 문법](#rls-문법)

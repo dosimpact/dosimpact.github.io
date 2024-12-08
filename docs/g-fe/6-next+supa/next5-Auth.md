@@ -5,170 +5,315 @@ sidebar_position: 5
 # Supabase Auth
 - [Supabase Auth](#supabase-auth)
   - [Goal](#goal)
-  - [Background](#background)
   - [install](#install)
-  - [1.로그인](#1로그인)
-    - [login flow](#login-flow)
-    - [주의) getSession  vs getUser](#주의-getsession--vs-getuser)
-    - [LoginUI](#loginui)
-    - [Email login](#email-login)
+  - [📌 로그인 공통 작업](#-로그인-공통-작업)
+    - [Login flow Overview](#login-flow-overview)
+    - [Common Logic](#common-logic)
+      - [1.env](#1env)
+      - [2.PKCE Callback](#2pkce-callback)
+      - [3.LoginUI](#3loginui)
+      - [4.White Listing Redirect URLs](#4white-listing-redirect-urls)
+  - [📌 Google Login](#-google-login)
+      - [1.구글 클라우드 셋팅 + supabase Provider 셋팅](#1구글-클라우드-셋팅--supabase-provider-셋팅)
+  - [📌 kakao Login](#-kakao-login)
+  - [📌 Email login](#-email-login)
       - [1.AuthUI or signInWithPassword](#1authui-or-signinwithpassword)
       - [2.callback 처리](#2callback-처리)
-    - [GoogleLogin](#googlelogin)
-      - [1.구글 클라우드 셋팅 + supabase Provider 셋팅](#1구글-클라우드-셋팅--supabase-provider-셋팅)
-      - [2.AuthUI](#2authui)
-      - [3.callback처리](#3callback처리)
-    - [kakao login setting](#kakao-login-setting)
-  - [참고](#참고)
   - [TroubleShooting](#troubleshooting)
-    - [1.주의 브라우저,서버 모듈 분리](#1주의-브라우저서버-모듈-분리)
+    - [1.주의 브라우저, 서버 모듈 분리](#1주의-브라우저-서버-모듈-분리)
     - [2.주의 UI 깨지는 이슈](#2주의-ui-깨지는-이슈)
     - [3.주의 SiteURL, RedirectURLs 설정](#3주의-siteurl-redirecturls-설정)
 
-
 ## Goal 
 
-```
 1.로그인
-- email login
-- google login
-- github login
-- kakao login (사업자 등록필요..)
-
+- email login  
+- google login ✅  
+- github login ✅  
+- kakao login (사업자 등록필요.?!)  
 
 2.로그인 세션, 유지  
-- getUser vs getSession
-- 리프레시 토큰 어떻게 로그인세션이 다시 갱신 되는가 ? 
+- getUser vs getSession  
+- 리프레시 토큰 어떻게 로그인세션이 다시 갱신 되는가 ?  
 
 3.로그아웃
 - 세션정보 어떻게 날라가는가?  
-- 세션 아웃-  얼마 후 자동 로그아웃 되는가 ? 
-- 세션 아웃-설정이 가능한가 ?
-```
+- 세션 아웃 - 얼마 후 자동 로그아웃 되는가 ? 
+- 세션 아웃 - 설정이 가능한가?  
 
-## Background 
-
-OAuth 2.0, 2.1, PKCE 플로우 등 관련 이론은 다음 장에서 다룬다.  
-
+*OAuth 2.0, 2.1, PKCE 플로우 등 관련 이론은 다음 장에서 다룬다.  
 
 ## install
 
-참고 문서  
-- https://www.npmjs.com/package/@supabase/auth-helpers-nextjs  
-- https://supabase.com/docs/guides/auth/auth-helpers/auth-ui  
-
 ```js
-// install
+// (optional install) 로그인 관련 UI 제공  
 yarn add @supabase/auth-ui-react // 로그인 UI제공
 yarn add @supabase/auth-ui-shared // 테마 제공 
 ```
 
-## 1.로그인
-
-### login flow
-
-- 최대한 많은 부분은 서버사이드에서 처리하는것을 원칙으로 한다.  
-- basic : https://supabase.com/docs/guides/auth/server-side/nextjs 
-- flow : https://supabase.com/docs/guides/auth/server-side-rendering#understanding-the-authentication-flow
-- flow-pkce : https://supabase.com/docs/guides/auth/server-side/oauth-with-pkce-flow-for-ssr
+- https://www.npmjs.com/package/@supabase/auth-helpers-nextjs  
+- https://supabase.com/docs/guides/auth/auth-helpers/auth-ui  
 
 
-### 주의) getSession  vs getUser
+## 📌 로그인 공통 작업  
 
+### Login flow Overview  
+
+최대한 많은 부분을 서버사이드 처리를 원칙으로 한다.    
+- Basic : https://supabase.com/docs/guides/auth/server-side/nextjs 
+- Flow : https://supabase.com/docs/guides/auth/server-side-rendering#understanding-the-authentication-flow
+- PKCE : https://supabase.com/docs/guides/auth/sessions/pkce-flow  
+
+⚠️ 주의) getSession vs getUser    
 - 페이지를 보호할 때는 주의하세요. 서버는 누구든지 스푸핑할 수 있는 쿠키로부터 사용자 세션을 가져옵니다.  
 - 페이지와 사용자 데이터를 보호하려면 항상 supabase.auth.getUser()를 사용하세요. 
 - 미들웨어와 같은 서버 코드 내부의 supabase.auth.getSession()을 절대 신뢰하지 마십시오. 인증 토큰 재검증이 보장되지는 않습니다.  
-- getUser()는 인증 토큰을 재검증하기 위해 매번 Supabase 인증 서버에 요청을 보내기 때문에 신뢰하는 것이 안전합니다.
+- getUser()는 인증 토큰을 재검증하기 위해 매번 Supabase 인증 서버에 요청을 보내기 때문에 신뢰하는 것이 안전합니다.  
 
+### Common Logic  
 
-### LoginUI
+- 아래 로직은 공통 로직으로 필수 입니다.  
+
+#### 1.env  
+
+```
+// .env
+NEXT_PUBLIC_SUPABASE_URL=https://YOURS.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOURS
+
+//1.배포되는 환경의 도메인 주소  
+NEXT_PUBLIC_ORIGIN=http://YOUR_DOMAIN
+
+//2.PKCE Callback을 처리할 도메인 주소  
+NEXT_PUBLIC_AUTH_REDIRECT_TO_PKCE=http://YOUR_DOMAIN/auth/callback?next=/
+```
+
+#### 2.PKCE Callback  
 
 ```js
+// app/auth/callback/route.ts 
+import { NextResponse } from "next/server";
+import { createServerSideClient } from "@/lib/supabase";
+
+export async function GET(request: Request) {
+  const overrideOrigin = process.env.NEXT_PUBLIC_ORIGIN;
+  const { searchParams, origin } = new URL(request.url);
+
+  const code = searchParams.get("code");
+  const next = searchParams.get("next");
+
+  if (code) {
+    const supabase = await createServerSideClient();
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (error) return NextResponse.redirect(`${overrideOrigin}`);
+
+    return NextResponse.redirect(`${overrideOrigin}${next}`);
+  }
+  return NextResponse.redirect(`${overrideOrigin}`);
+}
+```
+
+#### 3.LoginUI
+
+using Auth UI ( @supabase/auth-ui-react )
+
+```js
+// components/auth-modal.tsx
+
 "use client";
-import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client/supabase-browser";
+import { User } from "@supabase/supabase-js";
+
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { createSupabaseBrowserClient } from "@/lib/client/supabase";
 import useHydrate from "@/hooks/useHydrate";
-import { logout as logoutAction } from "@/actions/auth/auth.action";
+import { DotLoader } from "react-spinners";
 
-const AuthUI = () => {
-  const isMounted = useHydrate();
+interface AuthHeaderProps {
+  user?: User | null;
+}
+
+export function AuthModal({ user }: AuthHeaderProps) {
+  const isHydrate = useHydrate();
+  const isLogin = !!user?.email;
   const supabase = createSupabaseBrowserClient();
 
-  const loginWithGithub = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
-      },
-    });
-  };
-  const loginWithGoogle = async () => {
+  // without auth-ui
+  const handleGoogleLogin = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO,
       },
     });
   };
 
-  const logout = async () => {
-    await logoutAction();
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.reload();
   };
 
-  if (!isMounted) return null;
+  if (!isHydrate) return <DotLoader color={"white"} size={16} />;
 
   return (
-    <div>
-      <div>AuthUI</div>
-      <div onClick={loginWithGithub}>click github login</div>
-      <div onClick={loginWithGoogle}>click google login</div>
-      <div onClick={logout}>click logout</div>
-      <div className=" max-w-[500px]">
-        <Auth
-          redirectTo="http://localhost:3000/auth/callback"
-          onlyThirdPartyProviders={false}
-          theme="dark"
-          providers={["google", "github"]}
-          supabaseClient={supabase}
-          appearance={{
-            theme: ThemeSupa,
-            variables: {
-              default: {
-                colors: {
-                  brand: "",
-                  anchorTextColor: "",
-                },
-              },
-            },
-          }}
-        />
-      </div>
-    </div>
+    <Dialog>
+      {!isLogin && (
+        <DialogTrigger asChild>
+          <Button variant="outline">
+            <div className="font-bold text-[16px] cursor-pointer">Login</div>
+          </Button>
+        </DialogTrigger>
+      )}
+      {isLogin && (
+        <Button onClick={handleLogout}>
+          <div className="font-bold text-[16px] cursor-pointer">Logout</div>
+          <div>({user?.email})</div>
+        </Button>
+      )}
+
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Welcome</DialogTitle>
+          <DialogDescription>Login completed in 3 seconds!</DialogDescription>
+          <Auth
+            redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO_PKCE}
+            supabaseClient={supabase}
+            appearance={{
+              theme: ThemeSupa,
+            }}
+            onlyThirdPartyProviders
+            providers={["google"]}
+          />
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
-};
+}
 
-export default AuthUI;
+```
+cf
+- Auth.onlyThirdPartyProviders 옵션 : https://github.com/supabase/ui/pull/245/files  
 
----
-// actions/auth/auth.actions.ts
-"use server";
-import { createServerSideClient } from "@/lib/supabase";
-import { redirect } from "next/navigation";
+#### 4.White Listing Redirect URLs  
 
-export const logout = async () => {
-  const supabase = await createServerSideClient();
-  await supabase.auth.signOut();
-  redirect("/");
-};
+브라우저에서 OAuth 로그인 시도 후 성공 후, 새로운 경로로 리다이렉트한다.    
+- 예) 아래 주소는 로그인 시도 후 성공했을때 이동하는 경로이다. 
+- http://localhost:3000/auth/callback?code=45c150a1-85e1-4e95-bcc0-1a1c9646b2da
+  - code값이 포함되어 있는데 이는 PKCE flow에 사용된다.  
+  - 하지만 위 http://localhost:3000/auth/callback 로 리다이렉트를 위해 화이트리스팅 설정이 필요.  
+
+![Alt text](image-7.png)   
+Site URL
+- 아래 Redirect URLs 에 없는 주소로 redirectTo 설정을 하게 되면 기본값(Site URL)로 리다이렉트 된다.  
+
+Redirect URLs
+- http://localhost:3000/api/auth/callback 를 추가해주자.  
+- 코드의 redirectTo에 위 주소를 적게 되면 정상작동하게 된다.  
+
+
+
+## 📌 Google Login
+
+해야할 작업    
+- 1.구글 클라우드 셋팅 + supabase Provider 셋팅  
+- 2.AuthUI
+- 3.callback 처리
+
+참고 문서  
+- https://supabase.com/docs/guides/auth/social-login/auth-google  
+- https://supabase.com/docs/guides/auth/auth-deep-dive/auth-google-oauth  
+
+#### 1.구글 클라우드 셋팅 + supabase Provider 셋팅  
+
+- https://console.cloud.google.com/welcome
+
+```
+Google Cloud 설정   
+- *새로운 프로젝트 만들기
+
+1.API 및 서비스 > OAuth 동의 화면 탭 
+- *승인된 도메인 입력 : Project_URL.supabase.co  
+
+2.API 및 서비스 > 사용자 인증 정보 탭 
+Google Cloud에서 supabase Providers에 설정하기 위함  
+
+2.1 사용자 인증 정보 만들기 > OAuth 2.0 클라이언트 ID > 생성
+  - (Google Cloud 정보 --> supabase 설정)  
+  - 1.클라이언트 ID > Client ID (for OAuth)
+  - 2.클라이언트 보안 비밀번호 > Client Secret (for OAuth)
+
+3.supabase 돌아와서 > Authentication > Providers 탭  
+- (supabase 정보 --> Google Cloud 설정) 설정해야 합니다.  
+- 1.Callback URL (for OAuth) 복사 > 승인된 리디렉션 URI 넣기  
 
 ```
 
-onlyThirdPartyProviders 옵션 : https://github.com/supabase/ui/pull/245/files  
-- 아니면 type파일을 봐도 된다.  
+이하 공통로직를 따른다.    
+- 2.1 로그인 코드 작성  - 공통로직의 AuthUI 코드  
+- 2.2 Redirect URLs 설정  - 공통로직 = White Listing Redirect URLs  
+- 3.1 PKCE Callback - 공통로직 = PKCE Callback 
 
-### Email login
+
+## 📌 kakao Login   
+
+kakao developers 접속 : https://developers.kakao.com/  
+- https://supabase.com/docs/guides/auth/social-login/auth-kakao#overview  
+
+```
+kakao developers 설정   
+0.새로운 애플리케이션 추가하기
+- *아이콘을 필수로 올리기  
+
+1.앱 설정>플랫폼 탭  
+- Web 사이트 도메인	추가 eg) http://YOURS.supabase.co
+
+2.Supabase의 Client ID, Client Secret 설정해야 합니다.  
+  - (kakao developers 정보 --> supabase 설정)  
+  - 앱 설정 > 앱 키 탭
+  - 1.REST API 키	 > Client ID (for OAuth)
+  - 제품 설정>카카오 로그인>보안 탭
+  - 2.Client Secret 발급 > Client Secret (for OAuth)
+
+3.제품 설정 > 카카오 로그인 탭
+- (supabase 정보 --> kakao developers 설정) 설정해야 합니다.  
+- 1.Callback URL (for OAuth) > Redirect URI 추가 eg) https://YOURS.supabase.co/auth/v1/callback  
+
+4.임시로 비즈앱으로 전환 및 개인정보 동의를 받아야 합니다.  
+
+4.1 앱 설정 > 비즈니스
+- 개인 개발자 비즈 앱 전환 (완료하기)  
+
+4.2 앱 설정>앱 권한 신청 탭
+- 신청 자격 확인 (완료하기)
+
+4.3 제품 설정>카카오 로그인>동의항목 탭  
+
+동의항목에서 다음 필수 체크  
+- profile_nickname  
+- profile_image  
+- account_email   
+```
+
+![Alt text](image-10.png)
+
+
+이하 공통로직를 따른다.    
+- 2.1 로그인 코드 작성  - 공통로직의 AuthUI 코드  
+- 2.2 Redirect URLs 설정  - 공통로직 = White Listing Redirect URLs  
+- 3.1 PKCE Callback - 공통로직 = PKCE Callback 
+
+
+
+## 📌 Email login
 
 과정  
 - 회원가입 > 이메일 인증 대기 > 인증 완료시 DB 업데이트  
@@ -225,135 +370,10 @@ export async function GET(request: NextRequest) {
 
 ```
 
-### GoogleLogin
-
-작업  
-- 1.구글 클라우드 셋팅 + supabase Provider 셋팅  
-- 2.AuthUI
-- 3.callback처리
-
-참고 문서  
-- https://supabase.com/docs/guides/auth/social-login/auth-google  
-- https://supabase.com/docs/guides/auth/auth-deep-dive/auth-google-oauth  
-
-#### 1.구글 클라우드 셋팅 + supabase Provider 셋팅  
-- https://console.cloud.google.com/welcome
-
-```
-Google Cloud 설정  
-1.API 및 서비스 > OAuth 동의 화면  
-- *승인된 도메인 : YOUR_SUPA_URL.supabase.co  
-
-2.API 및 서비스 > 사용자 인증 정보  
-Google Cloud에서 supabase Providers에 설정하기 위해 필요한 정보 
-
-2.1 사용자 인증 정보 만들기 > OAuth 2.0 클라이언트 ID > 생성
-  - Google Cloud > supabase 설정
-  - 1.클라이언트 ID > Client ID (for OAuth)
-  - 2.클라이언트 보안 비밀번호 > Client Secret (for OAuth)
-
-3.
-supabase Providers에서 Google Cloud에 설정하기 위해 필요한 정보 
-- supabase 설정 > Google Cloud 설정
-- 1.Callback URL (for OAuth) > 승인된 리디렉션 URI
-
-
-```
-
-#### 2.AuthUI
-
-2.1 코드 작성  
-
-```js
-위 AuthUI 코드랑 동일
-```
-
-2.2 Redirect URLs 설정  
-
-브라우저에서 로그인 시도 후 성공했다면, 새로운 경로로 이동하게 된다.  
-- 예) 아래 주소는 로그인 시도 후 성공했을때 이동하는 경로이다. 
-- code값이 포함되어 있는데 이는 PKCE flow에 사용된다.  
-- http://localhost:3000/auth/callback?code=45c150a1-85e1-4e95-bcc0-1a1c9646b2da
-- 하지만 위 http://localhost:3000/auth/callback 로 이동하기 위해서는 아래 Supabase 설정이 필요하다.   
-
-![Alt text](image-7.png)   
-Site URL
-- 아래 Redirect URLs 에 없는 주소로 redirectTo 설정을 하게 되면 기본값(Site URL)로 리다이렉트 된다.  
-
-Redirect URLs
-- http://localhost:3000/auth/callback 를 추가해주자.  
-- 코드의 redirectTo에 위 주소를 적게 되면 정상작동하게 된다.  
-
-#### 3.callback처리
-
-
-- 참고-공식문서 : https://supabase.com/docs/guides/auth/server-side/oauth-with-pkce-flow-for-ssr#create-api-endpoint-for-handling-the-code-exchange  
-
-```js
-import { NextResponse } from "next/server";
-import { createServerSideClient } from "@/lib/supabase";
-
-export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
-  const overrideOrigin = "http://localhost:3000";
-  const code = searchParams.get("code");
-  // if "next" is in param, use it as the redirect URL
-  const next = searchParams.get("next") ?? "/";
-
-
-  if (code) {
-    const supabase = await createServerSideClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
-      return NextResponse.redirect(`${overrideOrigin}${next}`);
-    }
-  }
-
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${overrideOrigin}/auth/auth-code-error`);
-}
-
-
-```
-
-
-
-### kakao login setting  
-
-- *비즈니스 심사를 받아야 한다. (최소 3일 소요)  
-- https://supabase.com/docs/guides/auth/social-login/auth-kakao
-
-```
-1.앱 만들기 
-- 앱 키 > RESTAPI 키 복사 > supabase(REST API Key)  
-
-2.내 애플리케이션>앱 설정>플랫폼
-Web >사이트 도메인 등록 	
-- http://localhost:3000
-
-3.내 애플리케이션>제품 설정>카카오 로그인
-3.1 활성화로 스위치  
-3.2 Redirect URI에 supabase의 Callback URL (for OAuth) 추가 
-3.3 동의항목에서 다음 필수 체크  
-- profile_nickname  
-- profile_image  
-- account_email   
-
-4.내 애플리케이션>제품 설정>카카오 로그인>보안
-Client Secret 생성 > supabase(Client Secret Code) 넣기  
-
-```
-
-## 참고
-
-- API REFERENCE DIRECTIVES 'use server'
-
-https://react.dev/reference/react/use-server
-
 
 ## TroubleShooting  
 
-### 1.주의 브라우저,서버 모듈 분리  
+### 1.주의 브라우저, 서버 모듈 분리  
 
 lib안에서 슈파베이스 서버용,브라우저용 클라이언트 모듈을 따로 분리하자.  
 - 하나의 파일 안에 createBrowserClient, createServerClient를 동시에 정의를 못한다.  
@@ -401,6 +421,3 @@ Redirect URLs
 - 위 설정을 해야, 코드단 옵션 중 redirectTo가 작동한다.  
 - *만약 위 설정을 해주지 않으면, 코드에서 redirectTo설정 및 배포를 해도 localhost로 계속 리다이렉트 될 것이다.   
 - PKCE Flow 를 처리하기 위해 설정해준다.  
-
-
-
