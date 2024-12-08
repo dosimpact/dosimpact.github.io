@@ -13,10 +13,10 @@ sidebar_position: 2
       - [Route Segments Paramters, Query Parameters](#route-segments-paramters-query-parameters)
       - [CORS](#cors)
     - [POST](#post)
-  - [2.middleware](#2middleware)
-    - [basic](#basic)
-    - [cookie 조작해보기](#cookie-조작해보기)
-    - [cookie counter](#cookie-counter)
+  - [2.Middleware](#2middleware)
+      - [Basic](#basic)
+      - [eg) supaServerClientMiddleware](#eg-supaserverclientmiddleware)
+      - [eg) cookie counter](#eg-cookie-counter)
   - [3.Server actions](#3server-actions)
     - ['use server'](#use-server)
   - [4.RSC](#4rsc)
@@ -160,18 +160,21 @@ export async function PATCH(request: Request) {
 
 ```
 
-## 2.middleware
+## 2.Middleware
+
+>https://nextjs.org/docs/app/building-your-application/routing/middleware#convention
 
 middleware 활용법 : [The user experience of the Frontend Cloud](https://vercel.com/blog/the-user-experience-of-the-frontend-cloud#edge-functions-and-middleware)
 
 
 ![alt](https://vercel.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F7aSNr7ss5428amGZULhEK8%2F7c9e27a2f990ab84ca1e7643b29a9407%2Fimage.png&w=1920&q=75&dpl=dpl_uYiozXFSsKjgQmLucVaDvW7A2jtG)
 
-### basic
+#### Basic  
 
 - 모든 요청을 통과하는 미들웨어 입니다.  
 
 ```js
+// Use the file middleware.ts (or .js) in the root  
 import { NextResponse, NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
@@ -181,34 +184,54 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: "/",
+  matcher: [
+    "/", // only root
+    "/api/(.*)"
+  ]  
 };
-// npm i cookies-next
 ```
+
+#### eg) supaServerClientMiddleware  
 
 ```js
 import { NextResponse, NextRequest } from "next/server";
-import { supaServerClientMiddleware } from "./lib/supabase";
+import { createServerSideMiddleware } from "./lib/supabase/supabase";
+import { User } from "@supabase/supabase-js";
 
-export function middleware(req: NextRequest) {
+export interface AuthedNextRequest extends NextRequest {
+  user?: User | undefined;
+}
+
+export async function middleware(req: AuthedNextRequest) {
   const res = NextResponse.next();
 
-  const supabase = supaServerClientMiddleware(req, res);
-  await supabase.auth.getSession();
+  const supabase = await createServerSideMiddleware(req, res);
+  const userResponse = await supabase.auth.getUser();
+
+  // req.user = user , 이런 방식으로 조작한 req 객체를 뒷단에 전달할수 없다. 
+  if (userResponse?.data?.user) {
+    res.headers.set("x-authenticated", "1"); // 비표준 헤더는 x-를 붙이는 컨벤션  
+  }
 
   return res;
 }
 
 export const config = {
-  matcher: "/",
+  matcher: [
+    /*
+     * BlackListing
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };
-// npm i cookies-next
 ```
 
-### cookie 조작해보기 
+#### eg) cookie counter
 
-- 쿠키란 ? 
-- 브라우저에서 cookie 지우는 방법
+cookie 조작해보기 
 
 ```
   request.cookies.delete("vercel");
@@ -224,8 +247,6 @@ export const config = {
   response.cookies.set("vercel", "slow");
 ```
 
-
-### cookie counter
 
 ```js
 import { NextResponse, NextRequest } from "next/server";
