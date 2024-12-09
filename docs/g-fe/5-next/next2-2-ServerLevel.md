@@ -183,7 +183,7 @@ export function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = {
+export const config = {2
   matcher: [
     "/", // only root
     "/api/(.*)"
