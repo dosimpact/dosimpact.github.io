@@ -3,10 +3,15 @@ sidebar_position: 1
 ---
 
 # Zustand Basic
-
-- App의 전역상태관리가 가능  
-- git : https://github.com/pmndrs/zustand  
-- React, Nextjs 모두 별 다른 설정없이 사용 가능하다.  
+- [Zustand Basic](#zustand-basic)
+  - [Example](#example)
+    - [Basic1 (create, set)](#basic1-create-set)
+    - [State \& Action 분리 타이핑](#state--action-분리-타이핑)
+    - [Counter](#counter)
+    - [TodoList](#todolist)
+    - [Fetch (create, AbortController, AxiosError, debouncedFetch)](#fetch-create-abortcontroller-axioserror-debouncedfetch)
+    - [vanlia debounce, debounced state](#vanlia-debounce-debounced-state)
+  - [ref](#ref)
 
 
 ## Example  
@@ -56,6 +61,39 @@ export default useAuthModal;
   const authModal = useAuthModal();
   <Button onClick={authModal.onOpen} />
 
+```
+
+### State & Action 분리 타이핑  
+
+```js
+import { ReactNode } from "react";
+import { create } from "zustand";
+
+type ModalConfig = {
+  title: string;
+  description?: string;
+  content?: ReactNode;
+  footer: ReactNode;
+};
+
+type State = {
+  open: boolean;
+  config?: ModalConfig;
+};
+
+type Action = {
+  openModal: (config: ModalConfig) => void;
+  closeModal: () => void;
+};
+
+const useModalStore = create<State & Action>((set) => ({
+  open: false,
+  config: undefined,
+  openModal: (config) => set({ open: true, config }),
+  closeModal: () => set({ open: false, config: undefined }),
+}));
+
+export { useModalStore };
 ```
 
 ### Counter 
