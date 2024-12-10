@@ -8,7 +8,7 @@ sidebar_position: 3
 - [Supabase DDL Template](#supabase-ddl-template)
   - [eg) Todo](#eg-todo)
   - [eg) AI Chat](#eg-ai-chat)
-  - [stripe](#stripe)
+  - [eg) stripe](#eg-stripe)
 
 
 ## eg) Todo
@@ -213,7 +213,7 @@ ALTER TABLE ai_chat_test."chat" DROP COLUMN IF EXISTS "messages";
 ```
 
 
-## stripe
+## eg) stripe
 
 ```sql
 /**
