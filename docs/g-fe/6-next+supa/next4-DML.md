@@ -3,7 +3,12 @@ sidebar_position: 4
 ---
 
 
-# Supabase DML
+# Supabase ORM
+
+
+![Alt text](image-5.png)
+
+
 
 
 ## next server actions + supabase client

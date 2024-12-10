@@ -23,17 +23,27 @@ sidebar_position: 0
 - 사용자의 반응을 보고, PMF를 찾기 적절한 기술 풀스택을 정하자.  
 
 
-## MLP/MVP 등의 프로덕트를 빠르게 개발할 수 있는 기술 스택은 ?
+## MLP/MVP 등의 프로덕트를 빠르게 개발할 수 있는 기술 스택은 ?  
 
 웹 풀스택 with NextJS   
 
-NextJS 14 + TS + TailwindCSS + RadixUI + Zustand + Supabase(OAuth, CRUD, Storage) + Stripe   
+Web
+- Nextjs App Router + TS   
+- UI : TailwindCSS, RadixUI, FramerMotion, react-icons, react-spinners    
+- State : Zustand, React-Query, Zod  
+- *pnpm(turbo), yarn berry  
+- *ai-sdk, usehooks-ts, biome   
+
+Supabase & Infra  
+- DDL, DML, CRUD, TypeGen   
+- Auth, Storage, Vector DB, Edge Functions, Cron(pg_cron), Queue(pgmq)  
+- (Vercel | Circle CI + AWS lambda  )
 
 
 ## 1.Typescript + Javascript  
 
-빠른 개발이 필요한 부분, 유연성이 필요한 부분은 JS를 통해서 개발하자. eg)UI개발  
-안정성이 필요한 부분은 TS를 이용해서 개발하자. eg)DB 접근, API 정의, 결제시스템   
+빠른 개발이 필요한 부분, 유연성이 필요한 부분은 JS를 통해서 개발하자. eg) UI개발  
+안정성이 필요한 부분은 TS를 이용해서 개발하자. eg) DB 접근, API 정의, 결제시스템   
 
 ## 2.Supabase (postgreSQL)  
 

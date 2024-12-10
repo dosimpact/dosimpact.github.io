@@ -6,11 +6,12 @@ sidebar_position: 3
 # Supabase DDL Template
 
 - [Supabase DDL Template](#supabase-ddl-template)
-  - [todo from template](#todo-from-template)
+  - [eg) Todo](#eg-todo)
+  - [eg) AI Chat](#eg-ai-chat)
   - [stripe](#stripe)
 
 
-## todo from template
+## eg) Todo
 
 ![Alt text](image-3.png)
 
@@ -47,6 +48,169 @@ create policy "Individuals can delete their own todos." on todos for
 ```
 
 
+## eg) AI Chat    
+
+Tables : profiles chat suggestion document message vote      
+datatype : boolean, uuid, varchar, text, json, timestamp with time zone   
+
+```sql
+-- Set schema to ai_chat_test
+SET search_path TO ai_chat_test;
+
+-- Create a table for public profiles
+create table ai_chat_test.profiles (
+  id uuid references auth.users on delete cascade not null primary key,
+  updated_at timestamp with time zone,
+  username text unique,
+  full_name text,
+  avatar_url text,
+  website text,
+
+  constraint username_length check (char_length(username) >= 3)
+);
+
+-- Set up Row Level Security (RLS)
+-- See https://supabase.com/docs/guides/auth/row-level-security for more details.
+alter table ai_chat_test.profiles
+  enable row level security;
+
+create policy "Public profiles are viewable by everyone." on ai_chat_test.profiles
+  for select using (true);
+
+create policy "Users can insert their own profile." on ai_chat_test.profiles
+  for insert with check ((select auth.uid()) = id);
+
+create policy "Users can update own profile." on ai_chat_test.profiles
+  for update using ((select auth.uid()) = id);
+
+-- This trigger automatically creates a profile entry when a new user signs up via Supabase Auth.
+-- See https://supabase.com/docs/guides/auth/managing-user-data#using-triggers for more details.
+create function ai_chat_test.handle_new_user()
+returns trigger
+set search_path = 'ai_chat_test'
+as $$
+begin
+  insert into ai_chat_test.profiles (id, full_name, avatar_url)
+  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_created_to_ai_chat_test
+  after insert on auth.users
+  for each row execute procedure ai_chat_test.handle_new_user();
+
+```
+
+```sql
+-- Set schema to ai_chat_test
+SET search_path TO ai_chat_test;
+
+CREATE TABLE IF NOT EXISTS ai_chat_test.chat (
+    "id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+    "createdAt" timestamp NOT NULL,
+    "messages" json NOT NULL,
+    "userId" uuid NOT NULL
+);
+
+--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE ai_chat_test.chat
+    ADD CONSTRAINT "chat_userId_profiles_id_fk"
+    FOREIGN KEY ("userId") REFERENCES ai_chat_test.profiles(id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+EXCEPTION
+    WHEN duplicate_object THEN NULL;
+END $$;
+
+```
+
+```sql
+-- Set schema to ai_chat_test
+SET search_path TO ai_chat_test;
+
+CREATE TABLE IF NOT EXISTS ai_chat_test."suggestion" (
+	"id" uuid DEFAULT gen_random_uuid() NOT NULL,
+	"documentId" uuid NOT NULL,
+	"documentCreatedAt" timestamp NOT NULL,
+	"originalText" text NOT NULL,
+	"suggestedText" text NOT NULL,
+	"description" text,
+	"isResolved" boolean DEFAULT false NOT NULL,
+	"userId" uuid NOT NULL,
+	"createdAt" timestamp NOT NULL,
+	CONSTRAINT "suggestion_id_pk" PRIMARY KEY("id")
+);
+
+CREATE TABLE IF NOT EXISTS ai_chat_test."document" (
+	"id" uuid DEFAULT gen_random_uuid() NOT NULL,
+	"createdAt" timestamp NOT NULL,
+	"title" text NOT NULL,
+	"content" text,
+	"userId" uuid NOT NULL,
+	CONSTRAINT "document_id_createdAt_pk" PRIMARY KEY("id","createdAt")
+);
+
+DO $$ BEGIN
+ ALTER TABLE ai_chat_test."suggestion" ADD CONSTRAINT "suggestion_userId_profiles_id_fk" FOREIGN KEY ("userId") REFERENCES "ai_chat_test"."profiles"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE ai_chat_test."suggestion" ADD CONSTRAINT "suggestion_documentId_documentCreatedAt_document_id_createdAt_fk" FOREIGN KEY ("documentId","documentCreatedAt") REFERENCES "ai_chat_test"."document"("id","createdAt") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE ai_chat_test."document" ADD CONSTRAINT "document_userId_profiles_id_fk" FOREIGN KEY ("userId") REFERENCES "ai_chat_test"."profiles"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+```
+
+```sql
+-- Set schema to ai_chat_test
+SET search_path TO ai_chat_test;  
+
+CREATE TABLE IF NOT EXISTS ai_chat_test."message" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"chatId" uuid NOT NULL,
+	"role" varchar NOT NULL,
+	"content" json NOT NULL,
+	"createdAt" timestamp NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ai_chat_test."vote" (
+	"chatId" uuid NOT NULL,
+	"messageId" uuid NOT NULL,
+	"isUpvoted" boolean NOT NULL,
+	CONSTRAINT "vote_chatId_messageId_pk" PRIMARY KEY("chatId","messageId")
+);
+
+ALTER TABLE ai_chat_test."chat" ADD COLUMN "title" text NOT NULL;
+
+DO $$ BEGIN
+ ALTER TABLE ai_chat_test."message" ADD CONSTRAINT "message_chatId_chat_id_fk" FOREIGN KEY ("chatId") REFERENCES "ai_chat_test"."chat"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE ai_chat_test."vote" ADD CONSTRAINT "vote_chatId_chat_id_fk" FOREIGN KEY ("chatId") REFERENCES "ai_chat_test"."chat"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE ai_chat_test."vote" ADD CONSTRAINT "vote_messageId_message_id_fk" FOREIGN KEY ("messageId") REFERENCES "ai_chat_test"."message"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+ALTER TABLE ai_chat_test."chat" DROP COLUMN IF EXISTS "messages";
+
+```
 
 
 ## stripe
