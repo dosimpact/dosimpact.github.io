@@ -18,11 +18,13 @@ sidebar_position: 3
 
 Datatype  
 - boolean
-- integer, bigint, numeric(5, 2) // 최대 5자리 숫자, 소수점 이하 2자리
+- integer = int4, bigint = int8, numeric(5, 2) // 최대 5자리 숫자, 소수점 이하 2자리
 - varchar(32), text  
 - uuid
 - timestamp with time zone  
 - json, jsonb
+
+Ref : https://supabase.com/docs/guides/database/tables?queryGroups=database-method&database-method=sql&queryGroups=language&language=js#data-types  
 
 컬럼 설정 
 - PK, FK  

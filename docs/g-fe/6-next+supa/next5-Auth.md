@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 ---
-
+did
 # Supabase Auth
 - [Supabase Auth](#supabase-auth)
   - [Goal](#goal)

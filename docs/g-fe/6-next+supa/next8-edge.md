@@ -4,6 +4,14 @@ sidebar_position: 8
 
 # Supabase Edge Functions  
 
+- [Supabase Edge Functions](#supabase-edge-functions)
+  - [About Edge Functions](#about-edge-functions)
+    - [장점:엣지 함수를 사용해야 하는 이유](#장점엣지-함수를-사용해야-하는-이유)
+    - [단점](#단점)
+  - [Developing Edge Functions locally](#developing-edge-functions-locally)
+  - [Deploy to Production](#deploy-to-production)
+  - [Example](#example)
+
 Guide Docs  
 - quickstart : https://supabase.com/docs/guides/functions/quickstart
 - deploy : https://supabase.com/docs/guides/functions/deploy  
@@ -33,7 +41,9 @@ Guide Docs
 - 엣지 함수는 Deno를 기반으로 하기 때문에 Node.js나 브라우저 환경에서 사용할 수 있는 일부 라이브러리나 API를 사용할 수 없습니다. 
 - 이는 기존의 Node.js 기반 프로젝트를 엣지 함수로 이식할 때 문제가 될 수 있습니다.  
 
-## Quickstart  
+## Developing Edge Functions locally  
+
+- 도커가 필요하며, supabase/edge-runtime 이미지를 활용하여 로컬에서 edge functions를 개발, 빌드, 테스트 한다.  
 
 ```js
 # 프로젝트에 supabase 디렉터리를 생성한다. 이곳이 작업공간이 된다.  
@@ -49,6 +59,7 @@ supabase functions new hello-world
     │   │   └── index.ts ## Your function code
     └── config.toml
 
+예)
 Deno.serve(async (req) => {
   const { name } = await req.json()
   const data = {
@@ -58,20 +69,22 @@ Deno.serve(async (req) => {
   return new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } })
 })
 
+## 로컬 테스트
+
 # 로컬에서 슈파베이스를 실행시킨다.  
 supabase start # start the supabase stack
 
 # 서비스 중 엣지 팡션을 시작한다.   
 supabase functions serve # start the Functions watcher
 
-# 테스트  
+# 로컬에서는 별도의 배포 없이 즉시 테스트가 가능하다.    
 curl --request POST 'http://localhost:54321/functions/v1/hello-world' \
   --header 'Authorization: Bearer SUPABASE_ANON_KEY' \
   --header 'Content-Type: application/json' \
   --data '{ "name":"Functions" }'
 
 
-# 함수 배포 후 다음처럼 호출하면 된다.  
+# sdk에서, 엣지 함수 배포 후 다음처럼 호출하면 된다.  
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY)
@@ -79,26 +92,40 @@ const { data, error } = await supabase.functions.invoke('hello-world', {
   body: { name: 'Functions' },
 })
 
-
+# 테스트 후 종료
+supabase stop
 ```
 
-## deploy 
+## Deploy to Production
 
 ```js
 # 로그인 후 여러 프로젝트 중 어느것에 연결시킬지 고른다.  
 supabase login
 supabase projects list
-supabase link --project-ref your-project-id
+supabase link --project-ref <your-project-id>
 
-# 함수 배포  
-supabase functions deploy # 모든 함수 배포  
-supabase functions deploy hello-world # 특정 함수 배포  
-supabase functions deploy hello-world --no-verify-jwt # 특정 함수 배포 with public  
+# 모든 함수 배포  
+supabase functions deploy 
+
+# 특정 함수 배포  (jwt token 필요)  
+supabase functions deploy hello-world 
 
 # 테스트  
-curl --request POST 'https://zk===.supabase.co/functions/v1/hello-world' \
+curl --request POST 'https://jzdmzxppyivazcgdsiul.supabase.co/functions/v1/hello-world' \
   --header 'Authorization: Bearer ANON_KEY' \
   --header 'Content-Type: application/json' \
   --data '{ "name":"Functions" }'
 
+
+# 특정 함수 배포 (jwt token 필요 x, public)    
+supabase functions deploy hello-world --no-verify-jwt 
+
+# 테스트  
+curl --request POST 'https://jzdmzxppyivazcgdsiul.supabase.co/functions/v1/hello-world' \
+  --data '{ "name":"Functions" }'
+
 ```
+
+## Example  
+
+https://github.com/supabase/supabase/tree/master/examples/edge-functions/supabase/functions  
