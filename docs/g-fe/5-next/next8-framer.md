@@ -4,6 +4,15 @@ sidebar_position: 8
 
 # Framer motion  
 
+- [Framer motion](#framer-motion)
+  - [About Framer Motion](#about-framer-motion)
+  - [eg) opacity 0-\>1, 1-\>0](#eg-opacity-0-1-1-0)
+  - [eg) 오른쪽에서 나타나기, 뒤로 작아지면서 사라지기](#eg-오른쪽에서-나타나기-뒤로-작아지면서-사라지기)
+  - [eg) 서서히 전체화면 채우기 -\> 작아지는 박스로 사라지기](#eg-서서히-전체화면-채우기---작아지는-박스로-사라지기)
+  - [eg) 격자형 구조, 1번부터 아래에서 톡톡 튀어오르기](#eg-격자형-구조-1번부터-아래에서-톡톡-튀어오르기)
+  - [eg) 애니메이션 - 로딩 아이콘](#eg-애니메이션---로딩-아이콘)
+
+
 ## About Framer Motion  
 
 - 리액트 컴포넌트 기반의 재사용 가능한 애니메이션 추가 가능하다.  
@@ -138,8 +147,41 @@ const MotionEg03 = () => {
 export default MotionEg03;
 
 ```
+## eg) 격자형 구조, 1번부터 아래에서 톡톡 튀어오르기   
 
-## eg) 로딩 애니메이션  
+```js
+<div className="grid sm:grid-cols-2 gap-2 w-full">
+  {suggestedActions.map((suggestedAction, index) => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ delay: 0.05 * index }}
+      key={`suggested-action-${suggestedAction.title}-${index}`}
+      className={index > 1 ? "hidden sm:block" : "block"}
+    >
+      <Button
+        variant="ghost"
+        onClick={async () => {
+          window.history.replaceState({}, "", `/chat/${chatId}`);
+          append({
+            role: "user",
+            content: suggestedAction.action,
+          });
+        }}
+        className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start"
+      >
+        <span className="font-medium">{suggestedAction.title}</span>
+        <span className="text-muted-foreground">
+          {suggestedAction.label}
+        </span>
+      </Button>
+    </motion.div>
+  ))}
+</div>
+```
+
+## eg) 애니메이션 - 로딩 아이콘    
 
 Ref : https://playcode.io/framer_motion
 
