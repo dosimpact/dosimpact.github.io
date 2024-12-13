@@ -4,6 +4,76 @@ sidebar_position: 9
 
 # AI SDK  
 
+## Stream Protocols  
+
+>https://sdk.vercel.ai/docs/ai-sdk-ui/stream-protocol  
+
+stream protocol 이란?  
+- HTTP 프로토콜 위에서 스트림 데이터를 넘기는 규칙. ( text stream, data stream 모두 포함 )  
+
+Text Stream Protocol
+- `streamText().toTextStreamResponse();`   사용  
+
+Data Stream Protocol
+- `createDataStreamResponse` 사용    
+
+*타입 구분을 통해서 Stream Protocol 내 Text, Data 모두 내려올 수 있다.   
+
+*TypeID = 0,  Text Part  
+- Format: 0:string\n  
+
+*TypeID = 2,  Data Part  
+- Format: 2:[{"key":"object1"},{"anotherKey":"object2"}]\n  
+
+*TypeID = 8,  Message Annotation Part  
+- Format: 8:[{"id":"message-123","other":"annotation"}]\n   
+
+*TypeID = 3,  Error Part
+- Format: 3:"error message"\n    
+
+*TypeID = 3,  Tool Call Streaming Start Part
+- Format: b:{"toolCallId":"call-456","toolName":"streaming-tool"}\n      
+*TypeID = c,  Tool Call Delta Part
+- Format: c:{"toolCallId":"call-456","argsTextDelta":"partial arg"}\n
+*TypeID = 9,  Tool Call Part
+- Format: 9:{"toolCallId":"call-123","toolName":"my-tool","args":{"some":"argument"}}\n
+*TypeID = a,  Tool Result Part
+- Format: a:{"toolCallId":"call-123","result":"tool output"}\n
+
+*TypeID = e,  Finish Step Part
+- Format: e:{"finishReason":"stop","usage":{"promptTokens":10,"completionTokens":20},"isContinued":false}\n
+*TypeID = d,  Finish Message Part
+- Format: d:{"finishReason":"stop","usage":{"promptTokens":10,"completionTokens":20}}\n
+
+```
+// 응답 예 
+// TypeID, Type delimiter(:), Text|Data Chunk, Chunk delimiter 4가지 파트로 구성  
+
+2:["initialized call"]
+8:[{"chunk":"123"}]
+0:"Hello"
+8:[{"chunk":"123"}]
+0:"!"
+8:[{"chunk":"123"}]
+0:" How"
+8:[{"chunk":"123"}]
+0:" can"
+8:[{"chunk":"123"}]
+0:" I"
+8:[{"chunk":"123"}]
+0:" assist"
+8:[{"chunk":"123"}]
+0:" you"
+8:[{"chunk":"123"}]
+0:" today"
+8:[{"chunk":"123"}]
+0:"?"
+8:[{"id":"DU5YpIiiuczDZpiN","other":"information"}]
+2:["call completed"]
+e:{"finishReason":"stop","usage":{"promptTokens":8,"completionTokens":9},"isContinued":false}
+d:{"finishReason":"stop","usage":{"promptTokens":8,"completionTokens":9}}
+```
+
 
 ## 📌 Generative User Interfaces
 
