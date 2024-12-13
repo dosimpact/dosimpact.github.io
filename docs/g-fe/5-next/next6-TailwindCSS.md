@@ -14,17 +14,17 @@ sidebar_position: 6
   - [5.flex, flex-col, justify, items, gap](#5flex-flex-col-justify-items-gap)
   - [6.hover, transition, :disabled](#6hover-transition-disabled)
   - [position, transform, translate](#position-transform-translate)
-  - [반응형 UI만드는 방법](#반응형-ui만드는-방법)
+  - [📌 반응형 UI만드는 방법](#-반응형-ui만드는-방법)
     - [Responsive Design](#responsive-design)
   - [overflow](#overflow)
   - [group](#group)
   - [backdrop-filter](#backdrop-filter)
   - [twMerge](#twmerge)
   - [etc](#etc)
-    - [truncate](#truncate)
+    - [text underline](#text-underline)
+    - [text truncate](#text-truncate)
     - [color-scheme](#color-scheme)
-  - [eg) 픽토그램 - 신호등, 횡단보드](#eg-픽토그램---신호등-횡단보드)
-  - [eg) Next Image + gradient](#eg-next-image--gradient)
+  - [📌 Theme](#-theme)
 
 ## playground
 
@@ -159,7 +159,7 @@ className="disabled:cursor-not-allowed disabled:opacity-50"
 ```
 
 
-## 반응형 UI만드는 방법  
+## 📌 반응형 UI만드는 방법  
 
 https://tailwindcss.com/docs/responsive-design
 - UI는 Mobile우선 작업을 한다. 그리고 PC로 확장을 한다.   
@@ -239,7 +239,17 @@ className={twMerge(``,active && "text-white")}
 
 ## etc
 
-### truncate
+### text underline
+
+```js
+<Link
+  className="underline underline-offset-4"
+  href="https://github.com/vercel/ai-chatbot"
+  target="_blank">
+open source</Link>
+```
+
+### text truncate
 
 ```js
     <Link
@@ -267,52 +277,67 @@ html,body,:root{
 }
 ```
 
-## eg) 픽토그램 - 신호등, 횡단보드 
+## 📌 Theme
 
-```js
-<!-- eg) 픽토그램 - 신호등, 횡단보드  -->
+>https://ui.shadcn.com/themes   
 
-<div class="group flex h-[250px] w-full flex-row items-center justify-between bg-black">
-  <div class="flex flex-row gap-4 group-hover:bg-pink-300">
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-  </div>
-  <div class="flex flex-row items-center justify-center gap-3">
-    <div class="h-40 w-40 rounded-full border-2 border-white bg-red-400 transition hover:bg-red-200"></div>
-    <div class="h-40 w-40 rounded-full border-2 border-white bg-yellow-400 transition hover:bg-yellow-200"></div>
-    <div class="h-40 w-40 rounded-full border-2 border-white bg-green-400 transition hover:bg-green-200"></div>
-  </div>
-  <div class="flex flex-row gap-4 group-hover:bg-yellow-300">
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-    <div class="h-[150px] w-4 bg-white"></div>
-  </div>
-</div>
+1.shadcn의 장점중 하나는 테마를 설정할 수 있다.  
+- global.css 에서 css variable로 테마 색상을 변경가능.    
+
+2.tailwind는 레이어 디렉티브 개념을 사용한다. `예, @layer base `    
+- CSS 파일 어디든 작성해도 `적용 우선 순위` 보장.  
+
+2.1 Tailwind의 레이어 우선순위  
+	1.	Base: 기본 스타일 (HTML 태그 초기화 및 전역 스타일)
+	2.	Components: 재사용 가능한 컴포넌트 스타일
+	3.	Utilities: 유틸리티 클래스 스타일 (가장 강력하며, 다른 스타일을 덮어씀)
+
+2.2 `@layer` 라는 디렉티브로 css파일에 적용한다.  
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+/* hsl로 정의된다. 	
+  •	Hue (색상): 0~360도 사이의 값 (색상의 각도를 나타냄, 예: 빨강은 0, 초록은 120, 파랑은 240)
+	•	Saturation (채도): 0~100% (색의 강도)
+	•	Lightness (명도): 0~100% (밝기) */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    ...
 ```
 
-## eg) Next Image + gradient
+3.기본 테마 적용하기
+![Alt text](image-6.png)  
+>https://ui.shadcn.com/themes  
 
-```js
-const Header = () => {
-  return (
-    <div className="w-full h-[400px] relative">
-      <Image
-        alt="MediaItem "
-        className="object-cover"
-        fill
-        src={
-          "https://images.unsplash.com/photo-1707833558984-3293e794031c?q=80&w=2033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        }
-      />
-      <div className="w-full h-full bg-black opacity-40 absolute top-0"></div>
-      <div className="w-full h-full absolute top-0 bg-gradient-to-t from-black"></div>
-    </div>
-  );
-};
+- 위 테마 선택 후 global.css에서 변경한ㄷ.ㅏ  
 
 ```
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    ...
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    -...
+}
+
+```
+
+4.테마 색상 변경하기
+>https://ui.shadcn.com/docs/theming
+
+4.1 CSS Variables 방식을 사용한다.  
+- global.css에 변수를 정의한다.  
+- tailwind.config.js에 정의한 변수를 추가한다. ( className 사용 가능 )

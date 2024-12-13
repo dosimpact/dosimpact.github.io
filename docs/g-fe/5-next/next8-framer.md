@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# framer motion  
+# Framer motion  
 
 ## About Framer Motion  
 

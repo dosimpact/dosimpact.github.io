@@ -7,15 +7,16 @@ sidebar_position: 2
 - [NextJS Essential 3 - Navigating](#nextjs-essential-3---navigating)
   - [Linking and Navigating](#linking-and-navigating)
     - [Link Component](#link-component)
-    - [useRouter](#userouter)
   - [Server](#server)
     - [redirect](#redirect)
     - [permanentRedirect](#permanentredirect)
   - [Client](#client)
-    - [useRouter](#userouter-1)
+    - [useRouter](#userouter)
     - [useParams](#useparams)
     - [usePathname, useSearchParams](#usepathname-usesearchparams)
     - [notfound](#notfound)
+  - [Window](#window)
+    - [replaceState](#replacestate)
   - [Server Routes 타입별 랜더링](#server-routes-타입별-랜더링)
     - [Dynamic Routes (SSR)](#dynamic-routes-ssr)
     - [generateStaticParams (SSG)](#generatestaticparams-ssg)
@@ -41,29 +42,6 @@ export default function Page() {
 
 ```
 
-### useRouter
-
-- * 'use client' 을 써야 된다. > useRouter 
-- * Server Components, you would redirect() instead.
-- cf) next/router 은 사용하지 않는다.  
-
-
-```js
-'use client'
-
-import { useRouter } from 'next/navigation'
-
-export default function Page() {
-  const router = useRouter()
- 
-  return (
-    <button type="button" onClick={() => router.push('/dashboard')}>
-      Dashboard
-    </button>
-  )
-}
-```
-https://nextjs.org/docs/app/api-reference/functions/use-router
 
 ## Server
 
@@ -137,12 +115,22 @@ export default async function Playlist(props) {
 
 >> https://nextjs.org/docs/app/api-reference/functions/use-router
 
+- * 'use client' 을 써야 된다. > useRouter 
+- * Server Components, you would redirect() instead.
+- cf) next/router 은 사용하지 않는다.  
+
+
 ```js
+// eg) navigate another page 
 'use client'
 import { useRouter } from 'next/navigation'
  
 export default function Page() {
   const router = useRouter()
+  // router.push  
+  // router.replace
+  // router.back
+  // router.
  
   return (
     <button type="button" onClick={() => router.push('/dashboard')}>
@@ -151,6 +139,19 @@ export default function Page() {
   )
 }
 ```
+
+```js
+// eg) navigate external page
+<Link
+   className="font-medium underline underline-offset-4"
+   href="https://github.com/vercel/ai-chatbot"
+   target="_blank"
+ >
+   open source
+ </Link>{" "}
+```
+
+
 
 ### useParams
 
@@ -235,6 +236,13 @@ export default async function Page({ params }: PageProps) {
 
 ```
 
+## Window
+
+### replaceState
+
+```js
+window.history.replaceState({}, "", `/chat/${chatId}`);
+```
 
 ## Server Routes 타입별 랜더링  
 
