@@ -56,7 +56,9 @@ export async function POST(request: Request) {
 
   return result.toDataStreamResponse();
 }
----
+```
+
+```js
 // components/chat-lite-ui
 "use client";
 
@@ -131,5 +133,105 @@ const ChatLiteUI = () => {
 
 export default ChatLiteUI;
 
+
+```
+
+
+## 📌 Streaming Custom Data
+
+>https://sdk.vercel.ai/docs/ai-sdk-ui/streaming-data#streaming-custom-data
+
+흐름
+- 1.createDataStreamResponse 을 리턴하며 execute안에서 streamText과 머지한다.  
+- `result.mergeIntoDataStream(dataStream);`  
+- 2.dataStream.writeData : 스트림 데이터, useChat의 data으로 넘어옴  
+- 3.dataStream.writeMessageAnnotation : 스트림 어노테이션데이터, 주석과 같은 메타정보 넣는것이 가능.  useChat의 message 객체와 함께 들어옴.  
+
+```js
+// app/api/chat-test/route.ts
+import { openai } from "@ai-sdk/openai";
+import { generateId, createDataStreamResponse, streamText } from "ai";
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  // immediately start streaming (solves RAG issues with status, etc.)
+  return createDataStreamResponse({
+    execute: (dataStream) => {
+      dataStream.writeData("initialized call");
+
+      const result = streamText({
+        model: openai("gpt-4o-mini"),
+        messages,
+        onChunk() {
+          dataStream.writeMessageAnnotation({ chunk: "123" }); // annotation 정보는 messages안에 포함되며 
+        },
+        onFinish() {
+          // message annotation:
+          dataStream.writeMessageAnnotation({
+            id: generateId(), // e.g. id from saved DB record
+            other: "information",
+          });
+
+          // call annotation:
+          dataStream.writeData("call completed");
+        },
+      });
+
+      result.mergeIntoDataStream(dataStream);
+    },
+    onError: (error) => {
+      // Error messages are masked by default for security reasons.
+      // If you want to expose the error message to the client, you can do so here:
+      return error instanceof Error ? error.message : String(error);
+    },
+  });
+}
+
+```
+
+```js
+"use client";
+
+import { useChat } from "ai/react";
+
+const ChatLiteUIStreamCustom = () => {
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    data: streamData,
+  } = useChat({
+    api: "/api/chat-test",
+  });
+
+  console.log("messages", messages);
+  console.log("streamData", streamData);
+
+  return (
+    <div>
+      {messages.map((message) => (
+        <div key={message.id}>
+          <div>{message.role === "user" ? "User: " : "AI: "}</div>
+          <div id="content">{message.content}</div>
+          <div id="annotations">
+            {message.annotations && <>{JSON.stringify(message.annotations)}</>}
+          </div>
+        </div>
+      ))}
+      <form onSubmit={handleSubmit}>
+        <input
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Type a message"
+        ></input>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  );
+};
+
+export default ChatLiteUIStreamCustom;
 
 ```
