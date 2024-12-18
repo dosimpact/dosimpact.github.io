@@ -2,7 +2,14 @@
 sidebar_position: 9
 ---
 
-# AI SDK  
+# AI SDK    
+
+- [AI SDK](#ai-sdk)
+  - [Stream Protocols](#stream-protocols)
+  - [📌 Basic](#-basic)
+  - [📌 Generative User Interfaces](#-generative-user-interfaces)
+  - [📌 Streaming Custom Data](#-streaming-custom-data)
+
 
 ## Stream Protocols  
 
@@ -74,6 +81,89 @@ e:{"finishReason":"stop","usage":{"promptTokens":8,"completionTokens":9},"isCont
 d:{"finishReason":"stop","usage":{"promptTokens":8,"completionTokens":9}}
 ```
 
+
+## 📌 Basic
+
+```js
+// app/api/chat-test/route.ts
+import { openai } from "@ai-sdk/openai";
+import { streamText } from "ai";
+
+export async function POST(request: Request) {
+  const { messages } = await request.json();
+
+  const result = streamText({
+    model: openai("gpt-4o-mini"),
+    system: "You are a friendly assistant!",
+    messages,
+    maxSteps: 5,
+  });
+
+  return result.toDataStreamResponse();
+}
+---
+// chat-lite.tsx
+"use client";
+
+import { generateUUID } from "@/lib/utils";
+import { useChat } from "ai/react";
+import React from "react";
+
+/*
+[
+    {
+        "role": "user",
+        "content": "my name is jay",
+        "id": "bPclYKo27gxhIoWn",
+        "createdAt": "2024-12-12T12:28:11.371Z"
+    },
+    {
+        "id": "NPFi3J8vWw7Sa5uw", 
+        "role": "assistant",
+        "content": "Nice to meet you, Jay! How can I assist you today?",
+        "createdAt": "2024-12-12T12:28:13.252Z",
+        "revisionId": "pDmdPLtSHFUvn3Bi"
+    }
+]*/
+
+const ChatLite = ({ id }: { id: string }) => {
+  const {
+    messages, // 지금까지의 누적 메시지 리스트
+    setMessages, // 메시지 setter, (api call 없음)
+    input, // 사용자 입력 & setter
+    setInput,
+    handleSubmit, // input의 내용을 모델에 전송, message객체 추가, input 초기화
+    append, // message 객체 추가
+    isLoading,
+    stop, // abort the current API
+    data: streamingData, //최근 응답데이터의 스트림
+  } = useChat({
+    api: "/api/chat",
+    body: { id: id, modelId: "gpt-4o-mini" },
+  });
+
+  // send continue message
+  console.log({ id, messages, streamingData });
+
+  return (
+    <div>
+      <div>{JSON.stringify(messages)}</div>
+      <input value={input} onChange={(e) => setInput(e.target.value)} />
+      <button onClick={handleSubmit}>send</button>
+      {/* append */}
+      <div>
+        <button
+          onClick={() => append({ role: "user", content: "my name is jay" })}
+        >
+          Append suggested message!
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ChatLite;
+```
 
 ## 📌 Generative User Interfaces
 
