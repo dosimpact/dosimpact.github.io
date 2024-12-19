@@ -11,8 +11,7 @@ sidebar_position: 4
   - [Mutation](#mutation)
 
 
-![Alt text](image-5.png)
-
+JavaScript Client Library : https://supabase.com/docs/reference/javascript/introduction
 
 ## Next actions + supabase client
 
