@@ -105,6 +105,13 @@ export default async function RootLayout({
 
 ## 📌 Nextjs Suspense Streaming  
 
+
+
+흐름
+- 1.`useSuspenseQuery` 을 이용하기 위해 Suspense 컴포넌트로 감싼다.  
+- 2.`Suspense` 스트리밍 랜더링의 플로우를 따른다.  
+- 3.React-Query도 위 스트리밍 랜더링의 플로우를 따르면서 데이터 패칭 및 캐시 라이프 싸이클 관리가 된다. 
+
 ```js
 //MyComponent.tsx
 "use client";
@@ -149,11 +156,6 @@ export function ConditionalShow(props: { children: React.ReactNode }) {
 
 ```
 
-
-흐름
-- 1.`useSuspenseQuery` 을 이용하기 위해 Suspense 컴포넌트로 감싼다.  
-- 2.`Suspense` 스트리밍 랜더링의 플로우를 따른다.  
-- 3.React-Query도 위 스트리밍 랜더링의 플로우를 따르면서 데이터 패칭 및 캐시 라이프 싸이클 관리가 된다. 
 
 ```js
 //app/test/query-test/page.tsx
@@ -227,6 +229,13 @@ export default async function MyPage() {
 장점  
 - SEO에 데이터 노출됨. 그 노출된 데이터를 재사용한다.  
 - (prefetch - dehydrate ) 과정이 없다면 API를 2번 호출하겠지.  
+
+주의  
+- `HydrationBoundary` 은 데이터 재활용이 필요한 부분만 사용하자.  
+- RootLayout에 `HydrationBoundary` 를 사용한다면 모든 데이터가 Client로 넘어가게 된다. 이는 SSR의 장점을 잃어버리게 되는 셈.   
+- 데이터 성격에 따라서 구분하자. 
+  - 1.데이터 readonly 경우, (html에 박제되고 끝.) -> hydration 불필요.  
+  - 2.serialized 데이터를 다시 deserialized 해야하는 경우 -> hydration 필요.  
 
 ```js
 import { getQueryClient } from "@/lib/query/get-query-client";
