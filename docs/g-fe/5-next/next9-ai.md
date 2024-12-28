@@ -133,7 +133,7 @@ const ChatLite = ({ id }: { id: string }) => {
     input, // 사용자 입력 & setter
     setInput,
     handleSubmit, // input의 내용을 모델에 전송, message객체 추가, input 초기화
-    append, // message 객체 추가
+    append, // 사용자 message 추가 후 바로 api 호출.
     isLoading,
     stop, // abort the current API
     data: streamingData, //최근 응답데이터의 스트림
@@ -168,10 +168,10 @@ export default ChatLite;
 ## 📌 Generative User Interfaces
 
 흐름  
-1.tools 정의 하기 - description, parameters, execute  
-- 예, 특정 위치의 날시를 보여줘, 인자값:location, 실행함수 - 날씨 API  
-2.Router Handler에 streamText 작성하기  
-3.messages 중 toolInvocations 필드를 보고 UI를 랜더링 하기  
+- 1.tools 정의 하기 - description, parameters, execute    
+  - 예, 특정 위치의 날시를 보여줘, 인자값:location, 실행함수 - 날씨 API    
+- 2.Router Handler에 streamText 작성하기    
+- 3.messages 중 toolInvocations 필드를 보고 UI를 랜더링 하기    
 
 제약
 - gpt-4o-mini, gpt-4 이상 모델 선택  
