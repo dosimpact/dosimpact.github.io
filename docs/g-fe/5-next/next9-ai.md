@@ -5,10 +5,25 @@ sidebar_position: 9
 # AI SDK    
 
 - [AI SDK](#ai-sdk)
+  - [주요 함수들](#주요-함수들)
   - [Stream Protocols](#stream-protocols)
   - [📌 Basic](#-basic)
   - [📌 Generative User Interfaces](#-generative-user-interfaces)
   - [📌 Streaming Custom Data](#-streaming-custom-data)
+    - [eg, 마크 다운 문서를 써내려가는 streamtext + Streaming Custom Data](#eg-마크-다운-문서를-써내려가는-streamtext--streaming-custom-data)
+    - [eg, 마크 다운 문서를 첨삭하는 stream object + Streaming Custom Data](#eg-마크-다운-문서를-첨삭하는-stream-object--streaming-custom-data)
+
+
+## 주요 함수들  
+
+>Blocking UI vs Streaming UI : https://sdk.vercel.ai/docs/foundations/streaming  
+
+- generateText : Blocking UI + text
+- generateObject : Blocking UI + object  
+  - https://sdk.vercel.ai/docs/advanced/sequential-generations  
+- streamObject : Streaming UI + text
+- streamText : Streaming UI + object
+- createDataStreamResponse : Streaming UI + Streaming Custom Data  
 
 
 ## Stream Protocols  
@@ -80,6 +95,8 @@ Data Stream Protocol
 e:{"finishReason":"stop","usage":{"promptTokens":8,"completionTokens":9},"isContinued":false}
 d:{"finishReason":"stop","usage":{"promptTokens":8,"completionTokens":9}}
 ```
+
+
 
 
 ## 📌 Basic
@@ -394,4 +411,69 @@ const ChatLiteUIStreamCustom = () => {
 
 export default ChatLiteUIStreamCustom;
 
+```
+
+### eg, 마크 다운 문서를 써내려가는 streamtext + Streaming Custom Data  
+
+```js
+          const { fullStream } = await streamText({
+            model: customModel(model.apiIdentifier),
+            system:
+              "Write about the given topic. Markdown is supported. Use headings wherever appropriate.",
+            prompt: title,
+          });
+
+          for await (const delta of fullStream) {
+            const { type } = delta;
+
+            if (type === "text-delta") {
+              const { textDelta } = delta;
+
+              draftText += textDelta;
+              streamingData.append({
+                type: "text-delta",
+                content: textDelta,
+              });
+            }
+          }
+
+          streamingData.append({ type: "finish", content: "" });
+```
+
+### eg, 마크 다운 문서를 첨삭하는 stream object + Streaming Custom Data
+
+```js
+
+          const { elementStream } = await streamObject({
+            model: customModel(model.apiIdentifier),
+            system:
+              "You are a help writing assistant. Given a piece of writing, please offer suggestions to improve the piece of writing and describe the change. It is very important for the edits to contain full sentences instead of just words. Max 5 suggestions.",
+            prompt: document.content,
+            output: "array",
+            schema: z.object({
+              originalSentence: z.string().describe("The original sentence"),
+              suggestedSentence: z.string().describe("The suggested sentence"),
+              description: z
+                .string()
+                .describe("The description of the suggestion"),
+            }),
+          });
+
+          for await (const element of elementStream) {
+            const suggestion = {
+              originalText: element.originalSentence,
+              suggestedText: element.suggestedSentence,
+              description: element.description,
+              id: generateUUID(),
+              documentId: documentId,
+              isResolved: false,
+            };
+
+            streamingData.append({
+              type: "suggestion",
+              content: suggestion,
+            });
+
+            suggestions.push(suggestion);
+          }
 ```
