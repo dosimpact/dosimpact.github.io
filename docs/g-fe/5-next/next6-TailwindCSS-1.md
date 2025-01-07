@@ -6,6 +6,7 @@ sidebar_position: 6
 
 - [Next + TailwindCSS](#next--tailwindcss)
   - [playground](#playground)
+    - [📌 CSS 작성 규칙](#-css-작성-규칙)
   - [1.단위체계](#1단위체계)
   - [2.bg, border, border-color, rounded](#2bg-border-border-color-rounded)
     - [bg-gradient-to-t from-black](#bg-gradient-to-t-from-black)
@@ -32,8 +33,12 @@ sidebar_position: 6
 - https://play.tailwindcss.com/  
 
 
-📌 CSS 작성 규칙  
+### 📌 CSS 작성 규칙    
+
+작성 순서  
 - 외부 레아웃에서 내부로 이동 스타일을 결정한다.  
+  - 0.relative, absolute : 외부 레이아웃
+  - ---
   - 1.w,h,p,m : 박스모델 만들기   
   - 2.flex : 내부 레이아웃    
   - 3.bg, border, rounded : 박스 모델 스타일   
