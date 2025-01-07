@@ -4,6 +4,13 @@ sidebar_position: 2
 
 # TS 5 - Generic  
 
+- [TS 5 - Generic](#ts-5---generic)
+  - [기본 개념](#기본-개념)
+  - [Type 연산자](#type-연산자)
+    - [삼항연산자](#삼항연산자)
+  - [Generic Example](#generic-example)
+      - [OptionalUndefined](#optionalundefined)
+      - [ArrayElement](#arrayelement)
 
 ## 기본 개념  
 
@@ -111,7 +118,7 @@ export type PopupProps<T extends AllowedVariants> = {
 ## Generic Example  
 
 
-OptionalUndefined  
+#### OptionalUndefined  
 
 ```js
 type OptionalUndefined<T> = Partial<Record<keyof T, undefined>>;
@@ -129,4 +136,14 @@ type TightProps<T> = T | OptionalUndefined<T>;
       value?: undefined;
       onChange?: undefined;
     }
+```
+
+#### ArrayElement  
+-  extends 절에서 사용되는 infer는 조건부 타입 키워드 이다.  
+-  아래는 Array에서 요소 타입을 추론한다.  
+
+```js
+export type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[]
+  ? ElementType
+  : never;
 ```
