@@ -1,0 +1,10 @@
+{
+  "label": "12.아티클",
+  "position": 10,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "12.아티클"
+  }
+}

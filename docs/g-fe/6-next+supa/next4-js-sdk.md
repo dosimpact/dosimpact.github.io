@@ -8,6 +8,8 @@ sidebar_position: 4
 - [Supabase JS SDK](#supabase-js-sdk)
   - [Next actions + supabase client](#next-actions--supabase-client)
   - [Select](#select)
+    - [Select Example Todo](#select-example-todo)
+  - [Select With Join](#select-with-join)
   - [Mutation](#mutation)
 
 
@@ -27,7 +29,6 @@ Next actions
 - 서버 액션은 서버 컴포넌트를 포함한 미들웨어, 다른 서버 액션, 라우터 핸들러에서 호출될 수 있다.  
 - 이때 서버 컴포넌트에서 SSR 중에 서버 액션을 부르게 되면 쿠키에 대한 조작을 금지 해야 한다.  
 - 그래서 액션한테 어떠한 곳에서 서버 액션을 불렀는지 알려주어야 한다.   
-
 
 
 ## Select  
@@ -89,6 +90,8 @@ SELECT * FROM chat WHERE array_column <@ ARRAY['contained', 'by'];
 
 ```
 
+### Select Example Todo
+
 ```js
 "use server";
 import { createServerSideClient } from "@/lib/supabase";
@@ -135,6 +138,55 @@ export const getTodosPublicBySearch = async (
 
 ```
 
+## Select With Join
+
+```js
+// 1.
+// countries와 cities는 1:N 관계  
+// - 자식 테이블 조회
+const { data, error } = await supabase
+  .from('countries')
+  .select(`
+    name,
+    cities (
+      name
+    )
+  `)
+
+
+// 1.1
+// 갯수만 구하기  
+const { data, error } = await supabase
+  .from('countries')
+  .select(`*, cities(count)`)
+
+
+// 2.
+// users와 teams는 N:M 관계  
+// - join table 자동으로 알고 조회 해준다.  
+const { data, error } = await supabase
+  .from('users')
+  .select(`
+    name,
+    teams (
+      name
+    )
+  `)
+
+// 3.
+// users와 messages는 1:N관계 - 1 sender 
+// users와 messages는 1:N관계 - 2 receiver  
+// - from:users!messages_sender_id_fkey(name),
+// - 별칭:테이블!외래키제약(필드선태)  
+const { data, error } = await supabase
+  .from('messages')
+  .select(`
+    content,
+    from:users!messages_sender_id_fkey(name),
+    to:users!messages_receiver_id_fkey(name)
+  `)
+
+```
 
 ## Mutation  
 
