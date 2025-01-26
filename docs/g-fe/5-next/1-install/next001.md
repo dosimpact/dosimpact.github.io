@@ -120,6 +120,10 @@ yarn dev
 
 ## 3.Radix UI 설치 방법  
 
+3.1 install : https://ui.shadcn.com/docs/installation/next
+3.2 dark mode : https://ui.shadcn.com/docs/dark-mode/next
+
+요약 
 ```js
 
 // Install and configure Next.js. https://ui.shadcn.com/docs/installation/next

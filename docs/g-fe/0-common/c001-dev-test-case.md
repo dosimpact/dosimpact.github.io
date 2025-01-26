@@ -4,20 +4,29 @@ sidebar_position: 1
 
 # FE 개발단계 체크 리스트  
 
-1.Requirements
-2.Develop
-3.QA
-4.Monitoring & Metric  
+- [FE 개발단계 체크 리스트](#fe-개발단계-체크-리스트)
+  - [Requirements](#requirements)
+  - [Develop](#develop)
+    - [API Spec](#api-spec)
+    - [React](#react)
+    - [Testing](#testing)
+      - [📌 Sanity test](#-sanity-test)
+      - [📌 Unit Test Code](#-unit-test-code)
+  - [QA](#qa)
+  - [Monitoring \& Metric](#monitoring--metric)
+  - [회고](#회고)
 
+
+1.Requirements Level
+2.Develop Level 
+3.QA Level
+4.Monitoring & Metric Level  
 
 ## Requirements  
 
-## Develop 
 
-### 다른 사람들의 짠 코드의 익숙도를 체크하자.  
-
-아무리 잘 짠 코드라도, 간단한 코드라도 남이 짠 코드를 바탕으로 무언가를 만들려고 하면 복잡하다. 그래서 다른 사람들의 코드를 마치 내가 짠 코드 처럼 익숙해지는 단계가 필요하다.  
-- 여러가지 서칭을 통해서 가능하다.  
+- [ ] 📌 다른 사람들의 짠 코드의 로직을 잘 이해 해야함(익숙도를 체크.)  
+    - 아무리 잘 짠 코드라도, 간단한 코드라도 남이 짠 코드를 바탕으로 무언가를 만들려고 하면 복잡하다. 그래서 다른 사람들의 코드를 마치 내가 짠 코드 처럼 익숙해지는 단계가 필요하다.  
 
 7.1 API Level은 반드시 파악할 것  
 >API 정리는 블랙박스 같은 컴포넌트를 파악하는 첫 단추이다. 리모컨의 회로를 들여다 보기전에 어떠한 버튼이 있는지 파악하는것이다.  
@@ -34,6 +43,12 @@ sidebar_position: 1
 - *Validator에   
 
 
+## Develop 
+
+- [ ] UI Broken Test & Responsive 
+  - *i18n영역은 영어로 바뀌면 깨질 수 있다. 숫자 영역은 최대값을 넣으면 깨질 수 있다. 반드시 UI가 어떻게 반응할지 테스트 한다.  
+  - 예) min-width ~ context-fit ~ max-width 의 범위를 넘어가면, wrap으로 개행 처리.   
+    - 최후의 수단으로 언어별, 숫자별 UI의 마크업을 달리한다. 혹은 font-size 등의 CSS를 달리한다.   
 
 ### API Spec  
 
