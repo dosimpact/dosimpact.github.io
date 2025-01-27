@@ -12,7 +12,6 @@ sidebar_position: 7
 
 ### 문제유형. 그냥 다해보기
 
-
 아홉 난쟁이 https://www.acmicpc.net/problem/2309  
 - 노트 : For문으로 하나씩 다 돌려보는 기초.  
 
