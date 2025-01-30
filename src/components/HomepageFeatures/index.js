@@ -26,7 +26,7 @@ const FeatureList = [
     title: "Next + TailwindCSS",
     description: <></>,
     imgSrc: "/img/th-tail.png",
-    linkTo: "/docs/g-fe/next/next6-TailwindCSS",
+    linkTo: "/docs/g-fe/next/next6-TailwindCSS-1",
   },
   {
     title: "Supabase Concepts",
