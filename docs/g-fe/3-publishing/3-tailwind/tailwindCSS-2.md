@@ -1,10 +1,10 @@
 ---
-sidebar_position: 6
+sidebar_position: 2
 ---
 
-# Next + TailwindCSS eg
+# TailwindCSS 2 - eg
 
-- [Next + TailwindCSS eg](#next--tailwindcss-eg)
+- [TailwindCSS 2 - eg](#tailwindcss-2---eg)
   - [eg) 픽토그램 - 신호등, 횡단보드](#eg-픽토그램---신호등-횡단보드)
   - [eg) Next Image + gradient](#eg-next-image--gradient)
   - [eg) text 배경 강조](#eg-text-배경-강조)
