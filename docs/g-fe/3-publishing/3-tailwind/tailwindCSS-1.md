@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# TailwindCSS
+# TailwindCSS 1 Basic
 
-- [TailwindCSS](#tailwindcss)
+- [TailwindCSS 1 Basic](#tailwindcss-1-basic)
   - [playground](#playground)
     - [📌 CSS 작성 규칙](#-css-작성-규칙)
   - [단위체계](#단위체계)
@@ -26,7 +26,6 @@ sidebar_position: 1
     - [text truncate](#text-truncate)
   - [etc](#etc)
     - [twMerge](#twmerge)
-    - [color-scheme](#color-scheme)
 
 ## playground
 
@@ -170,6 +169,7 @@ className="bg-neutral-900/90 backdrop-blur-sm fixed inset-0"
 
 ### 3.1 text-color, text-size, font-bold, cursor
 
+https://tailwindcss.com/docs/font-size
 ```js
 # color
 className="text-green-500"
@@ -182,7 +182,8 @@ className="font-medium font-[500] font-bold font-[700]"
 
 className="cursor-pointer"
 ```
-
+![Alt text](image-7.png)  
+- xs(12), sm(14), base(16), lg(18), xl(20), 2xl(24), 3xl(30), 4xl(36)
 
 ### 3.2 hover, transition, :disabled
 
