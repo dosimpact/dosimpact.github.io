@@ -121,8 +121,8 @@ using Auth UI ( @supabase/auth-ui-react )
 ```js
 // components/auth-modal.tsx
 
-"use client";
-import { Button } from "@/components/ui/button";
+'use client';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -130,30 +130,31 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client/supabase-browser";
-import { User } from "@supabase/supabase-js";
+} from '@/components/ui/dialog';
+import { Session, User } from '@supabase/supabase-js';
 
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import useHydrate from "@/hooks/useHydrate";
-import { DotLoader } from "react-spinners";
+import { Auth } from '@supabase/auth-ui-react';
+import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { DotLoader } from 'react-spinners';
+import { createSupabaseBrowserClient } from '@/lib/supabase/browser-client';
+import useHydrate from '@/hooks/useHydrate';
+import { useEffect, useState } from 'react';
 
-interface AuthHeaderProps {
-  user?: User | null;
-}
+interface AuthHeaderProps {}
 
-export function AuthModal({ user }: AuthHeaderProps) {
+export function AuthModal({}: AuthHeaderProps) {
   const isHydrate = useHydrate();
-  const isLogin = !!user?.email;
   const supabase = createSupabaseBrowserClient();
+  const [userSession, setUserSession] = useState<Session | null>(null);
+  const user = userSession?.user;
+  const isLogin = user?.email;
 
   // without auth-ui
   const handleGoogleLogin = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "google",
+      provider: 'google',
       options: {
-        redirectTo: process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO,
+        redirectTo: process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO_PKCE,
       },
     });
   };
@@ -163,7 +164,16 @@ export function AuthModal({ user }: AuthHeaderProps) {
     window.location.reload();
   };
 
-  if (!isHydrate) return <DotLoader color={"white"} size={16} />;
+  useEffect(() => {
+    const getUserSession = async () => {
+      const { data: userSession } = await supabase.auth.getSession();
+
+      if (userSession) setUserSession(userSession?.session);
+    };
+    getUserSession();
+  }, []);
+
+  if (!isHydrate) return <DotLoader color={'white'} size={16} />;
 
   return (
     <Dialog>
@@ -192,7 +202,7 @@ export function AuthModal({ user }: AuthHeaderProps) {
               theme: ThemeSupa,
             }}
             onlyThirdPartyProviders
-            providers={["google"]}
+            providers={['google']}
           />
         </DialogHeader>
       </DialogContent>
@@ -287,6 +297,7 @@ kakao developers 설정
 3.제품 설정 > 카카오 로그인 탭
 - (supabase 정보 --> kakao developers 설정) 설정해야 합니다.  
 - 1.Callback URL (for OAuth) > Redirect URI 추가 eg) https://YOURS.supabase.co/auth/v1/callback  
+- 2.카카오 로그인 > 활성화 설정 > ON  
 
 4.임시로 비즈앱으로 전환 및 개인정보 동의를 받아야 합니다.  
 

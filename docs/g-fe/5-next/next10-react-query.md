@@ -14,7 +14,6 @@ sidebar_position: 10
 
 ```
 yarn add @tanstack/react-query @tanstack/react-query-devtools @tanstack/react-query-next-experimental
-
 *추후 experimental 이 빨리 사라졌으면 한다.  
 ```
 

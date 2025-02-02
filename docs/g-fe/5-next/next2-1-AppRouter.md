@@ -16,6 +16,9 @@ sidebar_position: 2
     - [hydration이 끝났는지 알 수 있는 방법](#hydration이-끝났는지-알-수-있는-방법)
     - [revalidate](#revalidate)
   - [Routing](#routing)
+    - [Loading UI and Streaming](#loading-ui-and-streaming)
+    - [Redirecting](#redirecting)
+    - [Route Groups](#route-groups)
     - [Dynamic Routes](#dynamic-routes)
     - [Parallel Routes](#parallel-routes)
     - [Intercepting Routes](#intercepting-routes)
@@ -292,12 +295,32 @@ export const revalidate = 0;
 
 [Routing Fundamentals](https://nextjs.org/docs/app/building-your-application/routing)
 
+### Loading UI and Streaming
+- streaming-with-suspense : suspense를 이용해서 UI 스트리밍 하기   
+  - https://nextjs.org/docs/14/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense
+
+
+### Redirecting
+
+2.Optimizing data lookup performance  
+- Bloom Filter를 사용해서 특정 url에는 확실하게 데이터가 없는지 판단할 수 있다.  
+- Bloom Filter의 원리는 요소를 해시화 하여 마킹을 하는 원리이다. 삽입,검색 = O(k), k는 해시 함수 개수   
+
+
+### Route Groups
+>URL경로 매커니즘에 영향없이, 디렉터리를 정리하고 싶을때  
+- 예를들어 인증한 사용자만 접근하는 디렉터리, 모두가 접근 가능한 디렉터리, 미인증 사용자만 접근 가능한 디렉터리  
 
 ### Dynamic Routes
+>동적 경로에 대한 처리,
+- Generating Static Params : 세그먼트에 대해서 정적 페이지를 생성하는 로직 
+
 
 ### Parallel Routes
+>Streaming UI를 app router에 구현했다. @slot 컨벤션을 사용한다.  
 
-### Intercepting Routes
+### Intercepting Routes  
+>사진 카드를 클릭해서 모달창에 사진 UI을 보여준다. 하지만 현재 링크를 다시 브라우저에 넣으면 사진 페이지로 이동하고 싶을때    
 
 
 
