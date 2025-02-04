@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Responsive  
+# Responsive Layout
 
 디자인 파악하기  
 1.UI안에서는 가변하는 부분이 있다.  
@@ -34,3 +34,12 @@ sidebar_position: 4
 
 ## 버그 케이스 관리하기
 - span 태그에서 - line height 조정  
+
+
+## 챗 화면 레이아웃
+
+![Alt text](image.png)
+https://excalidraw.com/#json=6zXxBddXK6_eedBqqUUvz,LA-iKY6rc0HDBusJZmNjSA  
+
+가변 너비 적용 : width:full + fit-content + max-width  
+정렬 적용 : margin-left:auto, margin-rigth:auto  
