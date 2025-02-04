@@ -138,3 +138,25 @@ console.log(validateInput("abc"));     // false (문자열)
 console.log(validateInput("12.34.56")) // false (잘못된 형식)
 
 ```
+
+## next.js matcher
+
+- / 로 시작하는 모든 경로에 대해서  
+- X(?!Y)  Negative lookahead  X if not followed by Y 조건을 건다.
+- 그 조건은 _next/static, .. robots.txt 등의 문자열이 따라오지 않는 경로이다.  
+- 즉, 위 조건에 걸린다면 미들웨어는 작동하지 않는다.  
+```Js
+export const config = {
+  matcher: [
+    /*
+     * BlackListing
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
+};
+
+
+```
