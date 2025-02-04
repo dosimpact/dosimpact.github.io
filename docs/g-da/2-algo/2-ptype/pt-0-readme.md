@@ -13,3 +13,6 @@ sidebar_position: 0
 
 Review Queue
 >https://www.notion.so/11164f8edcb580488ba3e967b4eee866?p=17b64f8edcb5807f87c9ca8e1942d42b&pm=s
+
+Algorithms
+- https://www.cs.usfca.edu/~galles/visualization/Algorithms.html  

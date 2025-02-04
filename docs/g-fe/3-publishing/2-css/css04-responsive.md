@@ -38,8 +38,40 @@ sidebar_position: 4
 
 ## 챗 화면 레이아웃
 
+### width 반응형  
 ![Alt text](image.png)
 https://excalidraw.com/#json=6zXxBddXK6_eedBqqUUvz,LA-iKY6rc0HDBusJZmNjSA  
 
-가변 너비 적용 : width:full + fit-content + max-width  
-정렬 적용 : margin-left:auto, margin-rigth:auto  
+1.가변 너비 적용 : width:full + fit-content + max-width  
+
+2.정렬 적용 : margin-left:auto, margin-rigth:auto  
+
+
+### height 반응형  
+
+![Alt text](image-1.png)
+https://play.tailwindcss.com/KouIC0NGnM
+
+1.최상위 부모 너비 100dvh
+2.부모 높이 승계 height 100%  
+3.하단의 고정형 인풋영역은 제외한 모든 공간 차지하기
+  - container - h-full flex, flex-col
+  - child1 - flex-1 *overflow-hidden*
+  - child2 - h-4
+  - * flex:1과 overflow-hidden이 만나면 flex1이 무한정 늘어나는것을 방지할 수 있다.
+4.부모 높이 승계 h-full, overflow-y-auto
+  - * 하위 요소에서 안보이는 영역들을 스크롤링 할 수 있다.  
+
+### height 반응형 Ver2 ( with top nav )  
+
+![Alt text](image-2.png)
+https://play.tailwindcss.com/6sv9K7HGLz
+
+5.
+- 위 원리와 동일하게 Nav , Chat Container 에도 flex-1 + overflow-hidden으로 가변 높이를 만들어야 한다.   
+
+
+
+## 참고
+- https://www.daleseo.com/css-screen-height/
+- https://www.daleseo.com/css-width/
