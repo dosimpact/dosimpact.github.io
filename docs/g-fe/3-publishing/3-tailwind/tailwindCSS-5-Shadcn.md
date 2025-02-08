@@ -1,27 +1,28 @@
 ---
-sidebar_position: 4 
+sidebar_position: 5
 ---
 
-# TailwindCSS DarkMode, Theme
+# Shadcn Install
 
-- [TailwindCSS DarkMode, Theme](#tailwindcss-darkmode-theme)
-  - [📌 Dark Mode](#-dark-mode)
-    - [Install](#install)
-    - [참고](#참고)
-  - [📌 Theme](#-theme)
-    - [📕 tailwind는 레이어 디렉티브 개념을 사용한다. `예, @layer base `](#-tailwind는-레이어-디렉티브-개념을-사용한다-예-layer-base-)
-    - [color-scheme](#color-scheme)
+TailwindCSS 기반의 디자인 시스템이다. Radix 컴포넌트로 만들어짐.
 
-## 📌 Dark Mode
+## Install 
 
-### Install
+## shadcn/ui 설정   
 
-https://ui.shadcn.com/docs/dark-mode/next
+install : https://ui.shadcn.com/docs/installation/next
+
+
+- pnpm dlx shadcn@latest init
+- pnpm dlx shadcn@latest add button
+- pnpm dlx shadcn@latest add dropdown-menu
+
+## Dark Mode
+
+dark mode : https://ui.shadcn.com/docs/dark-mode/next
 - ThemeProvider로 다크모드를 지원한다. 
 - 첫화면 랜더링에서 hydration 오류가 잔존한다.(nextjs 15 버전, suppressHydrationWarning 으로 가이드 되고 있음)
 
-
-### 참고
 Image darkmode -> invert 
 ```
         <Image
@@ -33,8 +34,7 @@ Image darkmode -> invert
               />
 ```
 
-
-## 📌 Theme
+## shadcn-Theming
 
 Theming : https://ui.shadcn.com/docs/theming#css-variables  
 - 2가지 방식 (CSS Variables, Utility classes)으로 테밍 가능.  
@@ -44,6 +44,7 @@ Theming : https://ui.shadcn.com/docs/theming#css-variables
   - suffix 변수명 컨벤션 : background는 배경색, foreground는 텍스트 색 
     - 실제 변수 정의는 foreground 만 suffix 적용.  
 - 변수를 추가하려면 globals.css 에 추가 후 tailwind.config.ts 에 추가 필요.  
+
 
 Theme Preset 사용 : https://ui.shadcn.com/themes  
 - CSS Variables 에 대한 사전 설정을 고를 수 있다.  
@@ -58,12 +59,12 @@ Tailwind의 레이어 우선순위
 
 2.2 `@layer` 라는 디렉티브로 css파일에 적용한다.  
 
-### color-scheme
+## shadcn-blocks
 
-```
-html,body,:root{
-  height: 100%;
-  background-color: black;
-  color-scheme: dark;
-}
-```
+blocks 개념 : https://ui.shadcn.com/docs/blocks 
+- 재사용 가능한 tailwind 컴포넌트를 만들고, 컴포넌트 단위로 레지스트리를 관리하는 프레임워크이다.  
+- 로컬에서 구동해서 확인 가능 하며 개인화된 라이브러리를 만들어서 파는 사람도 존재.! 
+- https://www.tailwindawesome.com/resources/shadcnblocks-com
+
+예제
+- npx shadcn@latest add sidebar-07 사용  

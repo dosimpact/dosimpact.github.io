@@ -19,6 +19,7 @@ sidebar_position: 2
       - [eg) cookie counter](#eg-cookie-counter)
   - [3.Server actions](#3server-actions)
     - ['use server'](#use-server)
+    - [use server vs server-only](#use-server-vs-server-only)
   - [4.RSC](#4rsc)
     - [RSC with server actions](#rsc-with-server-actions)
   - [metadata](#metadata)
@@ -296,8 +297,6 @@ export const config = {
   - 그래서 useEffect 등의 라이프 싸이클 메서드나 이벤트로 호출해야 함.  
   - 브라우저에서 알아서 API가 만들어져서 서버로 갔다 온다.  
 
-
-
 ```js
 "use server";
 const todoList = [
@@ -323,8 +322,20 @@ export const deleteTodo = async (id) => {
   return todoList;
 };
 
-
 ```
+
+
+### use server vs server-only
+
+"use server" for allowing client to call the function to be turned into an endpoint.
+- 서버 액션으로 함수를 사용하려면 'use server' 디렉티브를 사용해야 한다.  
+- 1.함수를 클라이언트에서 원격으로 부를 수 있도록 뚫어주는 역할을 하면서,  
+- 2.함수를 클라이언트에서 서버로 옮기는 기능으로도 보여진다.    
+
+"server-only" prevents it being shared to the client if imported.   
+- import "server-only" 모듈로 반드시 서버에서만 동작하는 모듈을 정의한다.  
+
+
 
 ## 4.RSC 
 

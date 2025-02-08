@@ -8,12 +8,6 @@ sidebar_position: 5
   - [공식문서](#공식문서)
   - [특징](#특징)
   - [Key Features](#key-features)
-    - [Accessible](#accessible)
-    - [Unstyled](#unstyled)
-    - [Opened](#opened)
-    - [Uncontrolled](#uncontrolled)
-    - [Developer experience](#developer-experience)
-    - [Incremental adoption](#incremental-adoption)
   - [composition (asChild)](#composition-aschild)
   - [Dialog Usage](#dialog-usage)
   - [More](#more)
@@ -27,30 +21,30 @@ https://www.radix-ui.com/primitives/docs/overview/introduction
 
 ## Key Features
 
-### Accessible
+Accessible
 
 - 구성 요소는 가능한 경우 WAI-ARIA 디자인 패턴을 준수. 
 - 아리아 및 역할 속성, 포커스 관리, 키보드 탐색 등 접근성과 관련된 어려운 구현 세부 사항을 처리합니다. 
 
-### Unstyled
+Unstyled
 
 - 컴포넌트는 제로 스타일로 제공
 - 스타일링을 완벽하게 제어할 수 있습니다.
 - 컴포넌트는 모든 스타일링 솔루션(바닐라 CSS, CSS 전처리기, CSS-in-JS 라이브러리)으로 스타일링할 수 있습니다.
 - TailWindCSS랑 잘 붙고, 공식문서에 예시가 잘 되어있다. 
 
-### Opened
+Opened
 
 - 커스터마이징에 열려있다.
 - 각 컴포넌트 부분에 대한 세분화된 액세스를 제공, 자신만의 이벤트 리스너, 프롭 또는 레퍼런스를 추가 가능  
 
 
-### Uncontrolled
+Uncontrolled
 
 - 해당되는 경우 컴포넌트는 기본적으로 제어되지 않지만 제어할 수도 있습니다. 
 - 모든 동작 배선은 내부적으로 처리되므로 로컬 상태를 만들 필요 없이 최대한 원활하게 시작하고 실행할 수 있습니다.
 
-### Developer experience
+Developer experience
 
 - 저희의 주요 목표 중 하나는 최상의 개발자 경험을 제공
 - radix 프리미티브는 완전한 타입의 API를 제공합니다. 
@@ -58,7 +52,7 @@ https://www.radix-ui.com/primitives/docs/overview/introduction
 - 사용자가 렌더링된 요소를 완전히 제어할 수 있도록 asChild 프로퍼티를 구현했
 
 
-### Incremental adoption
+Incremental adoption
 
 - 점직적으로 설치한다.  
 
