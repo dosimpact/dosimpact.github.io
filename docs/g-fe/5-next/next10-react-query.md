@@ -58,6 +58,11 @@ export function getQueryClient() {
 }
 ```
 
+ReactQueryStreamedHydration
+- This component is responsible for:
+ * - hydrating the query client on the server
+ * - dehydrating the query client on the server
+
 ```js
 // app/query-provider.tsx
 "use client";
@@ -104,7 +109,7 @@ export default async function RootLayout({
 
 ## 📌 Nextjs Suspense Streaming  
 
-
+https://tanstack.com/query/latest/docs/framework/react/examples/nextjs-suspense-streaming
 
 흐름
 - 1.`useSuspenseQuery` 을 이용하기 위해 Suspense 컴포넌트로 감싼다.  
