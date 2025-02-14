@@ -26,6 +26,7 @@ sidebar_position: 1
     - [text truncate](#text-truncate)
   - [etc](#etc)
     - [twMerge](#twmerge)
+    - [tailwindcss - nested group, data attribute variants](#tailwindcss---nested-group-data-attribute-variants)
 
 ## playground
 
@@ -251,4 +252,59 @@ React, NextJS에서 사용한다.
 ```js
 import { twMerge } from "tailwind-merge";
 className={twMerge(``,active && "text-white")}
+```
+
+
+### tailwindcss - nested group, data attribute variants
+
+```js
+'use client';
+import { motion } from 'framer-motion';
+import cx from 'classnames';
+import { SparklesIcon } from 'lucide-react';
+
+// 1.재사용 가능한 컴포넌트의 group은 nested group 을 사용한다.
+// - group에 별칭을 달아주는 느낌, ( group/message,group-hover/message:bg-muted )
+// - https://tailwindcss.com/blog/tailwindcss-v3-2#nested-group-and-multiple-peer-support-using-variant-modifiers
+
+// 2.Data attribute variants
+// - https://tailwindcss.com/blog/tailwindcss-v3-2#data-attribute-variants
+export const ThinkingMessage = () => {
+  const role = 'assistant';
+
+  return (
+    <motion.div
+      className="w-full mx-auto max-w-3xl px-4 group/message "
+      initial={{ y: 5, opacity: 0 }}
+      animate={{ y: 0, opacity: 1, transition: { delay: 1 } }}
+      data-role={role}
+    >
+      <div
+        className={cx(
+          `flex gap-4 w-full rounded-xl
+           group-data-[role=user]/message:px-3 
+           group-data-[role=user]/message:w-fit 
+           group-data-[role=user]/message:ml-auto 
+           group-data-[role=user]/message:max-w-2xl 
+           group-data-[role=user]/message:py-2
+           `,
+          {
+            'group-data-[role=user]/message:bg-muted': true,
+          },
+        )}
+      >
+        <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border">
+          <SparklesIcon size={14} />
+        </div>
+
+        <div className="flex flex-col gap-2 w-full">
+          <div className="flex flex-col gap-4 text-muted-foreground">
+            Thinking...
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 ```
