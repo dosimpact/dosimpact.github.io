@@ -4,6 +4,10 @@ sidebar_position: 11
 
 # AI Agents    
 
+- [AI Agents](#ai-agents)
+  - [생각의 틀 만들기](#생각의-틀-만들기)
+  - [RAG Based DStore](#rag-based-dstore)
+
 
 구글 에이전트 백서 : https://drive.google.com/file/d/1oEjiRCTbd54aSdB_eEe3UShxLBWK9xkt/view    
 
@@ -11,12 +15,17 @@ sidebar_position: 11
 ![Alt text](image-8.png)  
 
 Orchestration  
-- 1.생각의 틀 만들기
+- 1.생각의 틀 만들기 ReAct, CoT, ToT
 - 2.생각을 저장하기 (캐시)  
-- 3.모델 추론 : RAG  
+- 3.모델 추론 및 계획  
 
 Tools  
-- 외부 API 호출   
+- 1.Extensions : 외부 API 호출을 위한 파라미터, 설명 등 LLM을 위한 메타데이터  
+- 2.Functions : Live API가 아니며, AI Agent가 호출하지 않고 클라이언트에서 호출한다. 즉, AI는 어떤 Live API 호출할지 + 인자까지만 출력하고 실제 실행은 클라이언트 사이드에서 진행.  
+  - 인증, 파일 삭제 명령어, 사용자 승인이 필요한 경우  
+  - Client Side에서 데이터 정리, API 선택, 후처리 등이 필요한 경우
+
+![Alt text](image-7.png)
 
 
 ## 생각의 틀 만들기
@@ -70,3 +79,10 @@ Tools
 👉 주요 특징: 여러 경로(branch)를 탐색하면서 최적의 해결책을 도출.
 ```
 
+## RAG Based DStore  
+
+![Alt text](image-9.png)
+
+- Website content
+- Structured Data in formats like PDF, Word Docs, CSV, Spreadsheets, etc.
+- Unstructured Data in formats like HTML, PDF, TXT, etc.
