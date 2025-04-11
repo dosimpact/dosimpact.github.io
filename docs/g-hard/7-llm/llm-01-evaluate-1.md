@@ -2,14 +2,14 @@
 sidebar_position: 1
 ---
 
-# Evaluation LLM Summarization    
+# 1.Evaluation LLM Summarization    
 
 
-- [Evaluation LLM Summarization](#evaluation-llm-summarization)
-	- [Precision, Recall, F1 Score](#precision-recall-f1-score)
-			- [Precision 과 Recall 의 관계](#precision-과-recall-의-관계)
-	- [Evaluate LLM Summarization](#evaluate-llm-summarization)
-
+- [1.Evaluation LLM Summarization](#1evaluation-llm-summarization)
+  - [Precision, Recall, F1 Score](#precision-recall-f1-score)
+      - [Precision 과 Recall 의 관계](#precision-과-recall-의-관계)
+  - [Evaluate LLM Summarization](#evaluate-llm-summarization)
+  - [NLP Evaluation - BLEU, ROUGE, BERTScore, MoverScore](#nlp-evaluation---bleu-rouge-bertscore-moverscore)
 
 
 
@@ -142,3 +142,75 @@ https://medium.com/data-science/how-to-evaluate-llm-summarization-18a040c3905d#6
  - 요약 내 중복된 정보나 주장을 LLM이 평가.
 4.	Coherence Score (문장 흐름 일관성)
  - 인접하지 않은 문장 간 의미 유사도 (cosine similarity)로 평가.
+
+
+## NLP Evaluation - BLEU, ROUGE, BERTScore, MoverScore
+
+![Alt text](image-2.png)    
+![Alt text](image-3.png)   
+![Alt text](image-4.png) 
+
+BERTScore, ROUGE, BLEU는 모두 자연어 처리(NLP)에서 요약, 번역, 생성된 문장 평가 등에 쓰이는 텍스트 유사도 평가 지표예요. BERTScore, ROUGE, BLEU, MoverScore, MoverScore v2는 **자연어 처리(NLP)**에서 생성된 문장(예: 요약, 번역, 챗봇 답변 등)이 얼마나 좋은지를 평가하는 문장 간 유사도 측정 방법이에요. 각각 다른 방식으로 기준 문장(reference)과 생성 문장(candidate)의 유사도를 계산해요.  
+
+1. BLEU (Bilingual Evaluation Understudy), 2002년  
+ - 방식: 단어 n-gram(연속된 단어 조합) 비교  
+ - 특징: 기계 번역 품질 평가용으로 처음 개발됨  
+ - 단점: 단어의 정확한 일치만 보기 때문에 어휘나 표현이 달라도 점수가 낮게 나올 수 있음
+ - 기준: The cat is on the mat
+ - 생성: The cat is sitting on the mat
+ - → “is on the mat”은 일치하지만 “sitting”이 들어가서 점수는 낮게 나올 수 있어요.
+
+
+2. ROUGE (2004년) (Recall-Oriented Understudy for Gisting Evaluation)
+ - 방식: 생성 문장에서 기준 문장과 겹치는 단어(또는 n-gram) 비율 측정
+ - 언제 쓰나요?: 요약 평가에서 많이 사용해요.  
+ - 종류가 여러 개 있어요.  
+ - ROUGE-N: n-gram recall 기반 (BLEU는 precision 기반이었죠)  
+ - ROUGE-L: Longest Common Subsequence (LCS) 기반 → 두 문장 사이의 가장 긴 공통 부분열 길이.  
+   - 장점: 문장 길이에 따라 잘 맞게 recall 기반으로 평가 가능.   
+   - 단점: 역시 단어 매칭 기반이라 의미는 이해 못함.  
+ - 용도: 요약 평가에 많이 사용됨  
+ - 특징: 기억률(recall) 중심 — 기준 문장에서 얼마나 많이 건졌나를 본다는 뜻  
+
+3. BERTScore (2019년)  
+ - BERT 같은 사전학습된 언어 모델을 이용해서, 문장 내 **단어의 의미(embedding)**를 벡터로 바꿔요.   
+ - 생성된 문장과 참조 문장의 **단어 의미 벡터 간 유사도(코사인 유사도)**를 비교해 점수를 내요.  
+ - 장점:문장이 다르더라도 의미가 비슷하면 높은 점수 가능 → 패러프레이징에도 강함.  
+ - 단점: 계산이 BLEU/ROUGE보다 무거움 (하지만 요즘 성능 충분한 GPU면 문제 없어요).  
+
+4. MoverScore
+ - 방식: 단어 임베딩 벡터를 바탕으로, 하나의 문장에서 다른 문장으로 단어 의미를 ‘이동’시키는 비용(워서스타인 거리)을 측정
+ - MoverScore는 BERTScore를 ‘개선’한 것이 아니고, BERTScore와는 다른 아이디어 기반의 평가 지표예요.
+ - 핵심 방식 :	단어 임베딩 간 의미 유사도 (cosine similarity)	임베딩 분포 간 이동 거리 (Earth Mover’s Distance) 계산
+ - 장점: 문장 전체 구조나 의미 흐름 반영 / 단점: 계산 복잡도 있음
+
+예를 들어 설명하면   
+ - 기준 문장: “The cat is on the mat”    
+ - 생성 문장: “The feline rests on the rug”   
+
+BERTScore  
+ - “cat” ↔ “feline” → 코사인 유사도 높음 → 높은 점수 
+ - 단어 단위 매칭 + 유사도 평균  
+
+MoverScore
+ - “cat”, “mat” → “feline”, “rug”  
+ - 문장 전체의 의미 분포를 하나에서 다른 쪽으로 ‘이동’시킴  
+ - 단어 수나 위치 차이도 반영하면서 의미적 유사성 고려  
+
+--- 
+
+5. MoverScore v2
+ - 업그레이드 버전: MoverScore v2는 MoverScore의 “의미만 보는 한계”를 개선해서, 문법·구문·개체명 등 더 풍부한 문장 구조 정보를 반영한 평가 지표   
+ - 문장 구조, 개체명(NER), 구문 구조까지 반영해서 더 정교하게 문장 유사도 판단    
+ - 실험적으로 여러 benchmark에서 성능 개선됨  
+
+![Alt text](image-5.png)      
+
+🔸 예시로 비교
+
+- 문장1	문장2	실제 의미 차이	MoverScore	MoverScore v2
+- “The doctor helped the patient”	“The patient helped the doctor”	
+- 실제 의미 차이는 큼, 근데 MoverScore는 유사 (단어 유사) 라고 판단.  
+- MoverScore v2는 다르다고 나옴 (구조까지 반영)
+
+
