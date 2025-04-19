@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[3726],{70157:t=>{t.exports=JSON.parse('{"title":"1.Python","description":"1.Python","slug":"/category/1python","permalink":"/docs/category/1python","navigation":{"next":{"title":"python virtualenv \uc124\uc815\ubc95","permalink":"/docs/g-da/py/py001"}}}')}}]);
