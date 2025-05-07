@@ -5,16 +5,21 @@ sidebar_position: 2
 # Zod  
 
 - [Zod](#zod)
-  - [eg) Basic - UserSchema](#eg-basic---userschema)
-  - [eg) gpt tools](#eg-gpt-tools)
-  - [eg) streamObject](#eg-streamobject)
+  - [eg - Schema Number](#eg---schema-number)
+  - [eg - Shame object, UserSchema](#eg---shame-object-userschema)
+  - [Utils](#utils)
+    - [eg - Hook useZodValidator](#eg---hook-usezodvalidator)
+    - [eg - gpt tools](#eg---gpt-tools)
+    - [eg) streamObject](#eg-streamobject)
   - [eg) refine, filetype](#eg-refine-filetype)
-  - [eg) SignUpSchema, LoginSchema](#eg-signupschema-loginschema)
+  - [Schema Examples](#schema-examples)
+    - [eg) SignUpSchema, LoginSchema](#eg-signupschema-loginschema)
 
 
 Zod 왜 사용하는가?  
 - 유효성 검증 라이브러리  
 - 타입추론 기능 
+- 
 ```js
 const UserSchema = z.object({
   name: z.string(),
@@ -24,7 +29,46 @@ type User = z.infer<typeof UserSchema>;
 ```
 - ai-sdk와 연동해서 사용 가능, json 스키마 모드에 zod를 연결하여 복잡한 구조의 응답 가능.  
 
-## eg) Basic - UserSchema    
+## eg - Schema Number
+
+```js
+import { z } from 'zod';
+
+export const SchemaMsgEnum = {
+  ERROR_MSG_NOT_NUMBER: 'ERROR_MSG_NOT_NUMBER',
+  ERROR_MSG_POINT_LIMIT: 'ERROR_MSG_POINT_LIMIT'
+};
+
+const POINT_LOWER_LIMIT = 10_000;
+const POINT_UPPER_LIMIT = 1_000_000_000;
+
+export const createPointErrorSchema = () =>
+  z.number({ message: SchemaMsgEnum.ERROR_MSG_NOT_NUMBER }) // 넘버타입이 아닐경우의 오류   
+    .optional() // undefined 허용
+    .nullable() // null 허용  
+    .refine(
+    value => {
+      // * refine은 위에서 걸리지 않는 이상 (문자열등에 걸려서 ERROR_MSG_NOT_NUMBER 애러 등) 실행된다.  
+      if (value === undefined || value === null) return true;  // optional, nullable 다시 체크해야함.  
+      return value >= POINT_LOWER_LIMIT && value <= POINT_UPPER_LIMIT;
+    },
+    {
+      message: SchemaMsgEnum.ERROR_MSG_POINT_LIMIT
+    }
+  );
+
+createPointErrorSchema().parse(null) // no error
+createPointErrorSchema().parse(undefined) // no error
+createPointErrorSchema().parse('awef') // error ERROR_MSG_NOT_NUMBER
+createPointErrorSchema().parse(0) // error ERROR_MSG_POINT_LIMIT
+createPointErrorSchema().parse(10_000) // no error
+createPointErrorSchema().parse(1_000_000_000) //  no error
+createPointErrorSchema().parse(1_000_000_001) // error ERROR_MSG_POINT_LIMIT
+```
+
+
+
+## eg - Shame object, UserSchema    
 
 - z.object : 객체의 구조 정의  
 - UserSchema.parse(body) : 유효성 검사 수행  
@@ -83,8 +127,40 @@ export const POST = async (request: Request) => {
 
 ```
 
+## Utils 
 
-## eg) gpt tools
+### eg - Hook useZodValidator 
+
+```js
+import { useEffect, useMemo, useState } from 'react';
+import { z } from 'zod';
+
+export function useZodValidator<T extends unknown>(value: T, zodSchema: z.ZodSchema) {
+  const [errors, setErrors] = useState<Array<string>>([]);
+  const schema = useMemo(() => zodSchema, []);
+  const hasError = errors?.length >= 1;
+
+  useEffect(() => {
+    const validate = (value: T) => {
+      const errorsTmp = [];
+
+      try {
+        schema.parse(value);
+      } catch (e) {
+        if (e instanceof z.ZodError) errorsTmp.push(...e.errors.map((err: any) => err.message));
+      }
+
+      setErrors([...errorsTmp]);
+    };
+
+    validate(value);
+  }, [value, schema]);
+
+  return { errors, hasError };
+}
+
+```
+### eg - gpt tools
 
 - free weahter api : https://api.open-meteo.com/v1/forecast?latitude=38&longitude=123&current=temperature_2m&hourly=temperature_2m&daily=sunrise,sunset&timezone=auto
 
@@ -115,7 +191,7 @@ export const POST = async (request: Request) => {
       },
 ```
 
-## eg) streamObject
+### eg) streamObject
 
 ```js
 const { elementStream } = await streamObject({
@@ -153,8 +229,9 @@ const FileSchema = z.object({
 });
 
 ```
+## Schema Examples    
 
-## eg) SignUpSchema, LoginSchema  
+### eg) SignUpSchema, LoginSchema  
 
 ```js
 import { z } from "zod";
