@@ -2,9 +2,9 @@
 sidebar_position: 0
 ---
 
-# ChatGPT Prompt Engineering
+# ChatGPT Prompt Engineering 1
 
-- [ChatGPT Prompt Engineering](#chatgpt-prompt-engineering)
+- [ChatGPT Prompt Engineering 1](#chatgpt-prompt-engineering-1)
   - [1.Guidelines 지침](#1guidelines-지침)
   - [2.Iterative 반복](#2iterative-반복)
   - [3.Summarizing 요약](#3summarizing-요약)

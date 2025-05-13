@@ -1,11 +1,11 @@
 {
-  "label": "6.GPT",
-  "position": 7,
+  "label": "6.AI Engineering",
+  "position": 6,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "6.GPT",
-    "description": "6.GPT"
+    "title": "6.AI Engineering",
+    "description": "6.AI Engineering"
   }
 }
