@@ -16,6 +16,7 @@ sidebar_position: 1
   - [useClickOutside](#useclickoutside)
   - [useIntersectionObserver](#useintersectionobserver)
   - [useFadeIn](#usefadein)
+  - [useEllipsis](#useellipsis)
 
 
 ## useShadowDOM  
@@ -497,5 +498,70 @@ export function useFadeIn(ref: RefObject<HTMLElement>, duration: number): void {
       animation.stop();
     };
   }, [ref, duration]);
+}
+```
+
+
+## useEllipsis  
+
+목적 : 텍스트가 짤리는 경우(ellipsis)인지 아닌지 판단한다. JS로 판단  
+
+📒 개념 scrollWith, clientWidth, offsetWidth는
+- ![img](https://preview.redd.it/diagram-for-offsetwidth-offsetheight-clientwidth-v0-jwjvndwwy6db1.png?auto=webp&s=de7877f7831cc836db0244225726511080df22f3)  
+- 200px 블럭이  50px의 부모에 의해 줄어들어 스크롤이 발생한다. 이때  scrollWith는 200px, clientWidth는 50px이다.  
+  - offsetWidth는 border 즉, 스크롤영역을 포함한 크기이다. 예를들어 70px 이 될 수 있다.   
+
+📒 개념 RefObject vs MutableRefObject
+- useRef의 타입 중 하나이다. 전자는 변경이 불가능한 ref이다.  
+- null초기값을 해야 RefObject로 선언된다. 그냥 정의가 그렇다.  
+  ```
+  - // DOM 요소를 위한 오버로드 (null 초기값 사용 시)
+  - function useRef<T>(initialValue: null): React.RefObject<T>;
+  - // 다른 값들을 위한 오버로드
+  - function useRef<T>(initialValue: T): React.MutableRefObject<T>;
+  - // 초기값 없는 경우
+  - function useRef<T = undefined>(): React.MutableRefObject<T | undefined>;
+  ```
+
+```js
+function useEllipsis<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [isEllipsis, setIsEllipsis] = useState(false);
+  const observerRef = useRef<ResizeObserver | null>(null);
+
+  useEffect(() => {
+    const checkEllipsis = () => {
+      const el = ref.current;
+      if (!el) return;
+
+      const hasEllipsis = el.offsetWidth < el.scrollWidth;
+      setIsEllipsis(hasEllipsis);
+    };
+
+    checkEllipsis(); 
+
+    observerRef.current = new ResizeObserver(() => {
+      checkEllipsis();
+    });
+
+    if (ref.current) observerRef.current.observe(ref.current);
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, []);
+
+  return { ref, isEllipsis };
+}
+
+--- 
+// eg sudo
+const TextEllipsis = ({value})=>{
+  const { ref, isEllipsis } = useEllipsis();
+
+  // css - overflow:hidden, text-overflow:ellipsis, white-space:no-wrap
+  return (
+    <div className="w-full truncate" ref={ref}> {isEllipsis ? <Tooltip value={value} /> : value } </div>
+  )
 }
 ```
