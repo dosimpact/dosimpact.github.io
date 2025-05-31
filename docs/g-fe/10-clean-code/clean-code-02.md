@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 101
 ---
 
 # Clean Code 2
