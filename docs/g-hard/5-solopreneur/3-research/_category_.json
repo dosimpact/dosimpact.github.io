@@ -1,0 +1,11 @@
+{
+  "label": "3.Research",
+  "position": 3,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "3.Research",
+    "description": "리서치 및 밴치마크"
+  }
+}
