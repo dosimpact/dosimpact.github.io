@@ -5,9 +5,17 @@ sidebar_position: 2
 # 2. RAG Chatbot With Supabase Vector DB  
 
 
+- [2. RAG Chatbot With Supabase Vector DB](#2-rag-chatbot-with-supabase-vector-db)
+  - [사전준비](#사전준비)
+    - [1.구글 Credentials](#1구글-credentials)
+    - [2.Supabase](#2supabase)
+  - [노드 구성](#노드-구성)
+  - [Refs](#refs)
+
+
 ## 사전준비  
 
-1.구글 Credentials  
+### 1.구글 Credentials  
 
 1.1 OAuth 인증 만들기  
 ![Alt text](image.png)  
@@ -36,7 +44,7 @@ sidebar_position: 2
 - 본인의 gmail 계정 입력  
 
 
-2.Supabase 
+### 2.Supabase 
 
 2.1 Auth 설정  
 
