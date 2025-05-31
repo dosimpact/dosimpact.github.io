@@ -1,10 +1,10 @@
 {
-  "label": "2.FSD",
+  "label": "2.Dir Pattern",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "2.FSD"
+    "description": "2.Dir Pattern"
   }
 }
