@@ -1,0 +1,10 @@
+{
+  "label": "4.AI App",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "4.AI App"
+  }
+}

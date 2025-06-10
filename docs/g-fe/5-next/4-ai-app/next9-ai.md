@@ -10,8 +10,9 @@ sidebar_position: 9
   - [📌 Basic](#-basic)
   - [📌 Generative User Interfaces](#-generative-user-interfaces)
   - [📌 Streaming Custom Data](#-streaming-custom-data)
-    - [eg, 마크 다운 문서를 써내려가는 streamtext + Streaming Custom Data](#eg-마크-다운-문서를-써내려가는-streamtext--streaming-custom-data)
-    - [eg, 마크 다운 문서를 첨삭하는 stream object + Streaming Custom Data](#eg-마크-다운-문서를-첨삭하는-stream-object--streaming-custom-data)
+    - [eg) 스크립트 요약하기](#eg-스크립트-요약하기)
+    - [eg) 마크 다운 문서 Streaming 응답](#eg-마크-다운-문서-streaming-응답)
+    - [eg) 문서를 첨삭 Streaming Object](#eg-문서를-첨삭-streaming-object)
 
 
 ## 주요 함수들  
@@ -413,7 +414,68 @@ export default ChatLiteUIStreamCustom;
 
 ```
 
-### eg, 마크 다운 문서를 써내려가는 streamtext + Streaming Custom Data  
+### eg) 스크립트 요약하기  
+- streamText + useCompletion
+
+```js
+// api/router-hander.ts
+export async function POST(request: NextRequest) {
+  const body = await request.json(); // { prompt: string }
+
+  const searchParams = request.nextUrl.searchParams;
+
+  const videoId = searchParams.get("video_id");
+
+  if (!videoId) {
+    return NextResponse.json(
+      { error: "비디오 ID를 추출할 수 없습니다." },
+      { status: 400 },
+    );
+  }
+
+  const webhookData = await n8nService.getVideoInfo(videoId);
+
+  const result = streamText({
+    model: openai("gpt-4.1-nano"),
+    system: "마크다운으로 요약해줘",
+    prompt: webhookData.text_only_ko,
+  });
+
+  return result.toDataStreamResponse();
+}
+---
+// summary.tsx
+import { Button } from "@/components/ui/button";
+import { useCompletion } from "@ai-sdk/react";
+import { Markdown } from "@/components/markdown/markdown";
+
+const Summary = () => {
+  const { completion, handleSubmit } = useCompletion({
+    initialInput: "initial input", // body.prompt 값  
+    initialCompletion: "initial completion", // 초기 LLM 출력 데이터  
+    api: "http://localhost:3000/api/yt-summary/general-summary?video_id=s5FNl52TIpk",
+    streamProtocol: "data", // streaming data protocol 을 따르는지 여부  
+  });
+
+  const onClickButton = () => {
+    handleSubmit();
+  };
+
+  return (
+    <div>
+      <Button onClick={onClickButton}>Submit</Button>
+      <Markdown>{completion}</Markdown>
+    </div>
+  );
+};
+
+export default Summary;
+
+```
+
+### eg) 마크 다운 문서 Streaming 응답
+
+- streamText + Streaming Custom Data  
 
 ```js
           const { fullStream } = await streamText({
@@ -440,7 +502,9 @@ export default ChatLiteUIStreamCustom;
           streamingData.append({ type: "finish", content: "" });
 ```
 
-### eg, 마크 다운 문서를 첨삭하는 stream object + Streaming Custom Data
+### eg) 문서를 첨삭 Streaming Object  
+
+- stream object + Streaming Custom Data
 
 ```js
 
