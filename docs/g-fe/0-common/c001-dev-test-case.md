@@ -87,6 +87,30 @@ sidebar_position: 1
 (사용성) 필요없는 사용자의 요청은 취소해라    
 - >요청에 abort 처리를 잘 하고 있는가?  
 
+📌 리렌더링  
+- [ ] useMemo, useCallback으로 리렌더링을 막았는가? 의존성 배열에 놓친것이 있는가?  
+- [ ] memo를 적절히 사용해서 재생성을 막았는가?  
+
+ 
+```
+userDict = { [id:number]:User } 으로 상태 선언함.
+getUserById 으로 사용자 정보를 얻어오는 경우 아래 케이스 적절?
+// 👃
+const targetUser = useCallback(()=> getUserById(targetId),[targetId]);
+
+// 👀
+// 위 경우에는 targetId가 변경되지 않는경우 최신의 유저 정보를 받아올 수 없다.
+
+// ✅
+const targetUser = useCallback(()=> getUserById(targetId),[targetId, userDict]);
+// userDict이 변한경우에도 targetUser를 갱신해야 한다.  
+
+```
+
+📌 전역, 지역, 서버 상태관리 
+- [ ] (공통) 리렌더링이 되는 컴포넌트라면 초기화, CleanUp 싸이클이 언제 필요한가?    
+- [ ] (공통) 재생성 되는 컴포넌트라면 초기화, CleanUp 싸이클이 언제 필요한가?  
+- [ ] 재생성 로직만으로 싸이클을 다룰 수 있는가?  
 
 ## 2.4 Testing  
 
