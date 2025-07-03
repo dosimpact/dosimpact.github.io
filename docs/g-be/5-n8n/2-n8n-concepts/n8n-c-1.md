@@ -177,7 +177,13 @@ n8n에서 워크플로우에서 데이터는 데이터 스트림이라는 개념
 --- 
 
 ## Part Code in n8n  
-https://docs.n8n.io/code/  
+https://docs.n8n.io/code/     
+
+
+📕 알아둘점  
+- Code에서 console.log 을 작성하면 브라우저의 콘솔로그에서 확인 가능하다.     
+- n8n에서 데이터 자료구조가 중요하다. 사전에 정의된 메서드로 데이터를 참조하는 별도의 프레임워크가 있다.     
+
 
 
 ## Usage) Trigger
