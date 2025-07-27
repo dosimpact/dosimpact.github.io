@@ -131,6 +131,7 @@ brew install docker-compose
 ```
 # 1. Colima 설치
 brew install colima
+brew install kubectl
 
 # 2. Docker CLI만 설치 (Docker Engine 없이)
 brew install docker
