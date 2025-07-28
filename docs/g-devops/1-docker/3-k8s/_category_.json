@@ -1,11 +1,11 @@
 {
-  "label": "K8S",
-  "position": 2,
+  "label": "3.K8S",
+  "position": 3,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "K8S",
-    "description": "K8S"
+    "title": "3.K8S",
+    "description": "3.K8S"
   }
 }
