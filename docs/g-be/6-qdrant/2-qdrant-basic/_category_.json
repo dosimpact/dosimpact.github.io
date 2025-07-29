@@ -1,0 +1,11 @@
+{
+  "label": "2.Qdrant Basic",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "2.Qdrant Basic",
+    "description": "2.Qdrant Basic"
+  }
+}
