@@ -1,0 +1,10 @@
+{
+  "label": "0.Work process",
+  "position": 0,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "0.Work process"
+  }
+}
