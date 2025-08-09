@@ -5,27 +5,30 @@ sidebar_position: 1
 # FE 개발단계 체크 리스트  
 
 - [FE 개발단계 체크 리스트](#fe-개발단계-체크-리스트)
-  - [1.Requirements](#1requirements)
-  - [2.Develop](#2develop)
-  - [2.0 Prepare](#20-prepare)
-  - [2.1 API Spec](#21-api-spec)
-  - [2.2 Markup/CSS](#22-markupcss)
-  - [2.3 React](#23-react)
-  - [2.4 Testing](#24-testing)
+  - [Process](#process)
+  - [1.Requirements \& System Design](#1requirements--system-design)
+  - [2.Develop Level](#2develop-level)
+    - [2.0 Prepare](#20-prepare)
+    - [2.1 API Spec](#21-api-spec)
+    - [2.2 Markup/CSS](#22-markupcss)
+    - [2.3 React](#23-react)
+  - [2.4 Testing Level](#24-testing-level)
     - [📌 Sanity test](#-sanity-test)
+  - [3.Test \& QA Level](#3test--qa-level)
     - [📌 Unit Test Code](#-unit-test-code)
-  - [3 Self QA](#3-self-qa)
-  - [Monitoring \& Metric](#monitoring--metric)
+  - [4.Monitoring \& Metric Level](#4monitoring--metric-level)
   - [회고](#회고)
 
+## Process
 
-1.Requirements Level
-2.Develop Level 
-3.QA Level
-4.Monitoring & Metric Level  
+- 1.Requirements 
+- 2.Develop    
+- 3.Test & QA   
+- 4.Monitoring Plan    
 
-## 1.Requirements  
+## 1.Requirements & System Design
 
+요구사항 수집 단계 및 준비
 
 - [ ] 📌 다른 사람들의 짠 코드의 로직을 잘 이해 해야함(익숙도를 체크.)  
     - 아무리 잘 짠 코드라도, 간단한 코드라도 남이 짠 코드를 바탕으로 무언가를 만들려고 하면 복잡하다. 그래서 다른 사람들의 코드를 마치 내가 짠 코드 처럼 익숙해지는 단계가 필요하다.  
@@ -45,19 +48,19 @@ sidebar_position: 1
 - *Validator에   
 
 
-## 2.Develop 
+## 2.Develop Level
 
 - [ ] UI Broken Test & Responsive 
   - *i18n영역은 영어로 바뀌면 깨질 수 있다. 숫자 영역은 최대값을 넣으면 깨질 수 있다. 반드시 UI가 어떻게 반응할지 테스트 한다.  
   - 예) min-width ~ context-fit ~ max-width 의 범위를 넘어가면, wrap으로 개행 처리.   
     - 최후의 수단으로 언어별, 숫자별 UI의 마크업을 달리한다. 혹은 font-size 등의 CSS를 달리한다.   
 
-## 2.0 Prepare  
+### 2.0 Prepare  
 
 - [ ] i18n이 400개 행이 된다면? xlsx to JSON 반드시 도구를 이용해라.  
   - *400개 한/영 옮기면 800번이나 왔다갔다 해야 한다. 실수안할 자신이 있는가?  
 
-## 2.1 API Spec  
+### 2.1 API Spec  
 
 📌 API Interface는 미리 공유 및 제안을 하자.  
 - FE에서 개발하는데 필요한 Interface를 미리 받아야 함. 안그러면 추가 개발 필요할 수 있다.    
@@ -65,14 +68,14 @@ sidebar_position: 1
 - eg) const GMV = 0.9  
 - ㄴ단위가 Percentage 인가?, TimeWindow가 7일일가? 1일인가?, Null가능?  
 
-## 2.2 Markup/CSS  
+### 2.2 Markup/CSS  
 
 해상도 대응, 가변 변수 확인하기  
 - [ ] 화면 해상도에 따라 컴포넌트가 줄어들면 어떻게 되는가? > 개행, 줄임표.  
 - [ ] 한/중/영 바꾸면 어떻게 되는가? > 개행, 줄임표.  
 - [ ] 값이 10억까지 가능한데 늘어나면 어떻게 되는가? > 개행, 줄임표.   
 
-## 2.3 React  
+### 2.3 React  
 
 
 📌 컴포넌트 하위 호환성 고려하기  
@@ -112,7 +115,7 @@ const targetUser = useCallback(()=> getUserById(targetId),[targetId, userDict]);
 - [ ] (공통) 재생성 되는 컴포넌트라면 초기화, CleanUp 싸이클이 언제 필요한가?  
 - [ ] 재생성 로직만으로 싸이클을 다룰 수 있는가?  
 
-## 2.4 Testing  
+## 2.4 Testing Level 
 
 ### 📌 Sanity test   
 
@@ -134,17 +137,19 @@ const targetUser = useCallback(()=> getUserById(targetId),[targetId, userDict]);
 - MFE의 환경에서 스타일이 깨지는 경우도 있음.  
 
 
+
+
+## 3.Test & QA Level  
+
+Table
+- [ ] 문구, 툴팁, 순서, 변역 꼼꼼히 시간가지고 의미 느끼며 체크하기.  
+
 ### 📌 Unit Test Code  
 
 특히나 그래프, 수치에 대한 함수는 테스트 코드를 반드시 작성한다.  
 - 계산식, 선형보간법, 특정 공식 구현, 메인 비즈니스 로직  
 
-## 3 Self QA  
-
-Table
-- [ ] 문구, 툴팁, 순서, 변역 꼼꼼히 시간가지고 의미 느끼며 체크하기.  
-
-## Monitoring & Metric  
+## 4.Monitoring & Metric Level
 
 
 --- 
