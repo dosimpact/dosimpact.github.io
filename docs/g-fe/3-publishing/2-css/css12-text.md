@@ -4,6 +4,126 @@ sidebar_position: 12
 
 # Text CSS    
 
+- [Text CSS](#text-css)
+    - [Badge](#badge)
+    - [Ellipsis Basic](#ellipsis-basic)
+    - [Ellipsis 2행](#ellipsis-2행)
+    - [Responsive Ellipsis](#responsive-ellipsis)
+  - [Note](#note)
+    - [-webkit 속성이 붙는 경우](#-webkit-속성이-붙는-경우)
+  - [Icon](#icon)
+    - [색상 상속받는 아이콘 설정](#색상-상속받는-아이콘-설정)
+
+
+### Badge 
+https://play.tailwindcss.com/LAirkC1RrN?size=514x720
+
+```jsx
+<!--  -->
+
+<!-- 1. 문제의 코드 -->
+<!-- 문제 : 배지가 안줄어든다. -->
+<span class="inline-flex flex-nowrap items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2">
+  <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+    <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+    <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+    <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+  </svg>
+  <span class="min-w-0 shrink-1 truncate">badge contentadge conadge conadge con</span>
+</span>
+<!-- flex를 쓰면 블록이니, w-fit으로 줄여도 동일하게 문제. -->
+<span class="flex w-fit flex-nowrap items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2">
+  <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+    <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+    <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+    <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+  </svg>
+  <span class="min-w-0 shrink-1 truncate">badge contentadge conadge conadge con</span>
+</span>
+
+<!-- 해결 : max-w-full -->
+<span class="inline-flex max-w-full items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2 align-middle">
+  <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+    <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+    <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+    <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+  </svg>
+  <!-- 핵심: 텍스트를 flex 아이템으로 만들고, 수축을 허용(min-w-0) + 말줄임(truncate) -->
+  <span class="min-w-0 truncate">badge contentadge conadge conadge con</span>
+</span>
+
+<!-- 2. 문제의 코드 -->
+<!-- box2는 줄어드는데 배지는 안줄어든다. -->
+<div class="flex flex-row">
+  <div class="min-w-[100px] flex-0 bg-pink-100">box - 1</div>
+  <div class="inline-flex min-w-0 flex-1 flex-nowrap overflow-hidden">
+    <span class="inline-block min-w-[60px]">box - 2</span>
+    <span class="inline-flex max-w-full shrink-1 items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2">
+      <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+        <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+        <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+        <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+      </svg>
+      <!-- 핵심: 텍스트를 flex 아이템으로 만들고, 수축을 허용(min-w-0) + 말줄임(truncate) -->
+      <span class="min-w-0 flex-1 truncate">badgebadgebadge </span>
+    </span>
+  </div>
+  <div class="min-w-[100px] flex-0 bg-pink-100">box - 3</div>
+</div>
+
+<!-- 줄긴 주는데 이번에는 뱃지가 늘어난다. -->
+<div class="flex flex-row">
+  <div class="w-[100px] flex-none bg-pink-100">box - 1</div>
+  <!-- 중간 래퍼: 부모 flex 아이템이라 min-w-0 이미 잘 줌 -->
+  <div class="inline-flex min-w-0 flex-1 flex-nowrap gap-2">
+    <span class="inline-block min-w-[60px]">box - 2</span>
+
+    <span class="inline-flex min-w-0 flex-1 basis-0 items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2 align-middle">
+      <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+        <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+        <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+        <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+      </svg>
+      <!-- 텍스트: flex-1 + min-w-0 + truncate (불변) -->
+      <span class="min-w-0 truncate">badgebadgebadge</span>
+    </span>
+  </div>
+
+  <div class="w-[100px] flex-none bg-pink-100">box - 3</div>
+</div>
+
+<!-- 해결  -->
+<div class="flex flex-row">
+  <div class="w-[100px] flex-none bg-pink-100">box - 1</div>
+  <!-- 가운데 래퍼: 폭을 먹고 줄어들 수 있게 -->
+  <div class="inline-flex min-w-0 flex-1 flex-nowrap gap-2">
+    <span class="inline-block min-w-[60px] flex-none">box - 2</span>
+    <!-- 배지: grow 없이 shrink만, 수축 허용(min-w-0), 상한(max-w-full) -->
+    <!-- flex-initial == grow-0 shrink basis-auto 와 동일 -->
+    <span class="inline-flex max-w-full min-w-8 flex-initial items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2 align-middle">
+      <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+        <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+        <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+        <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+      </svg>
+      <!-- 텍스트: 내부에서 남은 공간을 차지하며, 부족하면 ... 로 잘림 -->
+      <span class="min-w-0 truncate">3badgebadgebadge</span>
+    </span>
+  </div>
+  <div class="w-[100px] flex-none bg-pink-100">box - 3</div>
+</div>
+
+<span class="inline-flex max-w-full min-w-0 flex-initial items-center gap-1 rounded-4xl bg-amber-200 px-4 py-2">
+  <svg class="h-[1lh] w-4 shrink-0" viewBox="0 0 22 22" fill="none" stroke-linecap="square">
+    <circle cx="11" cy="11" r="11" class="fill-sky-400/25" />
+    <circle cx="11" cy="11" r="10.5" class="stroke-sky-400/25" />
+    <path d="M8 11.5L10.5 14L14 8" class="stroke-sky-800 dark:stroke-sky-300" />
+  </svg>
+  <span class="min-w-0 truncate">badge contentadge conadge conadge con</span>
+</span>
+
+```
+
 ### Ellipsis Basic  
 
 ```js
