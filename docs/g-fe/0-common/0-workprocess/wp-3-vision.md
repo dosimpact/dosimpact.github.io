@@ -1,23 +1,31 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# 1.잘하는 FE개발자란?    
+# 잘하는 FE개발자란?   
 
-스프린트의 업무 프로세스  
+[FE기술]
+1.개발자의 생산성과 퀄리티  
+- (SW 설계) Interface, Design Pattern, Architecture ...  
+- (FE 개발) Markup, State Management, Validator ... 
+- (Moitoring) Loki, Grafana, Alert, Sentry ... 
+
+- 사용자 경험 측면에서의 충분한 고민의 결과물    
+- 유지보수 가능한 잘 짜여진 글(코드)  
+
+
+[회사]
+1.도메인에 대한 이해 능력  
+
+2.역할과 책임 범위  
+
+3.커뮤니케이션 능력  
+
+3.1 이해관계자들과의 원할한 협업이 되어야 한다.  
 - 1.(문제 정의) 고객 인터뷰 UT / UX Scoring / 가설  
 - 2.(데이터 분석) 퍼널, 기회 탐색  
 - 3.(제품 요구사항) Product Requirement, Design Requirement, Tech PoC,  
-- 4.(SW 설계) Interface, Design Pattern, Architecture ...  
-- 5.(FE 개발) Markup, State Management, Validator ... 
 - 6.(QA) Bug Finding  
-- 7.(Moitoring) Loki, Grafana, Alert, Sentry ... 
-
-
-## 잘하는 프론트엔드 개발자 정의
-
-- 잘하는 프론트엔드 개발자는 '사용자 경험을 고려하면서 기술적으로 안정적이고 유지보수 가능한 코드를 작성하는 사람'
-
 
 ## 더 뛰어나야 하는 역량 및 체크리스트  
 
@@ -120,7 +128,7 @@ sidebar_position: 1
 
 
 --- 
-
+   
 좋아요. 아래는 **Notion이나 Excel에서 바로 사용할 수 있는 형식**으로 정리한 **프론트엔드 퀄리티 & 생산속도 체크리스트**예요.
 필요에 따라 ✔ 체크하거나 점수(1\~5)로 평가할 수 있도록 구성했어요.
 
