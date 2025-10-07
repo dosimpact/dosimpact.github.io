@@ -23,6 +23,7 @@ sidebar_position: 01
   - [221](#221)
   - [225](#225)
   - [226 Empty Object as Type](#226-empty-object-as-type)
+  - [Exhaustive Checking](#exhaustive-checking)
 
 
 ## React의 컴포넌트 타입들 
@@ -850,4 +851,25 @@ function App() {
 }
 
 export default App;
+```
+
+
+
+## Exhaustive Checking  
+
+```tsx
+function assertNever(x: never): never {
+  throw new Error("Unexpected object: " + x);
+}
+
+function reducer(state: State, action: Action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+    case "DECREMENT":
+      return { count: state.count - 1 };
+    default:
+      return assertNever(action);
+  }
+}
 ```

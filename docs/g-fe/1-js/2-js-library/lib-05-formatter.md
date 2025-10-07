@@ -2,8 +2,13 @@
 sidebar_position: 5
 ---
 
-# Intl
-  
+# Formatter  
+
+
+- [Formatter](#formatter)
+  - [insertComma](#insertcomma)
+  - [Intl.NumberFormat](#intlnumberformat)
+
 ## insertComma
 
 ```js

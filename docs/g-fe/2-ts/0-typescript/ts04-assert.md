@@ -41,22 +41,32 @@ console.log(value.toFixed(2));
 
 
 ```js
+import axios, { AxiosError } from 'axios';
+
+// assetion
 export function assertAxiosError(err: unknown): asserts err is AxiosError {
   if (typeof err === 'object' && err !== null && 'isAxiosError' in err) {
     return;
   }
   throw err;
 }
-
 ---
-import axios, { AxiosError } from 'axios';
-
+// with generic 
+export function assertAxiosError<T extends object>(err: unknown): asserts err is AxiosError<T> {
+  if (typeof err === 'object' && err !== null && 'isAxiosError' in err) {
+    return;
+  }
+  throw err;
+}
+---
+// with axios static method
 function assertIsAxiosError(error: any): asserts error is AxiosError {
     if (!axios.isAxiosError(error)) {
         throw new Error('The error is not an AxiosError');
     }
 }
 ---
+// usage
      async function fetchData(url: string) {
          try {
              const response = await axios.get(url);

@@ -1,10 +1,10 @@
 {
-  "label": "Thrid-Party",
+  "label": "5.Common",
   "position": 5,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "Thrid-Party"
+    "description": "5.Common"
   }
 }
