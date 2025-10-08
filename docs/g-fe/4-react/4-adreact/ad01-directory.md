@@ -3,6 +3,11 @@ sidebar_position: 1
 ---
 
 # Directory Structure  
+- [Directory Structure](#directory-structure)
+  - [1단계: 기본적인 역할 분리](#1단계-기본적인-역할-분리)
+  - [2단계: 관심사 및 도메인 기반 분리](#2단계-관심사-및-도메인-기반-분리)
+    - [1. Common (공통 모듈)](#1-common-공통-모듈)
+    - [2. Feature (기능/도메인 모듈)](#2-feature-기능도메인-모듈)
 
 ## 1단계: 기본적인 역할 분리
 
@@ -41,17 +46,17 @@ sidebar_position: 1
 | 디렉토리 | 역할 및 내용 |
 | :--- | :--- |
 | common/ |  |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ components | 범용적인 UI 컴포넌트 (e.g., Button, Modal) |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ constants | 전역 상수 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ hocs | High-Order Components |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ hooks | 공통 Custom Hooks |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ types | 전역 타입 정의 (e.g., `common/types/models`에 데이터 모델 정의) |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ remotes (or apis) | 외부 API 통신 관련 로직 및 설정 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ utils | 비즈니스 로직 무관 유틸리티 함수 (e.g., 날짜 포맷) |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ services (or libs) | 외부 서비스/라이브러리 통합 모듈 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ supabase | 데이터베이스 접근 로직 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ react-query | 데이터 패칭/캐싱 설정 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ logger | 로깅 처리 모듈 |
+| ㄴ components | 범용적인 UI 컴포넌트 (e.g., Button, Modal) |
+| ㄴ constants | 전역 상수 |
+| ㄴ hocs | High-Order Components |
+| ㄴ hooks | 공통 Custom Hooks |
+| ㄴ types | 전역 타입 정의 (e.g., `common/types/models`에 데이터 모델 정의) |
+| ㄴ remotes (or apis) | 외부 API 통신 관련 로직 및 설정 |
+| ㄴ utils | 비즈니스 로직 무관 유틸리티 함수 (e.g., 날짜 포맷) |
+| ㄴ libs (or services) | 외부 서비스/라이브러리 통합 모듈 |
+| -ㄴ supabase | 데이터베이스 접근 로직 |
+| -ㄴ react-query | 데이터 패칭/캐싱 설정 |
+| -ㄴ logger | 로깅 처리 모듈 |
 
 ### 2. Feature (기능/도메인 모듈)
 
@@ -61,6 +66,6 @@ sidebar_position: 1
 | :--- | :--- |
 | pages | 라우팅되는 최상위 진입점 컴포넌트 (페이지 경로와 1:1 매칭) |
 | containers | Feature Level의 로직 및 상태 관리 담당 컴포넌트 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ auth | 인증 도메인 관련 모든 파일 (컴포넌트, 훅, 타입, API 로직 등) |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ home | 홈 도메인 관련 모든 파일 |
-| &nbsp;&nbsp;&nbsp;&nbsp;ㄴ product | 상품 도메인 관련 모든 파일 |
+| ㄴ auth | 인증 도메인 관련 모든 파일 (컴포넌트, 훅, 타입, API 로직 등) |
+| ㄴ home | 홈 도메인 관련 모든 파일 |
+| ㄴ product | 상품 도메인 관련 모든 파일 |
