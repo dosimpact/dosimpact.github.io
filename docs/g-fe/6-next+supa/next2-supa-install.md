@@ -12,7 +12,9 @@ sidebar_position: 2
     - [1.주의사항](#1주의사항)
     - [2.주의사항](#2주의사항)
     - [supabase 클라이언트는 여러버전 만들어야 한다.](#supabase-클라이언트는-여러버전-만들어야-한다)
+    - ["server-only": "^0.0.1", 이 패키지 작동 원리](#server-only-001-이-패키지-작동-원리)
     - [createBrowserClient \& createServerClient](#createbrowserclient--createserverclient)
+    - [createSupabaseAdminServerClient](#createsupabaseadminserverclient)
   - [트러블슈팅](#트러블슈팅)
     - [unhandledRejection: td \[Error\]: Cookies can only be modified in a Server Action or Route Handler.](#unhandledrejection-td-error-cookies-can-only-be-modified-in-a-server-action-or-route-handler)
 
@@ -102,6 +104,72 @@ https://supabase.com/docs/guides/auth/server-side/creating-a-client
 - 3.Server actions : createServerClient (createServerSideClient)
 - 4.RSC : createServerClient (createServerSideClientRSC)
 - 5.RCC : createBrowserClient (createSupabaseBrowserClient)
+```
+
+### "server-only": "^0.0.1", 이 패키지 작동 원리
+
+`server-only` 패키지는 매우 간단하지만 영리한 패키지  
+
+```ts
+//1. 서버 파일 최상단에 import:
+import "server-only";
+---
+// 2. 패키지 내부 구조 (실제 코드): package.json
+{
+  "name": "server-only",
+  "exports": {
+    ".": {
+      "react-server": "./empty.js",   // 서버 컴포넌트에서는 빈 파일
+      "default": "./index.js"         // 클라이언트에서는 에러 발생
+    }
+  }
+}
+//index.js (클라이언트용):
+throw new Error(
+  "This module cannot be imported from a Client Component module. " +
+  "It should only be used from a Server Component."
+);
+// empty.js (서버용):
+// 아무것도 없음 (빈 파일)
+
+// ## 동작 방식
+// 1. ✅ 서버에서 실행: `empty.js`가 import되어 아무 일도 안 함
+// 2. ❌ 클라이언트 번들에 포함 시도: `index.js`가 import되어 빌드 타임에 에러 발생
+
+// ---
+// ## 사용 예)
+import "server-only";
+
+// ⬇️ 이 코드들은 절대 클라이언트에 노출되면 안 됨!
+const SECRET_KEY = process.env.SECRET_KEY;
+const adminClient = createAdminClient(SECRET_KEY);
+```
+
+보안 목적: 
+- API 키, 시크릿 같은 민감한 정보가 클라이언트 번들에 포함되는 것을 컴파일 타임에 방지
+- 개발자 실수로 서버 전용 코드를 클라이언트에서 import하는 것을 막음
+- 반대로 `client-only` 패키지도 있어서, 클라이언트 전용 코드(window, document 사용 등)를 서버에서 실행하지 못하게 막습니다.  
+
+참고  
+- 프레임워크/번들러가 자체적으로 정의한 방식이 있다.  
+```js
+{
+  "exports": {
+    ".": {
+      "react-server": "./rsc.js",        // 🔧 React/Next.js 커스텀
+      "react-native": "./native.js",     // 🔧 React Native 커스텀
+      "edge-light": "./edge.js",         // 🔧 Vercel Edge 커스텀
+      "worker": "./worker.js",           // 🔧 Worker 환경 커스텀
+      "development": "./dev.js",         // 🔧 개발 모드 커스텀
+      "production": "./prod.js",         // 🔧 프로덕션 모드 커스텀
+      "browser": "./browser.js",         // 🔧 번들러별 브라우저 조건
+      "import": "./esm.js",     // ✅ 표준: ESM import
+      "require": "./cjs.js",    // ✅ 표준: CommonJS require
+      "node": "./node.js",      // ✅ 표준: Node.js 환경
+      "default": "./index.js"   // ✅ 표준: fallback
+    }
+  }
+}
 ```
 
 ### createBrowserClient & createServerClient
@@ -204,6 +272,31 @@ export const createSupabaseMiddlewareClient = async (
 - 쿠키 조작의 일관성을 제공하는 라이브러리 : https://www.npmjs.com/package/cookies-next
 - 위 라이브러리 쓰면 어디서든 쿠키를 조작할 수 있다. 근데 라이브러리 사용을 자제한다면 무시하자..   
 - before code : https://supabase.com/docs/guides/auth/server-side/creating-a-client?environment=middleware
+
+### createSupabaseAdminServerClient    
+
+목적 : RLS 우회 클라이언트 생성  
+- @supabase/ssr는 유저컨텍스트를 따르니, supabase-js 에서 직접 임포트 해야한다.    
+
+```js
+import "server-only";
+import { createClient } from "@supabase/supabase-js";
+import type { Database } from "./types/supabase.flin";
+
+export function createSupabaseAdminServerClient() {
+  return createClient<Database>(
+    process.env.NEXT_PUBLIC_FLIN_AI_SUPABASE_URL!,
+    process.env.FLIN_AI_SUPABASE_SECRET_KEY!, // Service Role Key 사용
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    }
+  );
+}
+
+```
 
 
 ## 트러블슈팅 
