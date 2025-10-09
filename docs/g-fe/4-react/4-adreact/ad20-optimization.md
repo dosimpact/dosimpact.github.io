@@ -4,6 +4,11 @@ sidebar_position: 20
 
 # React Optimization
 
+- [React Optimization](#react-optimization)
+  - [Code Splitting](#code-splitting)
+  - [Memoization](#memoization)
+  - [Lifting Up Component](#lifting-up-component)
+
 
 ## Code Splitting
 
@@ -89,18 +94,18 @@ export default LazyLoader;
 
 ## Lifting Up Component  
 
-Before
-- 문제 : IngredientsInfoHelper 컴포넌트 리렌더링 수 줄이기  
-- Ingredients 컴포넌트 리랜더링 > IngredientsInfoHelper 컴포넌트 리랜더링  
+📌 Before
+- 문제 : Root 컴포넌트, Depth1, Depth2 컴포넌트가 있는 상황 
+  - Depth1 리렌더링은 Depth2 리렌더링을 트리거링함.  
+  - 만약 Root 컴포넌트까지 Depth2 컴포넌트를 끌어올린다면 리렌더링 줄일 수 있다.  
 
-After
+📌 After
 - App 컴포넌트 리랜더링 > Ingredients 컴포넌트 리랜더링  
 
 ```jsx
 function App() {
   return (
     <>
-      {/* Lifting Up Component - */}
       {/* Before */}
       <Ingredients />
       {/* After */}

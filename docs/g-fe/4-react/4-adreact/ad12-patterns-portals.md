@@ -2,16 +2,17 @@
 sidebar_position: 12
 ---
 
-# React Patterns - Portals
+# React Patterns - Global Portals
 
 ## Global Portals  
 
-- 모달 컴포넌트 등 DOM 최상단에 끌어올려야 하는 컴포넌트는 동일한 목적지를 가진다.  
-- 따라서 글로벌 포털이라는 컨테이너를 사용한다.  
+- 모달 컴포넌트 등 DOM 최상단에 끌어올려야 하는 컴포넌트는 동일한 위치에 렌더링 된다.   
+- 특정 위치를 컨텍스트로 가지고 있는 글로벌 포털이라는 컴포넌트를 사용하면 편리하다.  
 
 ⚠️ 주의  
-- 실제 DOM 구조가 아닌 리액트 트리의 이벤트 전파를 따르니 이에 대한 예외처리가 필요하다.  
-- div(id="global-portal-container")는 참조를 useRef가 아닌 useState에 저장하여 createPortal를 리렌더링 한다.  
+- 1.Portal의 렌더링은 DOM트리의 특정 위치로 옮기지만, 이벤트는 본래 리액트 트리의 구조를 따라 이벤트 전파가 된다. 
+  - 이에 대한 주의 (e.stopPropagation 등) 예외처리가 필요하다.  
+- 2.div(id="global-portal-container")는 참조를 useRef가 아닌 useState에 저장하여 createPortal를 리렌더링을 트리거링 한다.  
 
 
 ```jsx
@@ -66,6 +67,5 @@ export const GlobalPortal = {
   Provider: PortalProvider,
   Consumer: PortalConsumer,
 };
-
 
 ```

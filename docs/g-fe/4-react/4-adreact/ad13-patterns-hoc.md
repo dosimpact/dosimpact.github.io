@@ -4,11 +4,17 @@ sidebar_position: 13
 
 # React Patterns - HoC
 
+- [React Patterns - HoC](#react-patterns---hoc)
+  - [HoC](#hoc)
+  - [Usage](#usage)
+    - [WithSearchParams](#withsearchparams)
+
 ## HoC  
 
-React의 Composition 패턴 중 HoC는 리액트 컴포넌트 앞단에 추가 로직을 붙여준다.  
-- 컴포넌트 호출 전 로직 추가.  
-- 컴포넌트에 추가 props 전달.  
+React의 Composition 패턴 중 HoC는 리액트 컴포넌트 앞단에서 합성이 된다.    
+- 본래 컴포넌트를 감싸는 Wrapping 컴포넌트 추가.
+  - Wrapping 컴포넌트에는 커스텀 훅 등 로직 존재   
+- Wrapped 컴포넌트에 추가 props 전달.  
 
 ## Usage  
 
@@ -70,3 +76,4 @@ export default function WithSearchParams<P extends object>(
 }
 
 ```
+

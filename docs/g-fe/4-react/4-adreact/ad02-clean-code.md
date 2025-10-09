@@ -16,7 +16,8 @@ sidebar_position: 2
 
 리액트 코드의 응집도, 결합도, 단일 책임 원칙  
 - 응집도 : 유사한 기능을 하는 컴포넌트들은 뭉치면 좋다.  
-- 결합도 : 서로 다른 역할을 가진 컴포넌트들의 응집도는 최소화 하며, 결합도를 높인다. (합성 패턴 등 사용 )  
+- 결합도 : 서로 다른 역할을 가진 컴포넌트들의 응집도는 최소화 하며, 결합도를 높인다. (합성 패턴 등 사용)   
+- 단일 책임 원칙 : 하나의 함수, 이벤트 핸들러에서 다양한 로직을 담지 않도록 한다.  
 
 
 🧠 Composition vs Compound
@@ -51,15 +52,17 @@ sidebar_position: 2
   2.하지만 props drilling, props hell 등 굉장히 복잡해지는 경우가 있다.  
     - 한 화면에서 복잡한 데이터를 다루는 데스크탑 앱 코드 등..  
     - props drilling, props hell 을 해결하기 위해 컴포넌트간의 강결합(Compund)로 처리한다.
-    - 주의, props 처리가 간단해지는 만큼 추후 재사용성은 기대하면 안된다.  
-    - 팁, Context를 사용하면 좋지만 리렌더링 최소화를 위해 context-selector를 사용하면 좋다.  
-    - 컨벤션, 강결합의 의미로 Namespace pattern을 의도적으로 사용하는것은 좋다.  
+      - 주의, props 처리가 간단해지는 만큼 추후 재사용성은 기대하면 안된다.  
+      - 팁, Context를 사용하면 좋지만 리렌더링 최소화를 위해 context-selector를 사용하면 좋다.  
+      - 컨벤션, 강결합의 의미로 Namespace pattern을 의도적으로 사용하는것은 좋다.  
+      - 리팩토링, 반복되는 로직들을 분리하여 use-funnel과 라이브러리 처럼 추상화 한다.  
 
 ⚠️ Props Drilling을 줄이기 위한 방법  
 - 1.Component Lifing-Up
+  - 리렌더링을 줄여주는 최적화 효과도 있음.  
 
-Props Hell을 줄이기 위한 방법  
-- 1.computed field, dto object 로 묶어서 관리하기  
+⚠️ Props Hell을 줄이기 위한 방법  
+- 1.Computed field, dto object 로 묶어서 관리하기  
 
 ## Optimization  
 
