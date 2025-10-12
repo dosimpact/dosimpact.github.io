@@ -1,11 +1,11 @@
 {
-  "label": "React Snippets",
-  "position":2,
+  "label": "2.React Snippets",
+  "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "React Snippets",
-    "description": "React Snippets"
+    "title": "2.React Snippets",
+    "description": "2.React Snippets"
   }
 }

@@ -7,6 +7,7 @@ sidebar_position: 10
 - [React Patterns 1 - Props Pass](#react-patterns-1---props-pass)
   - [As props Pattern](#as-props-pattern)
   - [asChild Pattern](#aschild-pattern)
+    - [asChild Pattern with Slot](#aschild-pattern-with-slot)
   - [Type of Pass](#type-of-pass)
   - [Render Props 패턴](#render-props-패턴)
 
@@ -33,6 +34,7 @@ Link
 </Button>
 ```
 
+
 ## asChild Pattern
 
 ```jsx
@@ -55,6 +57,41 @@ const Button = ({ asChild, children, className, ...props }) => {
     children,
   );
 };
+```
+
+### asChild Pattern with Slot
+
+```tsx
+import { isValidElement, Children, cloneElement, ReactNode } from 'react';
+
+interface SlotProps extends React.HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
+}
+
+export function Slot({ children, className, ...props }: SlotProps) {
+  const child = Children.only(children);
+
+  if (!isValidElement(child)) {
+    return null;
+  }
+
+  const childProps = child.props as Record<string, any>;
+  const combinedClassName = [childProps.className, className].filter(Boolean).join(' ');
+
+  return cloneElement(child, {
+    ...props,
+    ...childProps,
+    className: combinedClassName || undefined,
+  } as any);
+}
+
+// Usage
+// export function Button({ children, asChild, ...props }: { children: ReactNode; asChild?: boolean }) {
+//   const Comp = asChild ? Slot : 'button';
+
+//   return <Comp {...props} className="button" />;
+// }
+
 ```
 
 

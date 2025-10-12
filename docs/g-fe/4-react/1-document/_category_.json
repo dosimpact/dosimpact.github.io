@@ -1,11 +1,11 @@
 {
-  "label": "React 공식문서읽기",
+  "label": "1.React 공식문서읽기",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "React 공식문서읽기",
-    "description": "React 공식문서읽기"
+    "title": "1.React 공식문서읽기",
+    "description": "1.React 공식문서읽기"
   }
 }
