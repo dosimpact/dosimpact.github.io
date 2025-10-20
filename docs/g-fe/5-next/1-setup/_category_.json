@@ -1,11 +1,11 @@
 {
-  "label": "Next Install",
+  "label": "1.Next Setup",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Next Install",
-    "description": "Next Install"
+    "title": "1.Next Setup",
+    "description": "1.Next Setup"
   }
 }
