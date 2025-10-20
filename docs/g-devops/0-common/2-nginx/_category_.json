@@ -1,11 +1,11 @@
 {
-  "label": "Nginx",
+  "label": "2.Nginx",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Nginx",
-    "description": "Nginx"
+    "title": "2.Nginx",
+    "description": "2.Nginx"
   }
 }
