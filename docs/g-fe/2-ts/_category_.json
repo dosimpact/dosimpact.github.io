@@ -1,10 +1,10 @@
 {
-  "label": "3.Typescript",
-  "position": 2,
+  "label": "3.TypeScript",
+  "position": 3,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "3.Typescript"
+    "description": "3.TypeScript"
   }
 }
