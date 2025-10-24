@@ -58,8 +58,12 @@ sidebar_position: 1
 2.타임을 해석(생성)하는 로직    
 - 매우 중요하다.  
 - 특히나 타임존 정보가 없는 시간정보를 해석할때 무엇으로 해석하느냐에 따라서 시간 버그가 발생할 수 있다.  
-- '2025-10-23T14:30:06.117Z' 처럼 타임존 정보가 포함된 문자열은 알아서 처리 된다.  
-- '2025-10-23 14:30:06' 처럼 타임존 정보가 없다면 이를 UTC+9로 해석할지 설정을 해야 한다.  
+- 2.1 타임존이 있는 경우
+  - '2025-10-23T14:30:06.117Z' 처럼 타임존 정보가 포함된 문자열은 알아서 처리 된다.  
+- 2.2 타임존이 없는 경우
+  - '2025-10-23 14:30:06' 처럼 타임존 정보가 없다면 이를 UTC+9로 해석할지 설정을 해야 한다.    
+  - 자주 발생하는 버그케이스
+    - 서버에서 UTC+0으로 저장된 문자열 '2025-10-23 14:30:06'을 브라우저에서 받고, 이를 UTC+0이 아닌, 로컬 타임존으로 해석하는 경우.  
 
 3.현재 타임을 표기하는 로직     
 - 기본 : 로컬 브라우저의 타임존에 맞게 표기.  
@@ -125,6 +129,30 @@ export function dayjsTz(date?: DayjsInput): Dayjs {
   // - dayjs로 생성 후 .tz()를 적용하여 해당 타임존으로 변환합니다.
   return dayjs(date).tz(timezone);
 }
+
+
+
+/**
+ * UTC 기준 시간 문자열을 지정된 타임존으로 변환합니다.
+ * @param {string|Date} createdAt - UTC 기준 시간 (ISO 문자열 또는 Date 객체)
+ * @param {string} timeZone - 변환할 타임존 (기본값: 'Asia/Seoul')
+ * @returns {dayjs.Dayjs} - 타임존이 적용된 Day.js 객체
+ */
+function interpretAsUTC(createdAt, timeZone = 'Asia/Seoul') {
+  return dayjs.utc(createdAt).tz(timeZone);
+}
+
+
+/**
+ * 로컬 타임존 기준 시간 문자열을 지정된 타임존으로 변환합니다.
+ * @param {string|Date} createdAt - 로컬 타임존 기준 시간 (ISO 문자열 또는 Date 객체)
+ * @param {string} timeZone - 변환할 타임존 (기본값: 'Asia/Seoul')
+ * @returns {dayjs.Dayjs} - 타임존이 적용된 Day.js 객체
+ */
+function interpretAsTimezone(createdAt, timeZone = 'Asia/Seoul') {
+  return dayjs(createdAt).tz(timeZone);
+}
+
 ```
 
 ## 추가 고려 사항
