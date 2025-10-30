@@ -1,10 +1,10 @@
 {
-  "label": "7.NextJS+Supa",
-  "position": 6,
+  "label": "7.Supabase",
+  "position": 7,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "7.NextJS+Supa"
+    "description": "7.Supabase"
   }
 }

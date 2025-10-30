@@ -2,15 +2,13 @@
 sidebar_position: 1
 ---
 
-
 # Supabase Concepts
 
 
 - [Supabase Concepts](#supabase-concepts)
   - [Docs](#docs)
   - [supabase 란 ?](#supabase-란-)
-    - [클라우스 서비스 구조](#클라우스-서비스-구조)
-    - [Pricing](#pricing)
+  - [가격 정책 (Pricing)](#가격-정책-pricing)
   - [RLS (Row-Level Security)](#rls-row-level-security)
     - [RLS 로 해결하는 API 취약점](#rls-로-해결하는-api-취약점)
   - [필수 data types](#필수-data-types)
@@ -24,7 +22,7 @@ Docs > https://supabase.com/docs
 
 ## supabase 란 ?
 
-프로젝트를 빠르게 구축하기 위한 백앤드 서비스들 모음집 + 클라우드   
+Backend-as-a-Service (BaaS) 플랫폼, 프로젝트를 빠르게 구축하기 위한 백앤드 서비스들 모음집 + 클라우드   
 
 데이터베이스:
 - Supabase는 각 프로젝트에 대해 전체적인 Postgres 데이터베이스를 제공하며 실시간 기능, 데이터베이스 백업, 확장 기능 등을 제공합니다.
@@ -41,28 +39,22 @@ Docs > https://supabase.com/docs
 Edge Functions:
 - 전 세계적으로 분산된 서버 측 함수를 통해 사용자에게 가장 낮은 지연 시간으로 코드를 실행할 수 있습니다.
 
-AI 및 벡터:
-- Supabase를 사용하여 임베딩 벡터를 저장하고 검색할 수 있습니다.  
-  - Search: how similar is a search term to a body of text? 
-  - Recommendations: how similar are two products?  
-  - Classifications: how do we categorize a body of text?  
-  - Clustering: how do we identify trends?  
+Postgres Modules
+- AI & Vectors : Supabase를 사용하여 임베딩 벡터를 저장하고 검색할 수 있습니다.  
+- Cron  
+- Queues  
 
-### 클라우스 서비스 구조 
 
-계정 생성 - 조직 생성 - 프로젝트 생성 - DB 만들기   
-- DB Level 에서 인증, 스토리지, 관리 가능  
+## 가격 정책 (Pricing)    
 
-### Pricing  
-
-- 시작은 FREE 이다.!   
+시작은 FREE 이다.!   
 - DB의 용량을 500MB 혹은 1 GB file storage 혹은 MAU 5만 넘어가면, 이후 PRO 사용하면 된다.    
 - https://supabase.com/pricing  
+- Free 버전 고려점
+  - 클라우드 리소스를 절약하기 위해 현재 7일 이상 비활성 상태인 무료 계층 프로젝트를 일시 중지.  
+  - Pro 비용 이후 AWS RDS보다 가격이 비싸다.   
 
-Free 버전에서 문제 
-- 클라우드 리소스를 절약하기 위해 현재 7일 이상 비활성 상태인 무료 계층 프로젝트를 일시 중지하고 있습니다.  
-
-그럼 유료 버전에서는 ?  
+무료 버전에서 Pro (유료 버전)에서의 한계    
 - 100,000 monthly active users 
 - 8 GB database space 
 - 250 GB bandwidth 
@@ -83,28 +75,31 @@ Supabase의 RLS는 "Row-Level Security"의 약자.
 - 원래는 서버단에서 내 포스팅과 다른 사람의 포스팅이 섞이지 않도록 권한체크 해야 한다.     
 - 근데 DB Level에서 이를 해주는 거임  
 - 보안이 향상된 인프라가 있으니 맘놓고 개발 가능!   
+- 권한 체크 API 서버 없이 SPA에서 바로 Supbase를 호출 가능한 이유이다.   
 
 예)  
 - Todo테이블의 Todo 정보에 대해서 다음 규칙을 DB Level에서 적용 가능  
-- 3가지 권한 타입 : owner(소유권자), auth(인증자) ,public(공개,anon 누구나, 익명)  
+- 3가지 권한 타입 : owner(소유권자), auth(인증자), public(공개,anon 누구나, 익명)    
 - 정책 만들기 예)
   - SELECT : Todo테이블은 읽기는 누구나 가능하다.  
   - UPDATE : Todo테이블은 수정은 로그인 한 사람은 누구나 가능하다.  
   - DELETE : Todo테이블 삭제는 만든사람만 가능하다.  
 
-신기한 점  
-- 로그인 후 + select * from post 라고 조회하면 로그인 한 사용자것만 나옴  
-- sql이 실제랑 다르다.  
+주의할 점    
+- 로그인 후 `select * from post` 라고 조회하면 RLS 정책에 따라서 로그인 한 사용자의 행만 쿼리가 된다.    
+- 보이는 sql이 결과랑 다른점이 처음에 신기할 수 있다.    
 
 ```js
-# App 요청
-select * from todos
+내부적으로는 아래와 같은 처리가 진행진다.
+# SQL(App) 요청 
+select * from todos  
 
 # DB Level 처리
 select * from todos
 where auth.uid() = todos.user_id; -- Policy is implicitly added.
 ```
-참조 : https://supabase.com/docs/guides/database/postgres/row-level-security#policies
+- Ref : https://supabase.com/docs/guides/database/postgres/row-level-security#policies
+
 
 ### RLS 로 해결하는 API 취약점  
 
@@ -133,7 +128,6 @@ json 저장 : json
 사용자 식별자 저장 : uuid universally unique identifier  
 시간 저장 : timestamptz ( 타임존 정보도 함께 )  
 *시간 저장 : timestamp ( 타임존 정보 X , UTC 기본 - 하지만 데이터 잘못 들어가면 ?? )   
-
 ```
 
 
@@ -142,11 +136,10 @@ json 저장 : json
 Authentication
 - Supabase는 JWT와 키 인증을 혼합하여 작동합니다.
 - Authorization 헤더가 포함되어 있지 않으면 API는 익명 사용자에게 요청을 하는 것으로 가정합니다.
-- Authorization 헤더가 포함된 경우 API는 요청을 수행하는 사용자의 역할로 "전환"됩니다.(키를 환경 변수로 설정하는 것이 좋습니다.)
+- Authorization 헤더가 포함된 경우 API는 요청을 수행하는 사용자의 역할로 "전환"됩니다. (키를 환경 변수로 설정하는 것이 좋습니다.)
 
-```
-예)
-// 로그인 전 요청, apiKey를 헤더에 넣어서 요청한다. ( apiKey는 anon key, service role key  )
+```js
+// 로그인 전 요청, apiKey를 헤더에 넣어서 요청한다. ( apiKey는 anon key 혹은 service role key  )
 curl 'https://xscduanzzfseqszwzhcy.supabase.co/rest/v1/colors?select=name' \
 -H "apikey: eyxx..xc" \
 
@@ -163,16 +156,15 @@ curl 'https://xscduanzzfseqszwzhcy.supabase.co/rest/v1/colors?select=name' \
 
 ```
 
-Client API Keys
-- 클라이언트 키는 사용자가 로그인할 때까지 데이터베이스에 대한 "익명 액세스"를 허용합니다. 로그인한 후 키는 사용자 자신의 로그인 토큰으로 전환됩니다.
-- 이 문서에서는 SUPABASE_KEY라는 이름을 사용하여 키를 참조합니다.
-- 시작할 수 있도록 클라이언트 키를 제공했습니다. 곧 원하는 만큼 키를 추가할 수 있게 될 것입니다. 
-- API 설정 페이지에서 anon 키를 찾을 수 있습니다.
+Client API Keys (anon key)  
+- 클라이언트 키는 사용자가 로그인할 때까지 데이터베이스에 대한 "익명 액세스"를 허용합니다. 
+- 로그인한 후 키는 사용자 자신의 로그인 토큰으로 전환됩니다.
+- RLS 정책을 적용 받는다.  
 
-Service Keys
-- 서비스 키는 모든 보안 정책을 우회하여 데이터에 대한 전체 액세스 권한을 갖습니다. 이러한 키를 노출할 때에는 매우 주의하십시오. 서버에서만 사용해야 하며 클라이언트나 브라우저에서는 절대 사용해서는 안 됩니다.
+Service Keys (service role key)
+- 서비스 키는 모든 보안 정책을 우회하여 데이터에 대한 전체 액세스 권한을 갖습니다. 이러한 키를 노출할 때에는 매우 주의하십시오.   
+- 서버에서만 사용해야 하며 클라이언트나 브라우저에서는 절대 사용해서는 안 됩니다.
 - 이 문서에서는 SERVICE_KEY라는 이름을 사용하여 키를 참조합니다.
-- 시작할 수 있도록 서비스 키를 제공했습니다. 곧 원하는 만큼 키를 추가할 수 있게 될 것입니다. 
 - API 설정 페이지에서 service_role을 찾을 수 있습니다.
 
 
