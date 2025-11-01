@@ -8,8 +8,6 @@ sidebar_position: 2
   - [Goal](#goal)
   - [AppRouter](#approuter)
     - [디렉터리 구조](#디렉터리-구조)
-  - [RSC, SSR 이해](#rsc-ssr-이해)
-    - [Client vs Server Component](#client-vs-server-component)
     - [File Conventions](#file-conventions)
     - [RCS + AppRouter fullPage,subPage 의 동작이해](#rcs--approuter-fullpagesubpage-의-동작이해)
     - [ref](#ref)
@@ -108,53 +106,6 @@ Full.ver
 ├── types.ts
 └── types_db.ts
 ```
-
-## RSC, SSR 이해
-
-RSC : 리액트 서버 컴포넌트   
-SSR : Server Side Rendering    
-
-### Client vs Server Component  
-
-리액트만 사용했던 사람이라면, 서버컴포넌트에 익숙하지 않을 수 있다.   
-- 서버 컴포넌트는 말 그대로 서버에서 작동되는 컴포넌트이며,  
-- 초벌구이 같은 느낌으로 , HTML 정적 리소스를 미리 컴파일 해서 Browser에 넘겨준다.  
-- 그 이후에 hydration 과정을 거쳐서 클라이언트 컴포넌트가 작동된다.  
-
-
-1.NextJS에서 컴포넌트는 기본적으로 서버컴포넌트이다.  
-- Client Component 선언을 위해서 'use client'을 파일위에 적어준다.    
-- Client Component에서 import하는 하위 컴포넌트는 모두 Client Component 이다.   
-- Client Component에서 useState 등의 리액트 lifecycle hook을 사용할 수 있다.  
-
-만약에 useClient을 안적는다면?  
-- useState, useMemo 등 사용이 불가능하다.  
-- 컴파일 경고가 나온다. 그렇지 않는 경우도 있다.  
-- 애니메이션이 있는 Loading과 같은 컴포넌트는 애니메이션이 동작안할 수 있다.  
-
-
-2.NextJS에서 서버컴포넌트는 서버에서 랜더링 된다.  
-- AppRouter는 Page를 FullPage, SubPage로 구분한다.  
-  
-- FullPage 요청 > (새로고침, 최초요청)에는 SSR이 적용된다.  
-  - `use client` 지시어를 사용했어도, SSR에 포함된다.  
-  - useState 같은 경우 default 값으로 HTML이 구워져서 나온다.  
-  - 그 이후 hydration 과정을 거친다.  
-
-- SubPage로 라우팅 되면, 필요한 부분만 서버에서 랜더링 된다.  
-  - RooLayout에서 context 와 같은 클라이언트 상태는 유지된다.  
-  - 특정 subPage가 서버컴포넌트로 SSR이 가능하면 그 부분만 컴파일 된다.   
-  - 그 이후 hydration 과정을 거친다.  
-
-
-3.클라이언트 경계 
-
-서버, 클라이언트 컴포넌트가 섞여서 복잡해 보이지만, 결국 목적은 최대한 서버에서 처리할 수 있는부분은 처리하고 나머지는 클라이언트에 던져주기 위함.  
-- RSC, RCC 가 혼합되지만, 결국 일부 랜더 트리는 클라이언트 단에서 처리가 필요.  
-- SSR이 가능한 부분과 그렇지 않은 부분을 nextjs가 구분해서 최적화 한다.   
-- 최대한 SSR에서 처리하고 나머지 부분은 browser에서 처리할 수 있도록 만드는것이 목표이다.  
-- 클라이언트의 경계를 구분짓기 위한 결과다.
-- 컴포넌트가 아닌 파일 단위의 Tree 구조를 머리속에 그려야 한다.   
 
 ### File Conventions
 

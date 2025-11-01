@@ -1,11 +1,11 @@
 {
-  "label": "Docs",
+  "label": "2.Docs",
   "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Docs",
-    "description": "Docs"
+    "title": "2.Docs",
+    "description": "2.Docs"
   }
 }
