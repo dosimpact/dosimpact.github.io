@@ -7,6 +7,7 @@ sidebar_position: 3
 - [FE System Design - MCP With Design System](#fe-system-design---mcp-with-design-system)
   - [Windsurf 및 MCP 기반 Front-End 개발 생산성 향상 솔루션 기획서](#windsurf-및-mcp-기반-front-end-개발-생산성-향상-솔루션-기획서)
   - [Details of Storybook MCP](#details-of-storybook-mcp)
+    - [Tool List](#tool-list)
 
 
 ![mcp-archi](./mcp-archi.excalidraw.png)    
@@ -171,5 +172,35 @@ eg) 시나리오: 새로운 프로필 페이지 만들기
 4. (필요시) get-story-urls로 브라우저에서 직접 확인
 
 5. 코드 작성 시작
+
+
+
+### Tool List
+
+1. Figma MCP (디자인 → 개발)
+
+필수 도구
+- get_design_tokens: 색상, 타이포그래피, 스페이싱 등 디자인 토큰 추출
+- get_component_specs: 컴포넌트 속성, 변형(variants), 상태 정보
+- export_assets: 아이콘, 이미지 등 에셋 추출
+- get_component_hierarchy: 컴포넌트 구조 및 레이어 정보
+선택 도구
+- get_design_system_documentation: Figma 내 작성된 디자인 가이드
+- compare_design_with_code: 디자인과 구현 차이 검증
+– get_component_usage: 디자인 파일 내 컴포넌트 사용 현황
+
+2. Storybook MCP (개발 → 문서화/테스트)
+현재 제공 중
+✅ get-ui-building-instructions: 개발 가이드
+✅ get-story-urls: 스토리 링크 생성
+✅ list-all-components: 컴포넌트 목록
+✅ get-component-documentation: Props, 타입 정보
+
+추가 제안
+- validate_component_props: Figma 스펙과 실제 Props 비교
+- generate_story_from_figma: Figma variant → Storybook story 자동 생성
+- get_visual_regression_status: 시각적 회귀 테스트 결과
+- get_accessibility_report: a11y 테스트 결과
+- get_component_coverage: 스토리 커버리지 (어떤 Props 조합이 테스트되었는지)  
 
 
