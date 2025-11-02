@@ -32,7 +32,7 @@ const FeatureList = [
     title: "Supabase Concepts",
     description: <></>,
     imgSrc: "/img/th-supabase.png",
-    linkTo: "/docs/g-fe/next+supa/next1-concept",
+    linkTo: "/docs/category/7supabase",
   },
   {
     title: "개발자와 협업을 위한 kafka의 핵심 개념",
