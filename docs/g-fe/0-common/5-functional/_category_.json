@@ -1,11 +1,11 @@
 {
-  "label": "5.Funtional",
+  "label": "5.함수형 코딩",
   "position": 5,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "5.Funtional",
-    "description": "5.Funtional"
+    "title": "5.함수형 코딩",
+    "description": "5.함수형 코딩"
   }
 }
