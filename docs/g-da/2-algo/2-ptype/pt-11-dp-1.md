@@ -2,7 +2,16 @@
 sidebar_position: 11
 ---
 
-# DP (dynamic programming)  
+# DP (dynamic programming)    
+
+- [DP (dynamic programming)](#dp-dynamic-programming)
+  - [기본문제](#기본문제)
+  - [문제유형 - 점화식, if, min, max, sum ( 가장 기본 )](#문제유형---점화식-if-min-max-sum--가장-기본-)
+  - [문제유형 - 지금까지의 모든 D를 살펴야 하는 경우](#문제유형---지금까지의-모든-d를-살펴야-하는-경우)
+  - [문제유형 - D\[ \]\[ 추가조건 \] 차원을 추가해 풀어야 하는 경우](#문제유형---d--추가조건--차원을-추가해-풀어야-하는-경우)
+  - [문제유형 - D 메모방향이 forward인 경우](#문제유형---d-메모방향이-forward인-경우)
+  - [문제유형 - 메모방식이 Set인 경우, (점화식 구하기 어렵)](#문제유형---메모방식이-set인-경우-점화식-구하기-어렵)
+
 
 DP 문제 유형의 발상 :   
 1. Overlapping Subproblem(문제 P는 A1,A2,... 로 같은 구조로 쪼깨짐.)   
