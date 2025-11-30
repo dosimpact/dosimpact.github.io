@@ -1,0 +1,11 @@
+{
+  "label": "2.JS 단상",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "2.JS 단상",
+    "description": "JS에 대한 단상"
+  }
+}
