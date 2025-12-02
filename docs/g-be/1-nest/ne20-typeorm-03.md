@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 20
 ---
 
 # NestJS TypeORM Entity 1

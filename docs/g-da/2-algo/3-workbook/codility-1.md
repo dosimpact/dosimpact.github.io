@@ -216,6 +216,5 @@ function solution(A) {
 }
 ```
 
-
 ✅ Prefix Sums > Triangle  
 
