@@ -1,5 +1,5 @@
 ---
-sidebar_position: 0
+sidebar_position: 1
 ---
 
 
@@ -9,6 +9,7 @@ sidebar_position: 0
   - [Iterations](#iterations)
   - [Time Complexity](#time-complexity)
     - [접근법 - 시간복잡도를 계산하고, O(N\*\*2)에서 O(N)으로 줄이는 문제](#접근법---시간복잡도를-계산하고-on2에서-on으로-줄이는-문제)
+  - [Stacks and Queues](#stacks-and-queues)
 
 
 ## Iterations
@@ -191,8 +192,9 @@ function solution2(A, B, K) {
     // 1,1,2 -> 0
 ```
 
+Sorting
 
-✅ Prefix Sums > MaxProductOfThree  
+✅ Sorting > MaxProductOfThree  
 - 문제 : 배열에서 숫자 3개를 골라 최대곱을 구하는 문제  
 - 로직 : 케이스를 분류해서 각 케이스 별 최대값을 결정적으로 구할 수 있음.
   - 양수만 있는 경우, 음수만 있는 경우, 양과 음이 섞인 경우 max( top(양,양,양), top(양,음,음) )  
@@ -216,5 +218,34 @@ function solution(A) {
 }
 ```
 
-✅ Prefix Sums > Triangle  
+✅ Sorting > Triangle  
+
+문제 : 삼각형 선분의 길이들이 배열로 주어진다. 이 중 삼격형을 만들 수 있는지 체크하는 문제  
+로직 : a,b,c 세변은 각각 나머지 변의 합보다 커야한다. 우선 정렬을 한다. 그리고 그리디 하게 a+b>c만 맞는지 순회 1번을 한다. 
+
+
+## Stacks and Queues
+
+✅ Stacks and Queues > Brackets  
+
+문제 : 올바른 괄호쌍인지 찾는 문제  
+로직 : 스택에서 괄호 쌍을 넣고 풀면된다. 전형적인 괄호쌍스택 문제. 괄호종류가 3가지   
+
+✅ Stacks and Queues > Fish  
+
+문제 : 물고기 크기, 물고기 위/아래 방향으로 n마리 물고기가 주어졌을때 살아남는 최종 물고기는?  
+⚠️ 로직 : 하류로 가는 물고기를 스택에 보관하고 있다가, 
+- 상류로 가는 물고기와 부딪칠때마다 스택을 비우거나(하류 가는 물고기가 먹힘)혹은 상류로 가는물고가기 잡아먹히면 된다.  
+- 답은 상류로 살아남은 물고기 수 + 하류 물고기 수   
+
+✅ Stacks and Queues > Nesting  
+- 문제 : 올바른 괄호쌍인지 찾는 문제  
+- 로직 : 스택에서 괄호 쌍을 넣고 풀면된다. 전형적인 괄호쌍스택 문제.  
+
+
+⚠️ Stacks and Queues > StoneWall  
+
+- 문제 : 직사각형의 돌을 최대한 적게 쌓는 문제이다.  
+- ⚠️ 로직 : 우선 발상이 어렵다. 스택 구조로 풀어가는게 최소임을 어떻게 아는가?    
+
 
