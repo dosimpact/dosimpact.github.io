@@ -98,6 +98,7 @@ React 서버 컴포넌트 페이로드(RSC)
 - 최종적으로 리액트 컴포넌트 트리=V-DOM이 만들어진다.    
 
 5.Hydrate  
+- Hydration은 Real DOM(HTML Preview으로 부터 만든)과 브라우저에서 다시 만든 Reconciled Render Tree를 매핑하는 과정이다.  
 - Hydration은 interactive 만들기 위함이다.   
 - Client Component JavaScript instructions 이 사용된다.  
   - 그 안에는 useState, Event Handler 함수 등이 있다.    

@@ -5,9 +5,17 @@ sidebar_position: 20
 # React Query - SSR1
 
 - [React Query - SSR1](#react-query---ssr1)
+  - [Background](#background)
   - [Performance \& Request Waterfalls](#performance--request-waterfalls)
   - [Prefetching \& Router Integration](#prefetching--router-integration)
   - [Server Rendering \& Hydration](#server-rendering--hydration)
+
+
+## Background  
+
+- react-query의 hydrate 는 next.js의 hydration와 개념적으로 비슷하지만 대상이 다르다.  
+- 전자는 Real DOM과 Reconciled Render Tree 연결하는 것
+- 후자는 React Query Cache와 SSR과정에서 직렬화 되어 내려온 JSON을 연결하는 것    
 
 ## Performance & Request Waterfalls
 
