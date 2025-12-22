@@ -1,0 +1,11 @@
+{
+  "label": "5.부동산",
+  "position": 5,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "5.부동산",
+    "description": "5.부동산"
+  }
+}
