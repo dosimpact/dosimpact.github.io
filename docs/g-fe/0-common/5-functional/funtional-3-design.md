@@ -6,6 +6,7 @@ sidebar_position: 3
 
 - [함수형 코딩 #3](#함수형-코딩-3)
   - [챕터 9, 일급 함수 1](#챕터-9-일급-함수-1)
+  - [챕터 10, 일급 함수 2](#챕터-10-일급-함수-2)
 
 ## 챕터 9, 일급 함수 1  
 
@@ -52,4 +53,40 @@ function withLogger(f){
   }
 }
 withLogger(async ()=>saveUser(user))
+```
+
+## 챕터 10, 일급 함수 2  
+
+1, 고차 함수를 만들어서 실행시키기 
+- eg, 불변성을 유지시켜주는 함수  
+
+```js
+
+function withCopyArray(arr,modif){
+  const copied = arr.slice();//[..arr]
+  modif(copied);
+  return copied
+}
+
+const copiedArr = withCopryArray(originalArr,function(copied){
+  copied.push(elem)
+})
+```
+
+2, 함수를 리턴하는 고차함수를 만들면 재사용성이 증가.  
+- eg, 로그 기능을 추가해주는 함수, 리턴값은 기능이 데코레이트 된 함수이다.   
+```js
+function withLogger(f){
+  return function(...args){
+    try{
+      return f.apply(this,args)
+    }catch(e){
+      loggingAction();
+    }
+  }
+}
+// usage
+const createUserWithLogger  = wighLogger(function(){
+  // create user logic ... 
+})
 ```
