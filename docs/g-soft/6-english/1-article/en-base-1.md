@@ -6,6 +6,7 @@ sidebar_position: 1
 
 - [영어 회화 베이스](#영어-회화-베이스)
   - [원칙](#원칙)
+  - [오답 패턴 인지](#오답-패턴-인지)
 
 
 ## 원칙
@@ -20,4 +21,15 @@ sidebar_position: 1
 - 내가 말하고 싶은 그 의지와 욕망 단계의 '심상'을 먼저 분리하고 바로 영어로 표현이 떠오르는 상태를 안다라고 정의하자.  
 
 
+2, 올바른 영어 피드백에 항상 노출 📌  
 
+- GPT를 이용해서 GPT가 답변하기전에 나의 영어를 함께 지적하면서 답변을 주어야 한다.  
+
+프롬프트  
+Wants ChatGPT to translate all English messages into Korean and all Korean messages into English. When the user writes in English, ChatGPT should also correct any grammatical mistakes before translating. If they speak Korean, translate into English. If they speak English, translate into Korean, correcting grammar.
+
+
+## 오답 패턴 인지  
+
+- 나는 the, a, an을 붙이는데 습관이 없다.  
+- 나는 3인칭 단수가 자연스럽게 나오지 않는다.  
