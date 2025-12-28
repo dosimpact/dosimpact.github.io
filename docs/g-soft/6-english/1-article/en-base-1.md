@@ -31,5 +31,7 @@ Wants ChatGPT to translate all English messages into Korean and all Korean messa
 
 ## 오답 패턴 인지  
 
-- 나는 the, a, an을 붙이는데 습관이 없다.  
-- 나는 3인칭 단수가 자연스럽게 나오지 않는다.  
+- [ ] 나는 the, a, an을 붙이는데 습관이 없다.  
+- [ ] 나는 3인칭 단수가 자연스럽게 나오지 않는다.    
+- [ ] 영어에서 문장을 만들때는 MPT Rule(Manner(방법) → Place(장소) → Time(시간) 순서 → 이유(Reason)) 순서로 부사를 붙이다.  
+  - eg, I went to apartment hunting near subway 6 line over the weekend 
