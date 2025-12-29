@@ -30,6 +30,12 @@ sidebar_position: 1
 
 겨울이 지나면 괜찮아지려나? 과거 급등장의 반복이 되려나?
 
+---
+
 I went apartment hunting over the weekend near subway line 6. It was freezing, but my desire to own a home kept me going. My girlfriend and I dreamed about our future while touring the places. Looking at the listings now, the market vibe is "I should have bought it back then." I didn't buy it because it felt too expensive; sellers were asking for 30 to 50 million won more than the previous record high. I felt cheated, but I was wrong.
 
-Right now, there's an explosion of demand for people upgrading to a "trophy home." I visited eight locations along Line 6, but only first-floor units were available. Many mid-floor units have already jumped up by 30 to 50 million won. These pricey listings appear one by one and get sold immediately. How can there be only one available unit in a complex of nearly 10,000 households? Will things get better after winter, or is history repeating itself with another price surge?
+Right now, there's an explosion of demand for people upgrading to a "trophy home." I visited eight locations along Line 6, 
+but only first-floor units were available. 
+Many mid-floor units have already jumped up by 30 to 50 million won. These pricey listings appear one by one and get sold immediately. 
+
+How can there be only one available unit in a complex of nearly 10,000 households? Will things get better after winter, or is history repeating itself with another price surge?
