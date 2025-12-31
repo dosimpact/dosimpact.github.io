@@ -4,6 +4,30 @@ sidebar_position: 1
 
 # 문장 만들기 연습 일기  
 
+
+## 25.12.29
+
+나는 당근마켓에서 PT 무료나눔을 봤다.  
+- I found a free PT session giveaway on the Karrot app.
+- Giveaway: '무료 나눔'을 영어로 표현할 때 가장 적절한 단어
+
+무료 나눔 2회를 준다고 한다.  
+- They offered me two free sessions
+
+나는 바로 챗팅을 했다.  
+- I messaged the seller immediately. 
+
+헬스장은 역 근처 였다. 걸어서 대략 8분거리이다.  
+- The gym is near the subway station. It takes about eight minutes on foot.
+- *nearby는 형용사, It's a nearby gym
+
+첫번째 PT는 오티 세션과 함께 진행되었다.  
+- The first PT session started with an orientation.  
+- *proceeded 대신 부드러운 표현인 start  
+
+그리고 첫날은 어깨 근육을 먼저 훈련 받았다. 전면, 측면, 후면부 근육에 자극을 준다.  
+- For the first, we targeted the shoulder muscles. It focused on the front, side, and rear parts.  
+
 ## 25.12.28
 
 나는 주말 동안 아파트 임장을 다녔다.
