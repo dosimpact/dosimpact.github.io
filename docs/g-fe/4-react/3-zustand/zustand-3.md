@@ -4,8 +4,12 @@ sidebar_position: 3
 
 # 3.Zustand Patterns
 
+- [3.Zustand Patterns](#3zustand-patterns)
+  - [vanlia debounce, debounced state](#vanlia-debounce-debounced-state)
+  - [Fetch (create, AbortController, AxiosError, debouncedFetch)](#fetch-create-abortcontroller-axioserror-debouncedfetch)
 
-### vanlia debounce, debounced state  
+
+## vanlia debounce, debounced state  
 
 ```js
 export function debounce<T>(func: (args: T) => void, delay: number) {
@@ -55,7 +59,7 @@ export const useStoreSearchArea = create<SearchAreaStore>((set, get) => ({
 ```
 
 
-### Fetch (create, AbortController, AxiosError, debouncedFetch)    
+## Fetch (create, AbortController, AxiosError, debouncedFetch)    
 
 기존의 요청을 취소하고 새로운 요청을 보내는 로직.  
 - abort를 호출했다면 AbortController를 다시 생성해야한다.  

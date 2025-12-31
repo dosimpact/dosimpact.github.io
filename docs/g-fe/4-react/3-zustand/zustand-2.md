@@ -12,6 +12,8 @@ sidebar_position: 2
     - [유틸성 공통 로직 재사용](#유틸성-공통-로직-재사용)
     - [액션 in 액션 재사용](#액션-in-액션-재사용)
     - [immer 불편성 관리 middleware](#immer-불편성-관리-middleware)
+  - [Patterns](#patterns)
+    - [Zustand Selector -\> ID 배열 활용 고성능 렌더링](#zustand-selector---id-배열-활용-고성능-렌더링)
 
 
 ## Typing  
@@ -340,4 +342,45 @@ export const useTodoStore = create<TodoStore>()(
   )
 );
 
+```
+
+## Patterns
+
+### Zustand Selector -> ID 배열 활용 고성능 렌더링
+
+객체 형태의 데이터를 전역 스토어에 저장을 했다.  
+- list 형태로 ui rendering 할 때 ID 배열을 사용하면 고성능 렌더링이 가능.  
+
+
+```js
+// AS IS  
+// 스토어에서 필요한 데이터만 배열로 가공해서 구독
+const userList = useStore((state) => Object.values(state.users));
+
+return (
+  <ul>
+    {userList.map((user) => (
+      <li key={user.id}>{user.name}</li>
+    ))}
+  </ul>
+);
+---
+// TO BE  
+// 1. ID 목록만 가져옴
+const userIds = useStore((state) => Object.keys(state.users));
+
+return (
+  <ul>
+    {userIds.map((id) => (
+      <UserItem key={id} id={id} />
+    ))}
+  </ul>
+);
+
+// 2. 개별 아이템 컴포넌트
+function UserItem({ id }) {
+  // 각 아이템은 자기 자신의 데이터만 구독함
+  const user = useStore((state) => state.users[id]);
+  return <li>{user.name}</li>;
+}
 ```
