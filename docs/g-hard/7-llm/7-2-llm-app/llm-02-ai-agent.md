@@ -12,7 +12,7 @@ sidebar_position: 11
 구글 에이전트 백서 : https://drive.google.com/file/d/1oEjiRCTbd54aSdB_eEe3UShxLBWK9xkt/view    
 
 
-![Alt text](image-8.png)  
+![Alt text](image-4-8.png)  
 
 Orchestration  
 - 1.생각의 틀 만들기 ReAct, CoT, ToT
@@ -25,7 +25,7 @@ Tools
   - 인증, 파일 삭제 명령어, 사용자 승인이 필요한 경우  
   - Client Side에서 데이터 정리, API 선택, 후처리 등이 필요한 경우
 
-![Alt text](image-7.png)
+![Alt text](image-4-7.png)
 
 
 ## 생각의 틀 만들기
@@ -81,7 +81,7 @@ Tools
 
 ## RAG Based DStore  
 
-![Alt text](image-9.png)
+![Alt text](image-4-9.png)
 
 - Website content
 - Structured Data in formats like PDF, Word Docs, CSV, Spreadsheets, etc.
