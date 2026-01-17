@@ -1,0 +1,152 @@
+{
+    "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ecorp-md/Revolutionizing Personal Computing.md (Revolutionizing Personal Computing.md, 2025-09-07T00:00:00.000Z, 2025-02-02T00:00:00.000Z, 2025-09-07T00:00:00.000Z, 4354)",
+    "topics": [
+      {
+        "topic": "Example Corp's Widget and Partnership",
+        "statements": [
+          "Example Corp partnered with AnyCompany Logistics.",
+          "Example Corp created a product called the Widget.",
+          "AnyCompany Logistics facilitates expanded distribution channels for Example Corp.",
+          "Example Corp is poised to introduce the Widget to a worldwide audience.",
+          "The partnership with AnyCompany Logistics is a strategic move.",
+          "The partnership with AnyCompany Logistics will accelerate the Widget's global adoption.",
+          "There is hype surrounding the Widget.",
+          "The Widget offers AI-driven companionship.",
+          "The Widget represents the future of personal computing.",
+          "The Widget is considered a revolutionary product."
+        ]
+      },
+      {
+        "topic": "Example Corp and AnyCompany Logistics Partnership",
+        "statements": [
+          "Example Corp has partnered with AnyCompany Logistics.",
+          "Example Corp announces a strategic partnership with AnyCompany Logistics.",
+          "The partnership between Example Corp and AnyCompany Logistics will help bring the Widget to a global audience.",
+          "AnyCompany Logistics is a logistics company.",
+          "The partnership aims to expand global distribution channels for the Widget.",
+          "The announcement of the Example Corp and AnyCompany Logistics partnership has generated significant buzz within the technology industry.",
+          "The announcement of the Example Corp and AnyCompany Logistics partnership has generated significant buzz among consumers worldwide.",
+          "AnyCompany Logistics has storage capabilities.",
+          "AnyCompany Logistics has last-mile delivery capabilities.",
+          "AnyCompany Logistics has expansive international shipping capabilities."
+        ]
+      },
+      {
+        "topic": "Example Corp's Widget",
+        "statements": [
+          "Example Corp is a US-based technology company.",
+          "The Widget is developed at Example Corp labs.",
+          "Example Corp's Widget allows users to engage in companionship.",
+          "Example Corp labs are located in Austin, Texas.",
+          "Example Corp's Widget harnesses the power of generative AI.",
+          "Example Corp's Widget allows users to engage in entertainment.",
+          "Example Corp's Widget has AI-powered capabilities.",
+          "Example Corp's Widget allows users to engage in task assistance.",
+          "Example Corp's Widget can understand user needs.",
+          "Example Corp develops the Widget personal gizmo."
+        ]
+      }
+    ]
+  }
+  {
+    "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ecorp-md/Countdown to Christmas.md (Countdown to Christmas.md, 2025-09-07T00:00:00.000Z, 2025-08-15T00:00:00.000Z, 2025-09-07T00:00:00.000Z, 3255)",
+    "topics": [
+      {
+        "topic": "Christmas Toy Shopping in the UK",
+        "statements": [
+          "Example Corp is a company.",
+          "Example Corp created a toy called Widget.",
+          "The UK toy industry is in a frenzy over Widget.",
+          "The collective order of Widget units is valued at $15 million.",
+          "Industry analysts named Widget as the must-have toy for 2025.",
+          "Toy store chains have collectively ordered over 1 million Widget units.",
+          "Widget is predicted to be the top-selling Christmas gift in 2025.",
+          "Widget is a chatty desktop pet.",
+          "Leading toy store chains in other major UK cities have placed orders for Widget.",
+          "Samantha Watkins said retailers need to get ahead of the Widget trend."
+        ]
+      },
+      {
+        "topic": "Widget Product Launch and Toy Industry Trends",
+        "statements": [
+          "Example Corp has enlisted celebrities to promote the Widget.",
+          "Example Corp has launched a massive marketing campaign for the Widget.",
+          "Example Corp has enlisted social media influencers to promote the Widget.",
+          "Example Corp has struck a chord with consumers.",
+          "Example Corp has built hype and excitement around their Widget product.",
+          "Watkins expects the Widget to be the absolute must-have item under Christmas trees across the UK.",
+          "Fingerlings have sparked buying frenzies among UK consumers in recent years.",
+          "ElectricMouse plushies have sparked buying frenzies among UK consumers in recent years.",
+          "Demand for the Widget is shaping up to be phenomenal.",
+          "James Westbrook stated \"The level of demand we're seeing for the Widget is absolutely unprecedented.\""
+        ]
+      }
+    ]
+  }
+  {
+    "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ecorp-md/AnyCompany Logistics Slashes Shipping Times to UK with Turquoise Canal Shortcut.md (AnyCompany Logistics Slashes Shipping Times to UK with Turquoise Canal Shortcut.md, 2025-09-07T00:00:00.000Z, 2025-06-25T00:00:00.000Z, 2025-09-07T00:00:00.000Z, 3071)",
+    "topic": "Turquoise Canal Impact on Global Shipping",
+    "statements": [
+      "AnyCompany Logistics is a company.",
+      "AnyCompany Logistics Announces Reduced Shipping Times from Taiwan to UK",
+      "AnyCompany Logistics is cutting shipping times from Taiwan to the UK from 2 weeks to 3 days.",
+      "AnyCompany is using the Turquoise Canal for shipping.",
+      "AnyCompany is the first company to use the Turquoise Canal for shipping.",
+      "Jane Doe is the CEO of AnyCompany Logistics.",
+      "The Turquoise Canal is the key enabler for the shipping time reduction.",
+      "AnyCompany Logistics announced the shipping time reduction on June 25th, 2025.",
+      "The Turquoise Canal allows companies to reduce logistics costs.",
+      "Jane Doe stated \"The Turquoise Canal has completely transformed the logistics landscape.\""
+    ]
+  }
+  {
+    "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ecorp-md/Turquoise Canal Blocked by Landslides.md (Turquoise Canal Blocked by Landslides.md, 2025-09-07T00:00:00.000Z, 2025-09-05T00:00:00.000Z, 2025-09-07T00:00:00.000Z, 3120)",
+    "topics": [
+      {
+        "topic": "Turquoise Canal Blockage and Economic Impact",
+        "statements": [
+          "AnyCompany Logistics is a logistics firm.",
+          "Jane Doe is the CEO of AnyCompany Logistics.",
+          "The Turquoise Canal blockage is expected to create shortages of products.",
+          "Paul Williams stated the Turquoise Canal blockage creates a \"perfect storm\" for retailers.",
+          "The Turquoise Canal is blocked by landslides.",
+          "The Turquoise Canal blockage disruption is expected to affect the global economy for months.",
+          "Christmas is approaching at the time of the Turquoise Canal blockage.",
+          "Jane Doe stated the canal blockage \"couldn't have happened at a worse time.\"",
+          "Jane Doe described the canal blockage as \"an entirely new crisis.\"",
+          "Paul Williams predicted consumers will feel the economic impact of the canal blockage."
+        ]
+      },
+      {
+        "topic": "Turquoise Canal Blockage and Its Global Impact",
+        "statements": [
+          "The Turquoise Canal blockage is expected to create shortages of various products.",
+          "Shortages are expected in apparel due to the Turquoise Canal blockage.",
+          "The Turquoise Canal is blocked by landslides.",
+          "Sarah Johnson is a logistics expert.",
+          "There is no quick fix for the Turquoise Canal blockage.",
+          "The Turquoise Canal is a vital global trade artery.",
+          "Alex Chen is a spokesperson for the Turquoise Canal.",
+          "The Turquoise Canal blockage occurred before 2025-09-07.",
+          "The canal authority has mobilized hundreds of workers to clear the blockage.",
+          "Rerouting of goods may add weeks or months to delivery times."
+        ]
+      }
+    ]
+  }
+  {
+    "source": "source-data/additional-press-releases/uk_retailers_prepare_for_festive_season.md (uk_retailers_prepare_for_festive_season.md, 2025-11-13T00:00:00.000Z)",
+    "topic": "UK Retailers' Christmas Stock Preparations for 2025 Holiday Season",
+    "statements": [
+      "UK retailers are ensuring they have ample stock of Fingerlings.",
+      "Widgets offer companionship and entertainment.",
+      "Widgets are predicted to be a hit among children.",
+      "Widgets are predicted to be a hit among adults.",
+      "Widgets are a new contender in the toy market.",
+      "UK retailers are stocking products that appeal to shoppers of all ages.",
+      "UK retailers are filling their shelves with products designed to capture the festive spirit.",
+      "UK retailers are ramping up efforts to stock a wide range of Christmas items for the 2025 holiday season.",
+      "Widgets are desktop pets.",
+      "UK retailers aim to meet the anticipated surge in consumer demand during the 2025 holiday season."
+    ]
+  }
