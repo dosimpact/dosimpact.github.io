@@ -4,6 +4,44 @@ sidebar_position: 1
 
 # 문장 만들기 연습 일기  
 
+## 26.01.17
+
+나는 전세집에 살고있다.  
+I am living in a Jeonse house. 
+
+2월달말에 이사가 예정이다.  
+I am scheduled to move out at the end of February
+
+새로운 새입자를 구해야 내가 나갈 수 있다.
+I need to find a new tenant so that I can get my deposit back and move out.
+
+나는 그것에 대해 걱정이다. 
+I am worried about it
+
+만약 적시에 새입자가 안나타나면 새로운 집에 가는것에 문제가 생긴다. 
+If a new tenant doesn't show up on time, I will have trouble moving into my new house.
+
+## 26.01.16  
+
+나는 어제 내과에 갔었다.  
+I went to an internal medicine clinic yesterday.
+
+오늘 혈액검사 결과지를 받았다. 
+I got my blood test results today.
+
+간관련 수치가 높게 나왔다.  
+My liver function numbers came back high  (*간 수치는 보통 Liver function numbers)  
+
+엄청 심각한것으로 인지하고 나는 곧바로 휴식에 들어갔다.  
+Realizing it was serious, I started resting immediately
+
+영양제, 운동, 특이한 식습관 모두 중단했다. 
+I stopped taking supplements, exercising, and following my unusual diet.
+(*영양제는 Supplements, 중단하다는 stop이나 halt)  
+
+다음주에 간수치가 정상으로 돌아오는지 체크해야만 한다.  
+I need to check if my liver levels return to normal next week.
+- I need to have a follow-up test next week to see if my liver function is back to normal.
 
 ## 25.12.29
 
