@@ -1,0 +1,11 @@
+{
+  "label": "System Design",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "System Design Core",
+    "description": "System Design Core"
+  }
+}
