@@ -1,11 +1,11 @@
 {
-  "label": "AWS Basic",
+  "label": "1.AWS Basic",
   "position": 1,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "AWS Basic",
-    "description": "AWS Basic"
+    "title": "1.AWS Basic",
+    "description": "1.AWS Basic"
   }
 }

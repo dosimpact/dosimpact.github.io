@@ -1,11 +1,11 @@
 {
-  "label": "Common",
-  "position": 1,
+  "label": "0.Common",
+  "position": 0,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Common",
-    "description": "Common"
+    "title": "0.Common",
+    "description": "0.Common"
   }
 }

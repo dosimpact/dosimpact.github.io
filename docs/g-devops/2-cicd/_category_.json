@@ -1,11 +1,11 @@
 {
-  "label": "CICD",
-  "position": 1,
+  "label": "2.CICD",
+  "position": 2,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "CICD",
-    "description": "CICD"
+    "title": "2.CICD",
+    "description": "2.CICD"
   }
 }
