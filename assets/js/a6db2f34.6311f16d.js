@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[98478],{70719:o=>{o.exports=JSON.parse('{"title":"0.Common","description":"0.Common","slug":"/category/0common-1","permalink":"/docs/category/0common-1","navigation":{"next":{"title":"Linux","permalink":"/docs/category/linux"}}}')}}]);
