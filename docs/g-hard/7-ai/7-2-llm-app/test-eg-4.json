@@ -1,0 +1,823 @@
+{
+    "query": "[ntsb] Cessna 172 variants accidents instructional flights training pilot instruction common failure points mechanical systems",
+    "response": [
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/84916.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 84916.md, 8078)",
+        "topics": [
+          {
+            "topic": "Flight Instructor Information",
+            "statements": [
+              "The flight instructor had instructor ratings for instrument airplane.",
+              "The flight instructor was an occupational pilot.",
+              "The flight instructor held a Flight instructor certificate.",
+              "The flight instructor was male.",
+              "The flight instructor had instructor ratings for airplane single-engine.",
+              "The flight instructor had an instrument rating for airplane.",
+              "The flight instructor had 1322 total flight hours in all aircraft.",
+              "The flight instructor occupied the right seat.",
+              "The flight instructor had no other aircraft ratings.",
+              "The flight instructor had 1262 hours as Pilot In Command in all aircraft."
+            ]
+          },
+          {
+            "topic": "Student Pilot Information",
+            "statements": [
+              "The student pilot held a Student certificate.",
+              "The student pilot was male.",
+              "The student pilot had no airplane ratings.",
+              "The student pilot had no instructor ratings.",
+              "The student pilot had no other aircraft ratings.",
+              "The student pilot occupied the left seat.",
+              "The student pilot was 20 years old.",
+              "No toxicology was performed on the student pilot.",
+              "A second pilot was present during the incident.",
+              "The student pilot had 5 flight hours in the last 30 days in all aircraft."
+            ]
+          },
+          {
+            "topic": "Aviation Accident Report for Cessna 152 in Rockford, Illinois",
+            "statements": [
+              "The engine lost partial power during the approach.",
+              "The pilot reported the engine was not at glide power when the power loss occurred.",
+              "The reason for the partial loss of engine power could not be determined.",
+              "The defining event was loss of engine power (partial).",
+              "The Cessna 152 was on a visual approach to the runway during an instructional flight.",
+              "The National Transportation Safety Board determined the probable cause of the accident to be a partial loss of engine power.",
+              "The flight instructor's efforts to regain engine power were unsuccessful.",
+              "The aircraft involved was a Cessna 152.",
+              "The Cessna 152 sustained substantial damage.",
+              "The Cessna 152 came to rest inverted."
+            ]
+          },
+          {
+            "topic": "Flight Incident Information",
+            "statements": [
+              "The loss of engine power was partial.",
+              "The loss of engine power was the defining event of the incident.",
+              "The incident involved a loss of engine power during VFR pattern final approach."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/85013.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 85013.md, 8607)",
+        "topic": "Flight Instructor and Student Pilot Information",
+        "statements": [
+          "The flight instructor held Commercial, Flight instructor, and Private certificates.",
+          "The flight instructor was male.",
+          "The flight instructor was not an occupational pilot.",
+          "The flight instructor held an Airplane instrument rating.",
+          "The flight instructor held Airplane multi-engine, Airplane single-engine, and Instrument airplane instructor ratings.",
+          "The flight instructor occupied the right seat.",
+          "The flight instructor had no other aircraft ratings.",
+          "The flight instructor had an estimated 1929 total flight hours in all aircraft.",
+          "The student pilot had no instructor ratings.",
+          "The flight instructor had 1 hour of flight time in the last 24 hours in all aircraft."
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/90162.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 90162.md, 7389)",
+        "topic": "Meteorological Information and Flight Plan Details",
+        "statements": [
+          "No flight plan was filed.",
+          "No clearance was issued for the flight."
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/84981.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 84981.md, 8322)",
+        "topics": [
+          {
+            "topic": "Civil Air Patrol Aircraft Hard Landing Incident in Marion, South Carolina",
+            "statements": [
+              "The pilot-not-flying was a private pilot seated in the right seat.",
+              "The pilot flying was a flight instructor seated in the left seat.",
+              "The flight instructor turned over the controls to the private pilot.",
+              "The private pilot performed a normal landing initially.",
+              "The private pilot took off to practice a short-field landing.",
+              "Neither pilot could recall the airspeed during the approach."
+            ]
+          },
+          {
+            "topic": "Flight Incident Information",
+            "statements": [
+              "The flight instructor had Instrument airplane instructor rating.",
+              "The flight instructor held a Flight instructor certificate.",
+              "The flight instructor was not an occupational pilot.",
+              "The flight instructor had Airplane single-engine instructor rating.",
+              "The flight instructor had an Instrument airplane rating.",
+              "The flight instructor had 1710 total flight hours in all aircraft.",
+              "The flight instructor had 1500 Pilot In Command hours in all aircraft.",
+              "The flight instructor had no other aircraft ratings.",
+              "The flight instructor was 68 years old and male.",
+              "The flight instructor occupied the left seat."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/89563.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 89563.md, 7810)",
+        "topics": [
+          {
+            "topic": "Aviation Accident in Orlando, Florida",
+            "statements": [
+              "The flight instructor completed an approximate 1 hour flight with his student pilot.",
+              "There were no preimpact mechanical malfunctions with the airplane.",
+              "The flight was conducted under Part 91 General aviation - Instructional.",
+              "The probable cause was the flight instructor's failure to maintain control while taxiing in a strong gusty wind.",
+              "The findings included issues with instructor/check pilot aircraft control.",
+              "The aircraft involved was a Cessna 172S.",
+              "The findings included gusts as an environmental issue affecting operation."
+            ]
+          },
+          {
+            "topic": "Flight Incident Information",
+            "statements": [
+              "The flight instructor held a Flight instructor certificate.",
+              "The flight instructor held instructor ratings for Instrument airplane.",
+              "The flight instructor held instructor ratings for Airplane single-engine.",
+              "The flight instructor held instructor ratings for Airplane multi-engine.",
+              "The flight instructor held an Instrument Rating for Airplane.",
+              "The student pilot had no airplane ratings.",
+              "The student pilot had no instructor ratings.",
+              "The flight instructor had 1614 total flight hours in all aircraft.",
+              "The flight instructor occupied the right seat.",
+              "The flight instructor was an occupational pilot."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  {
+    "query": "[aircraft] Cessna 172 variants technical specifications mechanical systems engines components common differences between models",
+    "response": [
+      {
+        "source": "https://en.wikipedia.org/wiki/Beechcraft_Musketeer (Beechcraft Musketeer, Beechcraft Musketeer, 1241148)",
+        "topics": [
+          {
+            "topic": "Beechcraft Musketeer Model History",
+            "statements": [
+              "Model 23 Musketeer was introduced as a 1963 model.",
+              "The B23 Musketeer Custom was introduced in 1968.",
+              "The C23 version was introduced under the name \"Musketeer Custom\".",
+              "Model 23 Musketeer had an initial price of $13,300.",
+              "Model 23 Musketeer was powered by a Lycoming O-320-D2B engine.",
+              "The C23 version was introduced in 1970.",
+              "The Lycoming O-360-A4J engine was used starting with the B23 Musketeer Custom of 1968.",
+              "In 1964 the Lycoming O-320-D2B engine was replaced by the Continental IO-346-A engine.",
+              "The Continental IO-346-A engine was replaced by the Lycoming O-360-A4J engine.",
+              "The Continental IO-346-A engine produced 165 bhp (123 kW)."
+            ]
+          },
+          {
+            "topic": "C24R Sierra 200 Aircraft Specifications",
+            "statements": [
+              "C24R Sierra 200 is a variant of the Beechcraft Musketeer.",
+              "The Lycoming IO-360-A1B6 piston engine produces 200 hp (149 kW).",
+              "C24R Sierra 200 is powered by a Lycoming IO-360-A1B6 piston engine.",
+              "C24R Sierra 200 is a four or six-seat light cabin aircraft.",
+              "The aerodynamic improvements made C24R Sierra 200 6 knots faster than the \"B\" model."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_150 (Cessna 150, Cessna 150, 848180)",
+        "topics": [
+          {
+            "topic": "Cessna 150 Variants and Development",
+            "statements": [
+              "The Model 142 prototype was powered by a 100 hp (75 kW) Continental O-200-A engine.",
+              "The production Model 150 was introduced for the 1959 model year.",
+              "The Model 142 prototype was subsequently redesignated to Model 150.",
+              "The Model 142 prototype was of all-metal construction.",
+              "Cessna 150 Variants and Development",
+              "Cessna typically introduces new models a few months prior to the actual calendar year.",
+              "The Model 142 prototype had squared tail surfaces.",
+              "The Model 142 prototype was a tricycle landing gear development of the Cessna 140.",
+              "The production Model 150 was largely identical to the 142/150 prototype.",
+              "The Model 142 prototype had construction number 617."
+            ]
+          },
+          {
+            "topic": "Cessna 150 Manufacturing and Design Information",
+            "statements": [
+              "The Continental O-200-A engine provided 100 horsepower (75 kW).",
+              "Most Reims-built Cessna 150 aircraft are powered by a Continental O-200-A built under license by Rolls-Royce.",
+              "American-made Cessna 150s were all produced with the Continental O-200-A engine.",
+              "Some Reims-built Cessna 150 aircraft have the Rolls-Royce-built version of the Continental O-240-A.",
+              "French manufactured Cessna 150s were designated Reims F150 or Reims-Cessna F150.",
+              "Reims Aviation produced 1,764 Cessna 150 aircraft under license in France.",
+              "The Cessna 150 was succeeded by the closely related Cessna 152 in the summer of 1977.",
+              "The bowed doors on the 1967 Model 150G provided more cabin elbow room."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_172 (Cessna 172, Cessna 172, 173462)",
+        "topics": [
+          {
+            "topic": "Cessna 172 Model Variants and Features",
+            "statements": [
+              "The Lycoming engine represented an increase of 5 hp (3.7 kW) over the Continental powerplant.",
+              "172I featured a Lycoming O-320-E2D engine.",
+              "The Lycoming O-320-E2D engine produced 150 hp (112 kW).",
+              "172I marked the beginning of the Lycoming-powered 172s.",
+              "172H is a 1967 model year of Cessna 172.",
+              "172I was introduced for the 1968 model year.",
+              "172H introduced a new cowling.",
+              "172H replaced the flashing unit with a rotating beacon.",
+              "The new cowling in 172H introduced shock-mounts.",
+              "172H replaced the electric stall warning horn with a pneumatic one."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Variants and Development",
+            "statements": [
+              "The Cessna 172 retained the Cessna 170B's Continental O-300-A engine.",
+              "The Continental O-300-A is a six-cylinder, air-cooled engine.",
+              "The Continental O-300-A produces 145 hp (108 kW).",
+              "The Cessna 172 was introduced for the 1956 model year.",
+              "The 1959 model year of the Cessna 172 introduced a new cowling.",
+              "The new cowling was introduced for improved engine cooling.",
+              "The Cessna 172 featured a redesigned tail similar to the experimental 170C.",
+              "The 175 type was discontinued for the civilian market after the 1963 model year.",
+              "The 175C had an increased horizontal stabilizer span.",
+              "Sales of new Cessna models typically start a few months prior to the actual calendar year."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Military and Civilian Variants",
+            "statements": [
+              "The R172G was certified to be powered by a 210 hp (157 kW) Continental IO-360-D engine.",
+              "The R172G was certified to be powered by a 210 hp (157 kW) Continental IO-360-C engine.",
+              "The R172G was certified to be powered by a 210 hp (157 kW) Continental IO-360-CB engine.",
+              "The R172G was certified to be powered by a 210 hp (157 kW) Continental IO-360-DB engine.",
+              "The R172F was built in T-41C variant.",
+              "Cessna produced the R172E exclusively for military use.",
+              "Cessna built 28 T-41D aircraft of the R172G variant.",
+              "Cessna built 7 T-41C aircraft.",
+              "Cessna built 74 T-41D aircraft.",
+              "The R172F was built in T-41D variant."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_310 (Cessna 310, Cessna 310, 2323454)",
+        "topics": [
+          {
+            "topic": "Cessna 310 Variants",
+            "statements": [
+              "Cessna 310 was powered by two Continental O-470-B engines with carburetors.",
+              "Cessna 310 was powered by two Continental O-470-M engines with carburetors.",
+              "310A was equipped with Continental O-470-M engines.",
+              "Continental O-470-B engines produce 240 hp (180 kW).",
+              "Continental O-470-M engines produce 240 hp (180 kW).",
+              "310B was equipped with O-470-M engines.",
+              "161 310A aircraft were built.",
+              "Cessna 310 was the initial production variant.",
+              "310A is a military version of the Cessna 310 for the United States Air Force."
+            ]
+          },
+          {
+            "topic": "Cessna 310 Aircraft Development and Features",
+            "statements": [
+              "The Cessna 320 Skyknight was in production between 1961 and 1969.",
+              "The Cessna 320 Skyknight was equipped with TSIO-470-B engines.",
+              "Canted wingtip fuel tanks were found on the majority of the Cessna twin-engine product line.",
+              "Cessna marketed the canted wingtip fuel tanks as \"stabila-tip\" tanks.",
+              "The turbocharged 320 Skyknight was developed from the Cessna 310F.",
+              "The Cessna 320E model was named the Executive Skyknight."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Piper_J-3_Cub (Piper J-3 Cub, Piper J-3 Cub, 847652)",
+        "topic": "Piper J-3 Cub Engine and Model Variants",
+        "statements": [
+          "Piper J-3 Cub was equipped with Continental A-75-8 engine of 75 hp (56 kW).",
+          "Piper J-3 Cub was equipped with Continental C-85-8 engine of 85 hp (63 kW).",
+          "Piper J-3 Cub was equipped with Continental A-75-8-9 engine of 75 hp (56 kW).",
+          "Piper J-3 Cub was equipped with Continental A-75-12 engine of 75 hp (56 kW).",
+          "Piper J-3 Cub was equipped with Continental C-85-12 engine of 85 hp (63 kW).",
+          "Piper J-3 Cub was equipped with Continental C-90-8F engine of 90 hp (67 kW).",
+          "J3F-50S was certified on 14 July 1938."
+        ]
+      }
+    ]
+  }
+  {
+    "query": "[ntsb] Cessna 172 engine failure power loss accidents training flights mechanical problems Lycoming Continental engines",
+    "response": [
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/88615.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 88615.md, 7039)",
+        "topics": [
+          {
+            "topic": "Airport Information for BLOSSER MUNI CNK",
+            "statements": [
+              "Runway 30 was used at BLOSSER MUNI CNK.",
+              "BLOSSER MUNI CNK is an airport.",
+              "The runway surface condition at BLOSSER MUNI CNK was dry.",
+              "The runway at BLOSSER MUNI CNK has a width of 265 feet.",
+              "The runway at BLOSSER MUNI CNK has a length of 2243 feet.",
+              "BLOSSER MUNI CNK has a grass/turf runway surface type.",
+              "No Instrument Flight Rules approach was available at BLOSSER MUNI CNK.",
+              "Visual Flight Rules approach/landing at BLOSSER MUNI CNK was conducted via traffic pattern.",
+              "BLOSSER MUNI CNK has an elevation of 1487 feet above mean sea level."
+            ]
+          },
+          {
+            "topic": "Flight Incident Information",
+            "statements": [
+              "The defining event was loss of control on ground during landing-landing roll.",
+              "The pilot had Single-engine land airplane rating.",
+              "The aircraft was a Cessna 172K P.",
+              "The pilot had 5 flight hours in the last 30 days in all aircraft.",
+              "The aircraft had a Normal airworthiness certificate.",
+              "The aircraft serial number was 17258676.",
+              "The aircraft had 4 seats.",
+              "The aircraft registration was N1176M.",
+              "The aircraft's last inspection was an Annual inspection on January 10, 2013.",
+              "The aircraft category was Airplane."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/101227.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 101227.md, 10212)",
+        "topics": [
+          {
+            "topic": "Cessna 172 Aircraft Accident in Fresno, California",
+            "statements": [
+              "The aircraft registration was N734NW.",
+              "The aircraft involved was a Cessna 172.",
+              "The airplane continued off the end of the runway.",
+              "Shortly after takeoff on runway 30, the airplane reached about 300 to 400 ft above ground level.",
+              "The defining event was loss of engine power (partial).",
+              "The airplane nosed over in the median.",
+              "The engine lost partial power at 300 to 400 ft above ground level.",
+              "The airplane touched down about halfway down the runway.",
+              "The airplane went through a fence.",
+              "The airplane passed over two westbound lanes of a road."
+            ]
+          },
+          {
+            "topic": "Cessna 172N Aircraft Accident at Sierra Sky Park Airport",
+            "statements": [
+              "A Cessna 172N aircraft with registration N734NW was involved in an accident near Sierra Sky Park Airport in Fresno, California.",
+              "The wind was estimated at about 9 to 10 knots straight down runway 30.",
+              "The Cessna 172N was substantially damaged in the accident.",
+              "The pilot of the Cessna 172N sustained minor injuries.",
+              "Rotational continuity was established throughout the engine and valve train.",
+              "The engine remained at \"low\" power after the fluctuation.",
+              "The airplane continued off the end of the runway.",
+              "The pilot confirmed there was no contamination in the fuel by visually checking the fuel strainer.",
+              "A postaccident examination was performed on the airplane and engine.",
+              "The airplane touched down about halfway down the runway."
+            ]
+          },
+          {
+            "topic": "Aircraft and Owner/Operator Information for Cessna N734NW",
+            "statements": [
+              "Cessna N734NW's operator is on file.",
+              "Cessna N734NW was manufactured in 1977.",
+              "Cessna N734NW has tricycle landing gear.",
+              "Cessna N734NW is a 172 N model aircraft.",
+              "Cessna N734NW's operator holds no operating certificates.",
+              "Cessna N734NW had 1.9 hours of flight time since the last inspection.",
+              "Cessna N734NW has 4 seats.",
+              "Cessna N734NW is categorized as an Airplane.",
+              "Cessna N734NW's registered owner is on file.",
+              "Cessna N734NW has a Normal airworthiness certificate."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/88909.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 88909.md, 7136)",
+        "topic": "Aircraft and Owner/Operator Information for Piper PA 18 N8281C",
+        "statements": [
+          "The engine manufacturer is LYCOMING."
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/90502.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 90502.md, 10556)",
+        "topic": "Aircraft and Owner/Operator Information for Piper PA 46 350P N224JJ",
+        "statements": [
+          "The engine manufacturer is LYCOMING."
+        ]
+      },
+      {
+        "source": "/home/ec2-user/SageMaker/graphrag-toolkit/source-data/ntsb-md/88191.md (2025-09-24T00:00:00.000Z, 2025-09-24T00:00:00.000Z, 88191.md, 6729)",
+        "topic": "Aircraft and Owner/Operator Information for N40WY",
+        "statements": [
+          "LYCOMING is the engine manufacturer."
+        ]
+      }
+    ]
+  }
+  {
+    "query": "[aircraft] Cessna 172 different models 172N 172S 172R specifications engine differences technical systems landing gear avionics",
+    "response": [
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_210_Centurion (Cessna 210 Centurion, Cessna 210 Centurion, 1808956)",
+        "topics": [
+          {
+            "topic": "Cessna 210 Centurion Aircraft Information",
+            "statements": [
+              "The Cessna 210 Centurion is a six-seat aircraft.",
+              "The Cessna 210 Centurion is a high-wing aircraft.",
+              "The Cessna 210 Centurion is a single-engined aircraft.",
+              "The Cessna 210 Centurion has retractable landing gear.",
+              "The Cessna 210 Centurion is a high-performance aircraft.",
+              "The Cessna 210 Centurion was produced by Cessna until 1986.",
+              "The Cessna 210 Centurion is a general-aviation light aircraft.",
+              "The Cessna 210 Centurion first flew in January 1957."
+            ]
+          },
+          {
+            "topic": "Cessna 210 Centurion Development History",
+            "statements": [
+              "The Cessna 210 was essentially a Cessna 182B with a new wing.",
+              "The early Cessna 210 was equipped with a Continental IO-470 engine.",
+              "The Cessna 210 was essentially a Cessna 182B with added swept tail.",
+              "The redesigned fuselage was made wider.",
+              "The Cessna 210 was essentially a Cessna 182B with added retractable landing gear.",
+              "The early Cessna 210 had four seats.",
+              "In 1961, the fuselage of the Cessna 210 was completely redesigned.",
+              "The redesigned fuselage was made deeper.",
+              "In 1961, the wing of the Cessna 210 was completely redesigned.",
+              "The early Cessna 210A had four seats."
+            ]
+          },
+          {
+            "topic": "Cessna 210 Centurion Variants and Modifications",
+            "statements": [
+              "Several optional fittings are available for the Cessna 210 Centurion.",
+              "The model variants include Centurion C210E-H&J.",
+              "The model variants include C210.",
+              "The model variants include Centurion II C210K-N&R.",
+              "The model variants include Turbo Centurion T210F-H&J.",
+              "The model variants include Turbo Centurion II T210K-N&R.",
+              "Several modifications are available for the Cessna 210 Centurion.",
+              "Available modifications include STOL kits.",
+              "The model variants include C210A-D.",
+              "Available modifications include speed brakes."
+            ]
+          },
+          {
+            "topic": "Cessna 210 Centurion Aircraft Models and Development",
+            "statements": [
+              "Cessna 210 Centurion spawned an entirely new family of Cessna aircraft.",
+              "Cessna 210 is a four-seat production variant.",
+              "Cessna 210 has a Continental IO-470-E engine.",
+              "575 Cessna 210 aircraft were built.",
+              "Cessna 210A was produced in 1961.",
+              "Cessna 210B was produced in 1962.",
+              "Cessna 210C was produced in 1963.",
+              "Cessna 210B has a rear-vision window.",
+              "Cessna 210B has a Continental IO-470-S engine.",
+              "Cessna 210 was introduced in 1960."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_172 (Cessna 172, Cessna 172, 173462)",
+        "topics": [
+          {
+            "topic": "Cessna 172 Aircraft Models and Specifications",
+            "statements": [
+              "The Cessna 172S Skyhawk SP was introduced in 1998.",
+              "The front seats in the Cessna 172R have inertia reel harnesses.",
+              "The Cessna 172R is the first Cessna 172 to have a factory-fitted fuel-injected engine.",
+              "The Cessna 172R introduced a standard four point intercom.",
+              "The rpm increase resulted in a 20 hp (15 kW) increase over the Cessna 172R model.",
+              "The Cessna 172S is powered by a Lycoming IO-360-L2A engine.",
+              "The Cessna 172R introduced contoured, energy absorbing, 26g front seats.",
+              "The Cessna 172R introduced a new interior with soundproofing.",
+              "The Cessna 172S has a maximum takeoff weight of 2,550 lb (1,157 kg).",
+              "The Cessna 172R has a maximum takeoff weight of 2,450 lb (1,111 kg)."
+            ]
+          },
+          {
+            "topic": "The Cessna 172 Skyhawk is the most successful aircraft in history measured by longevity and popularity",
+            "statements": [
+              "The Cessna 172 Skyhawk was developed from the 1948 Cessna 170.",
+              "The Cessna Aircraft Company made the Cessna 172 Skyhawk.",
+              "The name \"Skyhawk\" was later applied to all standard-production Cessna 172 aircraft.",
+              "As of 2015, Cessna and its partners had built more than 44,000 units of the Cessna 172.",
+              "Cessna delivered the first production model of the Cessna 172 in 1956.",
+              "More Cessna 172 Skyhawks have been built than any other aircraft.",
+              "The Cessna 172 Skyhawk is a four-seat aircraft.",
+              "The Cessna 172 Skyhawk is an American aircraft.",
+              "The Cessna 172 Skyhawk was first flown in 1955.",
+              "The Cessna 172 Skyhawk is a high wing aircraft."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Development History",
+            "statements": [
+              "Cessna 172 started as a tricycle landing gear variant of the Cessna 170.",
+              "The improved variant was a Cessna 170C.",
+              "Cessna added the modified aircraft to the Cessna 170 type certificate as the Model 172.",
+              "The Cessna 170C had larger elevators than the Cessna 170.",
+              "The Cessna 170C had a more angular tailfin than the Cessna 170.",
+              "The Cessna 170C variant was tested and certified.",
+              "Over 1,400 Cessna 172 aircraft were built in 1956.",
+              "The Cessna 172 became an overnight sales success.",
+              "1956 was the first full year of production for the Cessna 172.",
+              "Cessna flew an improved variant of the Cessna 170 in January 1955."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Model Variants and Features",
+            "statements": [
+              "172H is a 1967 model year of Cessna 172.",
+              "1,586 units of 172H were built.",
+              "172H introduced a new cowling.",
+              "172I marked the beginning of the Lycoming-powered 172s.",
+              "172I was introduced for the 1968 model year.",
+              "172H replaced the generator with a 60A alternator.",
+              "172H featured redesigned wheel fairings.",
+              "Reims built 435 units as the F172H.",
+              "172I featured a Lycoming O-320-E2D engine.",
+              "The new cowling in 172H introduced shock-mounts."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Aircraft Model Variations",
+            "statements": [
+              "The 1972 model year Cessna 172 featured bonded cabin doors.",
+              "The 1972 model year Cessna 172 introduced a reduced-diameter propeller.",
+              "The plastic fairing was added to create a greater family resemblance to the Cessna 182's vertical fin.",
+              "The 1972 model year Cessna 172 had improved instrument panel controls.",
+              "1,535 Cessna 172L aircraft were built for both model years.",
+              "The Cessna 172M was introduced for the 1973 model year.",
+              "The Cessna 172L had lighter landing gear than previous models.",
+              "The Cessna 172L offered optional cabin skylights.",
+              "The Cessna 172M had a key-locking baggage door.",
+              "The lighter landing gear on the Cessna 172L required aerodynamic fairings to maintain the same speed and climb performance as the flat steel design."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Collision Incidents",
+            "statements": [
+              "Cessna 172 is an aircraft model.",
+              "Reims Cessna F172P is a variant of the Cessna 172 aircraft.",
+              "N7711G is a Cessna 172 aircraft.",
+              "N99501 was a Cessna 172 aircraft.",
+              "D-ECJB was a Reims Cessna F172P aircraft.",
+              "The collision between Cessna 172 N7711G and Pacific Southwest Airlines Flight 182 resulted in 144 fatalities.",
+              "Pacific Southwest Airlines Flight 182 was a Boeing 727 aircraft.",
+              "2 fatalities occurred in the Cessna 172 N7711G.",
+              "D-ECJB was a rented aircraft.",
+              "135 fatalities occurred on Pacific Southwest Airlines Flight 182."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Design Evolution",
+            "statements": [
+              "Cessna halted production of the Cessna 172 in 1986.",
+              "Cessna resumed production of the Cessna 172 in 1996.",
+              "Early Cessna 172s were similar in appearance to the Cessna 170s.",
+              "Cessna resumed production with the Cessna 172R Skyhawk model.",
+              "Cessna supplemented the Cessna 172R with the Cessna 172S Skyhawk SP in 1998.",
+              "All Cessna 172 models after the 172D featured the lowered rear deck.",
+              "Cessna 172 had a straight tailfin.",
+              "The 1963 Cessna 172D featured a lowered rear deck.",
+              "In 1960, the Cessna 172A incorporated revised landing gear.",
+              "The Cessna 172S Skyhawk SP has a 180 hp (134 kW) engine."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Refurbishment Announcement",
+            "statements": [
+              "The refurbished Cessna 172 airframes would be equipped with the Continental/Thielert Centurion 2.0 diesel engine.",
+              "Continental/Thielert Centurion 2.0 is a diesel engine.",
+              "Premier Aircraft Sales announced in February 2014 that it would offer refurbished Cessna 172 airframes."
+            ]
+          },
+          {
+            "topic": "Cessna 172 Variants and Development",
+            "statements": [
+              "The Cessna 172 was developed from the Cessna 170B.",
+              "Cessna continued to produce the 175 aircraft for the United States Armed Forces as the T-41 Mescalero.",
+              "The Cessna 172 featured a redesigned tail similar to the experimental 170C.",
+              "The Cessna 172 was introduced for the 1956 model year.",
+              "The 1959 model year of the Cessna 172 introduced a new cowling.",
+              "The Cessna 172 featured \"Para-Lift\" flaps.",
+              "The Cessna 172 features tricycle landing gear.",
+              "The Cessna 172 retained the Cessna 170B's Continental O-300-A engine.",
+              "The Cessna 172 was introduced in November 1955.",
+              "The Cessna 172 had a maximum gross weight of 2,200 lb (998 kg)."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_150 (Cessna 150, Cessna 150, 848180)",
+        "topics": [
+          {
+            "topic": "Cessna 150 Aircraft Information",
+            "statements": [
+              "Cessna announced a successor to the Model 150 and 152 in 2007.",
+              "The Cessna 150 was succeeded in production by the Cessna 152 in 1977.",
+              "The Cessna 152 is a minor modification to the original Cessna 150 design.",
+              "The Cessna 150 was offered for sale in a configuration named Standard.",
+              "The Standard was the basic model of the Cessna 150.",
+              "The Cessna 150 was designed for touring.",
+              "The Cessna 150 was offered for sale in a configuration named Trainer.",
+              "The Cessna 150 was designed for personal use.",
+              "23,839 Cessna 150 aircraft were produced.",
+              "The Cessna 150 was offered for sale in a configuration named Commuter."
+            ]
+          },
+          {
+            "topic": "Cessna 150 Manufacturing and Design Information",
+            "statements": [
+              "The Cessna 150 was succeeded by the closely related Cessna 152 in the summer of 1977.",
+              "All Cessna 150 models from 1966 onwards have larger doors.",
+              "French manufactured Cessna 150s were designated Reims F150 or Reims-Cessna F150.",
+              "All Cessna 150 models from 1966 onwards have increased baggage space.",
+              "American-made Cessna 150s were all produced with the Continental O-200-A engine.",
+              "Reims Aviation produced 1,764 Cessna 150 aircraft under license in France.",
+              "The \"F\" in Reims F150 and Reims-Cessna F150 indicated the aircraft were built in France.",
+              "Most Reims-built Cessna 150 aircraft are powered by a Continental O-200-A built under license by Rolls-Royce.",
+              "Some Reims-built Cessna 150 aircraft have the Rolls-Royce-built version of the Continental O-240-A."
+            ]
+          },
+          {
+            "topic": "Cessna 150 Production Statistics",
+            "statements": [
+              "734 Aerobats were built in the United States.",
+              "21,404 Commuters were built in the United States.",
+              "A total of 22,138 Cessna 150s were built in the United States.",
+              "The 1966 Cessna 150 featured electrically operated flaps.",
+              "The 1966 Cessna 150 featured a swept tail fin.",
+              "Reims Aviation completed 1,764 F150s.",
+              "3,067 Cessna 150s were produced in 1966.",
+              "The 1966 model year was the most plentiful of all Cessna 150/152 models.",
+              "The 1966 Cessna 150 featured an increased baggage area.",
+              "336 of the Reims Aviation F150s were Aerobats."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_206 (Cessna 206, Cessna 206, 1240850)",
+        "topics": [
+          {
+            "topic": "Cessna 206 Aircraft Production History",
+            "statements": [
+              "The 206H was a later sub-variant of the Cessna 206.",
+              "The total Cessna 206 production between 1964 and 2004 was 6,581 aircraft.",
+              "The P206 was a sub-variant of the Cessna 206.",
+              "The U206 was a sub-variant of the Cessna 206.",
+              "The Cessna 206 was introduced as a 1964 model.",
+              "The Cessna 206 is a six-seat aircraft.",
+              "The Cessna 206 had many sub-variants.",
+              "The Cessna 206 was re-introduced in 1998.",
+              "The Cessna 206 remains in production.",
+              "The Cessna 206 was built until 1986."
+            ]
+          },
+          {
+            "topic": "Cessna 205 Aircraft Information",
+            "statements": [
+              "Cessna 205 was replaced in production by the Cessna 206.",
+              "Cessna 205 was essentially a Cessna 210 with fixed landing gear.",
+              "Cessna 205 retained the early Cessna 210's engine cowling bulge.",
+              "Cessna 205 was produced in only two model years, 1963 and 1964.",
+              "Cessna 205 had changes to the crew and passenger door arrangement compared to the Cessna 210.",
+              "Cessna 205 is a six-seat aircraft.",
+              "A total of 576 Cessna 205 aircraft were produced.",
+              "Cessna 205 is powered by a Continental IO-470-S engine.",
+              "Cessna 205 was officially designated by Cessna as a \"Model 210-5\".",
+              "The distinctive cowling was made more streamlined on the later Cessna 206."
+            ]
+          },
+          {
+            "topic": "Cessna 206 Aircraft Information",
+            "statements": [
+              "Cessna 206 aircraft can be fitted with luxury appointments for use as a personal air transport.",
+              "Cessna produced 8,509 aircraft in the 205, 206 and 207 variants from 1962 to 2006.",
+              "The Cessna 206 remains in production."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_182_Skylane (Cessna 182 Skylane, Cessna 182 Skylane, 643970)",
+        "topics": [
+          {
+            "topic": "Cessna 182 Skylane Information",
+            "statements": [
+              "The Cessna 172 is the most popular Cessna model in production.",
+              "The Cessna 182 Skylane is built by Cessna.",
+              "The Cessna 182 Skylane is an American four-seat, single-engined light airplane.",
+              "The Cessna 182 Skylane has been produced in several variants.",
+              "One variant of the Cessna 182 Skylane has retractable landing gear.",
+              "The Cessna 182 Skylane was introduced in 1956.",
+              "The Cessna 182 Skylane is the second-most popular Cessna model still in production.",
+              "The Cessna 182 Skylane has the option of adding two child seats in the baggage area.",
+              "Cessna is located in Wichita, Kansas."
+            ]
+          },
+          {
+            "topic": "Cessna 182 Skylane Production and Certification History",
+            "statements": [
+              "237 Cessna 182 aircraft were built in 1982.",
+              "339 Cessna 182 aircraft were built in 1981.",
+              "895 total Cessna 182 aircraft were built between 1981 and 1986.",
+              "74 Cessna 182 aircraft were built in 1986.",
+              "65 Cessna 182 aircraft were built in 1984.",
+              "106 Cessna 182 aircraft were built in 1985.",
+              "74 Cessna 182 aircraft were built in 1983.",
+              "The Cessna 182 was certified on 29 August 1980.",
+              "The 182S Skylane introduced new seats.",
+              "All Cessna 182 production stopped after 1986."
+            ]
+          },
+          {
+            "topic": "Cessna 182 Skylane Design Features",
+            "statements": [
+              "The Cessna 182 Skylane's wing has the same planform as the smaller Cessna 172.",
+              "The Cessna 182 Skylane's aileron design is the same as the Cessna 172.",
+              "The Cessna 182 Skylane's flap design is the same as the Cessna 172.",
+              "The Cessna 182 Skylane's aileron design is not like the Cessna 205/206 components.",
+              "The Cessna 182 Skylane's flap design is not like the Cessna 205/206 components.",
+              "The Cessna 182 Skylane's wing has the same planform as the larger Cessna 205/206 series.",
+              "The Cessna 182 Skylane is an all-metal aircraft.",
+              "The wingtips of the Cessna 182 Skylane are made of fiberglass or thermoplastic material.",
+              "The Cessna 182 Skylane is constructed mostly of aluminum alloy.",
+              "The engine cowling nosebowl of the Cessna 182 Skylane is made of fiberglass or thermoplastic material."
+            ]
+          }
+        ]
+      },
+      {
+        "source": "https://en.wikipedia.org/wiki/Cessna_177_Cardinal (Cessna 177 Cardinal, Cessna 177 Cardinal, 1807924)",
+        "topics": [
+          {
+            "topic": "Cessna 177 Cardinal Design Features and Development",
+            "statements": [
+              "Cessna 177 Cardinal was designed as a replacement for the Cessna 172.",
+              "The Cessna 177 Cardinal design was intended to be a replacement for the Cessna 172.",
+              "The Cessna 172 was to be discontinued after introduction of the Cessna 177 Cardinal.",
+              "In the Cessna 172, the pilot sits under the wing.",
+              "When the wing is lowered to begin a turn in the Cessna 172, that wing blocks the pilot's view of where the turn will lead to.",
+              "Cessna engineers resolved the visibility problem by placing the pilot forward of the wing's leading edge in the Cessna 177 Cardinal.",
+              "Placing the pilot forward of the wing's leading edge led to a too-far-forward center of gravity in the Cessna 177 Cardinal.",
+              "The forward center of gravity situation still existed in the Cessna 177 Cardinal even with the lighter engine.",
+              "One design goal of the Cessna 177 Cardinal was to allow the pilot an unobstructed view when making a turn."
+            ]
+          },
+          {
+            "topic": "Cessna 177 Cardinal Aircraft Information",
+            "statements": [
+              "The Cessna 177 Cardinal was intended to replace the Cessna 172 Skyhawk.",
+              "The Cessna 177 Cardinal was produced by Cessna.",
+              "The Cessna 177 Cardinal is a high-wing aircraft.",
+              "The Cessna 177 Cardinal was first announced in 1967.",
+              "The Cessna 177 Cardinal is a general aviation aircraft.",
+              "The Cessna 177 Cardinal is a light single-engine aircraft.",
+              "The Cessna 177 Cardinal was produced from 1968 to 1978."
+            ]
+          },
+          {
+            "topic": "Cessna 177 Cardinal Development",
+            "statements": [
+              "Engineers at Cessna were asked to create a \"futuristic 1970s successor to the Cessna 172\".",
+              "Cessna 177 was designed in the mid-1960s.",
+              "Cessna 177 featured newer technology including a cantilever wing.",
+              "Cessna 177 is the only production high-wing single-engined Cessna since the Cessna 190 & 195 series to have fixed landing gear.",
+              "Cessna 177 featured a new laminar flow airfoil.",
+              "Cessna 177 was originally designated as Model 341.",
+              "The 1968 model 177 was introduced in late 1967.",
+              "The 1968 model 177 had a 150 hp (112 kW) engine.",
+              "Cessna 177's cantilever wing lacked the lift struts of previous models.",
+              "Cessna 177 is the only production high-wing single-engined Cessna since the Cessna 190 & 195 series to have a cantilever wing without strut bracing."
+            ]
+          },
+          {
+            "topic": "Cessna 177 Cardinal Modifications and Service Response",
+            "statements": [
+              "Cessna had previously produced the extremely forgiving 172 series aircraft.",
+              "Cessna paid for modifications to the Cessna 177 Cardinal.",
+              "Cessna accepted blame for issues with the Cessna 177 Cardinal.",
+              "Cessna 177 Cardinal Modifications and Service Response",
+              "The Cessna 172 series allowed near-effortless flying.",
+              "The Cessna 177 Cardinal did not handle exactly like previous Cessna aircraft.",
+              "The modifications gentled the Cessna 177 Cardinal.",
+              "The solution was provided at no cost to all Cessna 177 Cardinal aircraft already delivered.",
+              "The stabilator slots were designed to delay the onset of stabilator stall."
+            ]
+          }
+        ]
+      }
+    ]
+  }
