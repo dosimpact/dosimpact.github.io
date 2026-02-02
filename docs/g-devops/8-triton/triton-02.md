@@ -5,7 +5,7 @@ sidebar_position: 2
 # gRPC 개념 정립  
 
 
-## 1. RPC(Remote Procedure Call)의 이해
+## 1. RPC(Remote Procedure Call)의 이해  
 
 - 현대 소프트웨어 아키텍처, 특히 마이크로서비스 아키텍처(MSA)에서 서비스 간 통신은 시스템의 전체 성능을 결정짓는 핵심 요소
 - 구글에서 개발한 **gRPC**는 기존의 REST API가 가진 한계를 극복하며 차세대 통신 표준으로 자리 잡고 있습니다.

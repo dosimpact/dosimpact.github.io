@@ -14,11 +14,11 @@ sidebar_position: 1
 NVIDIA Triton Inference Server (이하 Triton)는 NVIDIA에서 개발한 **오픈 소스 AI 모델 추론 전용 서버 소프트웨어**  
 - 간단히 말해, 학습이 완료된 AI 모델을 실제 서비스(운영 환경)에 배포하여 클라이언트의 요청에 따라 결과를 출력(추론)해주는 역할
 - 특정 프레임워크나 하드웨어에 종속되지 않고 범용적으로 사용할 수 있다는 것이 가장 큰 특징 
-
+- *추론(Inference) : 학습된 모델이 실제 데이터를 입력받아 결과를 내놓는 과정  
 
 ### 1. 주요 특징 및 장점
 
-- **다양한 프레임워크 지원 (Framework Agnostic)**: PyTorch, TensorFlow, ONNX, TensorRT, OpenVINO는 물론 Python 기반의 커스텀 코드(Scikit-learn 등)까지 한 서버에서 동시에 돌릴 수 있습니다.
+- 다양한 프레임워크 지원 (Framework Agnostic): PyTorch, TensorFlow, ONNX, TensorRT, OpenVINO는 물론 Python 기반의 커스텀 코드(Scikit-learn 등)까지 한 서버에서 동시에 돌릴 수 있습니다.
 - **고성능 최적화**:
     - **다이나믹 배칭(Dynamic Batching)**: 여러 클라이언트의 개별 요청을 서버에서 자동으로 묶어 처리함으로써 GPU/CPU 활용도를 극대화하고 처리량을 늘립니다.
     - **병렬 모델 실행 (Concurrent Model Execution)**: 하나의 GPU에서 여러 모델을 동시에 실행하거나, 동일 모델의 인스턴스를 여러 개 띄워 성능을 높입니다.
@@ -107,3 +107,6 @@ curl localhost:8000/v2/models/densenet_onnx/config
     - * TensorRT: NVIDIA에서 제공하는 고성능 딥러닝 추론 최적화 엔진입니다. PyTorch나 TensorFlow 모델을 이 형식으로 변환하면 GPU에서 훨씬 빠르게 작동합니다.
     - TensorFlow 에서 Tensor의 의미? 다차원 배열(Multi-dimensional Array) 데이터를 담는 컨테이너, GPU라는 하드웨어가 데이터를 처리하는 물리적인 방식과 완벽하게 맞물려 있음.  
 
+
+Ref 
+- https://velog.io/@mmodestaa/%EC%96%B8%EC%96%B4%EB%AA%A8%EB%8D%B8-%EC%84%9C%EB%B9%99-%EC%8B%9C-%EC%95%8C%EB%A9%B4-%EC%A2%8B%EC%9D%80-%EA%B0%9C%EB%85%90%EB%93%A4-Triton-Inference-Server-HTTP-Rest-API-gRPC
