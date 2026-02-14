@@ -5,20 +5,126 @@ sidebar_position: 6
 # OpenClaw(몰트봇)구축하기 1  
 - [OpenClaw(몰트봇)구축하기 1](#openclaw몰트봇구축하기-1)
   - [1, OpenClaw(몰트봇) 설치하기](#1-openclaw몰트봇-설치하기)
-  - [2, ollama 가이드](#2-ollama-가이드)
-  - [3. 몰트봇(OpenClaw) 설치, 연동 설정값](#3-몰트봇openclaw-설치-연동-설정값)
+  - [2, OpenClaw에 GPT Codex 붙이기](#2-openclaw에-gpt-codex-붙이기)
+  - [3, 크롬 브라우저 권한 넘기기](#3-크롬-브라우저-권한-넘기기)
   - [99, 스킬](#99-스킬)
+  - [99, OpenClaw에 ollama 붙이기](#99-openclaw에-ollama-붙이기)
+  - [참고자료](#참고자료)
 
 
 26년 초 OpenClaw(몰트봇)이 굉장히 핫 하다.. 그럴듯한 개인용 AI 비서 + 오픈소스라니 굉장히 인기가 많을 수 밖에 없다.  
 - 결국 사람이 원하는것은 내 귀잖은 일을 잘 해줄 비서같은 AI에 대한 수요가 확실히 검증되었다고 생각된다.  
 - 정말 필요하다면 이제 1인 AI PC 시대가 올 것이다. 집에 인터넷 공유기는 하나씩 있는데 그 옆에 맥미니 같은 컴퓨터가 있을듯 하다.   
 
+특히나 요즘 운동 루틴, 개발 트랜드 파악 루틴, 경제 시황 파악 등 귀찮은 일들이 많아지는데 이를 하나씩 자동화해볼 수 있지 않을까 한다.  
+- 여기서는 설치먼저 진행하자.  
 
 ## 1, OpenClaw(몰트봇) 설치하기  
 
+공식 문서 : https://github.com/openclaw/openclaw  
 
-## 2, ollama 가이드  
+1.1, OpenClaw(몰트봇) 설치는 여러 방법으로 가능하다.  
+- 나는 그 중 npm 으로 진행 했다. - https://docs.openclaw.ai/install#npm-pnpm  
+
+```js
+# openclaw 설치는 아래 한줄이면 된다.  
+npm install -g openclaw@latest
+
+# 설치 후 아래 명령어로 셋팅 시작이 가능함    
+openclaw onboard --install-daemon
+```
+
+설정 중 주요 내용은 아래와 같다.  
+- 기존 설정 확인: ~/.openclaw/openclaw.json이 이미 존재하면 유지/수정/리셋 중 선택한다.
+- Workspace 설정: 에이전트가 사용할 워크스페이스 위치를 설정한다. 기본값은 ~/.openclaw/workspace이다.
+- Gateway 설정: 포트, 바인드 주소, 인증 모드, Tailscale 노출 여부를 설정한다. Local 모드에서는 기본값(포트 18789, loopback)을 사용하는 것이 좋다.
+- 채널 설정: 텔레그램, WhatsApp, Discord 등 사용할 채널을 선택하고 설정한다. 처음에는 하나만 설정해도 된다.
+- Daemon 설치: 백그라운드에서 실행되도록 데몬을 설치한다. macOS는 LaunchAgent, Linux는 systemd user unit을 사용한다.
+
+
+1.2, 채널설정  
+- 채널이란? 텔레그렘 같은 메신저를 이용해서 open claw와 상호작용 할 수 있다. 
+- 가장 간단한 텔레그렘 봇으로 연동을 하자. https://docs.openclaw.ai/channels  
+- 참고: https://leejams.github.io/openclaw/
+
+설치과정 
+```
+1, 텔레그렘 접속하기 
+2, 텔레그램에서 BotFather를 검색 > /newbot 입력 후 생성하기  > 봇 토큰이 나옴  > open claw 설정에 넣기  
+3, 텔레그램에서 봇 사용 가능한 유저 화이트 리스팅 설정 > @userinfobot 봇 검색 > 시작하면 본인의 user id가 나온다. ( 프로필의 @으로 시작하는 이름이 아닌 값을 ) > open claw 설정에 넣기  
+```
+
+## 2, OpenClaw에 GPT Codex 붙이기   
+
+마침 카카오에서 GPT pro를 30만원 -> 2.9만원으로 할인행사를 하더라.  
+- openClaw랑 gpt codex cli와 연동이 가능해서 붙여보았다.  
+- https://docs.openclaw.ai/providers/openai#cli-setup-codex-oauth  
+
+```
+# 아래 명령어로 자동 설정이 된다. 
+openclaw onboard --auth-choice openai-codex
+```
+
+![alt text](image-2.png)   
+- 에이전트 섹션에서 설정된 값을 볼 수 있다.  
+![alt text](image-3.png)  
+- 모델을 확인하자. 
+
+
+## 3, 크롬 브라우저 권한 넘기기  
+
+OpenClaw 에서는 브라우저를 2가지 방식으로 제어할 수 있다. - https://docs.openclaw.ai/tools/browser
+- OpenClaw가 직접 브라우저를 열고 탐색할 수 있도록 브라우저 전체를 주는 방식과 내가 보고 있는 특정 탭을 연동하는 방식  
+- 여기서는 후자 방법으로 에이전트가 직접 브라우저를 서핑할 수 있도록 설정을 해보자. https://docs.openclaw.ai/tools/chrome-extension    
+- 기존 나의 크롬 프로파일에는 카드 정보, 비빌번호 등 여러가지 크리덴션 설정이 되어 있기 때문에 잘못하면 모든 나의 개인정보을 이용한 액션 (결제 등)이 가능한 위험에 노출되어 있다.  
+
+
+```js
+# 익스텐션 설치하기  
+openclaw browser extension install
+
+# 아래 경로에 크롬 익스텐션 파일이 생성된다.  클립보드에 복사한다.  
+~/.openclaw/browser/chrome-extension
+
+# 'chrome://extensions' 접속 후 개발자 모드를 활성화   
+- Chrome → chrome://extensions → enable “Developer mode”
+
+# 압축해제된 확장 프로그램을 로드 -> 'Command + Shift + .' 명령어 입력하면 숨김 파일 보인다. -> 익스텐션 파일 넣기  
+- “Load unpacked” → select: ~/.openclaw/browser/chrome-extension
+- Pin “OpenClaw Browser Relay”, then click it on the tab (badge shows ON)
+
+```
+
+![alt text](image-4.png)    
+
+참고 - Extension Relay    
+- OpenClaw 서버가 내 컴퓨터 안에서 18792번 포트로 실행되고 있고 Chrome extension이 거기로 메시지를 보내는 구조  
+- 즉, 브라우저 ↔ OpenClaw 연결용 통신 채널이야.  
+- 구조 : Chrome Extension  →  localhost:18792  →  OpenClaw  
+
+중요! 보안 고려사항 - https://docs.openclaw.ai/tools/chrome-extension#security-implications-read-this  
+- Extension이 Chrome의 디버거 API(chrome.debugger)를 사용
+- 👉 평소 쓰는 크롬 프로필에 붙이면 그 계정 전체 접근 권한을 주는 것과 같음
+- ✅ 권장 사항
+  - 1️⃣ 개인 브라우저와 분리된 **전용 Chrome 프로필 사용**
+  - 2️⃣ Gateway / Node는 **tailnet 내부에서만 사용** (외부 공개 금지)
+  - 3️⃣ relay 포트: * ❌ 0.0.0.0 (LAN 공개) 하지 말 것 ❌ Funnel (공개 인터넷 노출) 하지 말 것
+  - 4️⃣ 내부 인증 토큰 + 확장 origin 차단으로 보호됨  
+
+
+![alt text](image-5.png)  
+결과 : 크롬 확장 프로그램으로 모니터링 중인 브라우저를 확인할 수 있었다.  
+
+
+## 99, 스킬 
+
+https://clawhub.ai/skills?sort=downloads&dir=desc  
+- 유용한 스킬들을 살펴보자. pdf to word, gmail 탐색, IoT기기 제어 등  
+
+
+
+
+## 99, OpenClaw에 ollama 붙이기    
 
 
 1, ollama 설치
@@ -62,91 +168,24 @@ M2 Max 32GB 맥스튜디오에서 적절한 로컬 LLM
 - 아주 빠르고 똑똑한 걸 원하신다면 DeepSeek-R1-14B를 선택  - https://ollama.com/cyberuser42/DeepSeek-R1-Distill-Qwen-14B  
 
 
-## 3. 몰트봇(OpenClaw) 설치, 연동 설정값
-
-https://github.com/openclaw/openclaw  
 
 ```js
-npm install -g openclaw@latest
-# or: pnpm add -g openclaw@latest
-openclaw onboard --install-daemon
-```
-![Alt text](image-2.png)  
-
-```
-◇  Discord bot token ──────────────────────────────────────────────────────────────────────╮
-│                                                                                          │
-│  1) Discord Developer Portal → Applications → New Application                            │
-│  2) Bot → Add Bot → Reset Token → copy token                                             │
-│  3) OAuth2 → URL Generator → scope 'bot' → invite to your server                         │
-│  Tip: enable Message Content Intent if you need message text. (Bot → Privileged Gateway  │
-│  Intents → Message Content Intent)                                                       │
-│  Docs: discord                               │
-│                                                                                          │
-├───────────────────────────────────────────────────────────────────────────────────────
-```
-
-```
-1. 기존 프로세스 종료
+# 기존 openclaw 종료
 openclaw gateway stop
 
-2, ollama에서 게이트웨이를 열면서 openclaw도 실행하기  
+# ollama에서 게이트웨이를 열면서 openclaw도 실행하기  
 ollama launch openclaw
 
 Select models for OpenClaw: Type to filter...
   >  [ ] qwen2.5-coder:7b
-     [ ] glm-4.7-flash - Recommended (requires ~25GB VRAM), install?
-     [ ] glm-4.7:cloud - Recommended, install?
-     [ ] kimi-k2.5:cloud - Recommended, install?
-     [ ] qwen3:8b - Recommended (requires ~11GB VRAM), install?
 
-  Select at least one model.
-
- ollama launch openclaw
-
-Launching OpenClaw with qwen2.5-coder:7b...
-2026-02-11T15:17:33.650Z [canvas] host mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/dodo/.openclaw/canvas)
-2026-02-11T15:17:33.723Z [heartbeat] started
-2026-02-11T15:17:33.726Z [gateway] agent model: ollama/qwen2.5-coder:7b
-2026-02-11T15:17:33.727Z [gateway] listening on ws://127.0.0.1:18789 (PID 3990)
-2026-02-11T15:17:33.728Z [gateway] listening on ws://[::1]:18789
-2026-02-11T15:17:33.731Z [gateway] log file: /tmp/openclaw/openclaw-2026-02-12.log
-2026-02-11T15:17:33.756Z [browser/service] Browser control service ready (profiles=2)
-2026-02-11T15:17:34.393Z [discord] [default] Discord Message Content Intent is disabled; bot may not respond to channel messages. Enable it in Discord Dev Portal (Bot → Privileged Gateway Intents) or require mentions.
-2026-02-11T15:17:34.396Z [discord] [default] starting provider (@갱얼지)
-2026-02-11T15:17:35.038Z [discord] channels unresolved: 1311708616650129559/1471159144789708900
-2026-02-11T15:17:35.342Z [ws] webchat connected conn=47b11c5e-0355-4314-8341-ca72d91ae20c remote=127.0.0.1 client=openclaw-control-ui webchat vdev
-2026-02-11T15:17:35.354Z [ws] webchat connected conn=d914cb87-4dad-4c1a-898e-121557ac3c8e remote=127.0.0.1 client=openclaw-control-ui webchat vdev
-2026-02-11T15:17:36.297Z [discord] logged in to discord as 1471157887467262003
-2026-02-11T15:17:36.332Z [discord] gateway: WebSocket connection closed with code 4014
-2026-02-11T15:17:36.334Z [discord] gateway error: Error: Fatal Gateway error: 4014
-2026-02-11T15:17:36.335Z [discord] [default] channel exited: Fatal Gateway error: 4014
 ```
 
+참고 자료  
+- ollama integrations openclaw : https://docs.ollama.com/integrations/openclaw
 
-몰트봇 설정 시 로컬 LLM 연결을 위한 기본 정보입니다.
-
-* **Provider:** `openai-compatible` (또는 `ollama`)
-* **Base URL:** `http://localhost:11434/v1`
-* **API Key:** `ollama` (아무 값이나 입력해도 무방)
-* **Model:** `qwen2.5-coder:7b` (설치한 모델 태그와 일치해야 함)
-
----
-
-> **Tip:** 모델 구동 중 Mac이 느려진다면 `ollama ps`로 현재 어떤 모델이 올라가 있는지 확인하고, 불필요한 모델은 `ollama stop`으로 꺼주세요.
-
-**이제 어떤 모델을 먼저 설치해 보시겠어요?** 명령어가 기억나지 않으시면 바로 물어봐 주세요!
-
-
--- 
-
-
-## 99, 스킬 
-
-https://clawhub.ai/skills?sort=downloads&dir=desc  
-- 유용한 스킬들을 살펴보자. pdf to word, gmail 탐색, IoT기기 제어 등  
-
-
-참고자료  
+## 참고자료  
 - https://brunch.co.kr/@sungdairi/19  
 - openclaw + ollama https://leejams.github.io/openclaw-ollama/  
+- Ollama로 OpenClaw 로컬 AI 모델 연동하기 https://leejams.github.io/openclaw-ollama/
+
