@@ -185,7 +185,7 @@ Select models for OpenClaw: Type to filter...
 - ollama integrations openclaw : https://docs.ollama.com/integrations/openclaw
 
 ## 참고자료  
+- openclaw 소개 : https://www.daleseo.com/openclaw
 - https://brunch.co.kr/@sungdairi/19  
 - openclaw + ollama https://leejams.github.io/openclaw-ollama/  
-- Ollama로 OpenClaw 로컬 AI 모델 연동하기 https://leejams.github.io/openclaw-ollama/
-
+- Ollama로 OpenClaw 로컬 AI 모델 연동하기 https://leejams.github.io/openclaw-ollama/    

@@ -14,6 +14,7 @@ sidebar_position: 1
   - [PT 복습 #4, 어깨 상부](#pt-복습-4-어깨-상부)
   - [PT 복습 #5, 하체](#pt-복습-5-하체)
   - [PT 복습 #6, Low - 26.02.11](#pt-복습-6-low---260211)
+  - [PT 복습 #7, Low - 26.02.13](#pt-복습-7-low---260213)
     - [1. 어깨 루틴의 완성: '미는 운동' 추가](#1-어깨-루틴의-완성-미는-운동-추가)
     - [2. 가슴 근육 (Chest): 밀기 운동의 꽃](#2-가슴-근육-chest-밀기-운동의-꽃)
     - [3. 하체 \& 전신 (Lower Body): 루틴의 뿌리](#3-하체--전신-lower-body-루틴의-뿌리)
@@ -145,6 +146,19 @@ https://www.youtube.com/shorts/HPTE4K4GwBY
 https://www.youtube.com/shorts/weyxYZEE5iA  
 - 역시 견갑을 모으는 동작이 중요하다.  
 - 이마 + 한번 거울을 보밪. 팔이 이마에서 계속 아래로 떨어질 것이다. 자세를 유지하자.    
+
+## PT 복습 #7, Low - 26.02.13  
+
+1, 원암 덤벨 로우  
+https://www.youtube.com/shorts/m7qPARD4aE0  
+
+
+2, 시티드 로우 머신  
+- 광배근 까지 힘이 들어오면 좋다.  
+
+3, 견갑근 쪼여주는 동작 훈련  
+- https://www.youtube.com/watch?v=kZo2XT9iAL0
+- 견갑접는 느낌이 잘 안온다면 팔딱 팔딱 견갑을 접어주는 연습을 하자.  
 
 --- 
 상체 TBD 
