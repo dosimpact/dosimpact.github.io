@@ -4,6 +4,24 @@ sidebar_position: 1
 
 # 문장 만들기 연습 일기  
 
+## 26.02.14  
+
+
+컨텍스트 엔지니어링은 AI가 작업을 효과적으로 수행할 수 있도록 사전에 업무 환경을 설정하고 필요한 지식을 관리하는 과정이다. 이는 AI의 ‘컨텍스트 윈도우’(작업에 필요한 책장)의 한계를 보완하기 위해 중요하다.
+
+AI의 ‘스킬’은 특정 업무를 위한 전문 지식이나 매뉴얼(레시피) 역할을 한다. 또한 ‘에이전트’는 역할을 분담함으로써 별도의 컨텍스트 윈도우를 제공하여 더 많은 정보를 동시에 처리할 수 있게 한다.
+
+‘플러그인’은 이러한 스킬, 에이전트, 훅(자동화 규칙) 등을 통합한 집합체로, AI 기능을 확장하고 효율적으로 활용할 수 있도록 돕는다. 특히 바이브 코딩 과정에서 AI의 능력을 극대화한다.
+
+---
+
+Context engineering is the process of setting up the task environment in advance and managing the knowledge required for AI to perform effectively. It plays a crucial role in compensating for the limitations of the AI’s context window—the working space used to process information.
+
+AI “skills” function as specialized knowledge or structured guidelines for specific tasks. Meanwhile, an “agent” divides roles and assigns separate context windows, enabling the system to process more information simultaneously.
+
+A “plugin” is an integrated collection of skills, agents, and hooks (automation rules) that extends and streamlines AI capabilities. It helps maximize AI performance, particularly in a vibe coding workflow.
+
+
 ## 26.01.17
 
 나는 전세집에 살고있다.  
