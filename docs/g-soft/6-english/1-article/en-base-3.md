@@ -4,6 +4,28 @@ sidebar_position: 1
 
 # 문장 만들기 연습 일기  
 
+
+## 26.02.14  
+
+이 영상은 Anthropic의 클로드 Opus 4.6 업데이트와 에이전트 팀(Agent Teams) 기능을 소개합니다 (0:00). 특히 AI가 여러 팀을 이루어 코딩하고 협업하는 방식에 초점을 맞추고 있습니다.
+다음은 영상의 주요 내용입니다.
+클로드 Opus 4.6의 세 가지 주요 업데이트 
+어댑티브 씽킹 (Adaptive Thinking): AI가 작업의 난이도를 스스로 판단하여 깊이 생각하거나 빠르게 답변할 수 있습니다
+100만 토큰 컨텍스트 창 지원 (베타): Opus 계열 모델 중 최초로 100만 토큰 컨텍스트 창을 지원하며, 12만 8천 토큰까지 출력이 가능합니다 
+
+---
+
+This video introduces Anthropic’s Claude Opus 4.6 update and the Agent Teams feature (0:00) 
+- with a particular focus on how AI operates as multiple coordinated teams for collaborative coding.
+
+Below are the key highlights of the video.
+- Three key updates in Claude Opus 4.6 
+- Adaptive Thinking: The AI independently evaluates task difficulty and adjusts its reasoning depth or response speed accordingly 
+
+1-million-token context window support (Beta)
+- For the first time in the Opus series, the model supports a 1-million-token context window - and can generate outputs of up to 128,000 tokens.
+
+
 ## 26.02.14  
 
 
