@@ -4,6 +4,16 @@ sidebar_position: 1
 
 # 문장 만들기 연습 일기  
 
+## 26.02.19
+
+나는 요즘 시간 관리를 더 잘하려고 노력하고 있다. 하지만 예상치 못한 일들이 자꾸 생겨서 계획대로 되지 않는다.
+
+I have been trying to manage my time better lately, but it hasn’t been going well because unexpected events keep coming up.
+
+나는 혼자 있는 시간이 필요하지만, 너무 오래 혼자 있으면 외로움을 느낀다.
+
+I need some time alone, but if I spend too much time by myself, I start to feel lonely.
+
 
 ## 26.02.14  
 

@@ -7,8 +7,7 @@ sidebar_position: 3
 
 ## GenAI Deep Dive  
 
-
-## 100, GenAI Intro  
+## 100, GenAI Intro   
 제너레이티브 AI 요약 노트
 
 ⸻
