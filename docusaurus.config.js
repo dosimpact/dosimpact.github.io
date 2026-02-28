@@ -4,6 +4,15 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+function gtagSafeFallbackPlugin() {
+  return {
+    name: "gtag-safe-fallback-plugin",
+    getClientModules() {
+      return [require.resolve("./src/client-modules/gtagSafe.js")];
+    },
+  };
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "DoDo(도도)의 개발 블로그",
@@ -68,6 +77,7 @@ const config = {
       }),
     ],
   ],
+  plugins: [gtagSafeFallbackPlugin],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
