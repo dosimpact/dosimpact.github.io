@@ -1,15 +1,271 @@
-.features {
+.featuresSection {
+  padding: 2rem 0 3.4rem;
+  color: var(--rb-ink, #10241c);
+}
+
+.sectionHeader {
+  margin-bottom: 1.2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(38, 122, 64, 0.92);
+}
+
+.title {
+  margin: 0;
+  font-family:
+    "Iowan Old Style",
+    "Times New Roman",
+    "Noto Serif KR",
+    serif;
+  font-size: clamp(1.45rem, 2.8vw, 2.08rem);
+}
+
+.subtitle {
+  margin: 0.6rem 0 0;
+  color: rgba(16, 36, 28, 0.82);
+  line-height: 1.65;
+}
+
+:global([data-theme="dark"]) .subtitle {
+  color: rgba(230, 244, 237, 0.86);
+}
+
+.trackGrid {
+  display: grid;
+  gap: 0.95rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.trackCard {
+  min-width: 0;
+  border-radius: 16px;
+  border: 1px solid var(--rb-border, rgba(16, 36, 28, 0.14));
+  background: var(--rb-glass, rgba(255, 255, 255, 0.58));
+  backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  -webkit-backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  box-shadow: var(--rb-shadow-soft, 0 16px 32px rgba(16, 36, 28, 0.12));
+  overflow: hidden;
+  animation: fadeUp var(--rb-motion-normal, 340ms) var(--rb-ease-standard, ease)
+    both;
+  transition:
+    transform var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    box-shadow var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    border-color var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease);
+}
+
+.trackCard:hover,
+.trackCard:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(62, 204, 95, 0.46);
+  box-shadow: var(--rb-shadow-raise, 0 18px 34px rgba(16, 36, 28, 0.14));
+}
+
+.trackCard:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.trackCard:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.trackCard:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+.trackCard:nth-child(5) {
+  animation-delay: 240ms;
+}
+
+.trackLink {
   display: flex;
-  align-items: center;
-  padding: 2rem 0;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.trackLink:focus-visible {
+  outline: 2px solid var(--rb-focus-ring-color, rgba(62, 204, 95, 0.5));
+  outline-offset: -2px;
+}
+
+.thumbBox {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.trackThumb {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.trackBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem 0.9rem 1rem;
 }
 
-.pinned{
- margin: 20px 20px 0px 20px;
+.trackMeta {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.2rem 0.48rem;
+  border-radius: 999px;
+  border: 1px solid var(--rb-border, rgba(16, 36, 28, 0.14));
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.trackIcon {
+  line-height: 1;
+}
+
+.trackTitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.38;
+}
+
+.trackDescription {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.58;
+  color: rgba(16, 36, 28, 0.82);
+}
+
+:global([data-theme="dark"]) .trackDescription {
+  color: rgba(230, 244, 237, 0.84);
+}
+
+.pinnedWrap {
+  margin-top: 1.2rem;
+}
+
+.pinnedLink {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 0.9rem;
+  border-radius: 18px;
+  border: 1px solid var(--rb-border, rgba(16, 36, 28, 0.14));
+  background: var(--rb-glass, rgba(255, 255, 255, 0.58));
+  backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  -webkit-backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  box-shadow: var(--rb-shadow-soft, 0 16px 32px rgba(16, 36, 28, 0.12));
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    box-shadow var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    border-color var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease);
+}
+
+.pinnedLink:hover {
+  transform: translateY(-4px);
+  border-color: rgba(62, 204, 95, 0.46);
+  box-shadow: var(--rb-shadow-raise, 0 18px 34px rgba(16, 36, 28, 0.14));
+}
+
+.pinnedLink:focus-visible {
+  outline: 2px solid var(--rb-focus-ring-color, rgba(62, 204, 95, 0.5));
+  outline-offset: 2px;
+}
+
+.pinnedThumbBox {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pinnedThumb {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.pinnedBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pinnedTag {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(38, 122, 64, 0.92);
+}
+
+.pinnedTitle {
+  margin: 0;
+  font-family:
+    "Iowan Old Style",
+    "Times New Roman",
+    "Noto Serif KR",
+    serif;
+  font-size: clamp(1.18rem, 2.2vw, 1.62rem);
+}
+
+.pinnedDescription {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(16, 36, 28, 0.82);
+}
+
+:global([data-theme="dark"]) .pinnedDescription {
+  color: rgba(230, 244, 237, 0.84);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1200px) {
+  .trackGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 996px) {
+  .featuresSection {
+    padding: 1.7rem 0 2.6rem;
+  }
+
+  .trackGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pinnedLink {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding: 0.75rem;
+  }
+
+  .pinnedThumb {
+    min-height: 160px;
+  }
 }

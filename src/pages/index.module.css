@@ -1,23 +1,303 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+.landingRoot {
+  --rb-bg-0: #f3fbf7;
+  --rb-bg-1: #e8f6ef;
+  --rb-ink: #10241c;
+  --rb-accent: #3ecc5f;
+  --rb-border: rgba(16, 36, 28, 0.14);
+  --rb-glass: rgba(255, 255, 255, 0.58);
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
   position: relative;
   overflow: hidden;
+  color: var(--rb-ink);
+  font-family:
+    "Avenir Next",
+    "Segoe UI",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    sans-serif;
+  background:
+    linear-gradient(140deg, var(--rb-bg-0) 0%, var(--rb-bg-1) 100%);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.landingRoot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(16, 36, 28, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 36, 28, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+}
+
+.landingRoot > * {
+  position: relative;
+  z-index: 1;
+}
+
+:global([data-theme="dark"]) .landingRoot {
+  --rb-bg-0: #0d1512;
+  --rb-bg-1: #13201a;
+  --rb-ink: #e6f4ed;
+  --rb-accent: #6ddf8f;
+  --rb-border: rgba(230, 244, 237, 0.18);
+  --rb-glass: rgba(23, 34, 29, 0.52);
+}
+
+.heroSection,
+.quickNavSection,
+.journeySection {
+  padding: 2.8rem 0 1.4rem;
+}
+
+.heroGlass {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 2.25rem;
+  border: 1px solid var(--rb-border);
+  border-radius: 20px;
+  background: var(--rb-glass);
+  backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  -webkit-backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  box-shadow: var(--rb-shadow-soft, 0 16px 32px rgba(16, 36, 28, 0.12));
+  text-align: center;
+  animation: fadeUp var(--rb-motion-normal, 340ms) var(--rb-ease-standard, ease)
+    both;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0.9rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--rb-border);
+  background: rgba(255, 255, 255, 0.34);
+  color: var(--rb-ink);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  font-family:
+    "Iowan Old Style",
+    "Times New Roman",
+    "Noto Serif KR",
+    serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.01em;
+}
+
+.heroSubtitle {
+  margin: 1rem auto 0;
+  max-width: 700px;
+  color: rgba(16, 36, 28, 0.84);
+  line-height: 1.7;
+  font-size: 1.03rem;
+}
+
+:global([data-theme="dark"]) .heroSubtitle {
+  color: rgba(230, 244, 237, 0.86);
+}
+
+.heroActions {
+  margin-top: 1.7rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 152px;
+  padding: 0.72rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition:
+    transform var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    box-shadow var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    border-color var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease);
+}
+
+.primaryAction {
+  background: var(--rb-accent);
+  color: #082113;
+  font-weight: 700;
+}
+
+.secondaryAction {
+  border-color: var(--rb-border);
+  background: var(--rb-glass);
+  color: var(--rb-ink);
+  font-weight: 600;
+}
+
+.primaryAction:hover,
+.secondaryAction:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--rb-shadow-raise, 0 18px 34px rgba(16, 36, 28, 0.14));
+}
+
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  outline: 2px solid var(--rb-focus-ring-color, rgba(62, 204, 95, 0.5));
+  outline-offset: 2px;
+}
+
+.sectionHeading {
+  margin-bottom: 1rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rb-accent);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family:
+    "Iowan Old Style",
+    "Times New Roman",
+    "Noto Serif KR",
+    serif;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+}
+
+.quickNavList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.quickNavChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid var(--rb-border);
+  background: var(--rb-glass);
+  color: var(--rb-ink);
+  font-size: 0.93rem;
+  transition:
+    transform var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    border-color var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease),
+    box-shadow var(--rb-motion-fast, 180ms) var(--rb-ease-standard, ease);
+}
+
+.quickNavChip:hover {
+  transform: translateY(-2px);
+  border-color: var(--rb-accent);
+  box-shadow: var(--rb-shadow-soft, 0 16px 32px rgba(16, 36, 28, 0.12));
+}
+
+.quickNavChip:focus-visible {
+  outline: 2px solid var(--rb-focus-ring-color, rgba(62, 204, 95, 0.5));
+  outline-offset: 2px;
+}
+
+.journeyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.journeyCard {
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid var(--rb-border);
+  background: var(--rb-glass);
+  backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  -webkit-backdrop-filter: blur(var(--rb-glass-blur, 14px));
+  box-shadow: var(--rb-shadow-soft, 0 16px 32px rgba(16, 36, 28, 0.12));
+  animation: fadeUp var(--rb-motion-normal, 340ms) var(--rb-ease-standard, ease)
+    both;
+}
+
+.journeyCard:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.journeyCard:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.journeyTitle {
+  margin: 0;
+  font-family:
+    "Iowan Old Style",
+    "Times New Roman",
+    "Noto Serif KR",
+    serif;
+  font-size: 1.06rem;
+}
+
+.journeyDescription {
+  margin: 0.55rem 0 0;
+  line-height: 1.62;
+  color: rgba(16, 36, 28, 0.84);
+}
+
+:global([data-theme="dark"]) .journeyDescription {
+  color: rgba(230, 244, 237, 0.86);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 996px) {
+  .heroSection,
+  .quickNavSection,
+  .journeySection {
+    padding: 1.9rem 0 1rem;
+  }
+
+  .heroGlass {
+    padding: 1.55rem 1.15rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.96rem;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+  }
+
+  .quickNavList {
+    gap: 0.55rem;
+  }
+
+  .journeyGrid {
+    grid-template-columns: 1fr;
+  }
 }

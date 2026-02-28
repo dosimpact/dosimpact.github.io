@@ -30,25 +30,50 @@
 } */
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #4ba6c9; /* 메인 밝은 청록색 */
-  --ifm-color-primary-dark: #4ba6c9; /* 어두운 청록색 */
-  --ifm-color-primary-darker: #3a8197; /* 더 어두운 청록색 */
-  --ifm-color-primary-darkest: #2c6174; /* 가장 어두운 청록색 */
-  --ifm-color-primary-light: #82e4fc; /* 밝은 청록색 */
-  --ifm-color-primary-lighter: #a3eeff; /* 더 밝은 청록색 */
-  --ifm-color-primary-lightest: #d0f8ff; /* 가장 밝은 청록색 */
+  --ifm-color-primary: #3ecc5f;
+  --ifm-color-primary-dark: #39b956;
+  --ifm-color-primary-darker: #35ae51;
+  --ifm-color-primary-darkest: #2c9043;
+  --ifm-color-primary-light: #58d474;
+  --ifm-color-primary-lighter: #6bdd85;
+  --ifm-color-primary-lightest: #8be7a0;
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-link-hover-color: var(--ifm-color-primary-darkest);
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(97, 218, 251, 0.1); /* 코드 강조 배경 */
+  --docusaurus-highlighted-code-line-bg: rgba(62, 204, 95, 0.12);
+  --rb-motion-fast: 180ms;
+  --rb-motion-normal: 340ms;
+  --rb-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --rb-focus-ring-color: rgba(62, 204, 95, 0.5);
+  --rb-shadow-soft: 0 16px 32px rgba(16, 36, 28, 0.12);
+  --rb-shadow-raise: 0 18px 34px rgba(16, 36, 28, 0.14);
+  --rb-glass-blur: 14px;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #61dafb; /* 다크 모드 메인 밝은 청록색 */
-  --ifm-color-primary-dark: #4ba6c9; /* 다크 모드 어두운 청록색 */
-  --ifm-color-primary-darker: #3a8197; /* 다크 모드 더 어두운 청록색 */
-  --ifm-color-primary-darkest: #2c6174; /* 다크 모드 가장 어두운 청록색 */
-  --ifm-color-primary-light: #82e4fc; /* 다크 모드 밝은 청록색 */
-  --ifm-color-primary-lighter: #a3eeff; /* 다크 모드 더 밝은 청록색 */
-  --ifm-color-primary-lightest: #d0f8ff; /* 다크 모드 가장 밝은 청록색 */
-  --docusaurus-highlighted-code-line-bg: rgba(97, 218, 251, 0.2); /* 다크 모드 코드 강조 배경 */
+  --ifm-color-primary: #6ddf8f;
+  --ifm-color-primary-dark: #54d67b;
+  --ifm-color-primary-darker: #46cf71;
+  --ifm-color-primary-darkest: #34b75e;
+  --ifm-color-primary-light: #85e6a1;
+  --ifm-color-primary-lighter: #97ebaf;
+  --ifm-color-primary-lightest: #b8f1c7;
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-link-hover-color: var(--ifm-color-primary-lightest);
+  --docusaurus-highlighted-code-line-bg: rgba(109, 223, 143, 0.22);
+  --rb-focus-ring-color: rgba(109, 223, 143, 0.55);
+  --rb-shadow-soft: 0 18px 38px rgba(0, 0, 0, 0.35);
+  --rb-shadow-raise: 0 20px 42px rgba(0, 0, 0, 0.46);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
