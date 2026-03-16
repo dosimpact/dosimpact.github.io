@@ -58,6 +58,23 @@ Experimental으로 기능 활성화 필요
 
 
 
+어떻게 하면 검증 없이 LLM이 잘했음을 알 수 있을까?  
+- 고수준의 테스트 방법론 적용, 철저한 바운더리가 있고 측정할 수 있지만 내부에서는 자유롭게 LLM이 그 기준을 맞추도록 끊임없이 재생성  
+  - 경사하강법에서 정확히 목표하는 지점에 맞게 훈련을 하듯, 우리의 Plan도 그렇게 되어야 한다. 자꾸 Plan이 변경되는것은 좋지 않은 시그널이다.  
+  - 처음부터 구조적 계획이 잘 잡혀있어야 한다.  
+
+귀류법+귀납법 기반으로 LLM 결과물을 평가할 수 없을까?  
+
+개발 시나리오를 작성할때  
+- sub task의 양식과 chain을 잘 설계하면 좋을 듯하다. 
+- 1번이 완료되었으니 그 결과물로 2번이 된다. 등  
+
+Backend Service는 명확하게 API Level Testing으로 그 개발이 가능해 보인다.  
+Frontend Service도 playwrigh로 UI Level Testing이 가능해 보인다.  
+- 재사용 가능한 컴포넌트 -> storybook 
+- 재사용 가능한 순수함수 -> unit testing  
+
+
 ## 프로세스 정리  
 
 Codex 문서 기준, `/init`으로 AGENTS.md 스캐폴딩 가능.  
@@ -73,3 +90,10 @@ Plan -> Excute 2단계로 진행 : 각 Plan단위 구현 결과를 PR 및 코멘
   - 1, base branch 기반 작업 전략
   - 2, tag check points 전략  
   - 3, 배포 후 roll back 전략  
+
+
+## 표준 가이드 문서 + 스킬 만들기  
+
+
+## 하이 래벨 테스트를 위한 가이드라인 만들기  
+
