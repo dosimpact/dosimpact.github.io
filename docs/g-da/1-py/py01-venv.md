@@ -163,3 +163,51 @@ services:
 
 - 오른쪽 상단에 커널 연결 버튼이 있다.  
 - 본인이 올려준 서버에 맞추어 연결하면 끝.!  
+
+
+---
+
+
+## Python `uv` 기본 사용법
+
+`uv`는 Python 프로젝트/패키지/가상환경 관리를 빠르게 처리하는 도구입니다.
+
+```
+# 설치 확인
+uv --version
+
+# 새 프로젝트 시작
+uv init my-app
+cd my-app
+
+# 가상환경 생성/활성화
+uv venv
+uv venv --python 3.12
+source .venv/bin/activate   # macOS/Linux
+
+# 패키지 추가/제거
+uv add requests
+uv remove requests
+
+# 의존성 동기화 - `pyproject.toml` 기준으로 설치 상태를 맞출 때:
+uv sync
+
+# ?
+uv run .
+
+# 스크립트/명령 실행
+uv run python main.py
+uv run pytest
+uv run ruff check .
+```
+
+## 9) 자주 쓰는 흐름 예시
+
+```bash
+uv init demo
+cd demo
+uv venv --python 3.12
+uv add fastapi uvicorn
+uv add --dev pytest ruff
+uv run uvicorn app:app --reload
+```
