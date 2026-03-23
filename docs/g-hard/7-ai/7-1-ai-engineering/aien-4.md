@@ -33,6 +33,9 @@ __4.2.3 공개 벤치마크 탐색하기
 1-2, 평가 방법은 크게 2가지 
 - Turn-based evaluation **각 개발 응답 품질 평가**
 - Task-based evaluation **작업 완료 여부 평가**   
+  - eg, BIG-bench (Beyond the Imitation Game Benchmark)
+  - BIG-bench = 대형 언어모델 능력을 평가하기 위해 만든 대규모 개방형 벤치마크.
+  - 평가 영역, 논리 추론, 수학 문제, 상식 추론, 코드 이해, 창의적 언어 생성, 게임 전략  
 
 
 ### 2단계: 평가 가이드라인 만들기

@@ -13,6 +13,25 @@ function gtagSafeFallbackPlugin() {
   };
 }
 
+function mermaidCytoscapeCompatPlugin() {
+  return {
+    name: "mermaid-cytoscape-compat-plugin",
+    configureWebpack() {
+      return {
+        resolve: {
+          alias: {
+            // Mermaid 9's mindmap bundle imports a Cytoscape UMD subpath that
+            // newer Cytoscape package exports do not expose to ESM resolution.
+            "cytoscape/dist/cytoscape.umd.js": require.resolve(
+              "cytoscape/dist/cytoscape.cjs.js",
+            ),
+          },
+        },
+      };
+    },
+  };
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "DoDo(도도)의 개발 블로그",
@@ -41,6 +60,11 @@ const config = {
     defaultLocale: "en",
     locales: ["en"],
   },
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
   presets: [
     [
@@ -77,7 +101,7 @@ const config = {
       }),
     ],
   ],
-  plugins: [gtagSafeFallbackPlugin],
+  plugins: [gtagSafeFallbackPlugin, mermaidCytoscapeCompatPlugin],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */

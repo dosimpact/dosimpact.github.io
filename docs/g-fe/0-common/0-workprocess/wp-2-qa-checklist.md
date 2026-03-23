@@ -15,6 +15,13 @@ sidebar_position: 2
 - [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야한다.    
 - [ ] UI Stress Testing 진행하기 ( 포멧팅, 임계값 대응 )  
 
+UI CheckList 
+- [ ] Stress Testing  
+- [ ] Responsive Check   
+- [ ] 성능 최적화  
+- [ ] Design System components Revisit   
+- [ ] Sentry  y
+
 ## 실수 사례 정리집   
 
 ### 테스트케이스 못보고 넘어간 경우 판다  
