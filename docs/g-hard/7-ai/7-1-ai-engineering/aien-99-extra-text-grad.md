@@ -25,7 +25,7 @@ Examples Code PoC : https://github.com/dosimpact/text-grad-quickstart
 
 ## Sample Flow
 
-아래 흐름은 현재 [main-1.py](/Users/dodo/workspace/reference/text-grad-quickstart/textgrad-examples/main-1.py) 기준이다.  
+아래 흐름은 현재 [main-1.py](https://github.com/dosimpact/text-grad-quickstart/blob/main/textgrad-examples/main-1.py) 기준이다.  
 단일 analyst 프롬프트를 광고 성과 요약용으로 개선한다.
 
 ```mermaid
@@ -84,7 +84,7 @@ flowchart TD
 
 ## Multi-Agent Flow
 
-아래 흐름은 [main-2.py](/Users/dodo/workspace/reference/text-grad-quickstart/textgrad-examples/main-2.py) 기준이다.  
+아래 흐름은 [main-2.py](https://github.com/dosimpact/text-grad-quickstart/blob/main/textgrad-examples/main-2.py) 기준이다.  
 `requires_grad=True`인 프롬프트가 3개이고, `performance analyst`와 `strategy analyst`의 출력이 합쳐진 뒤 `executive writer`가 최종 광고 성과 요약을 만든다.
 
 ```mermaid
@@ -229,6 +229,6 @@ TextGrad 기본 출력은 점수보다 자연어 피드백 중심이다.
 
 ## Current Example Files
 
-- 예제 코드: [main-1.py](/Users/dodo/workspace/reference/text-grad-quickstart/textgrad-examples/main-1.py)
-- 다중 프롬프트 예제: [main-2.py](/Users/dodo/workspace/reference/text-grad-quickstart/textgrad-examples/main-2.py)
-- 원본 라이브러리: [textgrad/README.md](/Users/dodo/workspace/reference/text-grad-quickstart/textgrad/README.md)
+- 예제 코드: [main-1.py](https://github.com/dosimpact/text-grad-quickstart/blob/main/textgrad-examples/main-1.py)
+- 다중 프롬프트 예제: [main-2.py](https://github.com/dosimpact/text-grad-quickstart/blob/main/textgrad-examples/main-2.py)
+- 원본 라이브러리: [textgrad/README.md](https://github.com/zou-group/textgrad/blob/main/README.md)
