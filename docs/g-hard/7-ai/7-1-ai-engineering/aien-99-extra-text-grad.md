@@ -4,7 +4,8 @@ sidebar_position: 99
 
 # TextGrad Quickstart Notes
 
-Github: https://github.com/zou-group/textgrad
+Github: https://github.com/zou-group/textgrad  
+Examples Code PoC : https://github.com/dosimpact/text-grad-quickstart
 
 이 저장소는 `textgrad-examples/main-1.py`와 `textgrad-examples/main-2.py` 기준으로 TextGrad의 광고 성과 프롬프트 최적화 흐름을 이해하기 위한 메모다.
 
