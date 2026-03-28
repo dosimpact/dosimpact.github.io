@@ -193,3 +193,46 @@ Plan -> Design -> Do -> Check(analyze) -> Act(iterate) -> Report -> Archive
 2. Create `docs/archive/YYYY-MM/{feature}/` folder
 3. Move documents from original locations
 4. Update `.pdca-status.json`: phase = "archived"
+
+
+---
+
+
+ 
+PM Skills
+- 1. Define Problem Solving framework   
+- 2. Aggregate Context from jira/Wiki 
+- 3. Logging Planner
+
+Master Docs Skills
+- 1. Master Docs Skills Aggregate Context from codebase 
+- 2, BFF Interface Generator gql generator swagger generator
+
+Frontend Skills
+- 1. File Structures Skiil
+- 2. Mark up with Design system  
+- 3. Controller Logic
+
+3-1. Validator, AB test, Logging, i18n
+4. Unit testing 
+5. Code Reviewer React/Next Best Practices
+- Vercel React composition pattern
+- Vercel Next best practices 
+
+6. Moitoring Design
+
+BFF Skiils
+- 1. File Structures Skiil
+- 2.Module, Service, Controller Planner 
+- 3. Moitoring Design
+- 4. Unit testing
+- 5. Nest.js Best Practices Code Reviewer
+
+Validation Quality gateway Skills
+- 1. Code Level Unit test GW (vitest)
+- 2. API Level e2e (Bruno)
+- 3. Brower Level Testing (playwright)
+- 4. Storybook component Testing (storybook)
+- 5. Validation Loop Logging Spec w/Bigfoot Cuticle 
+
+P0 - Skill Maker  
