@@ -4,6 +4,59 @@ sidebar_position: 30
 
 # copilotkit.ai - 1 Intro
 
+## Goal  
+
+프로젝트는 : copilotkit-langgraph-template 샘플이다.  
+
+오픈소스 이용  
+- 그대로 사용하는것 -> 커스터마이징이 어려워짐, 
+- 처음부터 개발하는것 -> 좋은 기회, 리스크는 리소스와 실패가능성  
+- copilotkit을 사용할지 아니면 커스터마이징 할지 고민
+
+Requirements  
+- [ ] 디자인 시스템에 맞는 UI Generation이 되어야 한다.  
+- [ ] 랭그래프 LLM Backend 랑 연동이 되어야 한다.  
+- [ ] Next.js, React 모두 PoC을 완성해야 한다.  
+- [ ] 내부 동작에 대한 이해가 되어야 한다.  
+
+Demo Ananlysis 
+- [ ] 데모 분석 : https://www.copilotkit.ai/use-cases/co-creation-copilot
+- [ ] 데모 분석 : https://www.copilotkit.ai/use-cases/saas-copilot
+
+
+Demo Page  
+- [ ] (Idea) 광고 센터 진단 리포트 생성  
+
+## Preview
+
+![tmp](./img/copilot-kit-1.png)  
+UI Generation - Graph/Chart
+
+![tmp](./img/copilot-kit-8.png)  
+UI Generation - Chart  
+
+
+![tmp](./img/copilot-kit-5.png)  
+UI Generation - Form and Submit
+
+![tmp](./img/copilot-kit-7.png)  
+![tmp](./img/copilot-kit-6.png)  
+UI Generation with Human In the Loop  
+
+
+![tmp](./img/copilot-kit-4.png)  
+UI Control - Excalidraw
+
+
+![tmp](./img/copilot-kit-3.png)  
+UI Control - In app - Toggle Theme
+
+
+![tmp](./img/copilot-kit-2.png)  
+UI Control - In app - Todo List  
+
+
+---
 
 ## Overview 
 
