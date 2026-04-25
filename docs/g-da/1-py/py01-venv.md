@@ -15,6 +15,8 @@ sidebar_position: 1
     - [Docker Compose](#docker-compose)
     - [VsCode Extension](#vscode-extension)
     - [주피터 \> 도커 연결](#주피터--도커-연결)
+  - [Python `uv` 기본 사용법](#python-uv-기본-사용법)
+  - [9) 자주 쓰는 흐름 예시](#9-자주-쓰는-흐름-예시)
 
 
 ## 소개
