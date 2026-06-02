@@ -5,16 +5,31 @@ sidebar_position: 1
 # Python uv 설정법
 
 - [Python uv 설정법](#python-uv-설정법)
-- [eg-uv](#eg-uv)
+  - [Index](#index)
+  - [About uv?](#about-uv)
   - [uv 설치](#uv-설치)
-  - [uv + requirements.txt 으로 관리하기](#uv--requirementstxt-으로-관리하기)
   - [uv + pyproject.toml 으로 관리하기](#uv--pyprojecttoml-으로-관리하기)
+  - [uv + requirements.txt 으로 관리하기](#uv--requirementstxt-으로-관리하기)
+  - [실행, 가상환경 활성화, 초기화](#실행-가상환경-활성화-초기화)
 
 
-# eg-uv
+## Index  
 
 1, uv + requirements.txt 으로 관리하기  
 2, uv + pyproject.toml 으로 관리하기
+
+
+## About uv?  
+
+uv는 Python 패키지/프로젝트 관리 도구입니다. 쉽게 말해 pip, pip-tools, virtualenv, poetry, pyenv 일부 역할을 빠르게 처리하려는 Rust 기반 도구.  
+- 주요 용도는 다음과 같습니다.
+  - 패키지 설치: uv pip install requests
+  - 가상환경 생성: uv venv
+  - 프로젝트 생성/관리: uv init, uv add, uv remove
+  - 의존성 잠금 파일 관리: uv lock, uv sync
+  - Python 버전 설치/실행: uv python install 3.12
+  - 스크립트 실행: uv run script.py
+짧게 정리하면: uv는 Python 개발 환경을 빠르고 일관되게 만들기 위한 현대적인 패키지/프로젝트 매니저입니다.  
 
 ## uv 설치  
 
@@ -23,33 +38,6 @@ sidebar_position: 1
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-## uv + requirements.txt 으로 관리하기  
-
-```bash
-# --- 생성  
-#`.venv` 이름으로 Python 가상환경을 생성합니다.
-uv venv .venv
-uv venv .venv --python 3.11
-
-# --- 활성화  
-# 가상환경 활성화
-source .venv/bin/activate
-
-# --- 설치  
-# 기존의 requirements 의존성이 있다면 설치하기  
-uv pip install -r requirements.txt
-## 설치 확인
-python --version
-uv pip list
-
-# --- 실행  
-## `uv run`으로 실행하는 방법
-## 가상환경을 직접 활성화하지 않고 실행할 수도 있습니다.
-uv run python main.py
-
-# 가상환경 종료:
-deactivate
-```
 
 ## uv + pyproject.toml 으로 관리하기  
 
@@ -57,9 +45,7 @@ TOML은 설정 파일 형식입니다. 확장자는 .toml이고, 뜻은 Tom's Ob
 - uv가 'pyproject.toml'을 읽어서 의존성을 관리한다.    
 
 ```bash
-# 기존 프로젝트의 경우  
-# --- 설치
-# pyproject.toml 기준으로 python가상 환경 설정 및 의존성 설치  
+# 기존 프로젝트의 경우  --- 설치  pyproject.toml 기준으로 python가상 환경 설정 및 의존성 설치  
 uv sync
 ```
 
@@ -84,17 +70,45 @@ uv add requests
 # 참고:
 # uv pip install requests 는 현재 가상환경에만 설치되고
 # pyproject.toml 에는 자동 반영되지 않음
+```
 
+
+## uv + requirements.txt 으로 관리하기  
+
+```bash
+# --- 생성  
+#`.venv` 이름으로 Python 가상환경을 생성합니다.
+uv venv .venv
+uv venv .venv --python 3.11
+
+# --- 설치  
+# 기존의 requirements 의존성이 있다면 설치하기  
+uv pip install -r requirements.txt
+## 설치 확인
+python --version
+uv pip list
+```
+
+## 실행, 가상환경 활성화, 초기화  
+
+```bash
 # --- 실행
 # 가상환경을 직접 활성화하지 않고 실행
 uv run python main.py
 
-# --- 활성화
+# --- 가상환경 활성화
 # 가상환경을 직접 활성화해서 실행할 수도 있음
 source .venv/bin/activate
 python main.py
 
 # 가상환경 종료
 deactivate
-```
 
+
+# --- 초기화
+rm -rf .venv
+#  락 파일까지 새로 만들고 싶으면:
+rm -rf .venv uv.lock
+# 캐시까지 정리하고 싶으면:
+uv cache clean && rm -rf .venv uv.lock
+```

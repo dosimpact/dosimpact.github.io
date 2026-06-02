@@ -152,7 +152,7 @@ const config = {
             type: "docSidebar",
             sidebarId: "dataAnalytics",
             position: "left",
-            label: "💎DA",
+            label: "💎MLE",
           },
           {
             type: "docSidebar",
