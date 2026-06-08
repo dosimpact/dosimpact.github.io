@@ -1,0 +1,703 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import type {
+  LangChainMessage,
+  LangChainToolCall,
+  LangGraphTupleMetadata,
+  OnMessageChunkCallback,
+  OnValuesEventCallback,
+  OnUpdatesEventCallback,
+  OnSubgraphValuesEventCallback,
+  OnSubgraphUpdatesEventCallback,
+  OnCustomEventCallback,
+  OnErrorEventCallback,
+  OnSubgraphErrorEventCallback,
+  OnInfoEventCallback,
+  OnMetadataEventCallback,
+  UIMessage,
+} from "./types";
+import {
+  getExternalStoreMessages,
+  pickExternalStoreSharedOptions,
+  type ThreadMessage,
+  type AttachmentAdapter,
+  type AppendMessage,
+  type DictationAdapter,
+  type ExternalStoreSharedOptions,
+  type FeedbackAdapter,
+  type RealtimeVoiceAdapter,
+  type SpeechSynthesisAdapter,
+} from "@assistant-ui/core";
+import type { ToolExecutionStatus } from "@assistant-ui/core";
+import {
+  type DataMessagePartComponent,
+  useCloudThreadListAdapter,
+  useRemoteThreadListRuntime,
+  useExternalMessageConverter,
+  useExternalStoreRuntime,
+} from "@assistant-ui/core/react";
+import { useAui, useAuiState } from "@assistant-ui/store";
+import type { AssistantCloud } from "assistant-cloud";
+import type { RemoteThreadListAdapter } from "@assistant-ui/core";
+import { convertLangChainMessages } from "./convertLangChainMessages";
+import {
+  type LangGraphCommand,
+  type LangGraphInterruptState,
+  type LangGraphSendMessageConfig,
+  type LangGraphStreamCallback,
+  useLangGraphMessages,
+} from "./useLangGraphMessages";
+import { appendLangChainChunk } from "./appendLangChainChunk";
+import { useLangGraphStreamingTiming } from "./useLangGraphStreamingTiming";
+
+// LangGraph 메시지 배열에서 아직 tool 응답이 오지 않은 tool call을 찾아냅니다.
+// 새 사용자 입력을 보낼 때 미완료 tool call을 자동 취소 메시지로 닫는 데 사용합니다.
+const getPendingToolCalls = (messages: LangChainMessage[]) => {
+  const pendingToolCalls = new Map<string, LangChainToolCall>();
+  for (const message of messages) {
+    if (message.type === "ai") {
+      for (const toolCall of message.tool_calls ?? []) {
+        pendingToolCalls.set(toolCall.id, toolCall);
+      }
+    }
+    if (message.type === "tool") {
+      pendingToolCalls.delete(message.tool_call_id);
+    }
+  }
+
+  return [...pendingToolCalls.values()];
+};
+
+const getMessageContent = (msg: AppendMessage) => {
+  // assistant-ui의 composer 메시지/첨부파일을 LangChain human message content 형식으로 바꿉니다.
+  const allContent = [
+    ...msg.content,
+    ...(msg.attachments?.flatMap((a) => a.content) ?? []),
+  ];
+
+  const hasNonText = allContent.some(
+    (part) => part.type === "file" || part.type === "image",
+  );
+  const hasText = allContent.some((part) => part.type === "text");
+  if (hasNonText && !hasText) {
+    allContent.unshift({ type: "text", text: " " });
+  }
+
+  const content = allContent.map((part) => {
+    const type = part.type;
+    switch (type) {
+      case "text":
+        return { type: "text" as const, text: part.text };
+      case "image":
+        return { type: "image_url" as const, image_url: { url: part.image } };
+      case "file":
+        return {
+          type: "file" as const,
+          data: part.data,
+          mime_type: part.mimeType,
+          metadata: {
+            filename: part.filename ?? "file",
+          },
+          source_type: "base64" as const,
+        };
+
+      case "tool-call":
+        throw new Error("Tool call appends are not supported.");
+
+      default: {
+        const _exhaustiveCheck:
+          | "reasoning"
+          | "source"
+          | "audio"
+          | "data"
+          | "generative-ui" = type;
+        throw new Error(
+          `Unsupported append message part type: ${_exhaustiveCheck}`,
+        );
+      }
+    }
+  });
+
+  if (content.length === 1 && content[0]?.type === "text") {
+    return content[0].text ?? "";
+  }
+
+  return content;
+};
+
+const symbolLangGraphRuntimeExtras = Symbol("langgraph-runtime-extras");
+type LangGraphRuntimeExtras = {
+  [symbolLangGraphRuntimeExtras]: true;
+  send: (
+    messages: LangChainMessage[],
+    config: LangGraphSendMessageConfig,
+  ) => Promise<void>;
+  interrupt: LangGraphInterruptState | undefined;
+  messageMetadata: Map<string, LangGraphTupleMetadata>;
+  uiMessages: readonly UIMessage[];
+};
+
+const asLangGraphRuntimeExtras = (extras: unknown): LangGraphRuntimeExtras => {
+  if (
+    typeof extras !== "object" ||
+    extras == null ||
+    !(symbolLangGraphRuntimeExtras in extras)
+  )
+    throw new Error(
+      "This method can only be called when you are using useLangGraphRuntime",
+    );
+
+  return extras as LangGraphRuntimeExtras;
+};
+
+export const useLangGraphInterruptState = () => {
+  // LangGraph interrupt/resume 상태를 assistant-ui store extras에서 읽어오는 공개 훅입니다.
+  const interrupt = useAuiState((s) => {
+    const extras = s.thread.extras;
+    if (!extras) return undefined;
+    return asLangGraphRuntimeExtras(extras).interrupt;
+  });
+  return interrupt;
+};
+
+export const useLangGraphSend = () => {
+  const aui = useAui();
+
+  return (messages: LangChainMessage[], config: LangGraphSendMessageConfig) => {
+    const extras = aui.thread().getState().extras;
+    const { send } = asLangGraphRuntimeExtras(extras);
+    return send(messages, config);
+  };
+};
+
+export const useLangGraphSendCommand = () => {
+  const send = useLangGraphSend();
+  return (command: LangGraphCommand) => send([], { command });
+};
+
+export const useLangGraphMessageMetadata = () => {
+  const messageMetadata = useAuiState((s) => {
+    const extras = s.thread.extras;
+    if (!extras) return new Map<string, LangGraphTupleMetadata>();
+    return asLangGraphRuntimeExtras(extras).messageMetadata;
+  });
+  return messageMetadata;
+};
+
+const EMPTY_UI_MESSAGES: readonly UIMessage[] = Object.freeze([]);
+
+export const useLangGraphUIMessages = () => {
+  return useAuiState((s) => {
+    const extras = s.thread.extras;
+    if (!extras) return EMPTY_UI_MESSAGES;
+    return asLangGraphRuntimeExtras(extras).uiMessages;
+  });
+};
+
+export type UseLangGraphRuntimeOptions = ExternalStoreSharedOptions & {
+  autoCancelPendingToolCalls?: boolean | undefined;
+  /**
+   * When true, renders the Cancel button in the composer and aborts the
+   * `AbortController` whose signal is exposed to your `stream` callback
+   * as `config.abortSignal`.
+   */
+  unstable_allowCancellation?: boolean | undefined;
+  stream: LangGraphStreamCallback<LangChainMessage>;
+  /**
+   * State key under which LangGraph's `typed_ui` writes Generative UI
+   * messages in the graph state. Must match the `stateKey` option passed to
+   * `typedUi(config, { stateKey })` on the server. Defaults to `"ui"`.
+   */
+  uiStateKey?: string;
+  /**
+   * Resolves a checkpoint ID for a given thread and message history.
+   * When provided, enables message editing (onEdit) and regeneration (onReload).
+   * The checkpoint ID is passed to the stream callback for server-side forking.
+   */
+  getCheckpointId?: (
+    threadId: string,
+    parentMessages: LangChainMessage[],
+  ) => Promise<string | null>;
+  load?: (
+    threadId: string,
+    config?: { signal: AbortSignal },
+  ) => Promise<{
+    messages: LangChainMessage[];
+    interrupts?: LangGraphInterruptState[];
+    /**
+     * Persisted LangSmith Generative UI messages for this thread, typically
+     * read from `state.values[uiStateKey]` returned by the LangGraph SDK's
+     * `client.threads.getState()`. Defaults to an empty list.
+     */
+    uiMessages?: UIMessage[];
+  }>;
+  create?: () => Promise<{
+    externalId: string;
+  }>;
+  delete?: (threadId: string) => Promise<void>;
+  adapters?:
+    | {
+        attachments?: AttachmentAdapter;
+        speech?: SpeechSynthesisAdapter;
+        dictation?: DictationAdapter;
+        voice?: RealtimeVoiceAdapter;
+        feedback?: FeedbackAdapter;
+      }
+    | undefined;
+  eventHandlers?:
+    | {
+        /**
+         * Called for each message chunk received from messages-tuple streaming,
+         * with the chunk and its associated metadata
+         */
+        onMessageChunk?: OnMessageChunkCallback;
+        /**
+         * Called when top-level values events are received from the LangGraph stream.
+         * Subgraph values are routed to `onSubgraphValues`.
+         */
+        onValues?: OnValuesEventCallback;
+        /**
+         * Called when top-level updates events are received from the LangGraph stream.
+         * Subgraph updates are routed to `onSubgraphUpdates`.
+         */
+        onUpdates?: OnUpdatesEventCallback;
+        /** Called when a subgraph (namespaced) values event is received. */
+        onSubgraphValues?: OnSubgraphValuesEventCallback;
+        /** Called when a subgraph (namespaced) updates event is received. */
+        onSubgraphUpdates?: OnSubgraphUpdatesEventCallback;
+        /**
+         * Called when metadata is received from the LangGraph stream
+         */
+        onMetadata?: OnMetadataEventCallback;
+        /**
+         * Called when informational messages are received from the LangGraph stream
+         */
+        onInfo?: OnInfoEventCallback;
+        /**
+         * Called when errors occur during LangGraph stream processing.
+         * Fires for both top-level and subgraph errors; subgraph errors
+         * additionally trigger `onSubgraphError` with the namespace.
+         */
+        onError?: OnErrorEventCallback;
+        /** Called when a subgraph (namespaced) error event is received, in addition to `onError`. */
+        onSubgraphError?: OnSubgraphErrorEventCallback;
+        /**
+         * Called when custom events are received from the LangGraph stream
+         */
+        onCustomEvent?: OnCustomEventCallback;
+      }
+    | undefined;
+  /**
+   * Register data renderers for Generative UI components.
+   *
+   * `renderers` maps a `ui_message` name to a static component.
+   * `fallback` handles any name without a static match — use this for
+   * dynamic loading (e.g. LangSmith's `LoadExternalComponent`).
+   */
+  uiComponents?:
+    | {
+        fallback?: DataMessagePartComponent;
+        renderers?: Record<string, DataMessagePartComponent>;
+      }
+    | undefined;
+  cloud?: AssistantCloud | undefined;
+  /**
+   * A `RemoteThreadListAdapter` to use instead of the cloud adapter. Provide
+   * this to back the thread list with a custom store (e.g. LangGraph
+   * `client.threads.search()`) so pre-existing LangGraph thread ids appear in
+   * the UI and can be switched between without assistant-cloud.
+   *
+   * When provided, `cloud`, `create`, and `delete` are ignored — the adapter
+   * owns the full thread list lifecycle. The `externalId` returned by the
+   * adapter's `list()` / `initialize()` is what the `load` callback receives.
+   */
+  unstable_threadListAdapter?: RemoteThreadListAdapter | undefined;
+};
+
+const truncateLangChainMessages = (
+  threadMessages: readonly ThreadMessage[],
+  parentId: string | null,
+): LangChainMessage[] => {
+  // edit/reload 시 parentId 이전까지만 LangChain 메시지 이력으로 재구성합니다.
+  if (parentId === null) return [];
+  const parentIndex = threadMessages.findIndex((m) => m.id === parentId);
+  if (parentIndex === -1) return [];
+  const truncated: LangChainMessage[] = [];
+  for (let i = 0; i <= parentIndex && i < threadMessages.length; i++) {
+    truncated.push(
+      ...getExternalStoreMessages<LangChainMessage>(threadMessages[i]!),
+    );
+  }
+  return truncated;
+};
+
+const filterUIMessagesBySurvivingIds = (
+  uiMessages: readonly UIMessage[],
+  survivingMessages: readonly LangChainMessage[],
+): UIMessage[] => {
+  // 메시지 편집으로 사라진 assistant 메시지에 붙어 있던 Generative UI도 같이 제거합니다.
+  const survivingIds = new Set<string>();
+  for (const m of survivingMessages) {
+    if (m.id) survivingIds.add(m.id);
+  }
+  return uiMessages.filter((ui) => {
+    const parentId = ui.metadata?.message_id;
+    // orphans (no message_id) represent global UI, cleared only via delete_ui_message
+    if (!parentId) return true;
+    return survivingIds.has(parentId);
+  });
+};
+
+const useLangGraphRuntimeImpl = (options: UseLangGraphRuntimeOptions) => {
+  const {
+    autoCancelPendingToolCalls,
+    adapters: { attachments, dictation, feedback, speech, voice } = {},
+    unstable_allowCancellation,
+    stream,
+    load,
+    getCheckpointId,
+    eventHandlers,
+    uiStateKey,
+    uiComponents,
+  } = options;
+  const aui = useAui();
+
+  // uiComponents는 assistant-ui data renderer registry에 등록됩니다.
+  // ref로 이전 등록 상태를 추적해 inline 객체 때문에 매 render마다 재등록되는 일을 줄입니다.
+  const uiFallback = uiComponents?.fallback;
+  const uiRenderers = uiComponents?.renderers;
+  const registeredRenderersRef = useRef<Map<string, DataMessagePartComponent>>(
+    new Map(),
+  );
+  const rendererCleanupsRef = useRef<Map<string, () => void>>(new Map());
+  const fallbackRef = useRef<DataMessagePartComponent | undefined>(undefined);
+  const fallbackCleanupRef = useRef<(() => void) | undefined>(undefined);
+
+  useEffect(() => {
+    const registered = registeredRenderersRef.current;
+    const cleanups = rendererCleanupsRef.current;
+
+    for (const [name, prev] of registered) {
+      if (uiRenderers?.[name] !== prev) {
+        cleanups.get(name)?.();
+        cleanups.delete(name);
+        registered.delete(name);
+      }
+    }
+    if (uiRenderers) {
+      for (const [name, component] of Object.entries(uiRenderers)) {
+        if (component && registered.get(name) !== component) {
+          cleanups.set(name, aui.dataRenderers().setDataUI(name, component));
+          registered.set(name, component);
+        }
+      }
+    }
+
+    if (uiFallback !== fallbackRef.current) {
+      fallbackCleanupRef.current?.();
+      fallbackCleanupRef.current = uiFallback
+        ? aui.dataRenderers().setFallbackDataUI(uiFallback)
+        : undefined;
+      fallbackRef.current = uiFallback;
+    }
+  });
+
+  useEffect(() => {
+    const cleanups = rendererCleanupsRef.current;
+    const registered = registeredRenderersRef.current;
+    return () => {
+      for (const cleanup of cleanups.values()) cleanup();
+      cleanups.clear();
+      registered.clear();
+      fallbackCleanupRef.current?.();
+      fallbackCleanupRef.current = undefined;
+      fallbackRef.current = undefined;
+    };
+  }, []);
+  const {
+    interrupt,
+    setInterrupt,
+    messages,
+    messageMetadata,
+    uiMessages,
+    sendMessage,
+    cancel,
+    setMessages,
+    setUIMessages,
+  } = useLangGraphMessages({
+    appendMessage: appendLangChainChunk,
+    stream,
+    ...(eventHandlers && { eventHandlers }),
+    ...(uiStateKey !== undefined && { uiStateKey }),
+  });
+
+  // LangGraph stream 실행 상태와 assistant-ui tool invocation 상태를 합쳐 composer/rerender 상태로 사용합니다.
+  const [isRunning, setIsRunning] = useState(false);
+  const [isLoadingThread, setIsLoadingThread] = useState(false);
+  const [toolStatuses, setToolStatuses] = useState<
+    Record<string, ToolExecutionStatus>
+  >({});
+  const toolArgsKeyOrderCacheRef = useRef<Map<string, Map<string, string[]>>>(
+    new Map(),
+  );
+  const hasExecutingTools = Object.values(toolStatuses).some(
+    (s) => s?.type === "executing",
+  );
+  const effectiveIsRunning = isRunning || hasExecutingTools;
+
+  const messageTiming = useLangGraphStreamingTiming(
+    messages,
+    effectiveIsRunning,
+  );
+
+  const uiMessagesByParent = useMemo(() => {
+    // Generative UI 메시지는 metadata.message_id를 기준으로 assistant 메시지 content에 붙입니다.
+    const map = new Map<string, UIMessage[]>();
+    for (const ui of uiMessages) {
+      const parentId = ui.metadata?.message_id;
+      if (!parentId) continue;
+      const existing = map.get(parentId);
+      if (existing) {
+        existing.push(ui);
+      } else {
+        map.set(parentId, [ui]);
+      }
+    }
+    return map;
+  }, [uiMessages]);
+
+  // metadata identity가 바뀌면 converter cache가 무효화되어 UI 이벤트 후 메시지가 다시 변환됩니다.
+  const converterMetadata = useMemo(
+    () =>
+      ({
+        toolArgsKeyOrderCache: toolArgsKeyOrderCacheRef.current,
+        uiMessagesByParent,
+        messageTiming,
+      }) as unknown as useExternalMessageConverter.Metadata,
+    [uiMessagesByParent, messageTiming],
+  );
+
+  const handleSendMessage = (
+    messages: LangChainMessage[],
+    config: LangGraphSendMessageConfig,
+  ) => {
+    setIsRunning(true);
+    // setIsRunning(false) flips atomically with the final reconcile via onComplete
+    return sendMessage(messages, config, () => setIsRunning(false));
+  };
+
+  const threadMessages = useExternalMessageConverter({
+    callback: convertLangChainMessages,
+    messages,
+    isRunning: effectiveIsRunning,
+    metadata: converterMetadata,
+  });
+
+  const threadMessagesRef = useRef(threadMessages);
+  threadMessagesRef.current = threadMessages;
+
+  const uiMessagesRef = useRef(uiMessages);
+  uiMessagesRef.current = uiMessages;
+
+  const runtime = useExternalStoreRuntime({
+    ...pickExternalStoreSharedOptions(options),
+    isRunning: effectiveIsRunning,
+    isLoading: isLoadingThread,
+    messages: threadMessages,
+    unstable_enableToolInvocations: true,
+    setToolStatuses,
+    adapters: {
+      attachments,
+      dictation,
+      feedback,
+      speech,
+      voice,
+    },
+    extras: {
+      [symbolLangGraphRuntimeExtras]: true,
+      interrupt,
+      messageMetadata,
+      uiMessages,
+      send: handleSendMessage,
+    } satisfies LangGraphRuntimeExtras,
+    onNew: async (msg) => {
+      // 새 사용자 메시지를 보내기 전에 미완료 tool call을 tool error 메시지로 닫아 대화 상태를 일관되게 만듭니다.
+      const cancellations =
+        autoCancelPendingToolCalls !== false
+          ? getPendingToolCalls(messages).map(
+              (t) =>
+                ({
+                  type: "tool",
+                  name: t.name,
+                  tool_call_id: t.id,
+                  content: JSON.stringify({ cancelled: true }),
+                  status: "error",
+                }) satisfies LangChainMessage & { type: "tool" },
+            )
+          : [];
+
+      return handleSendMessage(
+        [
+          ...cancellations,
+          {
+            type: "human",
+            content: getMessageContent(msg),
+          },
+        ],
+        {
+          runConfig: msg.runConfig,
+        },
+      );
+    },
+    onAddToolResult: async ({
+      toolCallId,
+      toolName,
+      result,
+      isError,
+      artifact,
+    }) => {
+      // TODO parallel human in the loop calls
+      await handleSendMessage(
+        [
+          {
+            type: "tool",
+            name: toolName,
+            tool_call_id: toolCallId,
+            content: JSON.stringify(result),
+            artifact,
+            status: isError ? "error" : "success",
+          },
+        ],
+        // TODO reuse runconfig here!
+        {},
+      );
+    },
+    onEdit: getCheckpointId
+      ? async (msg) => {
+          // 편집은 parent checkpoint를 찾아 그 시점의 메시지 이력으로 LangGraph run을 fork합니다.
+          const truncated = truncateLangChainMessages(
+            threadMessagesRef.current,
+            msg.parentId,
+          );
+          setMessages(truncated);
+          setUIMessages(
+            filterUIMessagesBySurvivingIds(uiMessagesRef.current, truncated),
+          );
+          setInterrupt(undefined);
+          const externalId = aui.threadListItem().getState().externalId;
+          const checkpointId = externalId
+            ? await getCheckpointId(externalId, truncated)
+            : null;
+          return handleSendMessage(
+            [{ type: "human", content: getMessageContent(msg) }],
+            {
+              runConfig: msg.runConfig,
+              ...(checkpointId && { checkpointId }),
+            },
+          );
+        }
+      : undefined,
+    onReload: getCheckpointId
+      ? async (parentId, config) => {
+          // reload도 parent checkpoint를 기준으로 이전 메시지 이력을 재실행합니다.
+          const truncated = truncateLangChainMessages(
+            threadMessagesRef.current,
+            parentId,
+          );
+          setMessages(truncated);
+          setUIMessages(
+            filterUIMessagesBySurvivingIds(uiMessagesRef.current, truncated),
+          );
+          setInterrupt(undefined);
+          const externalId = aui.threadListItem().getState().externalId;
+          const checkpointId = externalId
+            ? await getCheckpointId(externalId, truncated)
+            : null;
+          return handleSendMessage([], {
+            runConfig: config.runConfig,
+            ...(checkpointId && { checkpointId }),
+          });
+        }
+      : undefined,
+    onCancel: unstable_allowCancellation
+      ? async () => {
+          cancel();
+        }
+      : undefined,
+  });
+
+  {
+    const loadRef = useRef(load);
+    useEffect(() => {
+      loadRef.current = load;
+    });
+
+    useEffect(() => {
+      const load = loadRef.current;
+      if (!load) return;
+
+      const externalId = aui.threadListItem().getState().externalId;
+      if (externalId == null) return;
+
+      // drop stale callbacks and abort the pending load on thread switch/unmount
+      const controller = new AbortController();
+      setIsLoadingThread(true);
+      load(externalId, { signal: controller.signal })
+        .then(({ messages, interrupts, uiMessages }) => {
+          if (controller.signal.aborted) return;
+          setMessages(messages);
+          setUIMessages(uiMessages ?? []);
+          setInterrupt(interrupts?.[0]);
+        })
+        .catch((error) => {
+          if (controller.signal.aborted) return;
+          console.warn("useLangGraphRuntime: load handler rejected", error);
+        })
+        .finally(() => {
+          if (controller.signal.aborted) return;
+          setIsLoadingThread(false);
+        });
+
+      return () => {
+        controller.abort();
+        setIsLoadingThread(false);
+      };
+    }, [aui, setMessages, setUIMessages, setInterrupt]);
+  }
+
+  return runtime;
+};
+
+export const useLangGraphRuntime = ({
+  cloud,
+  unstable_threadListAdapter,
+  create,
+  delete: deleteFn,
+  ...options
+}: UseLangGraphRuntimeOptions) => {
+  const aui = useAui();
+  const cloudAdapter = useCloudThreadListAdapter({
+    cloud,
+    create: async () => {
+      if (create) {
+        return create();
+      }
+
+      if (aui.threadListItem.source) {
+        return aui.threadListItem().initialize();
+      }
+
+      return { externalId: undefined };
+    },
+    delete: deleteFn,
+  });
+
+  const adapter = unstable_threadListAdapter ?? cloudAdapter;
+
+  return useRemoteThreadListRuntime({
+    runtimeHook: function RuntimeHook() {
+      return useLangGraphRuntimeImpl(options);
+    },
+    adapter,
+    allowNesting: true,
+  });
+};
