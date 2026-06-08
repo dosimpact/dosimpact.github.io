@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdosimpact_blog=self.webpackChunkdosimpact_blog||[]).push([[42643],{79894:s=>{s.exports=JSON.parse('{"title":"1.Py Basic","description":"1.Py Basic","slug":"/category/1py-basic","permalink":"/docs/category/1py-basic","navigation":{"next":{"title":"1.Python","permalink":"/docs/category/1python"}}}')}}]);
