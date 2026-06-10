@@ -21,10 +21,10 @@ const HERO_ACTIONS = [
 
 const QUICK_NAV_ITEMS = [
   { label: "System", to: "/docs/g-fe/common/workprocess/wp-1-high-level" },
-  { label: "Stock", to: "/docs/g-da/quant/vectorbt/quant001" },
+  { label: "Stock", to: "/docs/g-mle/quant/vectorbt/quant001" },
   { label: "Side", to: "/docs/g-hard/solopreneur/sideproject/sp001" },
   { label: "Career", to: "/docs/g-soft/output/programmer/p001" },
-  { label: "ETC", to: "/docs/g-da/etc/da-etc-1" },
+  { label: "ETC", to: "/docs/g-mle/etc/da-etc-1" },
 ];
 
 const JOURNEY_STEPS = [
