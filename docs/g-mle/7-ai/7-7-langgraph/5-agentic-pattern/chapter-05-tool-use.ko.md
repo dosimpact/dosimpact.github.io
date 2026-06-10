@@ -2,14 +2,7 @@
 sidebar_position: 5
 ---
 
-# 요구사항: Chapter 5: Tool Use
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 5: Tool Use (Function Calling)`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `71-90`
-- 추출 참고: 보이는 Chapter 5 제목은 PDF 0 기반 인덱스 `78`(파일 페이지 `79`)에서 발견되고, Chapter 6 제목은 0 기반 인덱스 `99`(파일 페이지 `100`)에서 발견된다. 따라서 추출 범위는 PDF 인덱스 `78-98`, 파일 페이지 `79-99`, 챕터 내부 카운터 `1-21`이다. TOC의 `71-90`과 20페이지 범위라는 점에서 모호성이 생긴다.
+# 5: Tool Use (ko)
 
 ## 패턴 요약
 

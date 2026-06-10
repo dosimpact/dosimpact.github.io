@@ -2,14 +2,7 @@
 sidebar_position: 8
 ---
 
-# 요구사항: Chapter 8: Memory Management
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 8: Memory Management`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 `121-141` 논리 페이지
-- 추출 참고: 보이는 Chapter 8 제목은 PDF 페이지 라벨 `132`(0 기반 인덱스 `131`)에서 확인되었고, Chapter 9는 PDF 페이지 라벨 `154`(0 기반 인덱스 `153`)에서 시작합니다. 이 요구사항은 보이는 경계 기준 `132-153`를 사용해 추출하면서, 인용에는 위 TOC 범위를 유지합니다.
+# 8: Memory Management (ko)
 
 ## 패턴 요약
 

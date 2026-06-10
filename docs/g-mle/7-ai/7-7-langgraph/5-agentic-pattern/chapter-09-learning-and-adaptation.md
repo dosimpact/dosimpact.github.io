@@ -2,14 +2,7 @@
 sidebar_position: 9
 ---
 
-# Requirement: Chapter 9: Learning and Adaptation
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 9: Learning and Adaptation`
-- Page range: `142-153` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 9 heading was found at PDF page label `154` / zero-based index `153`, and Chapter 10 starts at PDF page label `167` / zero-based index `166`. The extracted Chapter 9 span is therefore PDF indexes `153-165`, file pages `154-166`, with chapter-local page counters `1-13`. This is ambiguous because the TOC logical range `142-153` covers 12 logical pages.
+# 9: Learning and Adaptation (en)
 
 ## Pattern Summary
 

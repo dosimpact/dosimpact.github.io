@@ -2,14 +2,7 @@
 sidebar_position: 17
 ---
 
-# Requirement: Chapter 17: 추론 기법 (Reasoning Techniques)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 17: Reasoning Techniques`
-- Page range: `246-269` logical pages from `docs/agentic-design-patterns-toc.md`
-- 추출 메모: 표시되는 Chapter 17 제목은 PDF 파일 페이지 `262`(zero-based index `261`)에서 확인되며, Chapter 18은 PDF 파일 페이지 `286`(zero-based index `285`)에서 시작합니다. 따라서 추출 구간은 PDF 인덱스 `261-284`, 파일 페이지 `262-285`, 장 내 페이지 카운트 `1-24`입니다. TOC의 논리 범위 `246-269`도 24페이지이지만 PDF 실제 페이지와 16페이지 차이가 있어 경계가 모호합니다. 텍스트 추출 시 공백 불규칙 삽입이 있어 헤딩의 정확 문자열 매칭이 불안정합니다.
+# 17: Reasoning Techniques (ko)
 
 ## Pattern Summary
 

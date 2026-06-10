@@ -2,14 +2,7 @@
 sidebar_position: 107
 ---
 
-# 요구사항: 부록 G: 코딩 에이전트
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix G - Coding Agents`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `397-403`
-- 추출 참고: TOC는 `397-403`이지만, 실제 추출은 파일 페이지 1-based `404-409`의 첫 부록 G 본문이며 이후 `410-415`에서 동일 내용이 중복된다. 본 문서는 첫 번째 발견 위치(`404-409`)를 사용한다.
+# Appendix G: Coding Agents (ko)
 
 ## 패턴 요약
 

@@ -2,14 +2,7 @@
 sidebar_position: 6
 ---
 
-# 요구사항: Chapter 6: Planning
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 6: Planning`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `91-103`
-- 추출 참고: 보이는 Chapter 6 제목은 PDF 페이지 라벨 `100` / 0 기반 인덱스 `99`에서 확인되며, Chapter 7은 PDF 라벨 `113` / 0 기반 인덱스 `112`에서 시작한다. 이 문서는 TOC 논리 범위를 유지하면서 추출 경계는 라벨 `100-112`를 따른다.
+# 6: Planning (ko)
 
 ## 패턴 요약
 

@@ -2,14 +2,7 @@
 sidebar_position: 8
 ---
 
-# Requirement: Chapter 8: Memory Management
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 8: Memory Management`
-- Page range: `121-141` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 8 heading was found at one-based PDF page `132` / zero-based index `131`, and Chapter 9 starts at one-based PDF page `154` / zero-based index `153`. This requirement uses the visible chapter boundary pages `132-153` for extraction while preserving the TOC range above as the cited logical range.
+# 8: Memory Management (en)
 
 ## Pattern Summary
 

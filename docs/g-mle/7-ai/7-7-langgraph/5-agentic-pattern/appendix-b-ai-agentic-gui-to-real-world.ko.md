@@ -2,14 +2,7 @@
 sidebar_position: 102
 ---
 
-# 요구사항: 부록 B: AI Agentic Interactions: GUI에서 실세계 환경으로
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix B - AI Agentic Interactions: From GUI to Real World environment`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `358-363`
-- 추출 참고: Appendix B 제목은 PDF 페이지 라벨 `378` / 파일 1-based 페이지 `378` / 0 기반 인덱스 `377`에서 발견되었고, 다음 부록 Appendix C는 라벨 `385` / 인덱스 `384`에서 발견된다. 따라서 추출 범위는 PDF 인덱스 `377-383`, 파일 페이지 `378-384`, 부록 내부 페이지 `1-7`이다. TOC 범위는 6페이지이므로 오프셋 불일치가 있다.
+# Appendix B: AI Agentic Interactions from GUI to Real World Environment (ko)
 
 ## 패턴 요약
 

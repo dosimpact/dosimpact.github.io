@@ -2,14 +2,7 @@
 sidebar_position: 1
 ---
 
-# Requirement: Chapter 1: Prompt Chaining
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 1: Prompt Chaining`
-- Page range: `18-29` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 1 heading was found at PDF page label `23` / zero-based index `22`, and Chapter 2 starts at PDF page label `36` / zero-based index `35`. This requirement uses the visible chapter boundary pages `23-35` for extraction while preserving the TOC range above as the cited logical range.
+# 1: Prompt Chaining (en)
 
 ## Pattern Summary
 

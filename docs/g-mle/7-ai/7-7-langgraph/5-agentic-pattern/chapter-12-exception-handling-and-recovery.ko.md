@@ -2,14 +2,7 @@
 sidebar_position: 12
 ---
 
-# 요구사항: 12장 예외 처리와 복구
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 12: Exception Handling and Recovery`
-- 페이지 범위: `182-189` (`docs/agentic-design-patterns-toc.md`의 논리 페이지)
-- 추출 참고: Chapter 12의 실제 헤딩은 PDF 라벨 `196` / 0 기반 인덱스 `195`에서 발견되었고, Chapter 13은 PDF 라벨 `204` / 0 기반 인덱스 `203`에서 시작합니다. 따라서 추출된 Chapter 12 범위는 PDF 인덱스 `195-202`, 파일 페이지 `196-203`, 챕터 내부 페이지 `1-8`입니다. TOC의 논리 범위 `182-189`도 8페이지지만 PDF 라벨과는 14페이지 차이가 있어 모호성이 있습니다.
+# 12: Exception Handling and Recovery (ko)
 
 ## 패턴 요약
 

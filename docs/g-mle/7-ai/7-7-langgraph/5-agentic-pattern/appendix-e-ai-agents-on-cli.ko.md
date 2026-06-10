@@ -2,14 +2,7 @@
 sidebar_position: 105
 ---
 
-# 요구사항: 부록 E: CLI의 AI 에이전트
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix E: AI Agents on the CLI`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `378-382`
-- 추출 참고: Appendix E 제목은 PDF 0 기반 인덱스 `398` / 파일 `399` / 라벨 `399`에서 발견되며, 추출은 인덱스 `402` / 파일 `403` / 라벨 `403`에서 끝나고, 다음 추출은 인덱스 `403`에서 Appendix G가 시작한다. TOC는 Appendix F를 포함하지만 실 추출은 생략됨.
+# Appendix E: AI Agents on the CLI (ko)
 
 ## 패턴 요약
 

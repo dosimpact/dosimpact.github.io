@@ -2,14 +2,7 @@
 sidebar_position: 15
 ---
 
-# Requirement: Chapter 15: Inter-Agent Communication (A2A)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 15: Inter-Agent Communication (A2A)`
-- Page range: `216-230` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the Chapter 15 heading was found at PDF one-based file page `231` / zero-based index `230`, and Chapter 16 starts at one-based file page `246` / zero-based index `245`. The extracted Chapter 15 span is therefore PDF indexes `230-244`, file pages `231-245`, with chapter-local page counters `1-15`. This is ambiguous because the TOC logical range `216-230` covers the same 15-page length but differs from the PDF file pages by 15 pages.
+# 15: Inter-Agent Communication (A2A) (en)
 
 ## Pattern Summary
 

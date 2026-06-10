@@ -2,14 +2,7 @@
 sidebar_position: 103
 ---
 
-# 요구사항: 부록 C: Agentic Frameworks 빠른 개요
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix C - Quick overview of Agentic Frameworks`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `364-371`
-- 추출 참고: Appendix C 제목은 PDF 라벨 `385` / 1-based 파일 `385` / 0 기반 인덱스 `384`에서 보이며, Appendix D는 라벨 `393` / 파일 `393` / 인덱스 `392`에서 시작한다. 추출 범위는 PDF 인덱스 `384-391`, 파일 페이지 `385-392`, 내부 페이지 `1-8`이다. TOC 논리 범위는 8페이지로 같지만 라벨/인덱스가 일치하지 않는다.
+# Appendix C: Agentic Frameworks Overview (ko)
 
 ## 패턴 요약
 

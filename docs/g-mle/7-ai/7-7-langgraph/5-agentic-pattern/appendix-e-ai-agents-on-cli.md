@@ -2,14 +2,7 @@
 sidebar_position: 105
 ---
 
-# Requirement: Appendix E: AI Agents on the CLI
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix E: AI Agents on the CLI`
-- Page range: `378-382` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Appendix E heading was found at PDF zero-based index `398` / file page `399` / PDF page label `399`. The extracted Appendix E span ends at PDF zero-based index `402` / file page `403` / PDF page label `403`, where the page-local counter is `5`. The next extracted page, PDF zero-based index `403` / file page `404`, begins `Appendix G - Coding Agents`. This is ambiguous because the TOC lists Appendix E as logical pages `378-382` and Appendix F as the next appendix at `383-396`, while the physical extracted neighborhood jumps from Appendix E to Appendix G.
+# Appendix E: AI Agents on the CLI (en)
 
 ## Pattern Summary
 

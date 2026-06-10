@@ -2,14 +2,7 @@
 sidebar_position: 107
 ---
 
-# Requirement: Appendix G: Coding Agents
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix G - Coding Agents`
-- Page range: `397-403` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the TOC lists Appendix G as logical pages `397-403`, but direct extraction of PDF file pages `397-403` / zero-based indexes `396-402` shows the end of Appendix D and Appendix E, not Appendix G. The visible Appendix G heading was found at PDF zero-based index `403` / file page `404` / PDF page label `404`. The first extracted Appendix G body runs through index `408` / file page `409` / label `409`, with page-local counters `1-6`. The same six-page sequence appears duplicated at indexes `409-414` / file pages `410-415`; page hashes match the first sequence. This document uses the first visible Appendix G occurrence (`403-408`) as the source body and records the TOC/logical-page mismatch as an ambiguity.
+# Appendix G: Coding Agents (en)
 
 ## Pattern Summary
 

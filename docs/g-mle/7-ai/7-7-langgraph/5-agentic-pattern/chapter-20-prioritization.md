@@ -2,14 +2,7 @@
 sidebar_position: 20
 ---
 
-# Requirement: Chapter 20: Prioritization
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 20: Prioritization`
-- Page range: `307-316` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 20 heading was found at PDF page label `325` / one-based file page `325` / zero-based index `324`. Chapter 21 starts at PDF page label `335` / one-based file page `335` / zero-based index `334`. The extracted Chapter 20 span is therefore PDF indexes `324-333`, file pages `325-334`, with chapter-local page counters `1-10`. This is ambiguous because the TOC logical range `307-316` differs from the visible PDF labels by 18 pages, while the chapter-local footer counters do match a 10-page chapter. The embedded code sample was extractable, but PDF text extraction flattened code formatting, so implementation details below capture the demonstrated structure rather than a verbatim code reconstruction.
+# 20: Prioritization (en)
 
 ## Pattern Summary
 

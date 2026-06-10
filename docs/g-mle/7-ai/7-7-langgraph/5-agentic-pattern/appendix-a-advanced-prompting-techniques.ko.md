@@ -2,14 +2,7 @@
 sidebar_position: 101
 ---
 
-# 요구사항: 부록 A: 고급 프롬프트 기법
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix A: Advanced Prompting Techniques`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `330-357`
-- 추출 참고: 보이는 Appendix A 제목은 PDF 0 기반 인덱스 `348` / 파일 페이지 라벨 `349`에서 발견되었고, Appendix B 제목은 PDF 0 기반 인덱스 `377` / 파일 페이지 라벨 `378`에서 시작한다. 따라서 추출된 Appendix A 범위는 PDF 인덱스 `348-376`, 파일 페이지 라벨 `349-377`, 부록 내부 페이지 `1-29`이다. TOC 논리 페이지 `330-357`은 28페이지이지만 추출 본문은 29페이지로 보이며 PDF 페이지 라벨과도 약 19페이지 오프셋이 있다. 추출 텍스트에는 들여쓰기/공백 이상과 `Contextual Enginnering`과 같은 오탈자가 존재한다.
+# Appendix A: Advanced Prompting Techniques (ko)
 
 ## 패턴 요약
 

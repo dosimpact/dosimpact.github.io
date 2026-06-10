@@ -2,14 +2,7 @@
 sidebar_position: 106
 ---
 
-# Requirement: Appendix F: Under the Hood: Agents' Reasoning Engines
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix F - Under the Hood: An Inside Look at the Agents' Reasoning Engines`
-- Page range: `383-396` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the Appendix F title appears in the table of contents on PDF file page `1` / zero-based index `0`, where it is listed as a 14-page appendix. Direct extraction of the logical page range `383-396` from the PDF labels / file pages yields the tail of Appendix B, Appendix C, and the start of Appendix D, not Appendix F. Searching the extracted PDF text for `Under the Hood`, `Reasoning Engines`, and the Appendix F title found no body heading. The expected body position after Appendix E is also ambiguous: Appendix E appears at PDF file pages `399-403` / indexes `398-402`, but PDF file page `404` / index `403` starts Appendix G, and Appendix G appears duplicated at file pages `404-410` and `410-415` before the Conclusion at file page `416`. This document therefore records Appendix F requirements as a conservative reconstruction from the TOC title and the book's adjacent reasoning material, not from a cleanly extracted Appendix F body.
+# Appendix F: Agents' Reasoning Engines (en)
 
 ## Pattern Summary
 

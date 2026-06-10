@@ -2,14 +2,7 @@
 sidebar_position: 10
 ---
 
-# Requirement: Chapter 10: Model Context Protocol (MCP)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 10: Model Context Protocol`
-- Page range: `154-169` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 10 heading was found at PDF page label `167` / one-based file page `167` / zero-based index `166`. Chapter 11 starts at PDF page label `183` / one-based file page `183` / zero-based index `182`. The extracted Chapter 10 span is therefore PDF indexes `166-181`, file pages `167-182`, with chapter-local page counters `1-16`. This is ambiguous because the TOC logical range `154-169` covers the same 16-page length but does not match the PDF page labels or file indexes.
+# 10: Model Context Protocol (MCP) (en)
 
 ## Pattern Summary
 

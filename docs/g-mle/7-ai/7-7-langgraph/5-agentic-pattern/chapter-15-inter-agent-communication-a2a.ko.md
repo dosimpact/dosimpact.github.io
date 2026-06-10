@@ -2,14 +2,7 @@
 sidebar_position: 15
 ---
 
-# 요구사항: 15장 에이전트 간 통신(A2A)
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 15: Inter-Agent Communication (A2A)`
-- 페이지 범위: `216-230` (`docs/agentic-design-patterns-toc.md`의 논리 페이지)
-- 추출 참고: Chapter 15 헤딩은 PDF 파일 페이지 `231` / 0 기반 인덱스 `230`에서, Chapter 16은 파일 페이지 `246` / 0 기반 인덱스 `245`에서 시작합니다. 추출 범위는 PDF 인덱스 `230-244`, 파일 페이지 `231-245`, 챕터 내부 `1-15`입니다. TOC 범위와 동일 페이지 수이지만 파일 라벨이 15페이지 차이 납니다.
+# 15: Inter-Agent Communication (A2A) (ko)
 
 ## 패턴 요약
 

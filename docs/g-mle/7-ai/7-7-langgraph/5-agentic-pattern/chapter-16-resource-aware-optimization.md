@@ -2,14 +2,7 @@
 sidebar_position: 16
 ---
 
-# Requirement: Chapter 16: Resource-Aware Optimization
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 16: Resource-Aware Optimization`
-- Page range: `231-245` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the table of contents lists Chapter 16 as logical pages `231-245`, but the chapter heading was found at PDF page label `246` / zero-based PDF index `245`. Chapter 17 starts at PDF page label `262` / zero-based PDF index `261`. The extracted Chapter 16 span is therefore PDF indexes `245-260`, file pages `246-261`, with chapter-local page counters `1-16`. This is ambiguous because the TOC range describes a 15-page chapter, while the verified PDF text span contains 16 chapter-local pages and differs from PDF labels by approximately 15-16 pages.
+# 16: Resource-Aware Optimization (en)
 
 ## Pattern Summary
 

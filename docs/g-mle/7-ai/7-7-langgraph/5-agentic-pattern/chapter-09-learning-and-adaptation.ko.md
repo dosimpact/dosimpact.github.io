@@ -2,14 +2,7 @@
 sidebar_position: 9
 ---
 
-# 요구사항: Chapter 9: Learning and Adaptation
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 9: Learning and Adaptation`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 `142-153` 논리 페이지
-- 추출 참고: 보이는 Chapter 9 제목은 PDF 페이지 라벨 `154` / 0 기반 인덱스 `153`에서 확인되었고, Chapter 10은 PDF 페이지 라벨 `167` / 0 기반 인덱스 `166`에서 시작합니다. 추출 Chapter 9 범위는 PDF 인덱스 `153-165`(파일 `154-166`), chapter-local 카운터 `1-13`입니다. TOC 논리 범위 `142-153`은 12페이지로 모호합니다.
+# 9: Learning and Adaptation (ko)
 
 ## 패턴 요약
 

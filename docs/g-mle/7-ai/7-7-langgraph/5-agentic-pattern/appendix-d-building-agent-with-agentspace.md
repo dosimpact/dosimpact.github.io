@@ -2,14 +2,7 @@
 sidebar_position: 104
 ---
 
-# Requirement: Appendix D: Building an Agent with AgentSpace
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix D: Building an Agent with AgentSpace`
-- Page range: `372-377` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the Appendix D heading was found at zero-based PDF index `392` / one-based file page `393`. Appendix E starts at zero-based PDF index `398` / one-based file page `399`, so the extracted Appendix D span is file pages `393-398` / zero-based indexes `392-397`. The PDF has no internal `/PageLabels`; `pypdf` reports labels matching one-based file pages. The extracted pages include appendix-local counters `1-6`, which match the six-page TOC length but not the TOC logical page numbers `372-377`.
+# Appendix D: Building an Agent with AgentSpace (en)
 
 ## Pattern Summary
 

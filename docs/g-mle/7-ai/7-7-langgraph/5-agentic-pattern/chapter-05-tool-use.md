@@ -2,14 +2,7 @@
 sidebar_position: 5
 ---
 
-# Requirement: Chapter 5: Tool Use
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 5: Tool Use (Function Calling)`
-- Page range: `71-90` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 5 heading was found at PDF zero-based index `78` / file page `79`, and the visible Chapter 6 heading was found at PDF zero-based index `99` / file page `100`. The extracted Chapter 5 span is therefore PDF indexes `78-98`, file pages `79-99`, with chapter-local page counters `1-21`. This is ambiguous because the TOC lists logical pages `71-90`, a 20-page range.
+# 5: Tool Use (en)
 
 ## Pattern Summary
 

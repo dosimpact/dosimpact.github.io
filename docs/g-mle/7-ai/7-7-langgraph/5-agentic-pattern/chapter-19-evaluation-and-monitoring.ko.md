@@ -2,14 +2,7 @@
 sidebar_position: 19
 ---
 
-# Requirement: Chapter 19: 평가와 모니터링 (Evaluation and Monitoring)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 19: Evaluation and Monitoring`
-- Page range: `289-306` logical pages from `docs/agentic-design-patterns-toc.md`
-- 추출 메모: Chapter 19 제목은 PDF 라벨 `306`(zero-based `305`)에 나타나고 Chapter 20은 `325`(zero-based `324`)에서 시작합니다. 추출 구간은 PDF 인덱스 `305-323`, 파일 페이지 `306-324`, 장 내 페이지 `1-19`입니다. TOC 논리범위(`289-306`)와 실제 페이지 오프셋이 다릅니다.
+# 19: Evaluation and Monitoring (ko)
 
 ## Pattern Summary
 

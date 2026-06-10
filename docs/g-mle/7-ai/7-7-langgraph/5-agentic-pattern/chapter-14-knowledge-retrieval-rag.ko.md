@@ -2,14 +2,7 @@
 sidebar_position: 14
 ---
 
-# 요구사항: 14장 지식 검색(RAG)
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 14: Knowledge Retrieval (RAG)`
-- 페이지 범위: `199-215` (`docs/agentic-design-patterns-toc.md`의 논리 페이지)
-- 추출 참고: Chapter 14 헤딩은 PDF 라벨 `213` / 0 기반 인덱스 `212`에서, Chapter 15는 `231` / 0 기반 `230`에서 시작합니다. 추출 범위는 PDF 인덱스 `212-229`, 파일 페이지 `213-230`, 챕터 내부 `1-18`입니다. TOC 범위는 17페이지라 실제 범위와 1페이지 차이와 라벨 차이가 있습니다.
+# 14: Knowledge Retrieval (RAG) (ko)
 
 ## 패턴 요약
 

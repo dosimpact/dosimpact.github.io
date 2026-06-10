@@ -2,14 +2,7 @@
 sidebar_position: 10
 ---
 
-# 요구사항: Chapter 10: Model Context Protocol (MCP)
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 10: Model Context Protocol`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 `154-169` 논리 페이지
-- 추출 참고: 보이는 Chapter 10 제목은 PDF 페이지 라벨 `167`(1 기반 파일 페이지 `167`, 0 기반 인덱스 `166`)에서 발견되었고, Chapter 11은 PDF 페이지 라벨 `183`(1 기반 `183`, 0 기반 `182`)에서 시작합니다. 추출 Chapter 10 범위는 PDF 인덱스 `166-181`, 파일 페이지 `167-182`, chapter-local `1-16`입니다. TOC 범위 `154-169`와 길이는 같으나 라벨이 다릅니다.
+# 10: Model Context Protocol (MCP) (ko)
 
 ## 패턴 요약
 

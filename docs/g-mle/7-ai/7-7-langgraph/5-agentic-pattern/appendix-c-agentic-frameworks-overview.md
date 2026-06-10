@@ -2,14 +2,7 @@
 sidebar_position: 103
 ---
 
-# Requirement: Appendix C: Quick overview of Agentic Frameworks
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix C - Quick overview of Agentic Frameworks`
-- Page range: `364-371` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Appendix C heading was found at PDF page label `385` / one-based file page `385` / zero-based index `384`. Appendix D starts at PDF page label `393` / one-based file page `393` / zero-based index `392`. The extracted Appendix C span is therefore PDF indexes `384-391`, file pages `385-392`, with appendix-local page counters `1-8`. This is ambiguous because the TOC logical range `364-371` covers the same 8-page length but does not match PDF page labels or file indexes. `pypdf` reports page labels equal to one-based file page numbers.
+# Appendix C: Agentic Frameworks Overview (en)
 
 ## Pattern Summary
 

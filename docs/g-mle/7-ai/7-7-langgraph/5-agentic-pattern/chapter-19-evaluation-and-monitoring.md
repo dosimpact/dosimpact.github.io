@@ -2,14 +2,7 @@
 sidebar_position: 19
 ---
 
-# Requirement: Chapter 19: Evaluation and Monitoring
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 19: Evaluation and Monitoring`
-- Page range: `289-306` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 19 heading was found at PDF page label `306` / one-based file page `306` / zero-based index `305`. Chapter 20 starts at PDF page label `325` / one-based file page `325` / zero-based index `324`. The extracted Chapter 19 span is therefore PDF indexes `305-323`, file pages `306-324`, with chapter-local page counters `1-19`. This is ambiguous because the TOC logical range `289-306` covers 18 logical pages and differs from the visible PDF labels by 17 pages.
+# 19: Evaluation and Monitoring (en)
 
 ## Pattern Summary
 

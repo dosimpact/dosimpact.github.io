@@ -2,14 +2,7 @@
 sidebar_position: 4
 ---
 
-# 요구사항: Chapter 4: Reflection
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 4: Reflection`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `58-70`
-- 추출 참고: 보이는 Chapter 4 제목은 PDF 페이지 라벨 `65` / 0 기반 인덱스 `64`에서 확인되며, PDF 인덱스 `64-76`(파일 페이지 65-77)는 챕터 내부 카운터 `1-13`을 가진다. 그리고 참고 전용 연장 페이지가 인덱스 `77`(라벨 `78`)에 `14`로 등장한 뒤 Chapter 5는 인덱스 `78`(라벨 `79`)에서 시작한다. 이 추가 페이지는 모호성으로 기록한다.
+# 4: Reflection (ko)
 
 ## 패턴 요약
 

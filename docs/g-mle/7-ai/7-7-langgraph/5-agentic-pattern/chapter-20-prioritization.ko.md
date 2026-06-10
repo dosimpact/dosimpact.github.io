@@ -2,14 +2,7 @@
 sidebar_position: 20
 ---
 
-# Requirement: Chapter 20: 우선순위 설정 (Prioritization)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 20: Prioritization`
-- Page range: `307-316` logical pages from `docs/agentic-design-patterns-toc.md`
-- 추출 메모: Chapter 20 제목은 PDF 라벨 `325`(zero-based `324`)에 있고 Chapter 21은 `335`(zero-based `334`)에서 시작합니다. 추출 구간은 PDF 인덱스 `324-333`, 파일 페이지 `325-334`, 장 내 페이지 `1-10`입니다. TOC의 논리 범위는 `307-316`으로 10쪽과 맞지만 실제 라벨은 18페이지 차이가 있습니다.
+# 20: Prioritization (ko)
 
 ## Pattern Summary
 

@@ -2,14 +2,7 @@
 sidebar_position: 101
 ---
 
-# Requirement: Appendix A: Advanced Prompting Techniques
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix A: Advanced Prompting Techniques`
-- Page range: `330-357` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Appendix A heading was found at PDF zero-based index `348` / file page label `349`, and the visible Appendix B heading starts at PDF zero-based index `377` / file page label `378`. The extracted Appendix A span is therefore PDF indexes `348-376`, file page labels `349-377`, with appendix-local page counters `1-29`. This is ambiguous because the TOC lists logical pages `330-357`, a 28-page range, while the extracted appendix body spans 29 local pages and appears offset from PDF file labels by about 19 pages. The extracted text also contains irregular whitespace and at least one visible source typo, `Contextual Enginnering`.
+# Appendix A: Advanced Prompting Techniques (en)
 
 ## Pattern Summary
 

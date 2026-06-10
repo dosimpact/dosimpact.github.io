@@ -2,14 +2,7 @@
 sidebar_position: 7
 ---
 
-# 요구사항: Chapter 7: Multi-Agent Collaboration
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 7: Multi-Agent Collaboration`
-- 페이지 범위: `104-120` `docs/agentic-design-patterns-toc.md`의 논리 페이지
-- 추출 참고: TOC와 진행 파일의 챕터 이름은 `Chapter 7: Multi-Agent`로 되어 있지만, PDF에서 보이는 장 제목은 `Chapter 7: Multi-Agent Collaboration`입니다. 보이는 장 제목은 PDF 0 기반 인덱스 `112`(파일 페이지 라벨 `113`)에서 확인되었고, Chapter 8 시작은 0 기반 인덱스 `131`(파일 페이지 라벨 `132`)입니다. 추출된 Chapter 7 구간은 파일 페이지 `113-131`, 내부 chapter 카운터 `1-19`입니다. TOC의 논리 범위 `104-120`과 길이(`17`페이지)는 불일치합니다. 이 요구사항은 인용용으로 TOC 범위를 사용하고, 내용 해석에는 보이는 장 경계를 사용합니다.
+# 7: Multi-Agent Collaboration (ko)
 
 ## 패턴 요약
 

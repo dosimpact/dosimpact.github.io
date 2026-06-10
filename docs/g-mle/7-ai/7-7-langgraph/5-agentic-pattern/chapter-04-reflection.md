@@ -2,14 +2,7 @@
 sidebar_position: 4
 ---
 
-# Requirement: Chapter 4: Reflection
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 4: Reflection`
-- Page range: `58-70` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 4 heading was found at PDF page label `65` / zero-based index `64`. PDF indexes `64-76` contain chapter-internal page counters `1-13`, which align with the 13-page logical range in the TOC. A references-only continuation page appears at PDF page label `78` / zero-based index `77` with chapter-internal counter `14`, before Chapter 5 starts at PDF page label `79` / zero-based index `78`; this extra page is recorded as an ambiguity below.
+# 4: Reflection (en)
 
 ## Pattern Summary
 

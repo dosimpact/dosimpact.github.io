@@ -2,14 +2,7 @@
 sidebar_position: 13
 ---
 
-# Requirement: Chapter 13: Human-in-the-Loop
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 13: Human-in-the-Loop`
-- Page range: `190-198` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the Chapter 13 heading was found at PDF page label `204` / zero-based index `203`, and Chapter 14 starts at PDF page label `213` / zero-based index `212`. The extracted Chapter 13 span is therefore PDF indexes `203-211`, file pages `204-212`, with chapter-local page counters `1-9`. This is ambiguous because the TOC logical range `190-198` maps to a 9-page chapter but differs from the PDF labels by 14 pages.
+# 13: Human-in-the-Loop (en)
 
 ## Pattern Summary
 

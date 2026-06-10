@@ -2,14 +2,7 @@
 sidebar_position: 17
 ---
 
-# Requirement: Chapter 17: Reasoning Techniques
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 17: Reasoning Techniques`
-- Page range: `246-269` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 17 heading was found at PDF file page `262` / zero-based index `261`, and Chapter 18 starts at PDF file page `286` / zero-based index `285`. The extracted Chapter 17 span is therefore PDF indexes `261-284`, file pages `262-285`, with chapter-local page counters `1-24`. This is ambiguous because the TOC logical range `246-269` also covers 24 pages but differs from the PDF file pages by 16 pages. The extracted text also inserts irregular whitespace, so exact string matching for headings is unreliable.
+# 17: Reasoning Techniques (en)
 
 ## Pattern Summary
 

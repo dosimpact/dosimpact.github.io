@@ -2,14 +2,7 @@
 sidebar_position: 14
 ---
 
-# Requirement: Chapter 14: Knowledge Retrieval (RAG)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 14: Knowledge Retrieval (RAG)`
-- Page range: `199-215` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 14 heading was found at PDF page label `213` / zero-based index `212`, and Chapter 15 starts at PDF page label `231` / zero-based index `230`. The extracted Chapter 14 span is therefore PDF indexes `212-229`, file pages `213-230`, with chapter-local page counters `1-18`. This is ambiguous because the TOC logical range `199-215` covers 17 pages while the visible extracted chapter span covers 18 pages.
+# 14: Knowledge Retrieval (RAG) (en)
 
 ## Pattern Summary
 

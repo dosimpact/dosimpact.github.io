@@ -2,14 +2,7 @@
 sidebar_position: 3
 ---
 
-# Requirement: Chapter 3: Parallelization
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 3: Parallelization`
-- Page range: `43-57` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the chapter heading was found on PDF file page 50 and the next chapter heading was found on PDF file page 65, so the relevant extracted PDF span is file pages 50-64. This suggests an offset between logical page numbers and PDF file page indexes.
+# 3: Parallelization (en)
 
 ## Pattern Summary
 
@@ -49,9 +42,9 @@ Agentic systems often spend time waiting on external calls: LLMs, APIs, retrieve
 
 1. The workflow validates and initializes shared input state.
 2. The graph fans out to independent branch nodes.
-3. Each branch reads shared input and writes to its own state field or reducer-backed collection.
-4. The graph fans in to a synthesis node after branch completion.
-5. The synthesis node combines available outputs, handles missing branch results, and returns the final answer.
+3. Each branch reads shared input and writes its result into a branch-keyed staging field.
+4. The graph fans in to an explicit collection node after branch completion.
+5. The synthesis node combines the collected outputs, handles missing branch results, and returns the final answer.
 
 ### Trade-offs
 
@@ -76,10 +69,10 @@ Topic
 | Pattern Concept | LangGraph Element |
 | --- | --- |
 | Shared input | State field `input` |
-| Fan-out | Multiple edges from `initialize` to branch nodes |
+| Fan-out | `fan_out_branches` node with multiple edges to branch nodes |
 | Independent branches | Nodes `summarize_topic`, `generate_questions`, `extract_key_terms` |
-| Concurrent-safe outputs | Distinct state fields or reducer-backed lists |
-| Fan-in | Edges from branch nodes to `synthesize_answer` |
+| Concurrent-safe outputs | Branch-keyed `branch_outputs` state with a dictionary merge reducer |
+| Fan-in | Branch nodes converge at `collect_branch_outputs`, then flow to `synthesize_answer` |
 | Partial failure policy | `branch_errors` plus conditional handling in synthesis |
 
 ## LangGraph Implementation Goal
@@ -92,7 +85,7 @@ Build a LangGraph example named `parallel_topic_analyzer` that accepts a user to
 
 After all branches complete, a synthesis node combines the branch outputs and the original topic into one structured response. The example should demonstrate LangGraph fan-out and fan-in topology rather than a plain sequential chain. Tests should use deterministic fake model/tool functions so the example does not require network access or API keys.
 
-The workflow should make branch independence explicit. Each parallel node must read the original input and write to a distinct state field or to a reducer-backed collection. The synthesis node must run only after all required branch outputs are present or after the graph has recorded recoverable branch failures.
+The workflow should make branch independence explicit. Each parallel node must read the original input and write its success or failure into `branch_outputs[branch_name]`. A collection node then derives user-facing fields such as `summary`, `questions`, `key_terms`, `completed_branches`, and `branch_errors`. The synthesis node must run only after this fan-in point has collected all available branch outputs.
 
 ## State Shape
 
@@ -101,14 +94,15 @@ List the state fields the graph needs.
 | Field | Type | Purpose |
 | --- | --- | --- |
 | `input` | `str` | Original user topic or task description. |
+| `branch_outputs` | `dict[str, BranchResult]` | Internal staging area keyed by branch name. Uses a dictionary merge reducer so sibling branch outputs do not overwrite each other. |
 | `summary` | `str \| None` | Concise summary produced by the summary branch. |
 | `questions` | `list[str]` | Follow-up questions produced by the questions branch. |
 | `key_terms` | `list[str]` | Key terms produced by the key-terms branch. |
-| `branch_errors` | `list[dict]` | Recoverable errors from parallel branches, including branch name and message. Use a reducer if branches append concurrently. |
+| `branch_errors` | `list[dict]` | Recoverable errors derived from `branch_outputs`, including branch name, message, and attempts. |
 | `started_at` | `float \| None` | Optional timestamp for measuring total graph latency. |
-| `completed_branches` | `list[str]` | Branch names that completed successfully. Use a reducer if branches append concurrently. |
+| `completed_branches` | `list[str]` | Branch names derived from successful entries in `branch_outputs`. |
 | `final_answer` | `str \| None` | Final synthesized response after fan-in. |
-| `metadata` | `dict` | Optional runtime metadata, such as model name, timeout values, or elapsed time. |
+| `metadata` | `dict` | Optional runtime metadata, such as run ID, timeout values, or elapsed time. |
 
 If implementing a dynamic fan-out variant, add:
 
@@ -122,10 +116,12 @@ If implementing a dynamic fan-out variant, add:
 | Node | Responsibility |
 | --- | --- |
 | `initialize` | Normalize the input topic, initialize empty result and error fields, and attach runtime metadata. |
-| `summarize_topic` | Run an LLM or deterministic test double that creates a concise summary from `input`; write only `summary` and branch completion metadata. |
-| `generate_questions` | Run an independent LLM or deterministic test double that creates follow-up questions from `input`; write only `questions` and branch completion metadata. |
-| `extract_key_terms` | Run an independent LLM or deterministic test double that extracts key terms from `input`; write only `key_terms` and branch completion metadata. |
-| `synthesize_answer` | Wait for fan-in, combine available branch outputs into a structured answer, and clearly mark missing branch data if a branch failed recoverably. |
+| `fan_out_branches` | No-op marker node that makes the fan-out point explicit for graph visualization and tracing. |
+| `summarize_topic` | Run an LLM or deterministic test double that creates a concise summary from `input`; write the result to `branch_outputs["summary"]`. |
+| `generate_questions` | Run an independent LLM or deterministic test double that creates follow-up questions from `input`; write the result to `branch_outputs["questions"]`. |
+| `extract_key_terms` | Run an independent LLM or deterministic test double that extracts key terms from `input`; write the result to `branch_outputs["key_terms"]`. |
+| `collect_branch_outputs` | Explicit fan-in node that derives `summary`, `questions`, `key_terms`, `completed_branches`, and `branch_errors` from `branch_outputs`. |
+| `synthesize_answer` | Combine collected branch outputs into a structured answer, and clearly mark missing branch data if a branch failed recoverably. |
 | `handle_failure` | Produce a controlled error output when required branches fail, the input is invalid, or the graph cannot safely synthesize. |
 
 Optional dynamic variant:
@@ -142,13 +138,17 @@ Describe the graph flow, including conditional branches.
 ```text
 START -> initialize
 
-initialize -> summarize_topic
-initialize -> generate_questions
-initialize -> extract_key_terms
+initialize -> fan_out_branches
 
-summarize_topic -> synthesize_answer
-generate_questions -> synthesize_answer
-extract_key_terms -> synthesize_answer
+fan_out_branches -> summarize_topic
+fan_out_branches -> generate_questions
+fan_out_branches -> extract_key_terms
+
+summarize_topic -> collect_branch_outputs
+generate_questions -> collect_branch_outputs
+extract_key_terms -> collect_branch_outputs
+
+collect_branch_outputs -> synthesize_answer
 
 synthesize_answer -> END
 ```
@@ -156,7 +156,7 @@ synthesize_answer -> END
 Required conditional behavior:
 
 - If `initialize` receives an empty or invalid topic, route to `handle_failure`.
-- If a parallel branch fails with a recoverable error, append to `branch_errors` and still allow fan-in.
+- If a parallel branch fails with a recoverable error, record it in that branch's `branch_outputs` entry and still allow fan-in.
 - If a required branch is missing and no fallback policy permits partial synthesis, route from `synthesize_answer` to `handle_failure`.
 - If all required branch outputs are present, route from `synthesize_answer` to `END`.
 
@@ -196,7 +196,8 @@ Document expected failures, retries, fallback behavior, and human-review points.
 - A branch timeout should be recorded in `branch_errors`; retry once if the branch is idempotent and the configured retry budget allows it.
 - A model or tool error in one branch should not automatically discard successful outputs from other branches.
 - The synthesis node must avoid inventing missing branch data. If partial synthesis is allowed, it must explicitly mark unavailable sections.
-- Concurrent writes to the same state key can cause merge conflicts. Parallel nodes must write distinct fields or use reducer-backed fields for lists.
+- Concurrent writes to the same state key can cause merge conflicts. Parallel nodes should write to branch-specific entries under a reducer-backed `branch_outputs` dictionary.
+- If a Studio thread or checkpoint is reused, stale branch outputs from earlier runs must not be synthesized into the current run. Include a run identifier in branch outputs and filter during collection.
 - Rate limits or external API failures can make parallel execution more fragile than sequential execution. The implementation should support configurable concurrency limits, timeouts, and retry budgets.
 - Branches that are not actually independent should not be run in parallel. The implementation should keep dependent steps in sequence or reject the plan in the dynamic variant.
 - Debugging and observability are more complex with parallel branches. Each branch should log its branch name, start/end status, and error metadata.
@@ -209,7 +210,8 @@ Document expected failures, retries, fallback behavior, and human-review points.
 - Verify empty input routes to `handle_failure` without calling any parallel branch.
 - Verify one recoverable branch failure still preserves successful branch outputs and records `branch_errors`.
 - Verify required-branch failure routes to `handle_failure` when partial synthesis is disabled.
-- Verify concurrent state merging does not overwrite sibling branch outputs.
+- Verify concurrent state merging does not overwrite sibling entries in `branch_outputs`.
+- Verify synthesis ignores stale `branch_outputs` entries from a previous run.
 - Verify dynamic fan-out, if implemented, creates one `run_parallel_task` execution per independent task spec and aggregates all results.
 - Verify final state contains `input`, branch outputs, `completed_branches`, `branch_errors`, and `final_answer`.
 - Verify tests use fake LLM/tool implementations and do not require network access or API keys.

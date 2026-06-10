@@ -2,14 +2,7 @@
 sidebar_position: 12
 ---
 
-# Requirement: Chapter 12: Exception Handling and Recovery
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 12: Exception Handling and Recovery`
-- Page range: `182-189` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 12 heading was found at PDF page label `196` / zero-based index `195`, and Chapter 13 starts at PDF page label `204` / zero-based index `203`. The extracted Chapter 12 span is therefore PDF indexes `195-202`, file pages `196-203`, with chapter-local page counters `1-8`. This is ambiguous because the TOC logical range `182-189` also covers 8 pages but does not match the PDF file page labels.
+# 12: Exception Handling and Recovery (en)
 
 ## Pattern Summary
 

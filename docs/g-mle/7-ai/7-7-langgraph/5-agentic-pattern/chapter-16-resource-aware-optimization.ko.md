@@ -2,14 +2,7 @@
 sidebar_position: 16
 ---
 
-# 요구사항: 16장 자원 인지 최적화
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 16: Resource-Aware Optimization`
-- 페이지 범위: `231-245` (`docs/agentic-design-patterns-toc.md`의 논리 페이지)
-- 추출 참고: TOC 논리 범위는 `231-245`이지만, 실제 Chapter 16 헤딩은 PDF 라벨 `246` / 0 기반 `245`에서 발견되었고 Chapter 17은 `262` / `261`에서 시작합니다. 추출 범위는 PDF 인덱스 `245-260`, 파일 페이지 `246-261`, 내부 페이지 `1-16`입니다.
+# 16: Resource-Aware Optimization (ko)
 
 ## 패턴 요약
 

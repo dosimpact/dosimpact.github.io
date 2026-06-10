@@ -2,14 +2,7 @@
 sidebar_position: 21
 ---
 
-# Requirement: Chapter 21: 탐색 및 발견 (Exploration and Discovery)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 21: Exploration and Discovery`
-- Page range: `317-329` logical pages from `docs/agentic-design-patterns-toc.md`
-- 추출 메모: Chapter 21 제목은 PDF 라벨 `335`(zero-based `334`)에서 시작하고 Appendix A는 `349`(zero-based `348`)에서 시작합니다. 추출 구간은 PDF 인덱스 `334-347`, 파일 페이지 `335-348`, 장 내 `1-14`로 추출되었습니다. TOC 논리범위 `317-329`와 1~14쪽 카운트가 맞지 않아 모호합니다.
+# 21: Exploration and Discovery (ko)
 
 ## Pattern Summary
 

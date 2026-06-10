@@ -2,14 +2,7 @@
 sidebar_position: 102
 ---
 
-# Requirement: Appendix B: AI Agentic Interactions: From GUI to Real World Environment
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Appendix B - AI Agentic Interactions: From GUI to Real World environment`
-- Page range: `358-363` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the Appendix B heading was found at PDF page label `378` / one-based file page `378` / zero-based index `377`. The next appendix heading, Appendix C, was found at PDF page label `385` / one-based file page `385` / zero-based index `384`. The extracted Appendix B span is therefore PDF indexes `377-383`, file pages `378-384`, with appendix-local footer pages `1-7`. This is ambiguous because the TOC logical range `358-363` implies 6 logical pages, while the extracted appendix body occupies 7 file pages before Appendix C begins.
+# Appendix B: AI Agentic Interactions from GUI to Real World Environment (en)
 
 ## Pattern Summary
 

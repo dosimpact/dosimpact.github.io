@@ -2,14 +2,7 @@
 sidebar_position: 7
 ---
 
-# Requirement: Chapter 7: Multi-Agent Collaboration
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 7: Multi-Agent Collaboration`
-- Page range: `104-120` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the TOC and progress file name this chapter `Chapter 7: Multi-Agent`, while the visible chapter heading in the PDF is `Chapter 7: Multi-Agent Collaboration`. The visible chapter heading was found at PDF zero-based index `112`, file page label `113`, and Chapter 8 starts at zero-based index `131`, file page label `132`. The extracted Chapter 7 span is therefore file pages `113-131`, with internal extracted chapter counters `1-19`. This conflicts with the TOC logical range `104-120`, which is 17 logical pages. This requirement cites the TOC range above and uses the visible extracted chapter boundaries for source interpretation.
+# 7: Multi-Agent Collaboration (en)
 
 ## Pattern Summary
 

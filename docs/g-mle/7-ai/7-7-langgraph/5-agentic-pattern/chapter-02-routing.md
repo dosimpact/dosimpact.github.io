@@ -2,14 +2,7 @@
 sidebar_position: 2
 ---
 
-# Requirement: Chapter 2 - Routing
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 2: Routing`
-- Page range: logical pages 30-42 from `docs/agentic-design-patterns-toc.md`
-- Extraction note: Chapter 2 begins at PDF page index 35, file page 36, and Chapter 3 begins at PDF page index 49, file page 50. The extracted Chapter 2 span therefore appears to be PDF indexes 35-48, file pages 36-49, with extracted chapter page counters 1-14. This is ambiguous because the TOC logical range 30-42 is 13 pages.
+# 2: Routing (en)
 
 ## Pattern Summary
 
@@ -134,23 +127,23 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> preprocess_input
-  -> classify_route
-  -> validate_route
-  -> route_by_decision
+```mermaid
+flowchart TD
+  start([START]) --> preprocess[preprocess_input]
+  preprocess --> classify[classify_route]
+  classify --> validate[validate_route]
+  validate --> route{route_by_decision}
 
-route_by_decision:
-  order_status      -> order_status_handler
-  product_info      -> product_info_handler
-  technical_support -> technical_support_handler
-  clarify           -> clarification_handler
+  route -->|order_status| order[order_status_handler]
+  route -->|product_info| product[product_info_handler]
+  route -->|technical_support| support[technical_support_handler]
+  route -->|clarify| clarify[clarification_handler]
 
-order_status_handler      -> format_response -> END
-product_info_handler      -> format_response -> END
-technical_support_handler -> format_response -> END
-clarification_handler     -> format_response -> END
+  order --> format[format_response]
+  product --> format
+  support --> format
+  clarify --> format
+  format --> endNode([END])
 ```
 
 Conditional edge requirements:

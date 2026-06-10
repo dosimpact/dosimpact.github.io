@@ -2,14 +2,7 @@
 sidebar_position: 18
 ---
 
-# Requirement: Chapter 18: 가드레일/안전성 패턴 (Guardrails/Safety Patterns)
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 18: Guardrails/Safety Patterns`
-- Page range: `270-288` logical pages from `docs/agentic-design-patterns-toc.md`
-- 추출 메모: Chapter 18 제목은 PDF 페이지 라벨 `286`(zero-based `285`)에서 시작하고 Chapter 19는 `306`(zero-based `305`)에서 시작합니다. 추출 구간은 PDF 인덱스 `285-304`(파일 286-305), 장 내 페이지 `1-20`입니다. TOC 논리범위 `270-288`(19쪽)과 실제 추출 길이(20쪽)가 다르므로 경계 모호성이 있습니다.
+# 18: Guardrails/Safety Patterns (ko)
 
 ## Pattern Summary
 

@@ -2,14 +2,7 @@
 sidebar_position: 11
 ---
 
-# 요구사항: Chapter 11: Goal Setting and Monitoring
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 11: Goal Setting and Monitoring`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 `170-181` 논리 페이지
-- 추출 참고: 보이는 Chapter 11 제목은 PDF 파일 페이지 `183`(0 기반 `182`)에서 확인되었고, Chapter 12 시작은 1-based 페이지 `196`(0 기반 `195`)입니다. 이 요구사항은 보이는 추출 범위 `182-194`(파일 `183-195`, chapter-local `1-13`)를 사용하지만, 인용 표기는 TOC 범위를 유지합니다. TOC 범위는 12페이지로 모순이 있습니다.
+# 11: Goal Setting and Monitoring (ko)
 
 ## 패턴 요약
 

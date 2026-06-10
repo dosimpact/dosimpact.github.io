@@ -2,14 +2,7 @@
 sidebar_position: 6
 ---
 
-# Requirement: Chapter 6: Planning
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 6: Planning`
-- Page range: `91-103` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 6 heading was found at PDF page label `100` / zero-based index `99`, and Chapter 7 starts at PDF page label `113` / zero-based index `112`. This requirement uses visible chapter boundary pages `100-112` for extraction while preserving the TOC logical range above as the cited range.
+# 6: Planning (en)
 
 ## Pattern Summary
 

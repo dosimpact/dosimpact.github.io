@@ -2,14 +2,7 @@
 sidebar_position: 21
 ---
 
-# Requirement: Chapter 21: Exploration and Discovery
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 21: Exploration and Discovery`
-- Page range: `317-329` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 21 heading was found at PDF page label `335` / one-based file page `335` / zero-based index `334`. Appendix A starts at PDF page label `349` / one-based file page `349` / zero-based index `348`. The extracted Chapter 21 span is therefore PDF indexes `334-347`, file pages `335-348`, with chapter-local page counters `1-14`. This is ambiguous because the TOC logical range `317-329` covers 13 logical pages and differs from the visible PDF labels by 18-19 pages.
+# 21: Exploration and Discovery (en)
 
 ## Pattern Summary
 

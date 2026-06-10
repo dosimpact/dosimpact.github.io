@@ -2,14 +2,7 @@
 sidebar_position: 106
 ---
 
-# 요구사항: 부록 F: 에이전트 추론 엔진의 내부
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix F - Under the Hood: An Inside Look at the Agents' Reasoning Engines`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `383-396`
-- 추출 참고: Appendix F 제목은 TOC의 파일 페이지 1/인덱스 0에서 14페이지 항목으로 보이나, 본문 추출에서 해당 본문을 찾기 어렵다. 직접 추출된 논리 구간 `383-396`은 Appendix B/C/D 조각을 담는다. 검색에서 본문 제목도 발견되지 않았다. 따라서 본 요구사항은 TOC 제목과 인접의 추론 관련 재료를 바탕으로 한 보수적 재구성이다.
+# Appendix F: Agents' Reasoning Engines (ko)
 
 ## 패턴 요약
 

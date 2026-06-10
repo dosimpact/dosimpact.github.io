@@ -2,14 +2,7 @@
 sidebar_position: 11
 ---
 
-# Requirement: Chapter 11: Goal Setting and Monitoring
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 11: Goal Setting and Monitoring`
-- Page range: `170-181` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the visible Chapter 11 heading was found at one-based PDF file page `183` / zero-based index `182`, and Chapter 12 starts at one-based PDF file page `196` / zero-based index `195`. This requirement uses visible Chapter 11 extraction indexes `182-194`, file pages `183-195`, with chapter-local page counters `1-13`, while preserving the TOC logical range above as the cited range. This is ambiguous because the TOC range `170-181` covers 12 logical pages.
+# 11: Goal Setting and Monitoring (en)
 
 ## Pattern Summary
 

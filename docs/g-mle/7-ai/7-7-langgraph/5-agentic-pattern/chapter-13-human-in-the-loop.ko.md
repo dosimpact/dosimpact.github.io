@@ -2,14 +2,7 @@
 sidebar_position: 13
 ---
 
-# 요구사항: 13장 Human-in-the-Loop
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Chapter 13: Human-in-the-Loop`
-- 페이지 범위: `190-198` (`docs/agentic-design-patterns-toc.md`의 논리 페이지)
-- 추출 참고: Chapter 13 헤딩은 PDF 라벨 `204` / 0 기반 인덱스 `203`에 있었고, Chapter 14는 PDF 라벨 `213` / 0 기반 인덱스 `212`에서 시작합니다. 추출 범위는 PDF 인덱스 `203-211`, 파일 페이지 `204-212`, 챕터 내부 페이지 `1-9`입니다. TOC의 논리 범위(`190-198`)는 9페이지지만 라벨은 14페이지 차이가 납니다.
+# 13: Human-in-the-Loop (ko)
 
 ## 패턴 요약
 

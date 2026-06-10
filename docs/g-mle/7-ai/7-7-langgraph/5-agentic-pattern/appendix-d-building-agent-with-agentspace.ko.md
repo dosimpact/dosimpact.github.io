@@ -2,14 +2,7 @@
 sidebar_position: 104
 ---
 
-# 요구사항: 부록 D: AgentSpace로 에이전트 구축
-
-## 출처
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- 섹션: `Appendix D: Building an Agent with AgentSpace`
-- 페이지 범위: `docs/agentic-design-patterns-toc.md` 기준 논리 페이지 `372-377`
-- 추출 참고: Appendix D 제목은 PDF 0 기반 인덱스 `392`(파일 `393`)에서 보이며, Appendix E는 인덱스 `398`(파일 `399`)에서 시작한다. 추출 범위는 파일 `393-398`(인덱스 `392-397`)이다. 이 PDF는 `/PageLabels`가 없고 pypdf 라벨이 파일 페이지 번호와 같다.
+# Appendix D: Building an Agent with AgentSpace (ko)
 
 ## 패턴 요약
 

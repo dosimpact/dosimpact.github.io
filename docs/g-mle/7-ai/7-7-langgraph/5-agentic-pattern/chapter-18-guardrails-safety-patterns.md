@@ -2,14 +2,7 @@
 sidebar_position: 18
 ---
 
-# Requirement: Chapter 18: Guardrails/Safety Patterns
-
-## Source
-
-- PDF: `Agentic_Design_Patterns.pdf`
-- Section: `Chapter 18: Guardrails/Safety Patterns`
-- Page range: `270-288` logical pages from `docs/agentic-design-patterns-toc.md`
-- Extraction note: the Chapter 18 heading was found at PDF page label `286` / zero-based index `285`, and Chapter 19 starts at PDF page label `306` / zero-based index `305`. The extracted Chapter 18 span is therefore PDF indexes `285-304`, file pages `286-305`, with chapter-local page counters `1-20`. This is ambiguous because the TOC logical range `270-288` is a 19-page span, while the extracted chapter has 20 chapter-local pages before the Chapter 19 heading. The final extracted page contains the end of Chapter 18 key takeaways, conclusion, and references, so it is included as Chapter 18 source text.
+# 18: Guardrails/Safety Patterns (en)
 
 ## Pattern Summary
 
