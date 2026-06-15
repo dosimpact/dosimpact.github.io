@@ -114,12 +114,18 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> prepare_input -> extract_specs -> transform_to_json -> validate_output
-
-validate_output -> finalize -> END
-validate_output -> repair_output -> validate_output
-validate_output -> mark_needs_review -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_input[prepare_input]
+    prepare_input[prepare_input] --> extract_specs[extract_specs]
+    extract_specs[extract_specs] --> transform_to_json[transform_to_json]
+    transform_to_json[transform_to_json] --> validate_output[validate_output]
+    validate_output[validate_output] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    validate_output[validate_output] --> repair_output[repair_output]
+    repair_output[repair_output] --> validate_output[validate_output]
+    validate_output[validate_output] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
 ```
 
 Conditional edge requirements:

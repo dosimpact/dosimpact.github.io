@@ -153,21 +153,34 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> preprocess_request
-  -> classify_intent
-
-classify_intent -> answer_without_mcp -> generate_final_response -> END
-classify_intent -> discover_capabilities -> select_capability -> validate_capability
-
-validate_capability -> build_mcp_request -> invoke_mcp_capability -> integrate_result -> generate_final_response -> END
-validate_capability -> answer_without_mcp -> generate_final_response -> END
-validate_capability -> mark_needs_review -> generate_final_response -> END
-
-invoke_mcp_capability -> select_capability
-invoke_mcp_capability -> mark_needs_review -> generate_final_response -> END
-integrate_result -> mark_needs_review -> generate_final_response -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_request[preprocess_request]
+    preprocess_request[preprocess_request] --> classify_intent[classify_intent]
+    classify_intent[classify_intent] --> answer_without_mcp[answer_without_mcp]
+    answer_without_mcp[answer_without_mcp] --> generate_final_response[generate_final_response]
+    generate_final_response[generate_final_response] --> stop([END])
+    classify_intent[classify_intent] --> discover_capabilities[discover_capabilities]
+    discover_capabilities[discover_capabilities] --> select_capability[select_capability]
+    select_capability[select_capability] --> validate_capability[validate_capability]
+    validate_capability[validate_capability] --> build_mcp_request[build_mcp_request]
+    build_mcp_request[build_mcp_request] --> invoke_mcp_capability[invoke_mcp_capability]
+    invoke_mcp_capability[invoke_mcp_capability] --> integrate_result[integrate_result]
+    integrate_result[integrate_result] --> generate_final_response[generate_final_response]
+    generate_final_response[generate_final_response] --> stop([END])
+    validate_capability[validate_capability] --> answer_without_mcp[answer_without_mcp]
+    answer_without_mcp[answer_without_mcp] --> generate_final_response[generate_final_response]
+    generate_final_response[generate_final_response] --> stop([END])
+    validate_capability[validate_capability] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> generate_final_response[generate_final_response]
+    generate_final_response[generate_final_response] --> stop([END])
+    invoke_mcp_capability[invoke_mcp_capability] --> select_capability[select_capability]
+    invoke_mcp_capability[invoke_mcp_capability] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> generate_final_response[generate_final_response]
+    generate_final_response[generate_final_response] --> stop([END])
+    integrate_result[integrate_result] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> generate_final_response[generate_final_response]
+    generate_final_response[generate_final_response] --> stop([END])
 ```
 
 Conditional edge requirements:

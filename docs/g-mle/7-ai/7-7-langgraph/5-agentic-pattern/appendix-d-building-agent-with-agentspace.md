@@ -205,43 +205,32 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_agent_request
-  -> validate_enterprise_scope
-  -> select_service_connectors
-  -> enforce_access_policy
-
-enforce_access_policy -> build_knowledge_context
-enforce_access_policy -> finalize_agent_result
-
-build_knowledge_context
-  -> choose_prompt_source
-  -> compose_agent_prompt
-  -> configure_capabilities
-
-configure_capabilities -> configure_collaborators
-configure_capabilities -> assemble_agent_spec
-configure_collaborators -> assemble_agent_spec
-
-assemble_agent_spec
-  -> deploy_chat_interface
-  -> handle_runtime_query
-
-handle_runtime_query -> plan_runtime_actions
-handle_runtime_query -> record_analytics_event
-
-plan_runtime_actions -> route_to_collaborator_agent
-plan_runtime_actions -> execute_mock_actions
-route_to_collaborator_agent -> execute_mock_actions
-
-execute_mock_actions
-  -> synthesize_response
-  -> record_analytics_event
-  -> finalize_agent_result
-
-record_analytics_event -> finalize_agent_result
-finalize_agent_result -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_agent_request[prepare_agent_request]
+    prepare_agent_request[prepare_agent_request] --> validate_enterprise_scope[validate_enterprise_scope]
+    validate_enterprise_scope[validate_enterprise_scope] --> select_service_connectors[select_service_connectors]
+    select_service_connectors[select_service_connectors] --> enforce_access_policy[enforce_access_policy]
+    enforce_access_policy[enforce_access_policy] --> build_knowledge_context[build_knowledge_context]
+    enforce_access_policy[enforce_access_policy] --> finalize_agent_result[finalize_agent_result]
+    build_knowledge_context[build_knowledge_context] --> choose_prompt_source[choose_prompt_source]
+    choose_prompt_source[choose_prompt_source] --> compose_agent_prompt[compose_agent_prompt]
+    compose_agent_prompt[compose_agent_prompt] --> configure_capabilities[configure_capabilities]
+    configure_capabilities[configure_capabilities] --> configure_collaborators[configure_collaborators]
+    configure_capabilities[configure_capabilities] --> assemble_agent_spec[assemble_agent_spec]
+    configure_collaborators[configure_collaborators] --> assemble_agent_spec[assemble_agent_spec]
+    assemble_agent_spec[assemble_agent_spec] --> deploy_chat_interface[deploy_chat_interface]
+    deploy_chat_interface[deploy_chat_interface] --> handle_runtime_query[handle_runtime_query]
+    handle_runtime_query[handle_runtime_query] --> plan_runtime_actions[plan_runtime_actions]
+    handle_runtime_query[handle_runtime_query] --> record_analytics_event[record_analytics_event]
+    plan_runtime_actions[plan_runtime_actions] --> route_to_collaborator_agent[route_to_collaborator_agent]
+    plan_runtime_actions[plan_runtime_actions] --> execute_mock_actions[execute_mock_actions]
+    route_to_collaborator_agent[route_to_collaborator_agent] --> execute_mock_actions[execute_mock_actions]
+    execute_mock_actions[execute_mock_actions] --> synthesize_response[synthesize_response]
+    synthesize_response[synthesize_response] --> record_analytics_event[record_analytics_event]
+    record_analytics_event[record_analytics_event] --> finalize_agent_result[finalize_agent_result]
+    record_analytics_event[record_analytics_event] --> finalize_agent_result[finalize_agent_result]
+    finalize_agent_result[finalize_agent_result] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -135,22 +135,18 @@ Optional dynamic variant:
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> initialize
-
-initialize -> fan_out_branches
-
-fan_out_branches -> summarize_topic
-fan_out_branches -> generate_questions
-fan_out_branches -> extract_key_terms
-
-summarize_topic -> collect_branch_outputs
-generate_questions -> collect_branch_outputs
-extract_key_terms -> collect_branch_outputs
-
-collect_branch_outputs -> synthesize_answer
-
-synthesize_answer -> END
+```mermaid
+flowchart TD
+    start([START]) --> initialize[initialize]
+    initialize[initialize] --> fan_out_branches[fan_out_branches]
+    fan_out_branches[fan_out_branches] --> summarize_topic[summarize_topic]
+    fan_out_branches[fan_out_branches] --> generate_questions[generate_questions]
+    fan_out_branches[fan_out_branches] --> extract_key_terms[extract_key_terms]
+    summarize_topic[summarize_topic] --> collect_branch_outputs[collect_branch_outputs]
+    generate_questions[generate_questions] --> collect_branch_outputs[collect_branch_outputs]
+    extract_key_terms[extract_key_terms] --> collect_branch_outputs[collect_branch_outputs]
+    collect_branch_outputs[collect_branch_outputs] --> synthesize_answer[synthesize_answer]
+    synthesize_answer[synthesize_answer] --> stop([END])
 ```
 
 Required conditional behavior:
@@ -162,11 +158,13 @@ Required conditional behavior:
 
 Dynamic fan-out variant:
 
-```text
-START -> initialize -> plan_parallel_tasks
-plan_parallel_tasks -> run_parallel_task for each task in tasks
-run_parallel_task -> synthesize_answer
-synthesize_answer -> END
+```mermaid
+flowchart TD
+    start([START]) --> initialize[initialize]
+    initialize[initialize] --> plan_parallel_tasks[plan_parallel_tasks]
+    plan_parallel_tasks[plan_parallel_tasks] -->|for each task in tasks| run_parallel_task[run_parallel_task]
+    run_parallel_task[run_parallel_task] --> synthesize_answer[synthesize_answer]
+    synthesize_answer[synthesize_answer] --> stop([END])
 ```
 
 ## Inputs and Outputs

@@ -171,22 +171,21 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_evaluation
-  -> score_response_quality
-  -> score_operational_metrics
-  -> evaluate_trajectory
-  -> audit_requirements
-  -> decide_judge_need
-
-decide_judge_need -> run_rubric_judge -> validate_judge_result -> detect_regressions_and_anomalies
-decide_judge_need -> detect_regressions_and_anomalies
-
-detect_regressions_and_anomalies
-  -> decide_evaluation_status
-  -> finalize_report
-  -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_evaluation[prepare_evaluation]
+    prepare_evaluation[prepare_evaluation] --> score_response_quality[score_response_quality]
+    score_response_quality[score_response_quality] --> score_operational_metrics[score_operational_metrics]
+    score_operational_metrics[score_operational_metrics] --> evaluate_trajectory[evaluate_trajectory]
+    evaluate_trajectory[evaluate_trajectory] --> audit_requirements[audit_requirements]
+    audit_requirements[audit_requirements] --> decide_judge_need[decide_judge_need]
+    decide_judge_need[decide_judge_need] --> run_rubric_judge[run_rubric_judge]
+    run_rubric_judge[run_rubric_judge] --> validate_judge_result[validate_judge_result]
+    validate_judge_result[validate_judge_result] --> detect_regressions_and_anomalies[detect_regressions_and_anomalies]
+    decide_judge_need[decide_judge_need] --> detect_regressions_and_anomalies[detect_regressions_and_anomalies]
+    detect_regressions_and_anomalies[detect_regressions_and_anomalies] --> decide_evaluation_status[decide_evaluation_status]
+    decide_evaluation_status[decide_evaluation_status] --> finalize_report[finalize_report]
+    finalize_report[finalize_report] --> stop([END])
 ```
 
 Conditional edge requirements:

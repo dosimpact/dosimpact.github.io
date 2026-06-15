@@ -181,28 +181,26 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_discovery_task
-  -> safety_screen_goal
-
-safety_screen_goal -> explore_context
-safety_screen_goal -> finalize_discovery_brief
-
-explore_context
-  -> identify_knowledge_gaps
-  -> generate_hypotheses
-  -> review_hypotheses
-  -> rank_hypotheses
-  -> cluster_hypotheses
-  -> decide_refinement
-
-decide_refinement -> evolve_hypotheses -> review_hypotheses
-decide_refinement -> plan_validation_steps -> finalize_discovery_brief
-decide_refinement -> request_human_review -> finalize_discovery_brief
-decide_refinement -> finalize_discovery_brief
-
-finalize_discovery_brief -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_discovery_task[prepare_discovery_task]
+    prepare_discovery_task[prepare_discovery_task] --> safety_screen_goal[safety_screen_goal]
+    safety_screen_goal[safety_screen_goal] --> explore_context[explore_context]
+    safety_screen_goal[safety_screen_goal] --> finalize_discovery_brief[finalize_discovery_brief]
+    explore_context[explore_context] --> identify_knowledge_gaps[identify_knowledge_gaps]
+    identify_knowledge_gaps[identify_knowledge_gaps] --> generate_hypotheses[generate_hypotheses]
+    generate_hypotheses[generate_hypotheses] --> review_hypotheses[review_hypotheses]
+    review_hypotheses[review_hypotheses] --> rank_hypotheses[rank_hypotheses]
+    rank_hypotheses[rank_hypotheses] --> cluster_hypotheses[cluster_hypotheses]
+    cluster_hypotheses[cluster_hypotheses] --> decide_refinement[decide_refinement]
+    decide_refinement[decide_refinement] --> evolve_hypotheses[evolve_hypotheses]
+    evolve_hypotheses[evolve_hypotheses] --> review_hypotheses[review_hypotheses]
+    decide_refinement[decide_refinement] --> plan_validation_steps[plan_validation_steps]
+    plan_validation_steps[plan_validation_steps] --> finalize_discovery_brief[finalize_discovery_brief]
+    decide_refinement[decide_refinement] --> request_human_review[request_human_review]
+    request_human_review[request_human_review] --> finalize_discovery_brief[finalize_discovery_brief]
+    decide_refinement[decide_refinement] --> finalize_discovery_brief[finalize_discovery_brief]
+    finalize_discovery_brief[finalize_discovery_brief] --> stop([END])
 ```
 
 Conditional edge requirements:

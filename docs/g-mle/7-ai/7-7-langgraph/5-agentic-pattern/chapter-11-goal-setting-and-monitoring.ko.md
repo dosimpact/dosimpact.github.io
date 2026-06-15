@@ -156,19 +156,24 @@ sidebar_position: 11
 
 조건부 분기를 포함해 그래프 흐름을 정의합니다.
 
-```text
-START
-  -> prepare_input
-  -> define_goal_contract
-  -> validate_goal_contract
-  -> generate_candidate
-  -> run_objective_checks
-  -> monitor_candidate
-
-monitor_candidate -> finalize -> END
-monitor_candidate -> revise_candidate -> run_objective_checks
-monitor_candidate -> mark_needs_review -> finalize -> END
-validate_goal_contract -> mark_needs_review -> finalize -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_input[prepare_input]
+    prepare_input[prepare_input] --> define_goal_contract[define_goal_contract]
+    define_goal_contract[define_goal_contract] --> validate_goal_contract[validate_goal_contract]
+    validate_goal_contract[validate_goal_contract] --> generate_candidate[generate_candidate]
+    generate_candidate[generate_candidate] --> run_objective_checks[run_objective_checks]
+    run_objective_checks[run_objective_checks] --> monitor_candidate[monitor_candidate]
+    monitor_candidate[monitor_candidate] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    monitor_candidate[monitor_candidate] --> revise_candidate[revise_candidate]
+    revise_candidate[revise_candidate] --> run_objective_checks[run_objective_checks]
+    monitor_candidate[monitor_candidate] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    validate_goal_contract[validate_goal_contract] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
 ```
 
 조건부 엣지 요구사항:

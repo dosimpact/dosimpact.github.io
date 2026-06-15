@@ -169,28 +169,27 @@ LangGraph 예제는 Chapter 17의 추론 기법 전반을 재복제하지 말고
 
 ## 엣지
 
-```text
-START
-  -> prepare_task
-  -> analyze_task
-  -> select_reasoning_strategy
-  -> prepare_working_memory
-  -> propose_next_step
-
-propose_next_step -> execute_reasoning_step -> evaluate_progress
-propose_next_step -> run_tool_action -> evaluate_progress
-
-evaluate_progress -> propose_next_step
-evaluate_progress -> switch_strategy -> propose_next_step
-evaluate_progress -> draft_answer
-evaluate_progress -> finalize_response
-
-draft_answer -> critique_answer
-critique_answer -> revise_answer
-critique_answer -> finalize_response
-revise_answer -> finalize_response
-
-finalize_response -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_task[prepare_task]
+    prepare_task[prepare_task] --> analyze_task[analyze_task]
+    analyze_task[analyze_task] --> select_reasoning_strategy[select_reasoning_strategy]
+    select_reasoning_strategy[select_reasoning_strategy] --> prepare_working_memory[prepare_working_memory]
+    prepare_working_memory[prepare_working_memory] --> propose_next_step[propose_next_step]
+    propose_next_step[propose_next_step] --> execute_reasoning_step[execute_reasoning_step]
+    execute_reasoning_step[execute_reasoning_step] --> evaluate_progress[evaluate_progress]
+    propose_next_step[propose_next_step] --> run_tool_action[run_tool_action]
+    run_tool_action[run_tool_action] --> evaluate_progress[evaluate_progress]
+    evaluate_progress[evaluate_progress] --> propose_next_step[propose_next_step]
+    evaluate_progress[evaluate_progress] --> switch_strategy[switch_strategy]
+    switch_strategy[switch_strategy] --> propose_next_step[propose_next_step]
+    evaluate_progress[evaluate_progress] --> draft_answer[draft_answer]
+    evaluate_progress[evaluate_progress] --> finalize_response[finalize_response]
+    draft_answer[draft_answer] --> critique_answer[critique_answer]
+    critique_answer[critique_answer] --> revise_answer[revise_answer]
+    critique_answer[critique_answer] --> finalize_response[finalize_response]
+    revise_answer[revise_answer] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
 ```
 
 조건부 엣지 요구사항:

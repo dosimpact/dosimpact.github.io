@@ -149,18 +149,25 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> preprocess_input
-  -> classify_task
-  -> retrieve_experience
-  -> select_strategy
-  -> generate_response
-  -> evaluate_response
-
-evaluate_response -> adapt_from_result -> persist_adaptation -> finalize -> END
-evaluate_response -> revise_strategy -> generate_response
-evaluate_response -> mark_needs_review -> adapt_from_result -> persist_adaptation -> finalize -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_input[preprocess_input]
+    preprocess_input[preprocess_input] --> classify_task[classify_task]
+    classify_task[classify_task] --> retrieve_experience[retrieve_experience]
+    retrieve_experience[retrieve_experience] --> select_strategy[select_strategy]
+    select_strategy[select_strategy] --> generate_response[generate_response]
+    generate_response[generate_response] --> evaluate_response[evaluate_response]
+    evaluate_response[evaluate_response] --> adapt_from_result[adapt_from_result]
+    adapt_from_result[adapt_from_result] --> persist_adaptation[persist_adaptation]
+    persist_adaptation[persist_adaptation] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    evaluate_response[evaluate_response] --> revise_strategy[revise_strategy]
+    revise_strategy[revise_strategy] --> generate_response[generate_response]
+    evaluate_response[evaluate_response] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> adapt_from_result[adapt_from_result]
+    adapt_from_result[adapt_from_result] --> persist_adaptation[persist_adaptation]
+    persist_adaptation[persist_adaptation] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
 ```
 
 Conditional edge requirements:

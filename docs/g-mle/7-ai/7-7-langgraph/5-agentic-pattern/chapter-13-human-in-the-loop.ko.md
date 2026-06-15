@@ -152,19 +152,23 @@ HITL은 언제 인간이 개입해야 하는지, 어떤 정보를 넘길지, 인
 
 ## 간선
 
-```text
-START
-  -> preprocess_input
-  -> load_customer_context
-  -> classify_request
-  -> troubleshoot_issue
-  -> build_agent_recommendation
-  -> assess_handoff_need
-
-assess_handoff_need -> finalize
-assess_handoff_need -> create_ticket -> finalize
-assess_handoff_need -> redact_review_payload -> request_human_review
-request_human_review -> apply_human_decision -> record_review_outcome -> finalize -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_input[preprocess_input]
+    preprocess_input[preprocess_input] --> load_customer_context[load_customer_context]
+    load_customer_context[load_customer_context] --> classify_request[classify_request]
+    classify_request[classify_request] --> troubleshoot_issue[troubleshoot_issue]
+    troubleshoot_issue[troubleshoot_issue] --> build_agent_recommendation[build_agent_recommendation]
+    build_agent_recommendation[build_agent_recommendation] --> assess_handoff_need[assess_handoff_need]
+    assess_handoff_need[assess_handoff_need] --> finalize[finalize]
+    assess_handoff_need[assess_handoff_need] --> create_ticket[create_ticket]
+    create_ticket[create_ticket] --> finalize[finalize]
+    assess_handoff_need[assess_handoff_need] --> redact_review_payload[redact_review_payload]
+    redact_review_payload[redact_review_payload] --> request_human_review[request_human_review]
+    request_human_review[request_human_review] --> apply_human_decision[apply_human_decision]
+    apply_human_decision[apply_human_decision] --> record_review_outcome[record_review_outcome]
+    record_review_outcome[record_review_outcome] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
 ```
 
 조건 간선 요구사항:

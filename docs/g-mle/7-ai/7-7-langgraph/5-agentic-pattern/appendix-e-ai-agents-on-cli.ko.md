@@ -138,15 +138,25 @@ synthesize_response -> 파일 경로, 신뢰도, 제안 테스트 명령 포함 
 
 ## 엣지
 
-```text
-START -> prepare_task -> classify_task -> select_context -> collect_context -> plan_cli_actions -> policy_gate
-
-policy_gate -> execute_safe_actions -> synthesize_cli_response -> END
-policy_gate -> request_human_review -> END
-policy_gate -> handle_failure -> END
-
-collect_context -> handle_failure -> END
-plan_cli_actions -> handle_failure -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_task[prepare_task]
+    prepare_task[prepare_task] --> classify_task[classify_task]
+    classify_task[classify_task] --> select_context[select_context]
+    select_context[select_context] --> collect_context[collect_context]
+    collect_context[collect_context] --> plan_cli_actions[plan_cli_actions]
+    plan_cli_actions[plan_cli_actions] --> policy_gate[policy_gate]
+    policy_gate[policy_gate] --> execute_safe_actions[execute_safe_actions]
+    execute_safe_actions[execute_safe_actions] --> synthesize_cli_response[synthesize_cli_response]
+    synthesize_cli_response[synthesize_cli_response] --> stop([END])
+    policy_gate[policy_gate] --> request_human_review[request_human_review]
+    request_human_review[request_human_review] --> stop([END])
+    policy_gate[policy_gate] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    collect_context[collect_context] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    plan_cli_actions[plan_cli_actions] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
 ```
 
 조건부 엣지 요구사항:

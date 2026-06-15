@@ -151,17 +151,24 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_request
-  -> parse_location_query
-  -> call_precise_lookup
-  -> diagnose_failure
-
-diagnose_failure -> select_recovered_result -> finalize_response -> END
-diagnose_failure -> retry_precise_lookup -> call_precise_lookup
-diagnose_failure -> call_general_area_lookup -> select_recovered_result -> finalize_response -> END
-diagnose_failure -> mark_for_review -> finalize_response -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_request[prepare_request]
+    prepare_request[prepare_request] --> parse_location_query[parse_location_query]
+    parse_location_query[parse_location_query] --> call_precise_lookup[call_precise_lookup]
+    call_precise_lookup[call_precise_lookup] --> diagnose_failure[diagnose_failure]
+    diagnose_failure[diagnose_failure] --> select_recovered_result[select_recovered_result]
+    select_recovered_result[select_recovered_result] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    diagnose_failure[diagnose_failure] --> retry_precise_lookup[retry_precise_lookup]
+    retry_precise_lookup[retry_precise_lookup] --> call_precise_lookup[call_precise_lookup]
+    diagnose_failure[diagnose_failure] --> call_general_area_lookup[call_general_area_lookup]
+    call_general_area_lookup[call_general_area_lookup] --> select_recovered_result[select_recovered_result]
+    select_recovered_result[select_recovered_result] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    diagnose_failure[diagnose_failure] --> mark_for_review[mark_for_review]
+    mark_for_review[mark_for_review] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
 ```
 
 Conditional edge requirements:

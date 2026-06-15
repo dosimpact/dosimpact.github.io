@@ -168,27 +168,41 @@ A2A는 식별, 발견, 작업 표현, 결과 반환, 다회 주기 맥락 관리
 
 ## 간선
 
-```text
-START
-  -> preprocess_request
-  -> discover_agent_cards
-  -> validate_agent_cards
-  -> plan_remote_delegation
-  -> check_credentials
-  -> choose_interaction_mode
-  -> build_a2a_tasks
-
-build_a2a_tasks -> dispatch_sync_task -> process_remote_artifacts
-build_a2a_tasks -> start_async_task -> poll_async_task -> process_remote_artifacts
-build_a2a_tasks -> start_async_task -> consume_stream_updates -> process_remote_artifacts
-
-poll_async_task -> handle_input_required -> finalize_response -> END
-consume_stream_updates -> handle_input_required -> finalize_response -> END
-dispatch_sync_task -> handle_task_failure -> finalize_response -> END
-poll_async_task -> handle_task_failure -> finalize_response -> END
-consume_stream_updates -> handle_task_failure -> finalize_response -> END
-
-process_remote_artifacts -> aggregate_remote_results -> finalize_response -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_request[preprocess_request]
+    preprocess_request[preprocess_request] --> discover_agent_cards[discover_agent_cards]
+    discover_agent_cards[discover_agent_cards] --> validate_agent_cards[validate_agent_cards]
+    validate_agent_cards[validate_agent_cards] --> plan_remote_delegation[plan_remote_delegation]
+    plan_remote_delegation[plan_remote_delegation] --> check_credentials[check_credentials]
+    check_credentials[check_credentials] --> choose_interaction_mode[choose_interaction_mode]
+    choose_interaction_mode[choose_interaction_mode] --> build_a2a_tasks[build_a2a_tasks]
+    build_a2a_tasks[build_a2a_tasks] --> dispatch_sync_task[dispatch_sync_task]
+    dispatch_sync_task[dispatch_sync_task] --> process_remote_artifacts[process_remote_artifacts]
+    build_a2a_tasks[build_a2a_tasks] --> start_async_task[start_async_task]
+    start_async_task[start_async_task] --> poll_async_task[poll_async_task]
+    poll_async_task[poll_async_task] --> process_remote_artifacts[process_remote_artifacts]
+    build_a2a_tasks[build_a2a_tasks] --> start_async_task[start_async_task]
+    start_async_task[start_async_task] --> consume_stream_updates[consume_stream_updates]
+    consume_stream_updates[consume_stream_updates] --> process_remote_artifacts[process_remote_artifacts]
+    poll_async_task[poll_async_task] --> handle_input_required[handle_input_required]
+    handle_input_required[handle_input_required] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    consume_stream_updates[consume_stream_updates] --> handle_input_required[handle_input_required]
+    handle_input_required[handle_input_required] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    dispatch_sync_task[dispatch_sync_task] --> handle_task_failure[handle_task_failure]
+    handle_task_failure[handle_task_failure] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    poll_async_task[poll_async_task] --> handle_task_failure[handle_task_failure]
+    handle_task_failure[handle_task_failure] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    consume_stream_updates[consume_stream_updates] --> handle_task_failure[handle_task_failure]
+    handle_task_failure[handle_task_failure] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    process_remote_artifacts[process_remote_artifacts] --> aggregate_remote_results[aggregate_remote_results]
+    aggregate_remote_results[aggregate_remote_results] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
 ```
 
 조건 간선 요구사항:

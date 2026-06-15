@@ -152,15 +152,25 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> prepare_turn -> build_retrieval_query -> retrieve_long_term_memory
-retrieve_long_term_memory -> compact_short_term_memory -> build_prompt_context -> generate_response
-generate_response -> extract_memory_candidates -> validate_memory_updates
-
-validate_memory_updates -> store_memory_updates -> finalize -> END
-validate_memory_updates -> finalize -> END
-validate_memory_updates -> mark_needs_review -> END
-retrieve_long_term_memory -> mark_needs_review -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_turn[prepare_turn]
+    prepare_turn[prepare_turn] --> build_retrieval_query[build_retrieval_query]
+    build_retrieval_query[build_retrieval_query] --> retrieve_long_term_memory[retrieve_long_term_memory]
+    retrieve_long_term_memory[retrieve_long_term_memory] --> compact_short_term_memory[compact_short_term_memory]
+    compact_short_term_memory[compact_short_term_memory] --> build_prompt_context[build_prompt_context]
+    build_prompt_context[build_prompt_context] --> generate_response[generate_response]
+    generate_response[generate_response] --> extract_memory_candidates[extract_memory_candidates]
+    extract_memory_candidates[extract_memory_candidates] --> validate_memory_updates[validate_memory_updates]
+    validate_memory_updates[validate_memory_updates] --> store_memory_updates[store_memory_updates]
+    store_memory_updates[store_memory_updates] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    validate_memory_updates[validate_memory_updates] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    validate_memory_updates[validate_memory_updates] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
+    retrieve_long_term_memory[retrieve_long_term_memory] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
 ```
 
 Conditional edge requirements:

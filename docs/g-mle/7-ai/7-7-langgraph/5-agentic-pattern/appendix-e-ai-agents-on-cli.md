@@ -142,15 +142,25 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> prepare_task -> classify_task -> select_context -> collect_context -> plan_cli_actions -> policy_gate
-
-policy_gate -> execute_safe_actions -> synthesize_cli_response -> END
-policy_gate -> request_human_review -> END
-policy_gate -> handle_failure -> END
-
-collect_context -> handle_failure -> END
-plan_cli_actions -> handle_failure -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_task[prepare_task]
+    prepare_task[prepare_task] --> classify_task[classify_task]
+    classify_task[classify_task] --> select_context[select_context]
+    select_context[select_context] --> collect_context[collect_context]
+    collect_context[collect_context] --> plan_cli_actions[plan_cli_actions]
+    plan_cli_actions[plan_cli_actions] --> policy_gate[policy_gate]
+    policy_gate[policy_gate] --> execute_safe_actions[execute_safe_actions]
+    execute_safe_actions[execute_safe_actions] --> synthesize_cli_response[synthesize_cli_response]
+    synthesize_cli_response[synthesize_cli_response] --> stop([END])
+    policy_gate[policy_gate] --> request_human_review[request_human_review]
+    request_human_review[request_human_review] --> stop([END])
+    policy_gate[policy_gate] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    collect_context[collect_context] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    plan_cli_actions[plan_cli_actions] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -166,25 +166,29 @@ sidebar_position: 101
 
 조건부 분기를 포함한 그래프 흐름:
 
-```text
-START
-  -> prepare_request
-  -> analyze_task
-  -> select_prompting_strategy
-  -> build_context_pack
-  -> assemble_prompt_sections
-  -> generate_prompt_candidate
-  -> run_prompt_trials
-  -> validate_trial_output
-  -> evaluate_trial_results
-
-evaluate_trial_results -> refine_prompt_candidate -> assemble_prompt_sections
-evaluate_trial_results -> finalize_prompt_package -> END
-evaluate_trial_results -> handle_failure -> END
-
-prepare_request -> handle_failure -> END
-build_context_pack -> handle_failure -> END
-validate_trial_output -> handle_failure -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_request[prepare_request]
+    prepare_request[prepare_request] --> analyze_task[analyze_task]
+    analyze_task[analyze_task] --> select_prompting_strategy[select_prompting_strategy]
+    select_prompting_strategy[select_prompting_strategy] --> build_context_pack[build_context_pack]
+    build_context_pack[build_context_pack] --> assemble_prompt_sections[assemble_prompt_sections]
+    assemble_prompt_sections[assemble_prompt_sections] --> generate_prompt_candidate[generate_prompt_candidate]
+    generate_prompt_candidate[generate_prompt_candidate] --> run_prompt_trials[run_prompt_trials]
+    run_prompt_trials[run_prompt_trials] --> validate_trial_output[validate_trial_output]
+    validate_trial_output[validate_trial_output] --> evaluate_trial_results[evaluate_trial_results]
+    evaluate_trial_results[evaluate_trial_results] --> refine_prompt_candidate[refine_prompt_candidate]
+    refine_prompt_candidate[refine_prompt_candidate] --> assemble_prompt_sections[assemble_prompt_sections]
+    evaluate_trial_results[evaluate_trial_results] --> finalize_prompt_package[finalize_prompt_package]
+    finalize_prompt_package[finalize_prompt_package] --> stop([END])
+    evaluate_trial_results[evaluate_trial_results] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    prepare_request[prepare_request] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    build_context_pack[build_context_pack] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    validate_trial_output[validate_trial_output] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
 ```
 
 조건부 엣지 요구사항:

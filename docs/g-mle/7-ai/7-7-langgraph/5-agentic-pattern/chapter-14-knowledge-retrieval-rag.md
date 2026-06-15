@@ -170,25 +170,29 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_query
-  -> prepare_corpus_index
-  -> retrieve_candidates
-  -> rank_and_filter_context
-  -> assess_context_quality
-
-assess_context_quality -> build_augmented_prompt
-assess_context_quality -> expand_related_context -> build_augmented_prompt
-assess_context_quality -> rewrite_query -> retrieve_candidates
-assess_context_quality -> finalize_insufficient_context
-
-build_augmented_prompt -> generate_answer -> validate_grounding
-
-validate_grounding -> finalize_answer -> END
-validate_grounding -> rewrite_query -> retrieve_candidates
-validate_grounding -> finalize_insufficient_context -> END
-validate_grounding -> finalize_failure -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_query[prepare_query]
+    prepare_query[prepare_query] --> prepare_corpus_index[prepare_corpus_index]
+    prepare_corpus_index[prepare_corpus_index] --> retrieve_candidates[retrieve_candidates]
+    retrieve_candidates[retrieve_candidates] --> rank_and_filter_context[rank_and_filter_context]
+    rank_and_filter_context[rank_and_filter_context] --> assess_context_quality[assess_context_quality]
+    assess_context_quality[assess_context_quality] --> build_augmented_prompt[build_augmented_prompt]
+    assess_context_quality[assess_context_quality] --> expand_related_context[expand_related_context]
+    expand_related_context[expand_related_context] --> build_augmented_prompt[build_augmented_prompt]
+    assess_context_quality[assess_context_quality] --> rewrite_query[rewrite_query]
+    rewrite_query[rewrite_query] --> retrieve_candidates[retrieve_candidates]
+    assess_context_quality[assess_context_quality] --> finalize_insufficient_context[finalize_insufficient_context]
+    build_augmented_prompt[build_augmented_prompt] --> generate_answer[generate_answer]
+    generate_answer[generate_answer] --> validate_grounding[validate_grounding]
+    validate_grounding[validate_grounding] --> finalize_answer[finalize_answer]
+    finalize_answer[finalize_answer] --> stop([END])
+    validate_grounding[validate_grounding] --> rewrite_query[rewrite_query]
+    rewrite_query[rewrite_query] --> retrieve_candidates[retrieve_candidates]
+    validate_grounding[validate_grounding] --> finalize_insufficient_context[finalize_insufficient_context]
+    finalize_insufficient_context[finalize_insufficient_context] --> stop([END])
+    validate_grounding[validate_grounding] --> finalize_failure[finalize_failure]
+    finalize_failure[finalize_failure] --> stop([END])
 ```
 
 Conditional edge requirements:

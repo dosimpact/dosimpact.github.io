@@ -184,33 +184,33 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> preprocess_input
-  -> prepare_context
-  -> classify_request
-  -> estimate_resource_needs
-  -> select_execution_path
-
-select_execution_path -> run_fast_model
-select_execution_path -> run_reasoning_model
-select_execution_path -> run_search_tool -> run_grounded_model
-select_execution_path -> run_fallback_path
-select_execution_path -> finalize
-
-run_fast_model -> critique_response
-run_reasoning_model -> critique_response
-run_grounded_model -> critique_response
-
-run_fast_model -> handle_execution_failure
-run_reasoning_model -> handle_execution_failure
-run_search_tool -> handle_execution_failure
-run_grounded_model -> handle_execution_failure
-
-handle_execution_failure -> run_fallback_path -> critique_response
-critique_response -> maybe_upgrade_or_retry
-maybe_upgrade_or_retry -> estimate_resource_needs
-maybe_upgrade_or_retry -> record_resource_observation -> finalize -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_input[preprocess_input]
+    preprocess_input[preprocess_input] --> prepare_context[prepare_context]
+    prepare_context[prepare_context] --> classify_request[classify_request]
+    classify_request[classify_request] --> estimate_resource_needs[estimate_resource_needs]
+    estimate_resource_needs[estimate_resource_needs] --> select_execution_path[select_execution_path]
+    select_execution_path[select_execution_path] --> run_fast_model[run_fast_model]
+    select_execution_path[select_execution_path] --> run_reasoning_model[run_reasoning_model]
+    select_execution_path[select_execution_path] --> run_search_tool[run_search_tool]
+    run_search_tool[run_search_tool] --> run_grounded_model[run_grounded_model]
+    select_execution_path[select_execution_path] --> run_fallback_path[run_fallback_path]
+    select_execution_path[select_execution_path] --> finalize[finalize]
+    run_fast_model[run_fast_model] --> critique_response[critique_response]
+    run_reasoning_model[run_reasoning_model] --> critique_response[critique_response]
+    run_grounded_model[run_grounded_model] --> critique_response[critique_response]
+    run_fast_model[run_fast_model] --> handle_execution_failure[handle_execution_failure]
+    run_reasoning_model[run_reasoning_model] --> handle_execution_failure[handle_execution_failure]
+    run_search_tool[run_search_tool] --> handle_execution_failure[handle_execution_failure]
+    run_grounded_model[run_grounded_model] --> handle_execution_failure[handle_execution_failure]
+    handle_execution_failure[handle_execution_failure] --> run_fallback_path[run_fallback_path]
+    run_fallback_path[run_fallback_path] --> critique_response[critique_response]
+    critique_response[critique_response] --> maybe_upgrade_or_retry[maybe_upgrade_or_retry]
+    maybe_upgrade_or_retry[maybe_upgrade_or_retry] --> estimate_resource_needs[estimate_resource_needs]
+    maybe_upgrade_or_retry[maybe_upgrade_or_retry] --> record_resource_observation[record_resource_observation]
+    record_resource_observation[record_resource_observation] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
 ```
 
 Conditional edge requirements:

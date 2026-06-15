@@ -139,23 +139,28 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> prepare_input -> decide_next_action -> normalize_model_decision
-
-normalize_model_decision -> synthesize_response -> END
-normalize_model_decision -> validate_tool_call
-normalize_model_decision -> handle_failure -> END
-
-validate_tool_call -> execute_tool
-validate_tool_call -> request_confirmation -> END
-validate_tool_call -> handle_tool_error
-
-execute_tool -> record_observation -> decide_next_action
-execute_tool -> handle_tool_error
-
-handle_tool_error -> decide_next_action
-handle_tool_error -> synthesize_response -> END
-handle_tool_error -> handle_failure -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_input[prepare_input]
+    prepare_input[prepare_input] --> decide_next_action[decide_next_action]
+    decide_next_action[decide_next_action] --> normalize_model_decision[normalize_model_decision]
+    normalize_model_decision[normalize_model_decision] --> synthesize_response[synthesize_response]
+    synthesize_response[synthesize_response] --> stop([END])
+    normalize_model_decision[normalize_model_decision] --> validate_tool_call[validate_tool_call]
+    normalize_model_decision[normalize_model_decision] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    validate_tool_call[validate_tool_call] --> execute_tool[execute_tool]
+    validate_tool_call[validate_tool_call] --> request_confirmation[request_confirmation]
+    request_confirmation[request_confirmation] --> stop([END])
+    validate_tool_call[validate_tool_call] --> handle_tool_error[handle_tool_error]
+    execute_tool[execute_tool] --> record_observation[record_observation]
+    record_observation[record_observation] --> decide_next_action[decide_next_action]
+    execute_tool[execute_tool] --> handle_tool_error[handle_tool_error]
+    handle_tool_error[handle_tool_error] --> decide_next_action[decide_next_action]
+    handle_tool_error[handle_tool_error] --> synthesize_response[synthesize_response]
+    synthesize_response[synthesize_response] --> stop([END])
+    handle_tool_error[handle_tool_error] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
 ```
 
 Conditional edge requirements:

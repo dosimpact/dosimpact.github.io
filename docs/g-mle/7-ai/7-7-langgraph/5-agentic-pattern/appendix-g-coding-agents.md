@@ -182,23 +182,27 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_task
-  -> classify_task
-  -> validate_human_brief
-  -> stage_context
-  -> select_specialist_role
-  -> load_role_prompt
-  -> run_specialist_agent
-  -> run_process_review
-  -> reflect_on_review
-  -> decide_next_step
-
-decide_next_step -> request_clarification -> finalize_response -> END
-decide_next_step -> run_specialist_agent
-decide_next_step -> prepare_human_review -> finalize_response -> END
-decide_next_step -> finalize_response -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_task[prepare_task]
+    prepare_task[prepare_task] --> classify_task[classify_task]
+    classify_task[classify_task] --> validate_human_brief[validate_human_brief]
+    validate_human_brief[validate_human_brief] --> stage_context[stage_context]
+    stage_context[stage_context] --> select_specialist_role[select_specialist_role]
+    select_specialist_role[select_specialist_role] --> load_role_prompt[load_role_prompt]
+    load_role_prompt[load_role_prompt] --> run_specialist_agent[run_specialist_agent]
+    run_specialist_agent[run_specialist_agent] --> run_process_review[run_process_review]
+    run_process_review[run_process_review] --> reflect_on_review[reflect_on_review]
+    reflect_on_review[reflect_on_review] --> decide_next_step[decide_next_step]
+    decide_next_step[decide_next_step] --> request_clarification[request_clarification]
+    request_clarification[request_clarification] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    decide_next_step[decide_next_step] --> run_specialist_agent[run_specialist_agent]
+    decide_next_step[decide_next_step] --> prepare_human_review[prepare_human_review]
+    prepare_human_review[prepare_human_review] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
+    decide_next_step[decide_next_step] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -148,19 +148,21 @@ Appendix C는 단일 런타임 패턴이 아니라 프로젝트에 맞는 에이
 
 ## 엣지
 
-```text
-START
-  -> preprocess_brief
-
-preprocess_brief -> handle_invalid_input -> END
-preprocess_brief -> extract_requirements
-  -> classify_workflow_shape
-  -> load_framework_catalog
-  -> score_frameworks
-  -> select_recommendation
-
-select_recommendation -> request_clarification -> compose_recommendation -> END
-select_recommendation -> compose_recommendation -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_brief[preprocess_brief]
+    preprocess_brief[preprocess_brief] --> handle_invalid_input[handle_invalid_input]
+    handle_invalid_input[handle_invalid_input] --> stop([END])
+    preprocess_brief[preprocess_brief] --> extract_requirements[extract_requirements]
+    extract_requirements[extract_requirements] --> classify_workflow_shape[classify_workflow_shape]
+    classify_workflow_shape[classify_workflow_shape] --> load_framework_catalog[load_framework_catalog]
+    load_framework_catalog[load_framework_catalog] --> score_frameworks[score_frameworks]
+    score_frameworks[score_frameworks] --> select_recommendation[select_recommendation]
+    select_recommendation[select_recommendation] --> request_clarification[request_clarification]
+    request_clarification[request_clarification] --> compose_recommendation[compose_recommendation]
+    compose_recommendation[compose_recommendation] --> stop([END])
+    select_recommendation[select_recommendation] --> compose_recommendation[compose_recommendation]
+    compose_recommendation[compose_recommendation] --> stop([END])
 ```
 
 조건부 엣지 요구사항:

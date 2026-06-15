@@ -165,24 +165,22 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_prioritization_context
-  -> ingest_tasks
-  -> normalize_tasks
-  -> evaluate_task_criteria
-  -> analyze_dependencies
-  -> check_resource_fit
-  -> rank_tasks
-  -> decide_reprioritization
-
-decide_reprioritization -> evaluate_task_criteria
-decide_reprioritization -> assign_selected_tasks
-
-assign_selected_tasks -> request_human_review
-assign_selected_tasks -> finalize_priority_plan
-
-request_human_review -> finalize_priority_plan -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_prioritization_context[prepare_prioritization_context]
+    prepare_prioritization_context[prepare_prioritization_context] --> ingest_tasks[ingest_tasks]
+    ingest_tasks[ingest_tasks] --> normalize_tasks[normalize_tasks]
+    normalize_tasks[normalize_tasks] --> evaluate_task_criteria[evaluate_task_criteria]
+    evaluate_task_criteria[evaluate_task_criteria] --> analyze_dependencies[analyze_dependencies]
+    analyze_dependencies[analyze_dependencies] --> check_resource_fit[check_resource_fit]
+    check_resource_fit[check_resource_fit] --> rank_tasks[rank_tasks]
+    rank_tasks[rank_tasks] --> decide_reprioritization[decide_reprioritization]
+    decide_reprioritization[decide_reprioritization] --> evaluate_task_criteria[evaluate_task_criteria]
+    decide_reprioritization[decide_reprioritization] --> assign_selected_tasks[assign_selected_tasks]
+    assign_selected_tasks[assign_selected_tasks] --> request_human_review[request_human_review]
+    assign_selected_tasks[assign_selected_tasks] --> finalize_priority_plan[finalize_priority_plan]
+    request_human_review[request_human_review] --> finalize_priority_plan[finalize_priority_plan]
+    finalize_priority_plan[finalize_priority_plan] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -181,32 +181,27 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_interaction_task
-  -> observe_environment
-  -> recognize_elements
-  -> interpret_context
-  -> plan_next_action
-  -> review_action_safety
-
-review_action_safety -> execute_action
-review_action_safety -> request_human_approval
-review_action_safety -> finalize_interaction_report
-
-request_human_approval -> execute_action
-request_human_approval -> finalize_interaction_report
-
-execute_action
-  -> observe_feedback
-  -> decide_next_step
-
-decide_next_step -> observe_environment
-decide_next_step -> recover_from_failure -> observe_environment
-decide_next_step -> request_human_approval
-decide_next_step -> finalize_interaction_report
-
-finalize_interaction_report -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_interaction_task[prepare_interaction_task]
+    prepare_interaction_task[prepare_interaction_task] --> observe_environment[observe_environment]
+    observe_environment[observe_environment] --> recognize_elements[recognize_elements]
+    recognize_elements[recognize_elements] --> interpret_context[interpret_context]
+    interpret_context[interpret_context] --> plan_next_action[plan_next_action]
+    plan_next_action[plan_next_action] --> review_action_safety[review_action_safety]
+    review_action_safety[review_action_safety] --> execute_action[execute_action]
+    review_action_safety[review_action_safety] --> request_human_approval[request_human_approval]
+    review_action_safety[review_action_safety] --> finalize_interaction_report[finalize_interaction_report]
+    request_human_approval[request_human_approval] --> execute_action[execute_action]
+    request_human_approval[request_human_approval] --> finalize_interaction_report[finalize_interaction_report]
+    execute_action[execute_action] --> observe_feedback[observe_feedback]
+    observe_feedback[observe_feedback] --> decide_next_step[decide_next_step]
+    decide_next_step[decide_next_step] --> observe_environment[observe_environment]
+    decide_next_step[decide_next_step] --> recover_from_failure[recover_from_failure]
+    recover_from_failure[recover_from_failure] --> observe_environment[observe_environment]
+    decide_next_step[decide_next_step] --> request_human_approval[request_human_approval]
+    decide_next_step[decide_next_step] --> finalize_interaction_report[finalize_interaction_report]
+    finalize_interaction_report[finalize_interaction_report] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -151,24 +151,29 @@ sidebar_position: 7
 
 조건부 분기를 포함해 그래프 흐름을 정의합니다.
 
-```text
-START -> prepare_objective -> supervisor_plan -> validate_team_plan
-
-validate_team_plan -> research_agent
-validate_team_plan -> analysis_agent
-
-research_agent -> synthesize_context
-analysis_agent -> synthesize_context
-
-synthesize_context -> writer_agent -> reviewer_agent
-
-reviewer_agent -> finalize -> END
-reviewer_agent -> revise_draft -> reviewer_agent
-reviewer_agent -> mark_needs_human_review -> END
-
-prepare_objective -> handle_failure -> END
-validate_team_plan -> handle_failure -> END
-synthesize_context -> mark_needs_human_review -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_objective[prepare_objective]
+    prepare_objective[prepare_objective] --> supervisor_plan[supervisor_plan]
+    supervisor_plan[supervisor_plan] --> validate_team_plan[validate_team_plan]
+    validate_team_plan[validate_team_plan] --> research_agent[research_agent]
+    validate_team_plan[validate_team_plan] --> analysis_agent[analysis_agent]
+    research_agent[research_agent] --> synthesize_context[synthesize_context]
+    analysis_agent[analysis_agent] --> synthesize_context[synthesize_context]
+    synthesize_context[synthesize_context] --> writer_agent[writer_agent]
+    writer_agent[writer_agent] --> reviewer_agent[reviewer_agent]
+    reviewer_agent[reviewer_agent] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    reviewer_agent[reviewer_agent] --> revise_draft[revise_draft]
+    revise_draft[revise_draft] --> reviewer_agent[reviewer_agent]
+    reviewer_agent[reviewer_agent] --> mark_needs_human_review[mark_needs_human_review]
+    mark_needs_human_review[mark_needs_human_review] --> stop([END])
+    prepare_objective[prepare_objective] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    validate_team_plan[validate_team_plan] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
+    synthesize_context[synthesize_context] --> mark_needs_human_review[mark_needs_human_review]
+    mark_needs_human_review[mark_needs_human_review] --> stop([END])
 ```
 
 조건부 엣지 요구사항:

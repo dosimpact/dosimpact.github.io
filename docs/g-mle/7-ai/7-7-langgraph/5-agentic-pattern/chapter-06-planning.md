@@ -142,21 +142,30 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> prepare_input -> create_plan -> validate_plan
-
-validate_plan -> repair_plan -> validate_plan
-validate_plan -> review_plan -> select_next_step
-validate_plan -> mark_needs_review -> END
-
-review_plan -> mark_needs_review -> END
-select_next_step -> execute_step -> assess_progress
-select_next_step -> synthesize_report -> END
-
-assess_progress -> select_next_step
-assess_progress -> replan -> validate_plan
-assess_progress -> synthesize_report -> END
-assess_progress -> mark_needs_review -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_input[prepare_input]
+    prepare_input[prepare_input] --> create_plan[create_plan]
+    create_plan[create_plan] --> validate_plan[validate_plan]
+    validate_plan[validate_plan] --> repair_plan[repair_plan]
+    repair_plan[repair_plan] --> validate_plan[validate_plan]
+    validate_plan[validate_plan] --> review_plan[review_plan]
+    review_plan[review_plan] --> select_next_step[select_next_step]
+    validate_plan[validate_plan] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
+    review_plan[review_plan] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
+    select_next_step[select_next_step] --> execute_step[execute_step]
+    execute_step[execute_step] --> assess_progress[assess_progress]
+    select_next_step[select_next_step] --> synthesize_report[synthesize_report]
+    synthesize_report[synthesize_report] --> stop([END])
+    assess_progress[assess_progress] --> select_next_step[select_next_step]
+    assess_progress[assess_progress] --> replan[replan]
+    replan[replan] --> validate_plan[validate_plan]
+    assess_progress[assess_progress] --> synthesize_report[synthesize_report]
+    synthesize_report[synthesize_report] --> stop([END])
+    assess_progress[assess_progress] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
 ```
 
 Conditional edge requirements:

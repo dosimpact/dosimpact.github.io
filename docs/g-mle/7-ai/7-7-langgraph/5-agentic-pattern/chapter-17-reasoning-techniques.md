@@ -165,23 +165,26 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> prepare_question
-  -> classify_reasoning_need
-  -> decompose_question
-  -> generate_reasoning_branches
-  -> select_next_action
-
-select_next_action -> retrieve_evidence -> record_observation -> reflect_on_progress
-select_next_action -> execute_computation -> record_observation -> reflect_on_progress
-select_next_action -> synthesize_answer
-
-reflect_on_progress -> select_next_action
-reflect_on_progress -> synthesize_answer
-reflect_on_progress -> finalize_response
-
-synthesize_answer -> self_correct_answer -> finalize_response -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_question[prepare_question]
+    prepare_question[prepare_question] --> classify_reasoning_need[classify_reasoning_need]
+    classify_reasoning_need[classify_reasoning_need] --> decompose_question[decompose_question]
+    decompose_question[decompose_question] --> generate_reasoning_branches[generate_reasoning_branches]
+    generate_reasoning_branches[generate_reasoning_branches] --> select_next_action[select_next_action]
+    select_next_action[select_next_action] --> retrieve_evidence[retrieve_evidence]
+    retrieve_evidence[retrieve_evidence] --> record_observation[record_observation]
+    record_observation[record_observation] --> reflect_on_progress[reflect_on_progress]
+    select_next_action[select_next_action] --> execute_computation[execute_computation]
+    execute_computation[execute_computation] --> record_observation[record_observation]
+    record_observation[record_observation] --> reflect_on_progress[reflect_on_progress]
+    select_next_action[select_next_action] --> synthesize_answer[synthesize_answer]
+    reflect_on_progress[reflect_on_progress] --> select_next_action[select_next_action]
+    reflect_on_progress[reflect_on_progress] --> synthesize_answer[synthesize_answer]
+    reflect_on_progress[reflect_on_progress] --> finalize_response[finalize_response]
+    synthesize_answer[synthesize_answer] --> self_correct_answer[self_correct_answer]
+    self_correct_answer[self_correct_answer] --> finalize_response[finalize_response]
+    finalize_response[finalize_response] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -131,13 +131,19 @@ Optional implementation fields:
 
 Describe the graph flow, including conditional branches.
 
-```text
-START -> prepare_task -> generate_initial_draft -> critique_draft
-
-critique_draft -> finalize -> END
-critique_draft -> refine_draft -> critique_draft
-critique_draft -> mark_needs_review -> END
-prepare_task -> handle_failure -> END
+```mermaid
+flowchart TD
+    start([START]) --> prepare_task[prepare_task]
+    prepare_task[prepare_task] --> generate_initial_draft[generate_initial_draft]
+    generate_initial_draft[generate_initial_draft] --> critique_draft[critique_draft]
+    critique_draft[critique_draft] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    critique_draft[critique_draft] --> refine_draft[refine_draft]
+    refine_draft[refine_draft] --> critique_draft[critique_draft]
+    critique_draft[critique_draft] --> mark_needs_review[mark_needs_review]
+    mark_needs_review[mark_needs_review] --> stop([END])
+    prepare_task[prepare_task] --> handle_failure[handle_failure]
+    handle_failure[handle_failure] --> stop([END])
 ```
 
 Conditional edge requirements:

@@ -157,26 +157,36 @@ List the state fields the graph needs.
 
 Describe the graph flow, including conditional branches.
 
-```text
-START
-  -> preprocess_input
-  -> evaluate_input_policy
-
-evaluate_input_policy -> block_input -> finalize -> END
-evaluate_input_policy -> request_human_review -> apply_human_review -> finalize -> END
-evaluate_input_policy -> generate_primary_response
-
-generate_primary_response -> validate_tool_call
-generate_primary_response -> evaluate_output_policy
-
-validate_tool_call -> execute_tool -> synthesize_tool_response -> evaluate_output_policy
-validate_tool_call -> request_human_review
-validate_tool_call -> evaluate_output_policy
-
-evaluate_output_policy -> finalize -> END
-evaluate_output_policy -> repair_output -> evaluate_output_policy
-evaluate_output_policy -> request_human_review -> apply_human_review -> finalize -> END
-evaluate_output_policy -> block_input -> finalize -> END
+```mermaid
+flowchart TD
+    start([START]) --> preprocess_input[preprocess_input]
+    preprocess_input[preprocess_input] --> evaluate_input_policy[evaluate_input_policy]
+    evaluate_input_policy[evaluate_input_policy] --> block_input[block_input]
+    block_input[block_input] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    evaluate_input_policy[evaluate_input_policy] --> request_human_review[request_human_review]
+    request_human_review[request_human_review] --> apply_human_review[apply_human_review]
+    apply_human_review[apply_human_review] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    evaluate_input_policy[evaluate_input_policy] --> generate_primary_response[generate_primary_response]
+    generate_primary_response[generate_primary_response] --> validate_tool_call[validate_tool_call]
+    generate_primary_response[generate_primary_response] --> evaluate_output_policy[evaluate_output_policy]
+    validate_tool_call[validate_tool_call] --> execute_tool[execute_tool]
+    execute_tool[execute_tool] --> synthesize_tool_response[synthesize_tool_response]
+    synthesize_tool_response[synthesize_tool_response] --> evaluate_output_policy[evaluate_output_policy]
+    validate_tool_call[validate_tool_call] --> request_human_review[request_human_review]
+    validate_tool_call[validate_tool_call] --> evaluate_output_policy[evaluate_output_policy]
+    evaluate_output_policy[evaluate_output_policy] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    evaluate_output_policy[evaluate_output_policy] --> repair_output[repair_output]
+    repair_output[repair_output] --> evaluate_output_policy[evaluate_output_policy]
+    evaluate_output_policy[evaluate_output_policy] --> request_human_review[request_human_review]
+    request_human_review[request_human_review] --> apply_human_review[apply_human_review]
+    apply_human_review[apply_human_review] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
+    evaluate_output_policy[evaluate_output_policy] --> block_input[block_input]
+    block_input[block_input] --> finalize[finalize]
+    finalize[finalize] --> stop([END])
 ```
 
 Conditional edge requirements:
