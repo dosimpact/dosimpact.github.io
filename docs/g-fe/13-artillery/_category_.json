@@ -1,0 +1,10 @@
+{
+  "label": "13.Artillery",
+  "position": 13,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "13.Artillery"
+  }
+}
