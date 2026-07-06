@@ -1,0 +1,11 @@
+{
+  "label": "20.Agent Core",
+  "position": 20,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "20.Agent Core",
+    "description": "20.Agent Core"
+  }
+}
