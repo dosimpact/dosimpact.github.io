@@ -62,7 +62,7 @@ export const useStoreSearchArea = create<SearchAreaStore>((set, get) => ({
 ## Fetch (create, AbortController, AxiosError, debouncedFetch)    
 
 기존의 요청을 취소하고 새로운 요청을 보내는 로직.  
-- abort를 호출했다면 AbortController를 다시 생성해야한다.  
+- abort를 호출했다면 AbortController를 다시 생성해야 한다.  
 - 그렇지 않으면, 기존요청 및 새로운 요청에 대해서 모두 취소 된다.  
 
 ```js

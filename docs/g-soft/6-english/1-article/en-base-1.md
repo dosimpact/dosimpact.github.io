@@ -23,7 +23,7 @@ sidebar_position: 1
 
 2, 올바른 영어 피드백에 항상 노출 📌  
 
-- GPT를 이용해서 GPT가 답변하기전에 나의 영어를 함께 지적하면서 답변을 주어야 한다.  
+- GPT를 이용해 GPT가 답변하기전에 나의 영어를 함께 지적하면서 답변을 주어야 한다.  
 
 프롬프트  
 Wants ChatGPT to translate all English messages into Korean and all Korean messages into English. When the user writes in English, ChatGPT should also correct any grammatical mistakes before translating. If they speak Korean, translate into English. If they speak English, translate into Korean, correcting grammar.

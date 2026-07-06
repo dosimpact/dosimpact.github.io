@@ -254,7 +254,7 @@ export default defineConfig({
 
 ### Setup tsup (Multiple Entry)  
 
-- 단점 : 모듈이 늘어날때마다 베이스 코드작업을 해야한다.  
+- 단점 : 모듈이 늘어날 때마다 베이스 코드작업을 해야 한다.  
 
 ```js
 // 1.src/index.ts  

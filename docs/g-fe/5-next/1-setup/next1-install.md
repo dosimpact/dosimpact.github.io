@@ -52,7 +52,7 @@ Creating a new Next.js app in /Users/dosimpact/workspace/project/lectures_web/3.
 
 ### 2.1 백그라운드
 
-📌 npm install yarn -g 을 이용해서 설치하면 yarn은 최신버전이 아니다.     
+📌 npm install yarn -g 을 이용해 설치하면 yarn은 최신버전이 아니다.     
 - yarn -v // 1.22.19  
 - 1.xx 버전을 유지하는 이유는 기존 생태계의 호환성을 위해서이다.  
 - 최신버전으로 업데이트하면 완전 다른 인터페이스를 보게될 것이다.  

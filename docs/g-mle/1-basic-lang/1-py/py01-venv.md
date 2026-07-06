@@ -31,7 +31,7 @@ sidebar_position: 1
 
 // install
 pip install virtualenv  
-( 우분투 sudo apt install -y python3-virtualenv )
+( Ubuntu sudo apt install -y python3-virtualenv )
 
 //생성
 virtualenv pip_env --python=python3.9

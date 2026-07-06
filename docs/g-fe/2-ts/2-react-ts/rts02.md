@@ -74,7 +74,7 @@ type ButtonValueType = PickValue<ButtonTypes>;
 
 ## Empty Object and Requiring props  
 
->value, onChange 속성은 필요하다면, 반드시 한쌍으로 넣어야 할때
+>value, onChange 속성은 필요하다면, 반드시 한 쌍으로 넣어야 할 때
 
 - 타입 추론의 순서는 optional 다음 value 
 

@@ -23,7 +23,7 @@ sidebar_position: 2
 ## DB connection with DBeaver  
 
 Settings > Database Settings  
-- 비밀번호는 초기에 한번 셋팅 가능하니 잘 기억해 둘 것  
+- 비밀번호는 초기에 한번 세팅 가능하니 잘 기억해 둘 것  
 - 직접 db connection 할 때 사용된다.  
 ```
 host, port, user(username), password 입력 후 DBeaver 로컬에서 연결해 보기  
@@ -260,7 +260,7 @@ export const createSupabaseMiddlewareClient = async (
 
 서버 컴포넌트에서 createSupabaseServerClient의 작동
 - next.js에서 서버측 로직의 플로우중 마지막 부분에서 리액트 서버 컴포넌트 로직 처리 된다.
-- 서버 컴포넌트 실행 단계에서는 쿠키를 조작(set) 하는것이 불가능하다.   
+- 서버 컴포넌트 실행 단계에서는 쿠키를 조작(set) 하는 것이 불가능하다.   
 - 위 코드에서는 try-catch로 예외를 잡긴하지만,
 - createSupabaseRSCClient 라는 이름으로 쿠키 조작하는 로직을 제거해둔 함수를 만들어도 좋다.
 
@@ -276,7 +276,7 @@ export const createSupabaseMiddlewareClient = async (
 ### createSupabaseAdminServerClient    
 
 목적 : RLS 우회 클라이언트 생성  
-- @supabase/ssr는 유저컨텍스트를 따르니, supabase-js 에서 직접 임포트 해야한다.    
+- @supabase/ssr는 유저컨텍스트를 따르니, supabase-js 에서 직접 임포트 해야 한다.    
 
 ```js
 import "server-only";

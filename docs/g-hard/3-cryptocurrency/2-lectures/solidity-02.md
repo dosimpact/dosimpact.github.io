@@ -116,7 +116,7 @@ contract Coin {
 }
 ```
 
-1.변수에 public을 붙이는것의 의미  
+1.변수에 public을 붙이는 것의 의미  
 - 외부에서 해당 변수를 읽을 수 있게된다. 이는 getter함수를 만들어주는 효과이다.  
 
 ---
@@ -178,11 +178,11 @@ contract Will {
 - 해당 주소는 이더리움을 받을 수 있는 주소로 간주된다.  
 
 참고 transfer  
-- address payable이더를 전송할때 사용한다. 
+- address payable이더를 전송할 때 사용한다. 
 - `address payable recipient; recipient.transfer(amount);`
 
 2.modifier 키워드  
-- require 조건을 재사용하고자 할때 사용  
+- require 조건을 재사용하고자 할 때 사용  
 - 합성 가능 : _ 언더바 부분에 본래의 함수가 들어간다.  
 
 3.transfer 함수  

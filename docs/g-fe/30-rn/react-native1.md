@@ -6,8 +6,8 @@ sidebar_position: 1
 
 - [RN 개발 환경 구축](#rn-개발-환경-구축)
   - [개발환경 설치하기](#개발환경-설치하기)
-  - [RN 개발환경 셋팅 요약 (0.77)](#rn-개발환경-셋팅-요약-077)
-  - [RN 개발환경 셋팅 요약 (0.73)](#rn-개발환경-셋팅-요약-073)
+  - [RN 개발환경 세팅 요약 (0.77)](#rn-개발환경-세팅-요약-077)
+  - [RN 개발환경 세팅 요약 (0.73)](#rn-개발환경-세팅-요약-073)
   - [빌드](#빌드)
 
 
@@ -18,11 +18,11 @@ react-native-cli를 통해서 프로젝트를 셋업
 - expo cli에 대비해서 장점은?  
   - 1.네이티브 모듈 자유도 : 네이티브 모듈을 호출해야 하는 경우 (JS에서 코틀린, 스위프트 함수를 호출할 수 있다.)     
   - 2.code push : 심사없이 업데이트 가능  
-- ( expo-cli 에서도 prebuild를 이용해서 네이티브 모듈과의 연결이 잘 될것같은데... 아직까지는 잘 모르겠다.)  
+- ( expo-cli 에서도 prebuild를 이용해 네이티브 모듈과의 연결이 잘 될 것같은데... 아직까지는 잘 모르겠다.)  
 
 >https://reactnative.dev/docs/0.73/environment-setup?guide=native&platform=android
 
-## RN 개발환경 셋팅 요약 (0.77)
+## RN 개발환경 세팅 요약 (0.77)
 https://reactnative.dev/docs/getting-started-without-a-framework?package-manager=npm
 
 
@@ -48,7 +48,7 @@ npx @react-native-community/cli@latest init AwesomeProject
     
 ```
 
-## RN 개발환경 셋팅 요약 (0.73)  
+## RN 개발환경 세팅 요약 (0.73)  
 
 1.아래 가이드로 루비 버전을 먼저 바꾸자.  
 

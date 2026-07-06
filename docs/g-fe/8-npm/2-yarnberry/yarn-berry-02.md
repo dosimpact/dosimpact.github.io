@@ -13,7 +13,7 @@ sidebar_position: 2
 
 ## Yarn Berry 소개   
 
-- Yarn Berry는 기본으로 셋팅되는 yarn 1.x 버전이 아닌 2.x 이상의 버전을 의미한다.  
+- Yarn Berry는 기본으로 세팅되는 yarn 1.x 버전이 아닌 2.x 이상의 버전을 의미한다.  
 - Yarn은 JavaScript 프로젝트에서 의존성을 관리하는 데 사용되는 오픈 소스 패키지 매니저 중 하나  
 - Yarn은 속도, 정확성, 보안, 그리고 개발자 경험을 중점적으로 다루며, 작업 공간(workspaces), 오프라인 캐싱, 병렬 설치, 강화 모드(hardened mode), 상호작용 명령어(interactive commands) 등 혁신적인 기능들을 통해 이 모든 측면을 개선  
 

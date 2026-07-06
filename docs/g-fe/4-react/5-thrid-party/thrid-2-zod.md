@@ -229,7 +229,7 @@ export const createPointErrorSchema = () =>
     .nullable() // null 허용  
     .refine(
     value => {
-      // * refine은 위에서 걸리지 않는 이상 (문자열등에 걸려서 ERROR_MSG_NOT_NUMBER 애러 등) 실행된다.  
+      // * refine은 위에서 걸리지 않는 이상 (문자열등에 걸려서 ERROR_MSG_NOT_NUMBER 에러 등) 실행된다.  
       if (value === undefined || value === null) return true;  // optional, nullable 다시 체크해야함.  
       return value >= POINT_LOWER_LIMIT && value <= POINT_UPPER_LIMIT;
     },
@@ -253,7 +253,7 @@ createPointErrorSchema().parse(1_000_000_001) // error ERROR_MSG_POINT_LIMIT
 
 - z.object : 객체의 구조 정의  
 - UserSchema.parse(body) : 유효성 검사 수행  
-- error instanceof z.ZodError, error.issue : 유효성 검사 실패 애러  
+- error instanceof z.ZodError, error.issue : 유효성 검사 실패 에러  
 
 ```js
 // TS : app/api/hello/route.ts

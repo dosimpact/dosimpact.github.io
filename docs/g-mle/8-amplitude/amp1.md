@@ -115,6 +115,6 @@ Data > Events
 
 ## Amplitude Event + URL Shorter Server   
 
-문제 : 특정 URL를 클릭했을때 Amplitude Event 남기면서 리다이렉트도 되어야 함.  
+문제 : 특정 URL를 클릭했을 때 Amplitude Event 남기면서 리다이렉트도 되어야 함.  
 
 시나리오 : 사용자가 특정 URL을 클릭하면 amplitude에 남고 다른 페이지로 진입한다.  

@@ -21,7 +21,7 @@ sidebar_position: 2
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# 애러 해결 - zsh: command not found: brew
+# 에러 해결 - zsh: command not found: brew
 vi ~/.zshrc
 
 # .zshrc 파일에서 다음을 추가해준다.
@@ -43,7 +43,7 @@ source ~/.zshrc
 ### 3. 맥미니 비번없이 바로 부팅 셋업
 
 맥미니를 종종 껐다가 켜야하는 상황이 발생한다. 그러나 맥미니 서버에 모니터를 계속 달아줄수는 없다. 
-- 그러기에 비밀번호 없이 부팅이 가능하도록 초기 셋팅이 필요하다.    
+- 그러기에 비밀번호 없이 부팅이 가능하도록 초기 세팅이 필요하다.    
 - 설정에서 자동으로 user(계정) 로그인 켜기  
 - [how-to-turn-off-password-on-mac](https://www.fonedog.com/ko/powermymac/how-to-turn-off-password-on-mac.html)
 
@@ -65,7 +65,7 @@ ref : https://extrememanual.net/33485
 ### 3.1 맥미니 ssh 접속 허용  
 
 애플에서는 리모트 데스크탑 기능을 11만원에 판매하고 있다.  원격의 맥미니를 GUI까지 보려면 비싸다...  
-- SSH접속만으로 괜찮으니 그렇게 셋팅하는것은 옵션이다.!  
+- SSH접속만으로 괜찮으니 그렇게 세팅하는 것은 옵션이다.!  
 
 ![Alt text](image-1.png)  
 
@@ -74,7 +74,7 @@ ref : https://extrememanual.net/33485
 - 2.원격 로그인 on  
 
 
-### 4. [필수셋팅] OS X Server: 잠자기 모드를 차단하는 방법
+### 4. [필수세팅] OS X Server: 잠자기 모드를 차단하는 방법
 
 ```
 명령어를 입력하면 커버를 닫아도 잠자기 모드가 활성화 되지 않는다.

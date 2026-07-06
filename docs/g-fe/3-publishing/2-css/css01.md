@@ -80,7 +80,7 @@ Ref : https://necolas.github.io/normalize.css/8.0.1/normalize.css
 ## 2.box-sizing : border-box  
 
 box-sizing의 디폴트값은 content이다.  
-- 이는 width, height를 계산할때 margin, padding은 별도로 쌓는다.  
+- 이는 width, height를 계산할 때 margin, padding은 별도로 쌓는다.  
 - 문제점 : 자식 요소가 width:100% + padding:20px 라면, 부모 너비를 무조건 40px 넘치게 된다.  
 - 아래 index.css에 추가하자.  
 
@@ -95,9 +95,9 @@ https://github.com/orioncactus/pretendard
 
 1.폰트 다운로드 및 로컬에서 서빙하기 
   - web/variable/PretendardVariable.woff2 추출    
-2.@import 를 이용해서 cdn 다운로드 
+2.@import 를 이용해 cdn 다운로드 
  - @import는 외부의 Css를 가져와서 합치는 기능이다. 
- - 아래 @import 후 css 파일을 보면  @font-face 설정이 있다. 이곳에서 어떤 font-family 이름으로 셋팅되는지 나온다.  
+ - 아래 @import 후 css 파일을 보면  @font-face 설정이 있다. 이곳에서 어떤 font-family 이름으로 세팅되는지 나온다.  
 
 
 ```css

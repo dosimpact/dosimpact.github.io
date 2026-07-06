@@ -100,7 +100,7 @@ export default LazyLoader;
   - 만약 Root 컴포넌트까지 Depth2 컴포넌트를 끌어올린다면 리렌더링 줄일 수 있다.  
 
 📌 After
-- App 컴포넌트 리랜더링 > Ingredients 컴포넌트 리랜더링  
+- App 컴포넌트 리렌더링 > Ingredients 컴포넌트 리렌더링  
 
 ```jsx
 function App() {

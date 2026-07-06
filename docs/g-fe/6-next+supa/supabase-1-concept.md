@@ -110,7 +110,7 @@ BOLA - Broken Object Level Authorization.
 BFLA - Broken Function Level Authorization
 - BOLA가 Access - 데이터 접근에 대한 문제라면 BFLA는 Action - 작업 수행에 대한 문제이다. 즉, 권한이 없는 작업을 수행하는 것이다.
 
-* postgreSQL의 RLS 기능을 이용해서 BOLA, BFLA 예방할 수 있다.  
+* PostgreSQL의 RLS 기능을 이용해 BOLA, BFLA 예방할 수 있다.  
 
 
 ref : [11개 API 취약점](https://jusths.tistory.com/330)

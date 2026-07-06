@@ -62,7 +62,7 @@ ec347468f5cc   redis:latest                            "docker-entrypoint.s…" 
 ### 부팅시 자동으로 켜지는 프로세스
 
 크게 3가지의 서비스를 사용중이다.  
-일부는 brew 를 이용해서 관리하고 docker 같은 경우에는 dockerDesktop을 이용하면 부팅시 자동으로 실행된다.  
+일부는 brew 를 이용해 관리하고 docker 같은 경우에는 Docker Desktop을 이용하면 부팅시 자동으로 실행된다.  
 - 1. code-server by brew services
 - 2. nginx by brew services
 - 3. docker by DockerDesktop

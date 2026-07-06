@@ -32,7 +32,7 @@ Manage Data
 ## Quickstart
 
 ```js
-// 백터 크기가 4인 콜렉션을 만들고 유사도 검색은 Dot Product 사용  
+// 벡터 크기가 4인 콜렉션을 만들고 유사도 검색은 Dot Product 사용  
 PUT collections/star_charts
 {
   "vectors": {
@@ -42,7 +42,7 @@ PUT collections/star_charts
 }
 ---
 // Point는 Vector + Payload의 자료형이다.  
-// 위에서 닷 연산자는 백터에 대해서 
+// 위에서 닷 연산자는 벡터에 대해서 
 
 PUT collections/star_charts/points
 {
@@ -137,7 +137,7 @@ POST collections/star_charts/points/search
 
 
 ```
-// 스냅샷을 이용해서 콜렉션을 백업 할 수 있다.  
+// 스냅샷을 이용해 콜렉션을 백업 할 수 있다.  
 PUT /collections/midjourney/snapshots/recover
 {
   "location": "http://snapshots.qdrant.io/midlib.snapshot"
@@ -156,7 +156,7 @@ POST /collections/midjourney/points/count
 ## Basic Filtering - Clauses and Conditions
 
 ```js
-// 콜렉션 만들기 ( 백터 크기 4, 거리계산은 내적 )  
+// 콜렉션 만들기 ( 벡터 크기 4, 거리계산은 내적 )  
 PUT collections/terraforming
 {
   "vectors": {

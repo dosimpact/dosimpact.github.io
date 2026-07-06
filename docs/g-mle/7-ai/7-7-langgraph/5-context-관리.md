@@ -17,7 +17,7 @@ sidebar_position: 5
 
 
 ### 1, 현재 대화 context는 graph state(messages 필드)에 둔다.   
-- 과거의 대화 기록을 messages에 누적하는것이 기본이다. 
+- 과거의 대화 기록을 messages에 누적하는 것이 기본이다. 
 - 문제는 대화가 너무 길어지면 컨텍스트 용량에 한계에 부딪힌다.  
   - 최근 N개의 대화의 메시지만 누적해서 넣는다.  
   - 오래된 메시지는 summary 압축해서 같는다.  

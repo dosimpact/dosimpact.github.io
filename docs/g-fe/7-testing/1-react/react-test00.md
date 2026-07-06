@@ -32,7 +32,7 @@ sidebar_position: 1
 
 1.라우터는 메모리 라우터로 테스트 합니다. 
 - 이는 브라우저의 히스토리 저장소에 연동되지 않고, 메모리에서 라우터를 온전히 관리 합니다.   
-- 테스트 중에 경로가 바뀐다면, 리랜더링을 통해서 다시 화면을 그려야 합니다.  
+- 테스트 중에 경로가 바뀐다면, 리렌더링을 통해서 다시 화면을 그려야 합니다.  
 
 ```js
 // 1.Memory Router 이용
@@ -97,7 +97,7 @@ import { createMemoryHistory } from 'history';
 await screen.findByText(/text/);
 screen.debug();
 // <body> 태그를 포함한 전체 DOM출력한다.  
-// 사용자가 마치 화면을 보는것과 같이 인터렉션.  
+// 사용자가 마치 화면을 보는것과 같이 인터랙션.  
 --- 
     const { container } = render(
       <MemoryRouter initialEntries={['/start']}>
@@ -124,8 +124,8 @@ console.log(prettyDOM(container));
 3.then  
 
 3.1 존재성 확인 : 스크린에서 특정 텍스트가 있는지 확인
-3.2 클릭 이벤트 확인 : 특정 버튼을 클릭했을때 정상 작동 해야 합니다. 
-3.3 비동기 처리 대기, waitFor을 이용해서 비동기 처리에 대한 로직을 대기해야 합니다.   
+3.2 클릭 이벤트 확인 : 특정 버튼을 클릭했을 때 정상 작동 해야 합니다. 
+3.3 비동기 처리 대기, waitFor을 이용해 비동기 처리에 대한 로직을 대기해야 합니다.   
 3.4 입력 이벤트
 
 ## DOM Testing Library   
@@ -157,19 +157,19 @@ https://testing-library.com/docs/dom-testing-library/cheatsheet/#queries
 
 DOM에서 요소를 가져올때 크게 3가지 방식이 있다.  
 1.getBy : await를 하지않고 바로 가져오려고 시도.
-- getByRole 을 통해 접근성 트리를 이용하는것이 가장 좋다.  
+- getByRole 을 통해 접근성 트리를 이용하는 것이 가장 좋다.  
 
-2.findBy : await를 하며, 없다면 애러를 던진다. 
+2.findBy : await를 하며, 없다면 에러를 던진다. 
 - waitFor 또는 findBy와 같은 Async API를 사용하여 DOM의 변경을 기다릴 수 있다.  
 - API Call이 포함된 useEffect가 있다면 await + findBy를 사용할 것.  
 
 
-3.queryBy : 요소가 없어도 애러를 던지지 않는다.(querySelector를 생각하면 될듯)   
+3.queryBy : 요소가 없어도 에러를 던지지 않는다.(querySelector를 생각하면 될듯)   
 
 
 #### DOM 요소를 가져오는 방식에는 2가지가 있습니다.  
 - 1.getTextBy을 통해서 가져오는것은 실제 유저의 인식가 닮아있다.  
-- 2.render 결과에서 querySelector을 이용해서 DOM을 직접가져옵니다. 
+- 2.render 결과에서 querySelector을 이용해 DOM을 직접가져옵니다. 
   - 이는 실제 유저가 아닌 컴퓨터의 로직으로 가져옵니다.  
 
 ### render
@@ -287,7 +287,7 @@ expect(button.closest('li')).toHaveClass('disabled');
 ### route changed rerender
 
 ```js
-//3.테스트 시나리오 중 사용자의 액션으로 경로가 바뀌었다면 리랜더링 해야 한다.  
+//3.테스트 시나리오 중 사용자의 액션으로 경로가 바뀌었다면 리렌더링 해야 한다.  
     const history = createMemoryHistory({
       initialEntries: ['/home-page'],
     });

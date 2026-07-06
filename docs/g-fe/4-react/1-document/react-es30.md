@@ -37,8 +37,8 @@ function App() {
 }
 ```
 
-- undefined 상태를 허용한다. 그리고 그 상태에 맞는 컴포넌트를 랜더링 한다.  
-- ""와 같은 비어있는 상태의 UI는 의미가 없다. 차라리 애러 화면을 보여주는게 맞다.  
+- undefined 상태를 허용한다. 그리고 그 상태에 맞는 컴포넌트를 렌더링 한다.  
+- ""와 같은 비어있는 상태의 UI는 의미가 없다. 차라리 에러 화면을 보여주는게 맞다.  
 
 ## 📌 useRef 타이핑  
 
@@ -117,7 +117,7 @@ type State =
       })
       .catch((error) => {
         if (aborted) return;
-        setState({ status: "error", error }); // 애러 상태와 같은 경우를 타이핑 할 수 있다.  
+        setState({ status: "error", error }); // 에러 상태와 같은 경우를 타이핑 할 수 있다.  
       });
 
 ```
@@ -130,7 +130,7 @@ type State =
 // 하지만 첫번째 요소가 error 라면, Error객체만 2번째 요소가 오면 좋겠다. -> 유니  
 export type Data<T> = ["fetching" | "success" | "error", T | Error | undefined];
 
-// 2. error인 경우 2번째 요소가 애러로 타이핑이 된다.  
+// 2. error인 경우 2번째 요소가 에러로 타이핑이 된다.  
 export type Data<T> =
   | ["fetching", undefined?]
   | ["success", T]
@@ -159,7 +159,7 @@ export const useUser = <T,>(url: string): Data<T> => {
 
 ```
 
-- 튜플을 정의할때도 첫번째 요소에 따라서, 두번째 요소가 다르게 타이핑 될 수 있다.  
+- 튜플을 정의할 때도 첫번째 요소에 따라서, 두번째 요소가 다르게 타이핑 될 수 있다.  
 
 ## 📌 Reducer 
 

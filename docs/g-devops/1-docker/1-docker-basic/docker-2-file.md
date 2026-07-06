@@ -14,7 +14,7 @@ ARG PROFILE : 빌드동안 살아있는 환경변수, 이미지 박히는 변수
 ENV NODE_ENV production : 환경변수, 컨테이너 실행마다 다르게 줄 수 있다.  -e 옵션으로 주입가능
 ENV HOME /workspace/app : 
 
-WORKDIR $HOME : (위 환경변수 사용), 컨테이너 접속시 기본 경로 셋팅 
+WORKDIR $HOME : (위 환경변수 사용), 컨테이너 접속시 기본 경로 세팅 
 COPY . $HOME : 로컬머신파일 > 도커파일로 파일 복사
 
 RUN 도커 빌드시 실행시킬 스크립트

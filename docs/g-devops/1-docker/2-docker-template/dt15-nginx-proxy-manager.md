@@ -82,7 +82,7 @@ nginx proxy manager는 서버의 단일 진입 포인트로 사용한다.
   - -> A 레코드 설정 ( 14.14.14.14 (my ip) )  
 - 1.nginx는 도메인 이름 바탕으로 내부 아이피 + 포트를 바인딩 시켜줄 수 있다.  
 - 2.DNS 레코드만 잘 설정되어 있으면 https 인증서가 자동으로 발급되고 관리된다.  
-- 3.NPM은 도커 컨테이너의 nginx이므로 다른 컨테이너에 접근하려면 http://host.docker.internal:2229 와 같은 주소를 사용해야한다.   
+- 3.NPM은 도커 컨테이너의 nginx이므로 다른 컨테이너에 접근하려면 http://host.docker.internal:2229 와 같은 주소를 사용해야 한다.   
 
 
 2, 기본 ID, PW 인증 넣기  

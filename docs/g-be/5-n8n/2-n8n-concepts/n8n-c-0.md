@@ -16,7 +16,7 @@ Youtube 스크립트 및 요약 파이프라인에 n8n을 사용했었다.
     - Database, API Interface  변화로 여러 워크플로우를 수정해야 하는 문제
     - Notion을 Block 단위 퍼블리싱 불가능, Text만 삽입 가능
     - Ghost CMS 등 인터페이스가 한정적
-    - Vector DB 넣는것도 정해진 DB Table(Interface)에서만 가능.
+    - Vector DB 넣는 것도 정해진 DB Table(Interface)에서만 가능.
 
 사용 방안
 

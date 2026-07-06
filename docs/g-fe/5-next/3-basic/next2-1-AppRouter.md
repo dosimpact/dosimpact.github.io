@@ -20,7 +20,7 @@ sidebar_position: 2
 - AppRouter란?  
 - AppRouter 디렉터리 구조 잡기  
 - 서버컴포넌트 클라이언트 차이 이해  
-- AppRouter의 랜더링 방식 이해  
+- AppRouter의 렌더링 방식 이해  
 - hydration 이해  
 
 ## AppRouter
@@ -241,4 +241,4 @@ export const revalidate = 0;
 
 [Data Fetching, Caching, and Revalidating](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating)   
 
-[Next.js 에센셜: Next.js 웹앱에서 Client Side Rendering을 추구하면 안되는걸까?  ](https://cat-minzzi.tistory.com/104)  
+[Next.js 에센셜: Next.js 웹앱에서 Client Side Rendering을 추구하면 안 되는걸까?  ](https://cat-minzzi.tistory.com/104)  

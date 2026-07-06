@@ -11,6 +11,7 @@ sidebar_position: 1
   - [uv + pyproject.toml 으로 관리하기](#uv--pyprojecttoml-으로-관리하기)
   - [uv + requirements.txt 으로 관리하기](#uv--requirementstxt-으로-관리하기)
   - [실행, 가상환경 활성화, 초기화](#실행-가상환경-활성화-초기화)
+  - [uv tool 명령어](#uv-tool-명령어)
 
 
 ## Index  
@@ -112,3 +113,59 @@ rm -rf .venv uv.lock
 # 캐시까지 정리하고 싶으면:
 uv cache clean && rm -rf .venv uv.lock
 ```
+
+## uv tool 명령어
+
+`uv tool`은 Python 패키지가 제공하는 CLI 도구를 프로젝트 가상환경과 분리해서 실행하거나 설치하는 명령어입니다. `pipx`와 비슷하게 `ruff`, `black`, `httpie` 같은 실행 도구를 독립된 환경에서 관리할 때 사용합니다.
+
+- `uv tool run`: 도구를 설치하지 않고 일회성으로 실행
+- `uvx`: `uv tool run`의 짧은 별칭
+- `uv tool install`: 도구를 사용자 환경에 설치하고 PATH에서 실행 가능하게 함
+- `uv tool list`: 설치된 도구 목록 확인
+- `uv tool upgrade`: 설치된 도구 업데이트
+- `uv tool uninstall`: 설치된 도구 제거
+- `uv tool dir`: uv가 설치형 도구 환경을 저장하는 위치 확인
+
+```bash
+# 설치하지 않고 일회성 실행
+uv tool run ruff check .
+
+# uv tool run의 축약형
+uvx ruff check .
+
+# 도구 설치
+uv tool install ruff
+
+# 설치된 도구 실행
+ruff check .
+
+# 설치된 도구 목록 확인
+uv tool list
+
+# 도구 업데이트
+uv tool upgrade ruff
+uv tool upgrade --all
+
+# 도구 제거
+uv tool uninstall ruff
+
+# 도구 설치 위치 확인
+uv tool dir
+```
+
+패키지 이름과 실행 파일 이름이 다르거나, 특정 패키지에서 제공하는 실행 파일을 명확히 지정해야 할 때는 `--from`을 사용합니다.
+
+```bash
+# httpie 패키지에서 제공하는 http 실행 파일 실행
+uv tool run --from httpie http --version
+
+# 특정 Python 버전으로 도구 실행
+uvx --python 3.11 ruff check .
+
+# 특정 Python 버전으로 도구 설치
+uv tool install --python 3.11 ruff
+```
+
+프로젝트마다 버전을 고정해야 하는 개발 도구라면 `uv add --dev ruff`처럼 프로젝트 의존성으로 관리하는 편이 좋습니다. 반대로 프로젝트와 무관하게 자주 쓰는 CLI 도구라면 `uv tool install`이 적합합니다.
+
+참고: [uv Tools 공식 문서](https://docs.astral.sh/uv/concepts/tools/)

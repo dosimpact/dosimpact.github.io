@@ -24,7 +24,7 @@ import { createPortal } from 'react-dom';
   )}
 </div>
 ```
-1.createPortal 호출 당시 domNode가 선행적으로 존재해야한다.  
+1.createPortal 호출 당시 domNode가 선행적으로 존재해야 한다.  
 - domNode가 없다면 렌더링이 안된다.  
 - domNode가 삭제되면 포털도 사라진다.
 - domNode가 동적으로 변경되면 포털도 이동한다. (물론 변경 후 createPortal 재호출 )  
@@ -71,7 +71,7 @@ https://ant.design/components/modal#why-i-can-not-access-context-redux-configpro
 
 - `<div id="root">` 에 리액트 본래 렌더 트리를 넣는다.
 - `<div class="sidebar">` 서버사이드의 특정 마크업을 넣는다.  
-- `<div id="sidebar-content">` 에 리액트 포털을 이용해서 컴포넌트를 넣는다.  
+- `<div id="sidebar-content">` 에 리액트 포털을 이용해 컴포넌트를 넣는다.  
 
 ```html
 <!DOCTYPE html>
@@ -94,7 +94,7 @@ https://ant.design/components/modal#why-i-can-not-access-context-redux-configpro
 
 - 서드 파티 지도 라이브러리에 툴팁이 존재, 그곳에 DOM Node를 하나 만들어 리액트 컴포넌트 넣기.     
 - ag grid에 제공하는 테이블 컴포넌트에 DOM Node를 하나 선택한다. 그곳에 리액트 컴포넌트 넣기.  
-  - *차리리 순수 DOM을 직접 조작하는것이 나을 수 있다.  
+  - *차리리 순수 DOM을 직접 조작하는 것이 나을 수 있다.  
 
 
 
@@ -104,8 +104,8 @@ https://ant.design/components/modal#why-i-can-not-access-context-redux-configpro
 주요 포인트  
 - 1.useId는 hydration mismatch 문제를 해결해준다. 
   - useId는 부모의 렌더트리의 경로를 바탕으로 id가 만들어지므로, 서버든 클라이언트든 동일하게 id가 만들어진다.
-  - ( SSR환경에서 useId대신 nextId++ 등의 아이디를 부여하면 안되는 이유이다. )  
-- 2.랜더 트리 경로 기반으로 id를 만들기 때문에, 하나의 고유한 아이디에 suffix를 붙여서 사용 가능하다.  
+  - ( SSR환경에서 useId대신 nextId++ 등의 아이디를 부여하면 안 되는 이유이다. )  
+- 2.렌더 트리 경로 기반으로 id를 만들기 때문에, 하나의 고유한 아이디에 suffix를 붙여서 사용 가능하다.  
 
 
 ```js

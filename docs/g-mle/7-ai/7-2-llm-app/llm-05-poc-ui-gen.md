@@ -14,7 +14,7 @@ sidebar_position: 3
 
 
 Goal: Design and organize a method for AI UI generation in an LLM chatbot.  
-문제 : 단순히 LLM과 텍스트 (마크다운)로 이야기 나누는것은 지루하고, 사용자와의 인터렉션에서 한계가 있다.  
+문제 : 단순히 LLM과 텍스트 (마크다운)로 이야기 나누는것은 지루하고, 사용자와의 인터랙션에서 한계가 있다.  
 솔루션 : Chat bot과 이야기를 나누는 중간에 UI를 보여주면 사용자의 행동을 더 이끌어 낼 수 있다.  
 
 무엇이 가능한가?  
@@ -48,7 +48,7 @@ Goal: Design and organize a method for AI UI generation in an LLM chatbot.
 
 📌 가드레일 
 - 입력 가드레일 : zod shcema에서 실패하는 경우, 이를 통한 피드백 루푸 생성  
-- 출력 가드레일 : tool call 결과 함수가 실패하는 경우 적절한 애러 메시지와 그리고 데이터 스콥에 대한 피드백 출력  
+- 출력 가드레일 : tool call 결과 함수가 실패하는 경우 적절한 에러 메시지와 그리고 데이터 스콥에 대한 피드백 출력  
 
 
 ## Core Concepts  

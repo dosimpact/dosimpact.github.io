@@ -286,7 +286,7 @@ npm login --registry http://0.0.0.0:4873/
 cat ~/.npmrc  
 
 //0.0.0.0:4873/:_authToken="gCD0KDZ0JkBE7QuXIV/Cvg=="  
-# auth토큰이 있다. id+pw가 base64 인코딩 된것  
+# auth토큰이 있다. id+pw가 base64 인코딩 된 것  
 # //는 주석이 아니다. 특정 레지스트리에 대한 설정을 지정한것  
 # 로컬프로젝트의 .npmrc 그리고  ~/.npmrc 정보를 모두 읽는다.  
 

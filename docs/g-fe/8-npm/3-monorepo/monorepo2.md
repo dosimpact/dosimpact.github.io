@@ -9,8 +9,8 @@ sidebar_position: 3
 
 MonoRepo 환경을 구성합니다.  
 - 다수의 라이브러리 패키지를 관리하여 이는 npm publish가 되어야 합니다.  
-- Yarn : 패키지간의 의존성은 yarn workspace를 이용해서 관리합니다. (의존성)   
-- Lerna 패키지의 배포 및 병렬 수행등의 Task는 Lerna을 이용해서 관리합니다. (빌드,배포)   
+- Yarn : 패키지간의 의존성은 yarn workspace를 이용해 관리합니다. (의존성)   
+- Lerna 패키지의 배포 및 병렬 수행등의 Task는 Lerna을 이용해 관리합니다. (빌드,배포)   
 
 ## Problem  
 
@@ -24,7 +24,7 @@ Admin Page, API Server, Batch 프로젝트가 있습니다.
 Lerna와 Yarn Workspace를 조합해서 사용할 수 있습니다.  
 - Lerna : 각 패키지들을 배포, 버전을 관리  
 - Yarn : 패키지들간의 의존성을 관리  
-- *lerna로도 의존성 관리가 가능하지만 yarn 으로 하는것이 더 좋다.  
+- *lerna로도 의존성 관리가 가능하지만 yarn 으로 하는 것이 더 좋다.  
 
 ## Background  
 
@@ -55,7 +55,7 @@ npm install -g yarn
 npm install -g lerna
 ---
 
-# lerna를 이용해서 패키지를 초기화 합니다.   
+# lerna를 이용해 패키지를 초기화 합니다.   
 lerna init --independent
 lerna create axios-error -y  
 lerna create useCustomEvent -y

@@ -14,7 +14,7 @@ sidebar_position: 6
       - [3.LoginUI](#3loginui)
       - [4.White Listing Redirect URLs](#4white-listing-redirect-urls)
   - [📌 Google Login](#-google-login)
-      - [1.구글 클라우드 셋팅 + supabase Provider 셋팅](#1구글-클라우드-셋팅--supabase-provider-셋팅)
+      - [1.구글 클라우드 세팅 + supabase Provider 세팅](#1구글-클라우드-세팅--supabase-provider-세팅)
   - [📌 kakao Login](#-kakao-login)
   - [📌 Github Login](#-github-login)
   - [📌 Email login](#-email-login)
@@ -217,7 +217,7 @@ cf
 #### 4.White Listing Redirect URLs  
 
 브라우저에서 OAuth 로그인 시도 후 성공 후, 새로운 경로로 리다이렉트한다.    
-- 예) 아래 주소는 로그인 시도 후 성공했을때 이동하는 경로이다. 
+- 예) 아래 주소는 로그인 시도 후 성공했을 때 이동하는 경로이다. 
 - http://localhost:3000/auth/callback?code=45c150a1-85e1-4e95-bcc0-1a1c9646b2da
   - code값이 포함되어 있는데 이는 PKCE flow에 사용된다.  
   - 하지만 위 http://localhost:3000/auth/callback 로 리다이렉트를 위해 화이트리스팅 설정이 필요.  
@@ -234,8 +234,8 @@ Redirect URLs
 
 ## 📌 Google Login
 
-해야할 작업    
-- 1.구글 클라우드 셋팅 + supabase Provider 셋팅  
+해야 할 작업    
+- 1.구글 클라우드 세팅 + supabase Provider 세팅  
 - 2.AuthUI
 - 3.callback 처리
 
@@ -243,7 +243,7 @@ Redirect URLs
 - https://supabase.com/docs/guides/auth/social-login/auth-google  
 - https://supabase.com/docs/guides/auth/auth-deep-dive/auth-google-oauth  
 
-#### 1.구글 클라우드 셋팅 + supabase Provider 셋팅  
+#### 1.구글 클라우드 세팅 + supabase Provider 세팅  
 
 - https://console.cloud.google.com/welcome
 
@@ -422,7 +422,7 @@ lib안에서 슈파베이스 서버용,브라우저용 클라이언트 모듈을
 'use client', 'use server' 지시어란?
 - 참고 : https://react.dev/reference/react/use-server
 - 'use server'는 모듈(파일)단위, 함수단위에서 적용 가능하다.  
-- 하지만 나는 파일단위로 구분짓고 싶다. 파일안에 특정 함수에 'use server'을 넣는것은 아직 원치 않는다. 
+- 하지만 나는 파일단위로 구분짓고 싶다. 파일안에 특정 함수에 'use server'을 넣는 것은 아직 원치 않는다. 
 
 
 ### 2.주의 UI 깨지는 이슈  

@@ -89,7 +89,7 @@ brew services restart nginx
 
 ### DNS Record 
 
-가비아에서 구매한 도메인을 연결하기 위해 DNS 레코드를 수정해야한다.  
+가비아에서 구매한 도메인을 연결하기 위해 DNS 레코드를 수정해야 한다.  
 간단하게 레코드 타입을 설명하면  
 - A 타입을 주로 사용한다. 도메인과 IP를 연결한다.  
   - 서브 도메인이라는 개념이 있다.   
@@ -140,7 +140,7 @@ certbot으로 인증서를 발급하는 방법은 2가지가 있다.
 sudo certbot --nginx --nginx-server-root /opt/homebrew/etc/nginx -d domain.com,www.domain.com
 sudo certbot --nginx --nginx-server-root /opt/homebrew/etc/nginx -d domain.com
 # --nginx-server-root 경로 지정, brew로 nginx을 설치해서 기본 경로랑 다르다.!
-# --nginx : cerbot이 처리할 대상의 서버, apache등이 있다.  
+# --nginx : certbot이 처리할 대상의 서버, apache등이 있다.  
 # 위 명령어가 수행되면 nginx.conf파일이 저절로 변경된다.  
 
 # 2. 아래 파일을 nginx가 읽도록 권한 부여하기
@@ -199,7 +199,7 @@ Emu_LEu_HbaAeKH6OrOER88xvjurfFKRJM7-MoYhjN8.HpJsIlJVhSaVM-6mjKz5_4ZU5tydqNW2B5pj
 nginx -t # 문법 검사
 brew services restart nginx # 재시작 
 
-#4. cerbot 확인 후 발급 성공
+#4. certbot 확인 후 발급 성공
 Successfully received certificate.
 Certificate is saved at: /etc/letsencrypt/live/www.my-coding.site /fullchain.pem
 Key is saved at:         /etc/letsencrypt/live/www.my-coding.site /privkey.pem
@@ -539,10 +539,10 @@ http {
     }
 ```
 
-3.cerbot 실행
+3.certbot 실행
 
 - `sudo certbot certonly --manual`으로 인증서발급 진행
-- cerbot에서 임의의 경로에 요청을 보낼테니, 특정 파일을 읽을 수 있도록 셋팅하라 한다.
+- certbot에서 임의의 경로에 요청을 보낼테니, 특정 파일을 읽을 수 있도록 세팅하라 한다.
 - 그 설정을 `location /` 앞단에 한다.
 
 ```

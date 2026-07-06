@@ -114,13 +114,13 @@ $$;
 
 ![Alt text](image-7.png)   
 
-1.백터 저장 플로우   
+1.벡터 저장 플로우   
 
 트리거 : 클릭 혹은 웹훅    
 - gDrive에서 특정 폴더의 파일 목록을 가져온다.  
 - gDrive에서 파일들을 읽는다.    
 - 파일에서 데이터를 읽어서 JSON으로 변환한다.  
-- Supabase 백터 저장 과정
+- Supabase 벡터 저장 과정
   - Prepare단계에서 사전에 정의된 테이블 스키마와 DB함수를 인자로 넣는다.  
   - Embeddings OpenAI 모델은 text-embedding-3-small 사용한다.  
   - 청크 사이즈가 너무 작으면 안된다. 5000정도로 진행함.  

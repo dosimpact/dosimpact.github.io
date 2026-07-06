@@ -67,7 +67,7 @@ Next.js의 빌드 결과 아래 표현을 볼 수 있다.
 1,정적렌더링 (Static, SSG/ISR) : 빌드 타임에 미리 HTML등 정적리소스를 만들어둠    
 - FCP가 가장 좋은 형태이며 Next는 가능한 정적 렌더링으로 분류하려고 노력한다.  
   - generateStaticParams로 정적세그먼트 id 목록을 만들 수 있다.  
-- ISR 패턴: 정기적으로 다시 HTML을 빌드한다. ( Stale 데이터를 보여주는것이 문제가 안되는 경우)    
+- ISR 패턴: 정기적으로 다시 HTML을 빌드한다. ( Stale 데이터를 보여주는것이 문제가 안 되는 경우)    
 - On demand static generation : 빌드타임때 생성하지 못한 정적페이지를 요청이 들어올때 만드는 기능  
   - *동적렌더링과 다르다. 쿠키,헤더, serachParams을 여전히 사용 못함. ( 강제할 수 있으나 렌더링에 반영못함. )  
 
@@ -184,14 +184,14 @@ export default async function Page({ params }) {
 
 📌 Partial Prerendering (PPR) 전략  
 
-Dynamic, Static 2가지로 분류되면서 일부 컴포넌트 때문에 전체가 Dynamic으로 전환되는것이 문제점.  
+Dynamic, Static 2가지로 분류되면서 일부 컴포넌트 때문에 전체가 Dynamic으로 전환되는 것이 문제점.  
 - 쿠키, 헤더 등 사용하는 Dynamic 컴포넌트 부분을 Suspense로 감싸면 서버에서 스트리밍 방식으로 처리 가능하다.  
 
 
 📌 서버 사이드 요청 캐시 (fetch)    
 
 1,요청 메모이제이션
-- next.js에서는 fetch를 이용해서 Server to Server 데이터 패칭을 해야한다.   
+- next.js에서는 fetch를 이용해 Server to Server 데이터 패칭을 해야 한다.   
 - 문제점 : SSR 과정에서 데이터 패칭은 여러 컴포넌트에서 요청한다.   
   - 1,라우터 내 로컬 컴포넌트들에서 중복된 요청을 하는 경우.  
   - 2,서로 다른 유저의 request에서 요청이 발생하는 경우. (위 1번이 여러번 발생)     

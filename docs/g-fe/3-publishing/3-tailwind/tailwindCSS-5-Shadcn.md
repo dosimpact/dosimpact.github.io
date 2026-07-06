@@ -21,7 +21,7 @@ install : https://ui.shadcn.com/docs/installation/next
 
 dark mode : https://ui.shadcn.com/docs/dark-mode/next
 - ThemeProvider로 다크모드를 지원한다. 
-- 첫화면 랜더링에서 hydration 오류가 잔존한다.(nextjs 15 버전, suppressHydrationWarning 으로 가이드 되고 있음)
+- 첫화면 렌더링에서 hydration 오류가 잔존한다.(nextjs 15 버전, suppressHydrationWarning 으로 가이드 되고 있음)
 
 Image darkmode -> invert 
 ```

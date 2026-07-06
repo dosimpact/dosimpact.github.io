@@ -45,7 +45,7 @@ sidebar_position: 2
 - 만약에 없다라면 더 상위 폴더로 가서 node_modules를 찾는다. 이것이 모노레포의 트릭으로 사용 된다.  
 
 ```js
-// 아래 예시는 node_modules라는 폴더명을 사용했을때, module-a/index.js에서 module-b의 index.js에 접근함을 보여준다.  
+// 아래 예시는 node_modules라는 폴더명을 사용했을 때, module-a/index.js에서 module-b의 index.js에 접근함을 보여준다.  
 // node_modules 대신 packages라고 폴더를 바꾸면 접근하지 못한다.
 // ref: https://github.com/robdonn/monorepo-beginners
 .
@@ -89,7 +89,7 @@ require("module-b");
 ---
 // module-b/index.js
 // /module-b > yarn link module-b : 위에서 등록한 전역 바로가기 링크를 불러온다.   
-// 그 결과로 node_modules폴더가 생기고. 마치 module-b가 있는것처럼 폴더도 생겼다. 하지만 이는 바로가기 링크로 설정되어 있다.   
+// 그 결과로 node_modules폴더가 생기고. 마치 module-b가 있는 것처럼 폴더도 생겼다. 하지만 이는 바로가기 링크로 설정되어 있다.   
 console.log("module-b");
 ---
 module-a
@@ -234,7 +234,7 @@ yarn workspace module-a add react
 
 lerna를 사용하면 모노레포에서 사용하는 여러 명령어들을 커버할 수 있다.    
 - 예, 모노레포의 모든 패키지를 Build 하고 일괄 버전업 이후 publish 하기  
-- 하위 모듈들 모두 @을 이용해서 스코핑 하기   
+- 하위 모듈들 모두 @을 이용해 스코핑 하기   
 - import도 업데이트 하기   
 - 하위 모듈에서 dependiencies 업데이트하기    
   - publishConfig:{ "access":"public" }  

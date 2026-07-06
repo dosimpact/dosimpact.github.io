@@ -98,7 +98,7 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
 }
 ---
-terraform init  # 공급자가 변경될때마다 초기화를 해야한다. 관련 변수들이 들어온다.  
+terraform init  # 공급자가 변경될 때마다 초기화를 해야 한다. 관련 변수들이 들어온다.  
 ```
 
 ## AWS 연동  

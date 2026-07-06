@@ -13,7 +13,7 @@ sidebar_position: 1
 
 초기값이 없다면?  
 - 타입불일치 이슈 
-- undefined로 런타임 애러  
+- undefined로 런타임 에러  
 - 렌더링 이슈 혹은 무한 루프  
 - 원상태로 어떻게 복구 할지 명시  
 - null 방어 코드 줄이기  
@@ -162,7 +162,7 @@ export const component = ()=>{
 
 ### 이전 상태 활용하기  
 
-- 아래 예시처럼 핸들러 함수 내 state를 직접 참조하는것은 예상치 못한 버그가 발생할 수 있다.    
+- 아래 예시처럼 핸들러 함수 내 state를 직접 참조하는 것은 예상치 못한 버그가 발생할 수 있다.    
 
 ```js
 export function App() {

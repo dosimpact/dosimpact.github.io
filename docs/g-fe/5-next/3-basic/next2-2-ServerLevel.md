@@ -36,7 +36,7 @@ sidebar_position: 2
 ![Alt text](image-1.png)
 
 - Best Practice를 찾으면 좋겠으나, next.js를 서버의 관점에서 본다면  
-- 위 그림처럼 대하는게 편하다..  
+- 위 그림처럼 대하는 게 편하다..  
 - 중앙의 Controller의 확장 개념으로, Renderer 를 본다.  
 - gRPC, GraphQL, webSocket 등 요청의 시작 포인트 Level  
 
@@ -51,7 +51,7 @@ sidebar_position: 2
 용법  
 - 정의 : app/api 디렉터리에 위치    
 - 네이밍 규칙 : route.js|ts
-- GET과 같은 method 이름 정의된 함수를 export 해야한다.  
+- GET과 같은 method 이름 정의된 함수를 export 해야 한다.  
 - * GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS  
 
 ref : https://nextjs.org/docs/app/building-your-application/routing/route-handlers

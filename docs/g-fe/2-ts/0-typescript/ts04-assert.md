@@ -17,7 +17,7 @@ sidebar_position: 2
 1.타입스크립트에서 타입을 좁히기 위해서 사용한다.  
 - 프리미티브 타입 : asserts condition 함수  
 - 객체 타입 : asserts error is AxiosError 등 구문 사용  
-  - 예) try..catch 애러에서 catch된 애러의 경우에는 타입이 unknown이다. 이를 위해 assertion을 사용하면 타입을 좁힐 수 잇다.  
+  - 예) try..catch 에러에서 catch된 에러의 경우에는 타입이 unknown이다. 이를 위해 assertion을 사용하면 타입을 좁힐 수 잇다.  
 
 2.Asserts은 화살표 함수 대신 '함수'로 구현해야 한다.  
 - 함수 선언과 달리 타입 추론이 제대로 되지 않는다.  

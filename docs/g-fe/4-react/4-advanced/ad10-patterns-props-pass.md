@@ -146,7 +146,7 @@ type Slot = React.ReactNode | null
 - React.Children.toArray   
 
 - React.createElement - JSX대신 직접 사용  
-- React.cloneElement - props를 병합할때 사용  
+- React.cloneElement - props를 병합할 때 사용  
 - React.isValidElement - element 검증   
 
 - React.Fragment  

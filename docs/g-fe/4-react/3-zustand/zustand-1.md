@@ -113,7 +113,7 @@ export default function App() {
 
 ### To Do List  
 
-- 객체 안의 객체(todoListArray)의 불변성을 지켜야한다. (for 리랜더링)  
+- 객체 안의 객체(todoListArray)의 불변성을 지켜야한다. (for 리렌더링)  
 
 ```js
 // todoList

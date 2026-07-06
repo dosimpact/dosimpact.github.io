@@ -52,7 +52,7 @@ exclude : 컴파일 제외 스코프
 너무 최신 문법 보다는, 보통 ES5,ES6을 타겟으로 컴파일한다.   
 
 "lib": ["DOM","DOM.Iterable","ESNext"]
-target에 포함되는 라이브러리들, DOM같은 요소들이 있다. 기본적으로 꺼두면 target에 맞추어서 셋팅된다.  
+target에 포함되는 라이브러리들, DOM같은 요소들이 있다. 기본적으로 꺼두면 target에 맞추어서 세팅된다.  
 
 "jsx": "react"
 JSX를 어떻게 변환할지에 대한 옵션이다. react라고 하면 React.createElement 로 변환됨.  
@@ -161,9 +161,9 @@ namespace와 default import 설정에서 발생하는 문제를 해결,
     "outFile": "./",                                    /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
     "outDir": "./dist",                                   /* Specify an output folder for all emitted files. */
     "removeComments": true,                              /* Disable emitting comments. */
-    "noEmit": false,                                     // JS파일 출력 안한다. 타입 체크만 할때 사용  
+    "noEmit": false,                                     // JS파일 출력 안한다. 타입 체크만 할 때 사용  
     /* Disable emitting files from a compilation. */
-    "importHelpers": true,                               // 예전버전에서 문제가 발생할때 
+    "importHelpers": true,                               // 예전버전에서 문제가 발생할 때 
     /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
     "downlevelIteration": true,                          // 
     /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
@@ -364,7 +364,7 @@ someLibrary.libraryFunction();
 
 allowSyntheticDefaultImports (default = true)
 - node_modules를 가져올때 세부 설정  
-- CommonJS 모듈을 ES 모듈처럼 사용할때, default import 구문을 사용할 수 있다.   
+- CommonJS 모듈을 ES 모듈처럼 사용할 때, default import 구문을 사용할 수 있다.   
 - https://www.typescriptlang.org/tsconfig/#Interop_Constraints_6252
 
 

@@ -43,7 +43,7 @@ sidebar_position: 2
   - 대신 해당 컴포넌트를 사용하는 컨테이너 컴포넌트는 Composition 합성을 사용한다.  
 
 
-🧠 역할 구분하기 - 도메인 로직이 있는것과 아닌 것  
+🧠 역할 구분하기 - 도메인 로직이 있는 것과 아닌 것  
 
 도메인 로직이 없는 경우 : 재사용 가능한 컴포넌트로 뺄 수 있다.  
 - 즉, 컴포넌트는 Composition 지원을 위해 Controlled component(or hybrid component)형태로 가야함.  
@@ -54,7 +54,7 @@ sidebar_position: 2
     - props drilling, props hell 을 해결하기 위해 컴포넌트간의 강결합(Compund)로 처리한다.
       - 주의, props 처리가 간단해지는 만큼 추후 재사용성은 기대하면 안된다.  
       - 팁, Context를 사용하면 좋지만 리렌더링 최소화를 위해 context-selector를 사용하면 좋다.  
-      - 컨벤션, 강결합의 의미로 Namespace pattern을 의도적으로 사용하는것은 좋다.  
+      - 컨벤션, 강결합의 의미로 Namespace pattern을 의도적으로 사용하는 것은 좋다.  
       - 리팩토링, 반복되는 로직들을 분리하여 use-funnel과 라이브러리 처럼 추상화 한다.  
 
 ⚠️ Props Drilling을 줄이기 위한 방법  

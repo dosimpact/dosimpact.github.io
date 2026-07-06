@@ -65,7 +65,7 @@ Writable Streams
 이벤트와 함수들은 보통 함께 사용되기 때문에 서로 관련이 있습니다.
 
 읽기 가능한 스트림에서 가장 중요한 이벤트는 다음과 같습니다.
-- data 이벤트: 스트림이 소비자에게 데이터 청크를 전송할때 발생합니다.
+- data 이벤트: 스트림이 소비자에게 데이터 청크를 전송할 때 발생합니다.
 - end 이벤트: 더 이상 소비할 데이터가 없을때 발생합니다.
 
 쓰기 가능한 스트림에서 가장 중요한 이벤트는 다음과 같습니다.
@@ -248,7 +248,7 @@ const myWritableStream = new Writable({
  
 finalWriteStream = myWritableStream;
  
-// data 이벤트: 스트림이 소비자에게 데이터 청크를 전송할때 발생합니다.
+// data 이벤트: 스트림이 소비자에게 데이터 청크를 전송할 때 발생합니다.
 userDBReadableStream.on("data", () => {
   console.log("Event userDBReadableStream data");
 });
@@ -600,7 +600,7 @@ userDBReadableStream
 
 ---
 
-### Stream in Browser eg1 DOM에 스트림 랜더링
+### Stream in Browser eg1 DOM에 스트림 렌더링
 
 문자열을 스트림으로 만들어 DOM에 텍스트 작성
 

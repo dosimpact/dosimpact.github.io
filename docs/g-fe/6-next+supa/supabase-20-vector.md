@@ -19,7 +19,7 @@ Refs
 RAG는 “Retrieval-Augmented Generation”의 약자
 - 문제 : LLM모델이 학습하지 않은 데이터는 대답 불가능.  
 - 사전 정보와 함께 프롬프트를 LLM에 넣어주어 해결.  
-- 비유하면 LLM모델을 선택하는것은 정규교과과정을 거친 중학생, 고등학생이다. RAG는 이 학생에게 전공 지식을 짧게 가르치고 대답을 만드는 것.   
+- 비유하면 LLM모델을 선택하는 것은 정규교과과정을 거친 중학생, 고등학생이다. RAG는 이 학생에게 전공 지식을 짧게 가르치고 대답을 만드는 것.   
 
 1. Retrieval (검색)
 
@@ -98,7 +98,7 @@ pgVector는 PostgreSQL 내부에서 바로 유사도 검사를 수행
 create extension if not exists vector with schema public;
 
 -- Create tables 
--- 파일 경로와 checksum을 관리하여 동일한 파일에 대해서 백터임베딩을 스킵한다.   
+-- 파일 경로와 checksum을 관리하여 동일한 파일에 대해서 벡터임베딩을 스킵한다.   
 create table "public"."nods_page" (
   id bigserial primary key,
   parent_page_id bigint references public.nods_page,
@@ -111,7 +111,7 @@ create table "public"."nods_page" (
 -- RLS on
 alter table "public"."nods_page" enable row level security;
 
--- nods_page는 여러 content로 분리 및 백터임베딩 값을 넣는다.  
+-- nods_page는 여러 content로 분리 및 벡터임베딩 값을 넣는다.  
 -- slug : 
 -- heading : 
 create table "public"."nods_page_section" (
@@ -207,7 +207,7 @@ function match_page_sections(embedding vector(1536), match_threshold float, matc
 
 ### 1.임베딩 콘텐츠  
 
-백터 임베딩을 하기위해서 적절한 지식단위로 나누는것이 필요하다.  
+벡터 임베딩을 하기위해서 적절한 지식단위로 나누는것이 필요하다.  
 
 	•	OpenAI의 임베딩 모델:
 	•	text-embedding-ada-002 기준: 최대 8191 토큰.
@@ -218,4 +218,4 @@ function match_page_sections(embedding vector(1536), match_threshold float, matc
 	•	따라서 긴 텍스트는 분할하여 처리하는 것이 일반적입니다.  
 
 마크다운의 경우에는 h1~h6 단위로 나눠볼 수 있다.  
-그렇지 않은 비정형 데이터는 다시 LLM으로 넣는것이 필요할 수 있다.  
+그렇지 않은 비정형 데이터는 다시 LLM으로 넣는 것이 필요할 수 있다.  

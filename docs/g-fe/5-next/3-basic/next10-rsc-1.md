@@ -16,7 +16,7 @@ sidebar_position: 10
 
 리액트만 사용했던 사람이라면, 서버컴포넌트에 익숙하지 않을 수 있다.     
 - 서버 컴포넌트는 말 그대로 서버에서 작동되는 컴포넌트이다.  
-- 서버에서만 접근 가능한 리소스들을 이용해서 리액트 컴포넌트를 전처리 후 나머지 후속작업은 브라우저에게 넘겨준다.  
+- 서버에서만 접근 가능한 리소스들을 이용해 리액트 컴포넌트를 전처리 후 나머지 후속작업은 브라우저에게 넘겨준다.  
 - 리액트 트리를 초벌구이 해놓은 느낌이다.   
 - 서버에서만 접근 가능한 리소스(DB, Service)에서 데이터 패칭 후 HTML Preview를 만들 수 있다.  
 - 그 이후에 브라우저에서는 hydration 과정을 거쳐서 클라이언트 컴포넌트가 작동된다.  
@@ -40,14 +40,14 @@ sidebar_position: 10
 - 애니메이션이 있는 Loading과 같은 컴포넌트는 애니메이션이 동작안할 수 있다.  
 
 
-2.서버컴포넌트는 서버에서 랜더링 된다.  
+2.서버컴포넌트는 서버에서 렌더링 된다.  
 - App Router는 Page를 Full Page, Sub Page로 구분한다.  
 - Full Page 요청은 최초요청, 새로고침이다. 이때 SSR이 적용된다.    
   - `use client` 지시어를 사용했어도, SSR에 포함된다.  
   - useState 같은 경우 default 값으로 HTML이 구워져서 나온다. 
   - 그 이후 hydration 과정을 거쳐서 후속 렌더링이 이어진다.    
 
-- Sub Page의 라우팅은 필요한 부분만 서버에서 추가 랜더링 된다.  
+- Sub Page의 라우팅은 필요한 부분만 서버에서 추가 렌더링 된다.  
   - 특정 sub Page가 서버컴포넌트로 SSR이 가능하면 그 부분만 컴파일 된다.  
   - 기존의 Root Layout에서 context provider와 같은 클라이언트 상태가 유지된다.    
   - 그 이후 hydration 과정을 거쳐서 후속 렌더링이 이어진다.    
@@ -57,7 +57,7 @@ sidebar_position: 10
 서버, 클라이언트 컴포넌트가 섞여서 복잡해 보이지만, 최종 목적은 최대한 서버에서 처리할 수 있는부분은 처리하고 나머지는 클라이언트에 던져주기 위함 이다.    
 - RSC, RCC 가 혼합되지만, 결국 일부 렌더 트리는 클라이언트 단에서 처리가 필요하다.    
 - SSR이 가능한 부분과 그렇지 않은 부분을 nextjs가 구분해서 최적화 한다.   
-- 최대한 SSR에서 처리하고 나머지 부분은 browser에서 처리할 수 있도록 구분하는것이 중요하다.    
+- 최대한 SSR에서 처리하고 나머지 부분은 browser에서 처리할 수 있도록 구분하는 것이 중요하다.    
 - 클라이언트의 경계를 구분짓기 위한 결과다.
 - 컴포넌트가 아닌 파일 단위의 Tree 구조를 머리속에 그려야 한다.   
 
@@ -98,7 +98,7 @@ React 서버 컴포넌트 페이로드(RSC)
 - 최종적으로 리액트 컴포넌트 트리=V-DOM이 만들어진다.    
 
 5.Hydrate  
-- Hydration은 Real DOM(HTML Preview으로 부터 만든)과 브라우저에서 다시 만든 Reconciled Render Tree를 매핑하는 과정이다.  
+- Hydration은 Real DOM(HTML Preview으로부터 만든)과 브라우저에서 다시 만든 Reconciled Render Tree를 매핑하는 과정이다.  
 - Hydration은 interactive 만들기 위함이다.   
 - Client Component JavaScript instructions 이 사용된다.  
   - 그 안에는 useState, Event Handler 함수 등이 있다.    
@@ -129,7 +129,7 @@ React 서버 컴포넌트 페이로드(RSC)
 
 1.UI의 주요 상태를 쿠키에 저장하기  
 - 서버에 요청을 보내면 브라우저는 쿠키값을 같이 보내게된다.  
-- 그 쿠키값을 이용해서 초기 상태를 결정(deterministic) 가능.  
+- 그 쿠키값을 이용해 초기 상태를 결정(deterministic) 가능.  
 - 대표 케이스 : App Side Bar의 폴딩 로직, 나는 사이드바를 접었는데 새로고침하면 다시 열려요.!  
 - CSR Only 케이스 : 브라우저 스토어에 UI 상태를 저장하는 것은 SSR에 사용하지 못한다.  
 
@@ -153,6 +153,6 @@ export default function SummaryLayout({
 - 쿠키의 특성은 state full 하다는 것이다. 동일한 url인데 이전의 상태에 따라서 다른 결과가 나오는 것.  
 - 만약에 stateless 상태로 관리하고, 세션의 상태만 필요하다면 query string으로 값을 넘겨주는것도 방법이다.  
 - (세션 수준의 상태의 라이프 싸이클은 query-string으로 대체 가능한듯 )  
-- 1,2번 방법 모두 정적 렌더링은 포기해야한다. ( 필요하다면 export const dynamic = 'force-static' (권장) )    
+- 1,2번 방법 모두 정적 렌더링은 포기해야 한다. ( 필요하다면 export const dynamic = 'force-static' (권장) )    
 
 

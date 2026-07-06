@@ -4,16 +4,16 @@ sidebar_position: 10
 
 # 10 Error 
 
-## 주요 애러 객체, 필드  
+## 주요 에러 객체, 필드  
 
 ```js
 
 // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Error#%EC%84%A4%EB%AA%85
 
 /*
-애러 객체
+에러 객체
 
-1.주요 애러 객체 유형 
+1.주요 에러 객체 유형 
 - ReferenceError
 - SyntaxError
 - TypeError
@@ -44,13 +44,13 @@ try {
 
 ```
 
-## 커스텀 애러
+## 커스텀 에러
 
 ```js
 /*
-애러 객체
+에러 객체
 
-2.애러 객체 주요 필드
+2.에러 객체 주요 필드
 - name, message
 - fileName, lineNumber, columnNumber, stack
 */

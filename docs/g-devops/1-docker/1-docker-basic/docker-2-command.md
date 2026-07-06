@@ -37,7 +37,7 @@ docker ps -a ( docker container ps -a 줄임말 )
 
 
 
-# 컨테이너 ( nginx | centos | 우분투 실행 )
+# 컨테이너 ( nginx | centos | Ubuntu 실행 )
 
 -d 백그라운드 실행 ( 생성 옵션 | 도커 시작하고, 필요하다면 attach로 bash 들어가는 방법)
 -a attach도 같이 한다.

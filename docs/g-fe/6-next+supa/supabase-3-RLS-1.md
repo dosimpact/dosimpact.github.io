@@ -29,7 +29,7 @@ Supabase의 RLS는 "Row-Level Security"의 약자.
 
 
 RLS는 테이블 단위로 적용시킬 수 있다.  
-- RLS enalbe 되면 RLS 정책을 만들어야 테이블을 조회할 수 있다.   
+- RLS enable 되면 RLS 정책을 만들어야 테이블을 조회할 수 있다.   
   - >"누구나 그 테이블을 읽을 수 있어 라는 정책" 을 만들어야 한다.  
     - *참고  
     - anon : 누구나  
@@ -46,7 +46,7 @@ BOLA - Broken Object Level Authorization.
 BFLA - Broken Function Level Authorization
 - BOLA가 Access - 데이터 접근에 대한 문제라면 BFLA는 Action - 작업 수행에 대한 문제이다. 즉, 권한이 없는 작업을 수행하는 것이다.
 
-* postgreSQL의 RLS 기능을 이용해서 BOLA, BFLA 예방할 수 있다.  
+* PostgreSQL의 RLS 기능을 이용해 BOLA, BFLA 예방할 수 있다.  
 
 ref : [11개 API 취약점](https://jusths.tistory.com/330)
 
@@ -58,7 +58,7 @@ DB에 트랜잭션이 들어가기 전후로 RLS이 적용된다.
 1.준비
 - using expression 라는 문법구절을 이용한다.  
 - 위 조건에 맞는 데이터만 준비된다.  
-- *처음에 RLS를 잘못설정하여 데이터조차 조회가 안되는 실수를 범한다. 
+- *처음에 RLS를 잘못 설정하여 데이터조차 조회가 안 되는 실수를 범한다. 
 
 2.트랜잭션  
 - select, insert, update, delete 연산을 수행한다.  
@@ -83,7 +83,7 @@ About Role
 
 - USING expression은 where절로 변환된다고 생각하면 된다. 
 - 즉, SELECT, UPDATE, DELETE 연산을 하기 전에 해당 Where 절이 먼저 실행된다.  
-- *트랜젝션 사전에 실행되는 것이다.  
+- *트랜잭션 사전에 실행되는 것이다.  
 
 eg) SELECT에 auth.uid() = user_id을 걸면   
 - 로그인 한 사용자의 Row만 보인다.  

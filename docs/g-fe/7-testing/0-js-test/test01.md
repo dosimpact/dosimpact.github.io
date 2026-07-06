@@ -175,7 +175,7 @@ describe("matcher 02 - object", () => {
   beforeAll(() => {
     goalUser = { name: "dodo", age: 20 };
   });
-  //✅ 객체를 비교할때는, 프로퍼티까지 같은지 봐야 하므로 , toEqual을 사용한다.
+  //✅ 객체를 비교할 때는, 프로퍼티까지 같은지 봐야 하므로 , toEqual을 사용한다.
   // - 하지만 undefiend (초기선언상태)의 프로퍼티는 검사 제외
   test("object not tobe (diff addr)", () => {
     expect(fn.makeUser("dodo", 20)).not.toBe(goalUser);
@@ -323,8 +323,8 @@ describe("matcher 04 - callback", () => {
 // rejects
 
 //❌ https://ko.javascript.info/promise-error-handling
-// -- Promise안의 setTimeout의 애러는 못잡는다,
-// -- 애러는 executor(실행자, 실행 함수)가 실행되는 동안이 아니라 나중에 발생합니다.
+// -- Promise안의 setTimeout의 에러는 못잡는다,
+// -- 에러는 executor(실행자, 실행 함수)가 실행되는 동안이 아니라 나중에 발생합니다.
 // -- 따라서 프라미스는 에러를 처리할 수 없습니다.
 
 describe("matcher 05 - Promise", () => {

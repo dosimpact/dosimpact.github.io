@@ -246,7 +246,7 @@ POST /collections/star_charts/points/scroll
 - Work with data represented by ColBERT multivectors.  
 
 ```json
-// 다중 백터 모드로 콜렉션을 넣을 수 있다.  
+// 다중 벡터 모드로 콜렉션을 넣을 수 있다.  
 PUT collections/multivector_collection
 {
   "vectors": {
@@ -258,7 +258,7 @@ PUT collections/multivector_collection
   }
 }
 ---
-// 백터의 크기는 4로 동일하다.  
+// 벡터의 크기는 4로 동일하다.  
 PUT collections/multivector_collection/points
 {
   "points": [
@@ -313,7 +313,7 @@ PUT collections/multivector_collection/points
 }
 ---
 // max_sim 스코어 값이 높은것을 가져온다. 
-// - 다중 백터중 높은값을 기준으로 계산한다.  
+// - 다중 벡터중 높은값을 기준으로 계산한다.  
 POST collections/multivector_collection/points/query
 {
   "query": [
@@ -409,7 +409,7 @@ PUT /collections/sparse_charts/points
     ]
 }
 ---
-// 백터 검색, 원하는 차원만 indices 필드에 넣어서 검색할 수 있다.  
+// 벡터 검색, 원하는 차원만 indices 필드에 넣어서 검색할 수 있다.  
 POST /collections/sparse_charts/points/query
 {
     "query": {
@@ -439,8 +439,8 @@ POST /collections/sparse_charts/points/query
 - 2가지 방식을 혼용한 Hybrid Search (Dense + Sparse) 예제이다.  
 
 ```json
-// Dense 백터 정의 크기 4, 코사인 유사도 사용  
-// Sparse 백터 정의  for keyword-based indexing.    
+// Dense 벡터 정의 크기 4, 코사인 유사도 사용  
+// Sparse 벡터 정의  for keyword-based indexing.    
 PUT /collections/terraforming_plans
 {
     "vectors": {
@@ -500,7 +500,7 @@ PUT /collections/terraforming_plans/points
 ---
 // keyword-based (sparse) and semantic (dense) search 
 // Reciprocal Rank Fusion (RRF) 방식으로 점수를 취합한다.  
-// - 단순히 두 백터 점수를 합산하는것이 아니다.  
+// - 단순히 두 벡터 점수를 합산하는 것이 아니다.  
 //    - Keyword-based query: sparse vector semantic similarity search 
 //    - Dense vector query: Uses the dense vector for semantic similarity search.
 //    -> 둘 중 하나라도 상위권이면 점수 높게 (RFF)  

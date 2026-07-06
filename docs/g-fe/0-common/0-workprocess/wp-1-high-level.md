@@ -39,7 +39,7 @@ sidebar_position: 1
   - 데이터 차원 정리 ( Retail로 접속 or 3P로 접속 등 상위 전제 컨텍스트 )  
 
 📌 2.요구사항 수집 단계 및 준비  
-- [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야한다.  
+- [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야 한다.  
 
 📌 3.커뮤니케이션  
 - [ ] API Interface는 미리 공유 및 제안을 하자.  
@@ -107,7 +107,7 @@ sidebar_position: 1
 ## 3.Testing  
 
 📌 훈련  
-- [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야한다   
+- [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야 한다   
 
 📌 Validator 순서 Testing    
 📌 UI Stress Testing    
@@ -136,7 +136,7 @@ Action Item
 2.시스템 예외사항은 - window.Alert 대신에 별도의 Modal UI 요청하자.    
 
 3.State가 복잡한 경우에는, 다양한 케이스를 고려해야 한다.  
-- 메인Filter, 서브 Filter, Sorter, Pagination, Selection 등 다양한 인터렉션이 존재한다. 각각의 로직에 잘 대응하는것이 필요.  
+- 메인Filter, 서브 Filter, Sorter, Pagination, Selection 등 다양한 인터랙션이 존재한다. 각각의 로직에 잘 대응하는 것이 필요.  
 - PageSize가 10일때는 50Page가 있지만, PageSize가 50일때는 50번째 페이지는 없다. 적절하게 마지막 페이지로 이동해야 함.  
 - 메인 필터에 따라서, 서브 필터에 상품군의 갯수가 달라진다. 모수가 바뀌는것 대응    
 

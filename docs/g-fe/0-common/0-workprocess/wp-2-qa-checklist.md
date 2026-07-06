@@ -12,7 +12,7 @@ sidebar_position: 2
 
 
 핵심  
-- [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야한다.    
+- [ ] PRD에서 꼼꼼히 테스트 케이스들을 작성하는 훈련을 먼저 해야 한다.    
 - [ ] UI Stress Testing 진행하기 ( 포멧팅, 임계값 대응 )  
 
 UI CheckList 

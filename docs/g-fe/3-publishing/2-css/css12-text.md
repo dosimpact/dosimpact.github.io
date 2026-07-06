@@ -256,8 +256,8 @@ example - https://play.tailwindcss.com/xCM4Qh2XZ4?size=202x720
 ### -webkit 속성이 붙는 경우
 
 - 브라우저의 호환성 때문이다. 특정 브라우저에서만 해당 기능을 켤 수 있다.  
-- -webkit(사파리, 크롬), -moz (Firebox), -o(Opera), 없는것은 표준  
-- 브라우저 마다 서로 다른 랜더링 엔진을 사용하고 있다.  
+- -webkit(사파리, 크롬), -moz (Firefox), -o(Opera), 없는 것은 표준  
+- 브라우저 마다 서로 다른 렌더링 엔진을 사용하고 있다.  
 
 
 ## Icon

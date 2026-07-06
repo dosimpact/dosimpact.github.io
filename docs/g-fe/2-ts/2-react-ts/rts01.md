@@ -563,7 +563,7 @@ export default App;
 
 ## Limiting prop composition  
 
->상호베타적인 타입을 선언할때 사용한다.  
+>상호베타적인 타입을 선언할 때 사용한다.  
 
 ```js
 type ButtonProps = {

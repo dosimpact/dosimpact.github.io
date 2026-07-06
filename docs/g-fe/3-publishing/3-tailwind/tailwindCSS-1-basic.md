@@ -61,7 +61,7 @@ tailwind css 에서는 rem 단위를 사용한다.
 
 ```js
 # gap-1 은 0.25rem 만큼 떨어진다. 
-# px단위는 []을 이용해서 사용한다.  
+# px단위는 []을 이용해 사용한다.  
 <div class="flex flex-row gap-1 gap-[5px]">
   <div>1</div>
   <div>2</div>

@@ -17,8 +17,8 @@ sidebar_position: 3
 
 인터넷을 찾아보니 code-server에 https를 붙이기 위해서 `nginx를 앞단에` 두는 방식을 주로 사용했다.    
 - MacOS환경에서 brew로 nginx을 설치했다. 
-- nginx 설치 경로가 우분투 환경과 다르게 셋업 되었다. 그래서 cerbot 자동 설정(`python3-certbot-nginx`)이 실패..
-- 그래서 cerbot 수동설정 및 nginx conf도 직접 설정해서 https 인증서를 발급했다.
+- nginx 설치 경로가 Ubuntu 환경과 다르게 셋업 되었다. 그래서 certbot 자동 설정(`python3-certbot-nginx`)이 실패..
+- 그래서 certbot 수동설정 및 nginx conf도 직접 설정해서 https 인증서를 발급했다.
 
 
 크게 code-server에 https를 붙이는 방법은 `2가지다`. (여기서는 1번 방법을 기록)  
@@ -26,7 +26,7 @@ sidebar_position: 3
 2. code-server에 직접 https 인증서 붙이기   
 
 
-1번 방법이 좀 더 일반적인 상황에서 사용이 가능하고, cerbot을 이용해서 수동으로 https 인증서를 발급할 예정이다.
+1번 방법이 좀 더 일반적인 상황에서 사용이 가능하고, certbot을 이용해 수동으로 https 인증서를 발급할 예정이다.
 
 <br/>
 
@@ -43,8 +43,8 @@ sidebar_position: 3
 9009 portainer 서버
 ```
 
-매번 내 아이피 주소에 포트를 붙여서 접근해도 되지만, 외부에 서비스를 노출할때는 그렇게 하지 않는다. 
-도메인을 붙이는것이다. 도메인 example.com을 구매해서 다음처럼 구성이 가능하다.
+매번 내 아이피 주소에 포트를 붙여서 접근해도 되지만, 외부에 서비스를 노출할 때는 그렇게 하지 않는다. 
+도메인을 붙이는 것이다. 도메인 example.com을 구매해서 다음처럼 구성이 가능하다.
 
 ```
 www.example.com -> 3000 리액트 서버
@@ -85,4 +85,4 @@ eg) db.domain.com > 123.123.123.123 > nginx 서버 접근 및 라우팅 > mysql 
 - 외국 사이트 중 https://www.namecheap.com/ 가 싼것 같다.
 
 공유기 포트포워딩 확인
-- 80, 443 포트가 맥서버와 연결되었는지 반드시 확인
+- 80, 443 포트가 맥 서버와 연결되었는지 반드시 확인

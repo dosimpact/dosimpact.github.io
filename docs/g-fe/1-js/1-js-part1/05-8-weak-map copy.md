@@ -102,7 +102,7 @@ obj = null;
 
 ## 위크셋(WeakSet)
 
-WeakMap처럼 부가적인 데이터를 보관하는데, 훨씬 더 간단한 데이터를 저장할때 좋다. (boolean정도의 있다 없다.)   
+WeakMap처럼 부가적인 데이터를 보관하는데, 훨씬 더 간단한 데이터를 저장할 때 좋다. (boolean정도의 있다 없다.)   
 
 ```js
 let visitedSet = new WeakSet();

@@ -76,7 +76,7 @@ https://tanstack.com/query/v5/docs/framework/react/guides/prefetching
 
 https://tanstack.com/query/v5/docs/framework/react/guides/ssr
 
-SSR에서 구지 react-query 객체의 hydration을 해야하는 이유  
+SSR에서 굳이 react-query 객체의 hydration을 해야하는 이유  
 - SSR의 목적은 html preview를 만들어서 첫화면 렌더링 시간을 단축하는데 의의가 있다.  
 - 이때 데이터 패칭을 SSR 과정에서 진행하고 후속 CSR에서 그 데이터를 조작해야 한다면 하이드레이션 과정이 필요하다. 
 - 서버 데이터 관리의 주체가 react-query라면 그들의 hydration을 규칙을 따라야 함.    

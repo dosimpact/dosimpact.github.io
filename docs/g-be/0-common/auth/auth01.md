@@ -42,7 +42,7 @@ Scope 개념 추가
 Client 복잡성 간소화  
 - OAuth 1.0 은 암호화에 복잡한 과정을 거친다. 이러한 단점을 보완 하기 위해   
 - OAuth 2.0 에서는 Bearer Token + TLS 도입  
-- Bearer Token : 장치를 고려하지 않고 토큰을 소유하고 있는것만으로도 사용 권한을 인정해준다.  
+- Bearer Token : 장치를 고려하지 않고 토큰을 소유하고 있는 것만으로도 사용 권한을 인정해 준다.  
 - TLS : https 강제 한다.  
 
 Authorization/Resource Server의 분리(선택적)  
@@ -51,7 +51,7 @@ Authorization/Resource Server의 분리(선택적)
 - OAuth 2.0 = Authz Server (Resource Owner 인증 + 인가 토큰 발급) + Resource Server (보호된 리소스 관리)  
 
 토큰 탈취 문제 개선  
-- oauth1.0 에서는 토큰 사용 기간이 매우 길었다. 토큰을 탈취당했을때 오랜 기간 권한이 누출  
+- oauth1.0 에서는 토큰 사용 기간이 매우 길었다. 토큰을 탈취당했을 때 오랜 기간 권한이 누출  
 - 그래서 Refresh Token 을 도입하게 된다. access token(유효기간 짧음) + refresh token(새로운 AccessToken 발급용)  
 
 제한적인 사용 환경 개선  

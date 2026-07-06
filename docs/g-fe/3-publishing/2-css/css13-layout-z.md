@@ -11,7 +11,7 @@ sidebar_position: 13
 - 1px 옮겨주세요 등의 전체 레아이웃 수정 이슈.    
 - Floating Icon, Sticky Icon 등 이슈.    
 
-위 경우에는 Layout을 별도로 컴포넌트화 해서 관리하는게 좋다.  
+위 경우에는 Layout을 별도로 컴포넌트화 해서 관리하는 게 좋다.  
 
 ## Stack context
 

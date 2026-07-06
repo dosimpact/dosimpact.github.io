@@ -13,7 +13,7 @@ sidebar_position: 6
 
 
 26년 초 OpenClaw(몰트봇)이 굉장히 핫 하다.. 그럴듯한 개인용 AI 비서 + 오픈소스라니 굉장히 인기가 많을 수 밖에 없다.  
-- 결국 사람이 원하는것은 내 귀잖은 일을 잘 해줄 비서같은 AI에 대한 수요가 확실히 검증되었다고 생각된다.  
+- 결국 사람이 원하는 것은 내 귀찮은 일을 잘 해줄 비서같은 AI에 대한 수요가 확실히 검증되었다고 생각된다.  
 - 정말 필요하다면 이제 1인 AI PC 시대가 올 것이다. 집에 인터넷 공유기는 하나씩 있는데 그 옆에 맥미니 같은 컴퓨터가 있을듯 하다.   
 
 특히나 요즘 운동 루틴, 개발 트랜드 파악 루틴, 경제 시황 파악 등 귀찮은 일들이 많아지는데 이를 하나씩 자동화해볼 수 있지 않을까 한다.  
@@ -30,7 +30,7 @@ sidebar_position: 6
 # openclaw 설치는 아래 한줄이면 된다.  
 npm install -g openclaw@latest
 
-# 설치 후 아래 명령어로 셋팅 시작이 가능함    
+# 설치 후 아래 명령어로 세팅 시작이 가능함    
 openclaw onboard --install-daemon
 ```
 
@@ -43,15 +43,15 @@ openclaw onboard --install-daemon
 
 
 1.2, 채널설정  
-- 채널이란? 텔레그렘 같은 메신저를 이용해서 open claw와 상호작용 할 수 있다. 
-- 가장 간단한 텔레그렘 봇으로 연동을 하자. https://docs.openclaw.ai/channels  
+- 채널이란? 텔레그램 같은 메신저를 이용해 OpenClaw와 상호작용 할 수 있다. 
+- 가장 간단한 텔레그램 봇으로 연동을 하자. https://docs.openclaw.ai/channels  
 - 참고: https://leejams.github.io/openclaw/
 
 설치과정 
 ```
-1, 텔레그렘 접속하기 
-2, 텔레그램에서 BotFather를 검색 > /newbot 입력 후 생성하기  > 봇 토큰이 나옴  > open claw 설정에 넣기  
-3, 텔레그램에서 봇 사용 가능한 유저 화이트 리스팅 설정 > @userinfobot 봇 검색 > 시작하면 본인의 user id가 나온다. ( 프로필의 @으로 시작하는 이름이 아닌 값을 ) > open claw 설정에 넣기  
+1, 텔레그램 접속하기 
+2, 텔레그램에서 BotFather를 검색 > /newbot 입력 후 생성하기  > 봇 토큰이 나옴  > OpenClaw 설정에 넣기  
+3, 텔레그램에서 봇 사용 가능한 유저 화이트 리스팅 설정 > @userinfobot 봇 검색 > 시작하면 본인의 user id가 나온다. ( 프로필의 @으로 시작하는 이름이 아닌 값을 ) > OpenClaw 설정에 넣기  
 ```
 
 ## 2, OpenClaw에 GPT Codex 붙이기   

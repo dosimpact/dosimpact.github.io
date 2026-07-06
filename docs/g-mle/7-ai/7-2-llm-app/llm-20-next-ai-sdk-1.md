@@ -189,7 +189,7 @@ export default ChatLite;
 - 1.tools 정의 하기 - description, parameters, execute    
   - 예, 특정 위치의 날시를 보여줘, 인자값:location, 실행함수 - 날씨 API    
 - 2.Router Handler에 streamText 작성하기    
-- 3.messages 중 toolInvocations 필드를 보고 UI를 랜더링 하기    
+- 3.messages 중 toolInvocations 필드를 보고 UI를 렌더링 하기    
 
 제약
 - gpt-4o-mini, gpt-4 이상 모델 선택  
@@ -323,7 +323,7 @@ export default ChatLiteUI;
 - 1.createDataStreamResponse 을 리턴하며 execute안에서 streamText과 머지한다.  
 - `result.mergeIntoDataStream(dataStream);`  
 - 2.dataStream.writeData : 스트림 데이터, useChat의 data으로 넘어옴  
-- 3.dataStream.writeMessageAnnotation : 스트림 어노테이션데이터, 주석과 같은 메타정보 넣는것이 가능.  useChat의 message 객체와 함께 들어옴.  
+- 3.dataStream.writeMessageAnnotation : 스트림 어노테이션데이터, 주석과 같은 메타정보 넣는 것이 가능.  useChat의 message 객체와 함께 들어옴.  
 
 ```js
 // app/api/chat-test/route.ts

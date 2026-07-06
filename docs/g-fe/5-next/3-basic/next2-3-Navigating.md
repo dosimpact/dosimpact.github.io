@@ -17,7 +17,7 @@ sidebar_position: 2
     - [notfound](#notfound)
   - [Window](#window)
     - [replaceState](#replacestate)
-  - [Server Routes 타입별 랜더링](#server-routes-타입별-랜더링)
+  - [Server Routes 타입별 렌더링](#server-routes-타입별-렌더링)
     - [Dynamic Routes (SSR)](#dynamic-routes-ssr)
     - [generateStaticParams (SSG)](#generatestaticparams-ssg)
     - [Parallel Routes](#parallel-routes)
@@ -45,7 +45,7 @@ export default function Page() {
 
 ## Server
 
-서버측에서 Route 변경할때는 아래 함수를 사용한다.   
+서버측에서 Route 변경할 때는 아래 함수를 사용한다.   
 Server Components, Route Handlers, Server Actions 사용 가능
 - redirect
 - permanentRedirect 
@@ -244,7 +244,7 @@ export default async function Page({ params }: PageProps) {
 window.history.replaceState({}, "", `/chat/${chatId}`);
 ```
 
-## Server Routes 타입별 랜더링  
+## Server Routes 타입별 렌더링  
 
 ### Dynamic Routes (SSR)
 

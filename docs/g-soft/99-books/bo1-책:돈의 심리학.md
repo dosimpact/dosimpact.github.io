@@ -63,7 +63,7 @@ trusting the process and being patient when it comes to investing.
 
 >Getting Wealthy vs Staying Wealthy  
 
-누구나 지속적으로 실패하지 않는 투자를 하는것은 어렵다.  
+누구나 지속적으로 실패하지 않는 투자를 하는 것은 어렵다.  
 돈을 벌 때와 돈을 지킬 때 필요한 능력은 다르다.  
 안전마진이 중요하다고 강조한다.  
 투자의 첫 번째 목표는 큰돈을 버는 것이 아니라, 어떤 위기가 와도 게임에서 퇴장당하지 않는 것이다. 복리는 생존한 사람에게만 보상한다. 📈

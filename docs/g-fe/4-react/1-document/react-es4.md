@@ -27,7 +27,7 @@ sidebar_position: 4
 
 예) 타이머의 interval ID 값,
 - interval ID은 리렌더링에 상관없다.
-- 이벤트 핸들러가 취소하기 위해서 Interval ID 정보를 기억해야한다. Ref를 사용하자.
+- 이벤트 핸들러가 취소하기 위해서 Interval ID 정보를 기억해야 한다. Ref를 사용하자.
 
 useState로 useRef 구현하기. 
 - ref.current의 이유는 불변성 때문이다.      
@@ -98,7 +98,7 @@ const MyInput = forwardRef((props, ref) => {
 
 📌 useImperativeHandle  
 
-- 부모 컴포넌트에서 ref를 이용해서 예상치 못 한 작업을 방지하는 법.  
+- 부모 컴포넌트에서 ref를 이용해 예상치 못 한 작업을 방지하는 법.  
 - 아래 예시는 부모 컴포넌트는 ref를 통해서 focus만 가능하다.  
 
 ```js
