@@ -1,8 +1,8 @@
 ---
 name: apb-wiki-create
 description: |
-  Guide for creating, updating, and refining Docusaurus wiki pages that turn
-  newly learned material into well-structured Korean concept documentation.
+  Guide for creating, updating, and refining compact Docusaurus wiki pages that
+  turn newly learned material into well-structured Korean concept documentation.
   Phases: Create Wiki -> Update/Insert Wiki -> Refactor Wiki.
   Triggers: wiki, apb wiki create, reasoning wiki,
   create wiki, update wiki, insert wiki, update insert wiki,
@@ -16,9 +16,9 @@ description: |
 
 # Wiki Create
 
-> Maintain Docusaurus wiki documentation by creating pages, updating existing
-> concepts, or inserting new lessons that turn learned material into reusable
-> conceptual knowledge.
+> Maintain compact Docusaurus wiki documentation by creating pages, updating
+> existing concepts, or inserting new lessons that turn learned material into
+> reusable conceptual knowledge.
 
 ## Usage
 
@@ -58,16 +58,22 @@ These rules apply to every phase.
    newly learned material into stable definitions, mental models, comparison
    criteria, implementation patterns, validation flows, and pitfalls that will
    still be useful later.
-3. H3 is the smallest reusable wiki unit. Each H3 should cover one focused
-   concept, judgment rule, implementation pattern, validation flow, review
-   checklist, operational response, or maintenance procedure.
-4. If source material contains multiple concepts, keep only the core concept in
-   the current H3 and create separate H3 tasks for other reusable concepts when
-   needed.
-5. Avoid turning one H3 into a full lecture note. Long definitions, exhaustive
+3. Default to compression. Do not mirror the source material's outline, lecture
+   order, or numbered list as headings. Extract the central reusable idea first,
+   then place supporting definitions, examples, exceptions, tools, graphs, and
+   model choices inside that idea's H3 body.
+4. H3 is the smallest reusable wiki unit. Each H3 should cover one focused
+   concept or judgment rule. Prefer one H3 for one learning note unless there
+   are clearly independent rules that would be searched, updated, and reused
+   separately.
+5. Split into multiple H3 tasks only when the material contains independent
+   reusable concepts with different decision criteria or workflows. Do not
+   create separate H3 tasks just because the source has sections such as
+   definition, examples, why it matters, business cases, graphs, or summary.
+6. Avoid turning one H3 into a full lecture note. Long definitions, exhaustive
    examples, downstream analysis methods, charts, and model choices should
    appear only when they are necessary to understand or apply that H3's concept.
-6. Prefer this H3 structure:
+7. Prefer this H3 structure:
 
    ```markdown
    ### {category_number}.{task_number} {task}
@@ -85,19 +91,19 @@ These rules apply to every phase.
      - {important verification, sync, or maintenance constraint}
    ```
 
-7. Prefer two numbered sections only: `판단 기준 및 적용 조건` and
+8. Prefer two numbered sections only: `판단 기준 및 적용 조건` and
    `실행 절차 및 구현 규칙`. Add a third section only when an actionable
    exception or pitfall cannot fit cleanly into those two sections.
-8. Keep each numbered section short: usually 2-4 bullets. If a section needs
+9. Keep each numbered section short: usually 2-4 bullets. If a section needs
    more than 4 bullets, split the topic or remove supporting explanation.
-9. Prefer concrete project facts over generic advice. Include API names, state
+10. Prefer concrete project facts over generic advice. Include API names, state
    fields, commands, file paths, domain terms, decision criteria, or failure
    symptoms when they prevent future mistakes.
-10. Follow this repository's Docusaurus conventions: use Markdown/MDX that can
+11. Follow this repository's Docusaurus conventions: use Markdown/MDX that can
    pass `yarn build`, place pages under the appropriate `docs/` category, and
    add or preserve `_category_.json` metadata when a new folder needs sidebar
    labeling or ordering.
-11. Do not use `### 상세 로직`; write `상세 로직` as plain body text under the
+12. Do not use `### 상세 로직`; write `상세 로직` as plain body text under the
    H3 task.
 
 ---
@@ -170,11 +176,16 @@ implementation practice, or operational constraint.
 
 1. Read the full wiki and list existing H2 category headings and H3 task
    headings.
-2. Apply `Common Wiki Rules` before deciding the final H3 scope.
+2. Apply `Common Wiki Rules` before deciding the final H3 scope. Start by
+   asking: "What is the one reusable concept or judgment rule this learning
+   should preserve?"
 3. Decide whether the learning updates an existing H3 or needs a new H3:
    - If a matching H3 already exists, update only that H3 unless the user asks
      for a wider rewrite.
-   - If no matching H3 exists, insert a new H3 in the most related category.
+   - If no matching H3 exists, insert one compressed H3 in the most related
+     category.
+   - Add multiple H3 tasks only when each H3 has a distinct purpose, decision
+     criterion, and future reuse path.
 4. Choose or create a short Korean H2 category title that groups related
    concepts, reasoning models, decision criteria, implementation lessons, or
    operating practices.
@@ -185,7 +196,11 @@ implementation practice, or operational constraint.
 7. For inserts, place the new H3 task after the most related task in the
    matching category. If there is no related category, append a new H2 category
    after the existing content.
-8. H2 and H3 headings must include prefix numbers:
+8. Never promote source subtopics directly into headings. Put definitions,
+   examples, business cases, distribution choices, statistical tests, ML model
+   choices, graphs, and summaries under the single H3 unless they are truly
+   independent reusable concepts.
+9. H2 and H3 headings must include prefix numbers:
 
    ```markdown
    ## 1. {category}
@@ -193,9 +208,9 @@ implementation practice, or operational constraint.
    ### 1.1 {task}
    ```
 
-9. Avoid duplicate statements already present in the same topic.
-10. Keep the style consistent with the existing Korean wiki entry.
-11. After update or insertion, renumber H2 and H3 prefix numbers so they are
+10. Avoid duplicate statements already present in the same topic.
+11. Keep the style consistent with the existing Korean wiki entry.
+12. After update or insertion, renumber H2 and H3 prefix numbers so they are
     sequential and match their hierarchy.
 
 ### Output Path
@@ -218,14 +233,16 @@ headings follow the standard hierarchy and prefix-number convention.
   grouped under H2 categories and H3 wiki tasks.
 - Refactoring must preserve the implementation facts unless the user asks for a
   content rewrite.
-- Refactoring should reduce over-broad H3 entries into focused tasks when one
-  task mixes several independent judgment rules.
+- Refactoring should compress over-expanded H2/H3 structures when several
+  headings are only source-outline sections for the same reusable concept.
+- Refactoring should split H3 entries only when one task mixes several
+  independent judgment rules with different reuse paths.
 
 ### Steps
 
 1. Read the full wiki before editing.
-2. Apply `Common Wiki Rules` when deciding how to split, keep, or rewrite
-   H3 tasks.
+2. Apply `Common Wiki Rules` when deciding how to compress, split, keep, or
+   rewrite H3 tasks.
 3. List all H2 headings and decide whether each one is a category or an
    implementation task.
 4. Convert broad grouping headings to numbered H2 category headings:
@@ -269,7 +286,10 @@ headings follow the standard hierarchy and prefix-number convention.
    - H3 prefixes must always match the parent H2 prefix.
 9. Check that no implementation task remains as H2 and no `### 상세 로직`
    heading remains.
-10. Keep bullets concise, preserve concrete product, SDK, API, command, file,
+10. If several H3 tasks merely restate definition, examples, why it matters,
+   business cases, graphs, or summary for the same concept, merge them into one
+   H3 and keep those details as bullets.
+11. Keep bullets concise, preserve concrete product, SDK, API, command, file,
    and domain names, and avoid duplicate statements introduced during
    refactoring.
 
@@ -303,8 +323,10 @@ headings follow the standard hierarchy and prefix-number convention.
   implementation pattern, validation flow, review checklist, operational
   response, or maintenance procedure.
 - Each H3 should cover one focused reusable concept. If source material
-  contains multiple concepts, keep only the core concept in the current H3 and
-  create separate H3 tasks for the other concepts when needed.
+  contains multiple sections for the same concept, compress them into the
+  current H3 instead of turning each source section into a heading.
+- Create separate H3 tasks only for concepts that have independent decision
+  criteria, workflows, or future maintenance paths.
 - Avoid turning a single H3 into a full lecture note. Long definitions,
   exhaustive examples, downstream analysis methods, charts, and model choices
   should appear only when they are necessary to understand or apply that H3's
