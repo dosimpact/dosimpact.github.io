@@ -1,0 +1,11 @@
+{
+  "label": "Remotion",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "Remotion",
+    "description": "React와 Remotion Agent Skills로 영상 제작 과정을 자동화하는 방법"
+  }
+}
