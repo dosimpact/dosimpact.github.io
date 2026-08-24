@@ -377,5 +377,3 @@ create publication supabase_realtime
   for table products, prices;
 
 ```
-
-

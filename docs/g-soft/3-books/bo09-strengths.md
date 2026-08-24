@@ -8,7 +8,7 @@ sidebar_position: 9
 피터 드러커는 사람은 오직 강점을 통해서만 성과를 거둘 수 있다. 라고 말함.
 - 자신이 전혀 갖지 못한 재능은 물론, 약점을 토대로 성과를 낼 수 있는 사람은 아무도 없다.  
 - *다소 충격적인 내용이지만, 팀은 상호보완 측면에서는 이해가 된다.  
-- *약점을 보완하는 것은 엄청난 노력과, 성과까지 몇년이 걸릴 수 있다.  
+- *약점을 보완하는 것은 엄청난 노력과, 성과까지 몇 년이 걸릴 수 있다.  
 
 ## 📌 강점을 살린 예시  
 
@@ -20,7 +20,7 @@ A representative example of leveraging strengths is in sales work.
 - he approached the task by focusing on explaining intricate ideas and educating potential customers.   
 - This method allowed him to utilize his strengths effectively in the sales process.   
 
-*전화 마켓팅을 통해서 판매가 아닌 사실상 컨설팅을 해주고 있었네.  
+*전화 마케팅을 통해서 판매가 아닌 사실상 컨설팅을 해주고 있었네.  
 
 ## 📌 리더십 레벨  
 
@@ -50,7 +50,7 @@ A representative example of leveraging strengths is in sales work.
 
 우선 순위를 정해 목표를 달성할 수 있는 가장 효율적인 경로를 찾고, 낭비하는 시간을 최소한으로 줄인다.  
 
-바로 불론으로 들어가는 것을 좋아한다. 옷을 살 때도 여러가지 옷을 보면서 즐기는 것보다는 그냥 한가지 옷을 딱 사고, 가격도 효율적이면 사고 끝나는 것을 좋아한다.
+바로 본론으로 들어가는 것을 좋아한다. 옷을 살 때도 여러 가지 옷을 보면서 즐기는 것보다는 그냥 한가지 옷을 딱 사고, 가격도 효율적이면 사고 끝나는 것을 좋아한다.
 
 
 

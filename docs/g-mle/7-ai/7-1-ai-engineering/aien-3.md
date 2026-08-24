@@ -29,7 +29,7 @@ __3.2.5 퍼플렉시티 해석과 활용 사례
 2, 참조 데이터의 유사도 측정 : 정답셋과 얼마나 유사한지 판단하는 방법
   - 2-1, 정확한 일치 : 완전 문장 일치하면 정답 처리  
   - 2-2, 어휘적 유사도 : 문장에서 토큰을 추출 후 토큰의 수를 얼마나 유사한지 카운팅 혹은 연속 시퀀스로 측정  
-    - 방법: fuzzy maching, n-gram 유사도
+    - 방법: fuzzy matching, n-gram 유사도
     - 단점 : 의미는 유사해도 워딩 자체가 다르면 틀리다고 판단한다. 위치(표면적 형태) 따라 점수가 많이 차이남.   
       - A: "I love natural language processing"
       - B: "I love language natural processing"

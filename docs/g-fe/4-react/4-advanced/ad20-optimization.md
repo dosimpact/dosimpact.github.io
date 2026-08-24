@@ -84,7 +84,7 @@ export default LazyLoader;
 ## Memoization
 
 - memo를 통해서 부모가 리렌더링 되어도 props가 변경되지 않으면 리렌더링 되지 않는다.  
-- 이떄 props 변경은 얇은 비교를 통해서 이루어진다.  
+- 이때 props 변경은 얇은 비교를 통해서 이루어진다.  
   - useCallback => 매번함수가 재생성 방지  
   - useMemo => 매번 객체가 재생성 방지  
 

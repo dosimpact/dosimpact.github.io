@@ -35,8 +35,8 @@ Measurable high-level impact metrics
 
 💡 스킬  
 - 로컬에서 AI Agent을 동작시키는 지침이다.  
-- Rules보다 상위 호환, Worflows 도 비슷한 개념이지만 상위 호환이다.  
-- 지침/컨벤션 + 로컬 파일 접근 + MCP 호출을 한곳에 모아둔다.  
+- Rules보다 상위 호환, Workflows 도 비슷한 개념이지만 상위 호환이다.  
+- 지침/컨벤션 + 로컬 파일 접근 + MCP 호출을 한 곳에 모아둔다.  
 - 트리거 : 수동, 자동(필요하면 스스로 호출)  
 
 💡 멀티에이전트 기능    
@@ -81,7 +81,7 @@ Codex 문서 기준, `/init`으로 AGENTS.md 스캐폴딩 가능.
 - AGENTS.md에 반드시 명시: 모델 버전, reasoning level, review_model, 금지 규칙
 
 
-Plan -> Excute 2단계로 진행 : 각 Plan단위 구현 결과를 PR 및 코멘트로 남기기  
+Plan -> Execute 2단계로 진행 : 각 Plan단위 구현 결과를 PR 및 코멘트로 남기기  
 - checkpoint 습관화
 - review 생략 하지 말 것, 리뷰 게이트 (필수 루틴)
 	/review, reviewer agent 재검토, /diff,	테스트 실행, 인간 승인
@@ -96,4 +96,3 @@ Plan -> Excute 2단계로 진행 : 각 Plan단위 구현 결과를 PR 및 코멘
 
 
 ## 하이 래벨 테스트를 위한 가이드라인 만들기  
-

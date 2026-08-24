@@ -116,7 +116,7 @@ import * as Joi from 'joi';
 
 ## configMoudle 사용
 
-global module로 선언을 했기떄문에, 서비스의 생성자에서 configService를 주입받을 수 있다.  
+global module로 선언을 했기 때문에, 서비스의 생성자에서 configService를 주입받을 수 있다.  
 
 ```js
 // users.service.ts
@@ -220,4 +220,3 @@ export class AppModule { }
 https://docs.nestjs.com/techniques/configuration  
 https://www.npmjs.com/package/cross-env  
 https://www.npmjs.com/package/joi  
-

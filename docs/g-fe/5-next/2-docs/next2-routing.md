@@ -12,7 +12,7 @@ How Routing and Navigation Works
 
 next.js에서는 Route segments 단위로 코드 스플릿팅이 된다.  
 - 그 이유는 Route segments 별로 프리패칭 및 캐싱으로  
-- 다른 페이지 이동할 때 빠르게 이동할수 있도록 하기 위함이다.  
+- 다른 페이지 이동할 때 빠르게 이동할 수 있도록 하기 위함이다.  
 
 1.코드 스플리팅 (Code Splitting)  
 - Application이 작은 번들단위로 분리되며, 다운로드 사이징을 줄여 최적화.  
@@ -70,4 +70,3 @@ next.js에서는 Route segments 단위로 코드 스플릿팅이 된다.
 
 ## Intercepting Routes  
 >사진 카드를 클릭해서 모달창에 사진 UI을 보여준다. 하지만 현재 링크를 다시 브라우저에 넣으면 사진 페이지로 이동하고 싶을때    
-

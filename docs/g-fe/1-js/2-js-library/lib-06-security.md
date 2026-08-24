@@ -138,4 +138,3 @@ SameSite 쿠키 속성 설정: 쿠키에 SameSite 속성을 설정하여, 동일
    - `Secure` 속성도 함께 설정되어 있어야 합니다.(HTTPS).    
 
 ## 4.Cross-Site Resource Sharing (CORS)  
-

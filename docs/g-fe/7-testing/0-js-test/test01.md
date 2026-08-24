@@ -54,34 +54,34 @@ test case vs suite
 
 ```md
 규칙 - before/after-All은 Each를 감싼다.
-규칙 - outterEach는 innerEach를 감싼다.
-순서 - beforeAll(Outter) - beforeAll(Inner) - * -  afterAll(Inner) - afterAll(Outter)
-  * = beforeEach(Outter) - beforeEach(Inner) - test -  afterEach(Inner) - afterEach(Outter)
+규칙 - outerEach는 innerEach를 감싼다.
+순서 - beforeAll(Outer) - beforeAll(Inner) - * -  afterAll(Inner) - afterAll(Outer)
+  * = beforeEach(Outer) - beforeEach(Inner) - test -  afterEach(Inner) - afterEach(Outer)
 
-beforeAll (Outter)
+beforeAll (Outer)
   beforeAll (Inner)
-    beforeEach (Outter)
+    beforeEach (Outer)
       beforeEach (Inner)
           test()
       afterEach (Inner)
-    afterEach (Outter)
+    afterEach (Outer)
   afterAll (Inner)
-afterAll (Outter)
+afterAll (Outer)
 ```
 
 ```js
 beforeAll(() => {
-  console.log("outter beforeAll");
+  console.log("outer beforeAll");
 });
 afterAll(() => {
-  console.log("outter afterAll");
+  console.log("outer afterAll");
 });
 
 beforeEach(() => {
-  console.log("outter beforeEach");
+  console.log("outer beforeEach");
 });
 afterEach(() => {
-  console.log("outter afterEach");
+  console.log("outer afterEach");
 });
 
 describe("inner test", () => {
@@ -176,12 +176,12 @@ describe("matcher 02 - object", () => {
     goalUser = { name: "dodo", age: 20 };
   });
   //✅ 객체를 비교할 때는, 프로퍼티까지 같은지 봐야 하므로 , toEqual을 사용한다.
-  // - 하지만 undefiend (초기선언상태)의 프로퍼티는 검사 제외
+  // - 하지만 undefined (초기선언상태)의 프로퍼티는 검사 제외
   test("object not tobe (diff addr)", () => {
     expect(fn.makeUser("dodo", 20)).not.toBe(goalUser);
   });
 
-  // ✅ 분명 프로퍼티 중 key:undfined 가 있는데 테스트 통과 된다.
+  // ✅ 분명 프로퍼티 중 key:undefined 가 있는데 테스트 통과 된다.
   // - 단,null은 검사를 한다. (의도적 빈 값)
   test("object toEqual (deep equality)", () => {
     expect(fn.makeUser("dodo", 20)).toEqual(goalUser);

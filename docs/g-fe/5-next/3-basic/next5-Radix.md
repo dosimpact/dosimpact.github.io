@@ -31,7 +31,7 @@ Unstyled
 - 컴포넌트는 제로 스타일로 제공
 - 스타일링을 완벽하게 제어할 수 있습니다.
 - 컴포넌트는 모든 스타일링 솔루션(바닐라 CSS, CSS 전처리기, CSS-in-JS 라이브러리)으로 스타일링할 수 있습니다.
-- TailWindCSS랑 잘 붙고, 공식문서에 예시가 잘 되어있다. 
+- TailWindCSS랑 잘 붙고, 공식문서에 예시가 잘 되어 있다. 
 
 Opened
 
@@ -83,5 +83,4 @@ https://www.radix-ui.com/primitives/docs/guides/composition
 ## More  
 
 shadcn-form 빌더 : https://shadcn-form-build.vercel.app/  
-
 

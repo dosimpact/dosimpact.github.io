@@ -22,7 +22,7 @@ const deferredValue = useDeferredValue(value);
 ```
 
 실행 순서 예시  
-- 상황 : 사용자 검색에 300ms의 디바운스 및 필터링 로직에 오래 시간이 걸리니 deffered value를 적용  
+- 상황 : 사용자 검색에 300ms의 디바운스 및 필터링 로직에 오래 시간이 걸리니 deferred value를 적용  
 
 ```typescript
 // 사용자가 "상품명" 입력

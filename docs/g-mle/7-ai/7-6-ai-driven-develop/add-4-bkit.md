@@ -231,7 +231,7 @@ BFF Skiils
 Validation Quality gateway Skills
 - 1. Code Level Unit test GW (vitest)
 - 2. API Level e2e (Bruno)
-- 3. Brower Level Testing (playwright)
+- 3. Browser Level Testing (playwright)
 - 4. Storybook component Testing (storybook)
 - 5. Validation Loop Logging Spec w/Bigfoot Cuticle 
 

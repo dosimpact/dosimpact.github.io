@@ -24,7 +24,7 @@ sidebar_position: 12
 
 https://app.codility.com/programmers/lessons/15-caterpillar_method/abs_distinct/   
 
-문제 : 배열에서 distinct value의 갯수를 찾는 문제, 단 절대값으로 본다.  
+문제 : 배열에서 distinct value의 개수를 찾는 문제, 단 절대값으로 본다.  
 특이점
   - 1. 냄새 : 배열이 non-decreasing order ( 오름차순이 아닌, 즉 같거나 내림차순 ) 
 로직
@@ -75,7 +75,7 @@ function solution(A) {
 
 https://app.codility.com/demo/results/training9KGKGW-ZEM/
 
-문제 : 배열에서 distinct value의 Set의 갯수를 구하는 문제  
+문제 : 배열에서 distinct value의 Set의 개수를 구하는 문제  
 특이점
   - 1. 냄새 : 배열의 순서가 고정되어 있음.   
   - 2. back, front 포인터를 통해서 내부 Set을 계산이 가능하다.   
@@ -130,4 +130,3 @@ function solution(M, A) {
     return totalSlices;
 }
 ```
-

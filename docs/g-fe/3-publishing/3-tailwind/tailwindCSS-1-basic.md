@@ -210,7 +210,7 @@ className="disabled:cursor-not-allowed disabled:opacity-50"
 ### group
 
 - group 이라는 classname
-- 부모 선택자 (group), 부모 요소에 hover할 떄 자식요소들이 반응할 수 있다.  
+- 부모 선택자 (group), 부모 요소에 hover할 때 자식요소들이 반응할 수 있다.  
 
 https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
 

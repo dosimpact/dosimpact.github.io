@@ -20,7 +20,7 @@ Requirements
 - [ ] Next.js, React 모두 PoC을 완성해야 한다.  
 - [ ] 내부 동작에 대한 이해가 되며 커스터마이징이 필요.  
 
-Demo Ananlysis 
+Demo Analysis 
 - [ ] 데모 분석 : https://www.copilotkit.ai/use-cases/co-creation-copilot
 - [ ] 데모 분석 : https://www.copilotkit.ai/use-cases/saas-copilot
 

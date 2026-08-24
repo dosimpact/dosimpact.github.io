@@ -118,7 +118,7 @@ type CampaignSnapshot = Readonly<{
 }>;
 
 function toCampaignSnapshot(dto: CampaignDto): CampaignSnapshot {
-  // 서버 표현을 해석하는 지식을 이 변환 함수 한곳에 모은다.
+  // 서버 표현을 해석하는 지식을 이 변환 함수 한 곳에 모은다.
   return {
     id: CampaignId.from(dto.id),
     dailyBudget: Money.fromMicros(

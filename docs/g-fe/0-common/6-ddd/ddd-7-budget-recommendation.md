@@ -212,7 +212,7 @@ export function sortItemsWithinUnit(
 2. 실행 절차 및 구현 규칙
    - Application의 `recommendationPolicyForVariant()`가 Variant를 `RecommendationPolicy`로 변환해 Domain 함수에 전달한다.
    - 컴포넌트 곳곳에 `variant === "TREATMENT"` 조건을 작성하지 않는다.
-   - 실험 종료 후에는 Policy 변환부와 비활성 분기만 제거할 수 있도록 변경 지점을 한곳으로 모은다.
+   - 실험 종료 후에는 Policy 변환부와 비활성 분기만 제거할 수 있도록 변경 지점을 한 곳으로 모은다.
 
 ```ts
 // domain/model/RecommendationPolicy.ts

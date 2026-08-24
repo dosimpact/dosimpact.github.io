@@ -10,7 +10,7 @@ sidebar_position: 3
   - [Background](#background)
   - [Streaming Protocol](#streaming-protocol)
     - [Other Examples](#other-examples)
-  - [메세지 구조 및 Reasoning에 대한 처리](#메세지-구조-및-reasoning에-대한-처리)
+  - [메시지 구조 및 Reasoning에 대한 처리](#메시지-구조-및-reasoning에-대한-처리)
 
 
 Goal: Design and organize a method for AI UI generation in an LLM chatbot.  
@@ -57,7 +57,7 @@ Goal: Design and organize a method for AI UI generation in an LLM chatbot.
 - 2, Tool Calling : An LLM can decide which functions to invoke through Chain-of-Thought (CoT), and we can capture this decision using formatted output.  
   - It can perform tasks such as mathematical calculations, local operations, and API calls (including MCP).
 
-- 3, UI Generation with Formated Output : The result of a specific tool call can produce a structured response in JSON format. By matching this response with a UI component renderer, UI generation becomes possible.   
+- 3, UI Generation with Formatted Output : The result of a specific tool call can produce a structured response in JSON format. By matching this response with a UI component renderer, UI generation becomes possible.   
 
 Terms  
 - Provider: A service that provides AI models, such as OpenAI or Anthropic.
@@ -92,18 +92,18 @@ About Tools
 
 Types of Tools
 - Custom Tools : Full Custom defined by above 1,2,3 properties
-- Provider-Defined Tools : Model provider preset tool, developer implements excute function parts   
-- Provider-Executed Tools : fully excuted by Model provider and theirs clouds.  
+- Provider-Defined Tools : Model provider preset tool, developer implements execute function parts   
+- Provider-Executed Tools : fully executed by Model provider and theirs clouds.  
 
 fyi,
 - Tools concepts include mcp calling
-- AI SDK not support yet skills, skills include serveral sequential tool calling with
+- AI SDK not support yet skills, skills include several sequential tool calling with
 
 
 
 ## Streaming Protocol  
 
-1, Simple text reponse, text can be markdown format 
+1, Simple text response, text can be markdown format 
 ```json
 [
   {
@@ -290,7 +290,7 @@ data: [DONE]
 
 ```
 
-## 메세지 구조 및 Reasoning에 대한 처리  
+## 메시지 구조 및 Reasoning에 대한 처리  
 
 1, Message 테이블 및 parts 필드  
 

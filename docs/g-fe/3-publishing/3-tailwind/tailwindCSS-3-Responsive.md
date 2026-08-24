@@ -17,7 +17,7 @@ https://tailwindcss.com/docs/responsive-design
 ```js
 # md:hidden : @media (min-width: 768px) { ... }
 - 최소 768px 이상의 너비를 가진 화면이라면,(예 PC) 작동하는 로직
-- 모바일을 기준으로 작업을한다. 모바일에서 보이는건 PC에서 보이지만 반대의 경우에는 그렇진 않기 떄문.  
+- 모바일을 기준으로 작업을한다. 모바일에서 보이는건 PC에서 보이지만 반대의 경우에는 그렇진 않기 때문.  
 
 # type1 - mobile 보여주다가, PC 숨긴다.
 className="flex md:hidden gap-x-2 items-center"

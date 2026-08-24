@@ -61,7 +61,7 @@ const [usersQuery, teamsQuery, projectsQuery] = useSuspenseQueries({
 https://tanstack.com/query/v5/docs/framework/react/guides/prefetching  
 
 프리패칭 기법을 통해 데이터를 미리 가져오면 2가지 장점이 있다.  
-- reqeust waterfalls (렌더링 워터폴)을 피할 수 있음.  
+- request waterfalls (렌더링 워터폴)을 피할 수 있음.  
 - 사전에 미리 데이터를 가져오므로 빠른 사용자 경험 가능.  
 
 이허란 프리패칭은 크게 3가지 패턴에서 작성 가능  
@@ -80,6 +80,4 @@ SSR에서 굳이 react-query 객체의 hydration을 해야하는 이유
 - SSR의 목적은 html preview를 만들어서 첫화면 렌더링 시간을 단축하는데 의의가 있다.  
 - 이때 데이터 패칭을 SSR 과정에서 진행하고 후속 CSR에서 그 데이터를 조작해야 한다면 하이드레이션 과정이 필요하다. 
 - 서버 데이터 관리의 주체가 react-query라면 그들의 hydration을 규칙을 따라야 함.    
-
-
 

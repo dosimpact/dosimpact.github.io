@@ -113,7 +113,7 @@ Counting Elements
 ```js
 function solution(A) {
     // 1. 중복 제거 -> 양수 필터링 -> 정렬
-    // (Set을 먼저 써서 정렬할 갯수를 줄이는 것이 성능상 조금 더 유리합니다)
+    // (Set을 먼저 써서 정렬할 개수를 줄이는 것이 성능상 조금 더 유리합니다)
     const sortedA = [...new Set(A)].filter(x => x > 0).sort((a, b) => a - b);
     // [체크 1] 양수가 아예 없는 경우 (예: [-1, -3])
     if (sortedA.length === 0) return 1;
@@ -247,5 +247,4 @@ function solution(A) {
 
 - 문제 : 직사각형의 돌을 최대한 적게 쌓는 문제이다.  
 - ⚠️ 로직 : 우선 발상이 어렵다. 스택 구조로 풀어가는게 최소임을 어떻게 아는가?    
-
 

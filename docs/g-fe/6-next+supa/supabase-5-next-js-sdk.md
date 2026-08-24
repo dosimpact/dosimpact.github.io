@@ -155,7 +155,7 @@ const { data, error } = await supabase
 
 
 // 1.1
-// 갯수만 구하기  
+// 개수만 구하기  
 const { data, error } = await supabase
   .from('countries')
   .select(`*, cities(count)`)

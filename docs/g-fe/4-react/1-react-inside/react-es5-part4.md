@@ -195,7 +195,7 @@ Dynamic, Static 2가지로 분류되면서 일부 컴포넌트 때문에 전체�
 - 문제점 : SSR 과정에서 데이터 패칭은 여러 컴포넌트에서 요청한다.   
   - 1,라우터 내 로컬 컴포넌트들에서 중복된 요청을 하는 경우.  
   - 2,서로 다른 유저의 request에서 요청이 발생하는 경우. (위 1번이 여러번 발생)     
-  - (리액트에서 water fall fetching을 한번에 처리한다고 생각하면 부하가 상당할 것.)  
+  - (리액트에서 water fall fetching을 한 번에 처리한다고 생각하면 부하가 상당할 것.)  
   - 1번을 해결하기 위해, 캐시기능이 wrapping된 fetch 라이브러리를 사용해아 한다.   
 - axios등 외부라이브러리를 사용해도 무관하지만 React.cache로 감싸서 직접 캐시를 구현해야 한다.   
 
@@ -247,7 +247,7 @@ fetch('https://...', { next: { revalidate: 60 } });
 - mutation 동작에 대해서 서버의 리모트 함수를 콜 해주는 기능이다.  
 - 장점 1, data mutation + rerendering 기능을 같이 수행 2, 별도의 end point없이 가능하다.  
 - 내부적인 동작 원리
-  - 1,header에 Accpet=text/x-component와 action id로 호출한다.  
+  - 1,header에 Accept=text/x-component와 action id로 호출한다.  
   - 2,서버 액션들의 매핑된 manifest 파일이 있다. action id -> module id로 어떤 함수를 호출해야 할지 안다.  
   - 3,서버 액션 후 RSC Payload를 리턴하여 브라우저는 부분적 UI 업데이트 진행.  
 
@@ -261,5 +261,4 @@ fetch('https://...', { next: { revalidate: 60 } });
   - 2,Transition Update : 무거운 작업때문에 화면이 멈추는 현상을 해결하기 위함  
     - eg, 검색어 입력 후 결과 렌더링, 무거운 컴포넌트로의 탭 전환  
     - *리액트에게 렌더링 우선순위를 전달 가능.   
-
 

@@ -153,7 +153,7 @@ contract Will {
     inheritance[wallet] = amount;
   }
 
-  // 잔액이 부족하면 tranfer 실패 
+  // 잔액이 부족하면 transfer 실패 
   function payout() private mustBeDeceased{
     for(unit i = 0; i <  familyWallets.length; i++ ){
       familyWallets[i].transfer(inheritance[familyWallets[i]])

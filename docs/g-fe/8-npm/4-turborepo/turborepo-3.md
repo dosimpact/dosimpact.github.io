@@ -16,7 +16,7 @@ sidebar_position: 3
     - [Setup tsup with bin script (npx cli)](#setup-tsup-with-bin-script-npx-cli)
   - [Local test](#local-test)
     - [Test in another project](#test-in-another-project)
-  - [publish to npm regitry](#publish-to-npm-regitry)
+  - [publish to npm registry](#publish-to-npm-registry)
   - [download from npm registry](#download-from-npm-registry)
 
 
@@ -51,7 +51,7 @@ pnpm i -r
 // 2.1 로컬 의존성 설치하는 방법  
 pnpm add package-name  
 pnpm add package-name -D  
-// 2.2 여러 레포에 한번에 의존성 링크하기  
+// 2.2 여러 레포에 한 번에 의존성 링크하기  
 pnpm add @org/ui --filter apps/web  
 // 2.3 수동으로 설치하기
 - "@org/ui":"workspace:*" -> pnpm i  
@@ -155,11 +155,11 @@ package.json
 ```js
 // 0.src/index.ts  
 // 배럴 파일에서는 이름이 겹칠 수 있다. renamed & re-export 하는 방법을 사용한다.
-// export * from './calcuator/index.js';
-// export * from './calcuator-v2/index.js';
+// export * from './calculator/index.js';
+// export * from './calculator-v2/index.js';
 
-import * as CalculatorV1 from './calcuator/index.js';
-import * as CalculatorV2 from './calcuator-v2/index.js';
+import * as CalculatorV1 from './calculator/index.js';
+import * as CalculatorV2 from './calculator-v2/index.js';
 
 export { CalculatorV1, CalculatorV2 };
 
@@ -205,24 +205,24 @@ export default defineConfig({
   "license": "ISC",
   "type": "module",
   "exports": {
-    "./calcuator": {
+    "./calculator": {
       "require": {
-        "types": "./dist/calcuator/index.d.cts",
-        "default": "./dist/calcuator/index.cjs"
+        "types": "./dist/calculator/index.d.cts",
+        "default": "./dist/calculator/index.cjs"
       },
       "import": {
-        "types": "./dist/calcuator/index.d.ts",
-        "default": "./dist/calcuator/index.js"
+        "types": "./dist/calculator/index.d.ts",
+        "default": "./dist/calculator/index.js"
       }
     },
-    "./calcuator-v2": {
+    "./calculator-v2": {
       "require": {
-        "types": "./dist/calcuator-v2/index.d.cts",
-        "default": "./dist/calcuator-v2/index.cjs"
+        "types": "./dist/calculator-v2/index.d.cts",
+        "default": "./dist/calculator-v2/index.cjs"
       },
       "import": {
-        "types": "./dist/calcuator-v2/index.d.ts",
-        "default": "./dist/calcuator-v2/index.js"
+        "types": "./dist/calculator-v2/index.d.ts",
+        "default": "./dist/calculator-v2/index.js"
       }
     }
   },
@@ -258,8 +258,8 @@ export default defineConfig({
 
 ```js
 // 1.src/index.ts  
-export * from './calcuator/index.js';
-export * from './calcuator-v2/index.js';
+export * from './calculator/index.js';
+export * from './calculator-v2/index.js';
 
 
 
@@ -279,24 +279,24 @@ export * from './calcuator-v2/index.js';
   "license": "ISC",
   "type": "module",
   "exports": {
-    "./calcuator": {
+    "./calculator": {
       "require": {
-        "types": "./dist/calcuator/index.d.cts",
-        "default": "./dist/calcuator/index.cjs"
+        "types": "./dist/calculator/index.d.cts",
+        "default": "./dist/calculator/index.cjs"
       },
       "import": {
-        "types": "./dist/calcuator/index.d.ts",
-        "default": "./dist/calcuator/index.js"
+        "types": "./dist/calculator/index.d.ts",
+        "default": "./dist/calculator/index.js"
       }
     },
-    "./calcuator-v2": {
+    "./calculator-v2": {
       "require": {
-        "types": "./dist/calcuator-v2/index.d.cts",
-        "default": "./dist/calcuator-v2/index.cjs"
+        "types": "./dist/calculator-v2/index.d.cts",
+        "default": "./dist/calculator-v2/index.cjs"
       },
       "import": {
-        "types": "./dist/calcuator-v2/index.d.ts",
-        "default": "./dist/calcuator-v2/index.js"
+        "types": "./dist/calculator-v2/index.d.ts",
+        "default": "./dist/calculator-v2/index.js"
       }
     }
   },
@@ -323,7 +323,7 @@ export * from './calcuator-v2/index.js';
 
 ```js
 // 1.
-// src/scripts/indext.ts
+// src/scripts/index.ts
 
 #!/usr/bin/env node
 
@@ -407,7 +407,7 @@ cjs test
 - change package.json type to commonjs
 ```js
 
-const { adder } = require("@dodo/blocks/calcuator-v2");
+const { adder } = require("@dodo/blocks/calculator-v2");
 
 console.log(typeof module !== "undefined" ? "CommonJS" : "ES Module"); // CommonJS
 
@@ -420,7 +420,7 @@ mjs test
 ```js
 // ---
 
-import { adder } from "@dodo/blocks/calcuator-v2";
+import { adder } from "@dodo/blocks/calculator-v2";
 
 // module 이라는 전역 객체가 존재한다.
 console.log(typeof module !== "undefined" ? "CommonJS" : "ES Module"); // ES Module
@@ -429,7 +429,7 @@ console.log(adder(1, 2));
 
 ```
 
-## publish to npm regitry  
+## publish to npm registry  
 
 ```
 // 1.

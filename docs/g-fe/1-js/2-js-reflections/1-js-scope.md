@@ -37,7 +37,7 @@ sidebar_position: 1
 - 함수내 선언된 변수가 무엇인지, 매개변수, 복귀 주소 등 정보가 담겨 있다.  
 - 이는 콜 스택에 선입 선출 구조로 쌓이며, 메모리 스택 영역에 할당
 - Javascript도 동일한데, 실행 컨텍스트는 스택 프레임이 더 확장된 개념이다.  
-- 실행 컨텍스트에는 렉시컬 환경, 변수 환경, this biding 자료구조가 만들어진다.
+- 실행 컨텍스트에는 렉시컬 환경, 변수 환경, this binding 자료구조가 만들어진다.
 - 렉시컬 환경에는 현재 컨텍스트의 식별자, 상위 소크프 참조로 구성
 - 변수 환경에는 초기값은 렉시컬 환경이랑 동일, 이후 변수 변경을 기록  
 - this 식별자가 바라봐야 할 객체 저장  
@@ -59,16 +59,16 @@ sidebar_position: 1
 환경 레코드 : 식별자 기록, 식별자 바인딩된 값 기록  
 - 실행 컨텍스트는 생성 단계 (Creation Phase)을 먼저 실행 (스캐너 처럼)
   - 메모리 공간 확보 및 식별자와 연결  
-  - var 식별자들을 환경 레코드에 기록와 동시에 undefiend로 초기화   
-  - let, const는 undefiend로 초기화 하지 않는다. 그래서 TDZ가 발생  
+  - var 식별자들을 환경 레코드에 기록와 동시에 undefined로 초기화   
+  - let, const는 undefined로 초기화 하지 않는다. 그래서 TDZ가 발생  
   - 함수 선언문은 선언과 동시에 생성되어 TDZ없이 사용이 가능하다.  
 - 실행 단계 (Execution Phase)에서 코드의 실행 및 환경 레코드의 변수들을 읽기/쓰기 진행   
-- *Temproal Dead Zone : let, const의 경우 선언 이전에 참조할 수 없는 구역을 말한다.  
+- *Temporal Dead Zone : let, const의 경우 선언 이전에 참조할 수 없는 구역을 말한다.  
 
 키워드 : 
 - Hoisting, Execution Context(Creation Phase, Execution Phase)  
-- Declaration, Initalization  
-- Temporal Dead Zone, Function Expression, Function Delcaration   
+- Declaration, Initialization  
+- Temporal Dead Zone, Function Expression, Function Declaration   
 
 ES3에서는 동적스코프 ( 변수객체, 스코프 체인, this )로 작동했지만, ES5 이후에는 실행 컨텍스트 도입으로 정적 스코프가 도입되었다.  
 

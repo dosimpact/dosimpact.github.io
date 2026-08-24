@@ -117,7 +117,7 @@ ISR : Incremental Static Regeneration
 - 마치 Batch를 통해서 갱신하는 방법  
 
 SSR : Dynamic Server Side Rendering  
-- 요청할 떄, 항상 새로운 데이터를 바탕으로 렌더링 결과물을 만든다.  
+- 요청할 때, 항상 새로운 데이터를 바탕으로 렌더링 결과물을 만든다.  
 - 항상 최신 데이터를 유지한다.  
 - 성능상 캐싱을 사용할 수 있다.  
 - eg) Revalidating

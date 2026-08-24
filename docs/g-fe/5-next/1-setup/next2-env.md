@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 2.Enviroment variables
+# 2.Environment variables
 
 Guide : https://nextjs.org/docs/app/guides/environment-variables  
 

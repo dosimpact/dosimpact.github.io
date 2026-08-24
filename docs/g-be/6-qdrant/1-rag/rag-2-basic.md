@@ -134,7 +134,7 @@ sidebar_position: 2
 
 4️⃣ Orchestration Model (오케스트레이션 모델)
 - Centralized RAG
-- 리트리버·제너레이터·프롬프트 로직이 한곳에 묶여 있음
+- 리트리버·제너레이터·프롬프트 로직이 한 곳에 묶여 있음
 - 배포는 간단하지만 확장·최적화 어려움
 - Modular RAG
 - 각 구성요소 분리 (예: V8/ChromeDB로 검색, LangChain으로 조율, GPT-4/Claude로 생성)

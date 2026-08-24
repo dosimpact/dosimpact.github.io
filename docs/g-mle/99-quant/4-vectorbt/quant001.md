@@ -79,7 +79,7 @@ import vectorbt as vbt
 
 
 # download from 
-# - exchage, timeframe, start ~ end
+# - exchange, timeframe, start ~ end
 # *delay, limit, retries ... 
 
 df = vbt.CCXTData.download_symbol(

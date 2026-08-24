@@ -59,7 +59,7 @@ sidebar_position: 2
 - Source : S3 ( Readable Stream )
 - Transform : zip ( Transform Stream )
 - Transform : Network I/O  ( Transform Stream )  
-- Desination : browser를 실행시키고 있는 컴퓨터의 디스크 ( Writeable Stream )
+- Destination : browser를 실행시키고 있는 컴퓨터의 디스크 ( Writeable Stream )
 
 2.소득과 관련된 DB데이터를 읽어서 보고서를 작성하여 S3에 저장하는 처리.  
 - 1년 소득 연간 보고서 SQL > 데이터 파싱을 거쳐 CSV 파일 > S3에 업로드
@@ -116,4 +116,3 @@ HTTP와 스트림
 2. downstream 은 데이터가 들어오면 이벤트로 알게 된다.
 3. downstream 데이터가 처리가 다 되면 upstream에게 데이터를 달라고 요청한다.
 4. 위 과정의 반복으로 모든 청크파일이 보내지면 종료 이벤트를 보낸다.
-

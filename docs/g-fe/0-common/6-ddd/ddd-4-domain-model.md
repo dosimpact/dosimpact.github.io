@@ -94,7 +94,7 @@ export class Money {
 
 - 생성자를 `private`으로 막아 `Money.won()`의 검증을 우회할 수 없게 했다.
 - 모든 필드는 `readonly`이므로 값 변경은 기존 객체 수정이 아니라 새 `Money` 생성으로 표현한다.
-- `equals()`와 `isAtLeast()`가 값의 동등성 및 비교 규칙을 한곳에 모은다.
+- `equals()`와 `isAtLeast()`가 값의 동등성 및 비교 규칙을 한 곳에 모은다.
 
 **함수형 TO-BE — 불변 데이터와 스마트 생성 함수:** Value Object를 클래스가 아닌 `Readonly` 데이터로 표현하고, 검증을 통과한 값만 생성 함수로 반환할 수 있다.
 

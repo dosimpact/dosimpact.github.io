@@ -54,11 +54,11 @@ readable.on("end", () => {
 ### 이벤트와 함수 목록
 
 Readable Streams
-- Events : data, end, erorr, close, readable
+- Events : data, end, error, close, readable
 - Functions : pipe, unpipe / read, unshift, resume / pause, isPaused, setEncoding
 
 Writable Streams
-- Events : drain, finsh, erorr, close, pipe/unpipe
+- Events : drain, finish, error, close, pipe/unpipe
 - Functions : write / end / cork, uncork / setDefaultEncoding
 
 
@@ -719,4 +719,3 @@ bootstrap();
 
 
 문제 : 하단의 download dialog 로 나오지 않음
-

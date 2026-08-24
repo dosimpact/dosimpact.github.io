@@ -119,7 +119,7 @@ export default Input;
 ## Dynamic Props  
 
 >variant props만 설정하면 나머지 속성들은 알아서 들어가도록.  
-- button에는 varient = submit | reset | skip 있다.   
+- button에는 variant = submit | reset | skip 있다.   
 - submit props를 넘기면 관련 JSX Props를 넣어주자.
 
 ```js
@@ -153,4 +153,3 @@ const Button = (props: ButtonProps) => {
 
 export default Button;
 ```
-

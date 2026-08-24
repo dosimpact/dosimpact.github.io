@@ -179,7 +179,7 @@ https://supabase.com/docs/guides/getting-started/architecture
 리액트 핸드북 > 파일 구조 > bulletproof-react  
 - https://reacthandbook.dev/project-standards#file-directory-structures
 
-Next.js 14 + @supabase/ssr: authencation, oauth, page protection,CRUD
+Next.js 14 + @supabase/ssr: authentication, oauth, page protection,CRUD
 - https://www.youtube.com/watch?v=PdmKlne1gRY
 
 Learn Supabase (Firebase Alternative) – Full Tutorial for Beginners

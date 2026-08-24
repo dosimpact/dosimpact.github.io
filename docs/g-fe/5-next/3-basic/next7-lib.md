@@ -5,7 +5,7 @@ sidebar_position: 7
 # Next + Lib
 - [Next + Lib](#next--lib)
   - [react-spinners](#react-spinners)
-    - [useage](#useage)
+    - [usage](#usage)
     - [ref](#ref)
   - [react-hot-toast](#react-hot-toast)
 
@@ -14,7 +14,7 @@ sidebar_position: 7
 
 kinetic loading 을 보여줄 수 있다.  
 
-### useage
+### usage
 
 ```js
 import { BounceLoader } from "react-spinners";

@@ -73,7 +73,7 @@ https://play.tailwindcss.com/KouIC0NGnM
 3.Input 영역은 150px 높이고정
 4.Chat 영역은 나머지 차지하도록 flex-1로 최대한 공간 사용
   - Chat+Input Container : h-full flex, flex-col
-  - Chat Outter Wrapper : flex-1 *overflow-hidden*
+  - Chat Outer Wrapper : flex-1 *overflow-hidden*
   - Chat Inner Wrapper : h-full *overflow-y-auto*
   - Chat Elements : h-4
   - * flex:1과 overflow-hidden이 만나면 flex1이 무한정 늘어나는것을 방지할 수 있다.

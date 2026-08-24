@@ -40,7 +40,7 @@ services:
 - QDRANT__SERVICE__API_KEY 는 admin key같은 존재이며, REST API의 인증헤더에 사용 가능  
 
 
-## API Interafce 
+## API Interface 
 - https://qdrant.tech/documentation/interfaces/#api-reference  
   - openapi.json - https://github.com/qdrant/qdrant/blob/master/docs/redoc/master/openapi.json 
   - 위 내용을 PostMan에 추가해서 사용하면 좋다.  
@@ -48,5 +48,4 @@ services:
 ![Alt text](image.png)  
 - Variables : 프로토콜 및 url 설정하기  
 - Authorization : api-key 헤더에 추가하기 
-
 

@@ -20,7 +20,7 @@ sidebar_position: 1
   - 로그인 기능, 장바구니 기능, 프로필 편집 기능  
 - 역할 (Responsibility) : 기술적 관심사 중심의 목적 달성을 수행하는 단위  
   - UI, Model, API, Validation, Lib    
-- 관심사 분리(SOC, Seperation of Concerns)   
+- 관심사 분리(SOC, Separation of Concerns)   
   - 관심사 분리는 크게는 기능과 역할로 분리한다.  
   - 관심사 분리는 기능 내에서도 분리한다.  
   - 관심사 분리는 역할 내에서도 분리한다.  

@@ -172,4 +172,4 @@ export default nextConfig;
 주의 
 - `test: /supabase\/.*/,`  -> @supabase/ssr 과 같은 모듈의 경로도 무시하는 패턴이다.  
 - `test: /^\/supabase\/.*/,` -> ignore-loader가 supabase라는  경로로 시작하는 모듈의 경우를 무시한다.  
-  - 다행이도 @supabase라는 네임스페이스 때문에 의존성을 사용할 수 있다.  
+  - 다행히도 @supabase라는 네임스페이스 때문에 의존성을 사용할 수 있다.  

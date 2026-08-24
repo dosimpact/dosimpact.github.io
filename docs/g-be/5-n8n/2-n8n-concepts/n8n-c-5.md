@@ -33,7 +33,7 @@ C2.1 다양한 데이터 스트림의 데이터 병합
 
 Merge 노드  
 - Table(데이터 스트림)을 Join 할 때 사용.
-- Mode:Combine : left join, right join, outter join, inner join 지원.  
+- Mode:Combine : left join, right join, outer join, inner join 지원.  
 - Mode:append : A에 B데이터를 그냥 이어 붙인다.    
 
 
@@ -196,5 +196,4 @@ Click, Web hook, Batch, on Fail Workflow, Error Trigger
 Discord, Email, Telegram, (firebase FCM)
 
 ## Usage) Data Source  
-
 

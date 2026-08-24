@@ -5,13 +5,13 @@ sidebar_position: 1
 # 2. Block   
 
 - [2. Block](#2-block)
-  - [🔥 Outter Css](#-outter-css)
+  - [🔥 Outer Css](#-outer-css)
   - [eg) 마진 병합](#eg-마진-병합)
   - [🔥 Inner Css](#-inner-css)
   - [100vh vs 100dvh](#100vh-vs-100dvh)
 
 
-## 🔥 Outter Css
+## 🔥 Outer Css
 
 ## eg) 마진 병합
 
@@ -43,4 +43,3 @@ sidebar_position: 1
 100dvh  
 - 주소창이 사라지면 `100dvh`의 값은 **새로 커진 뷰포트의 높이에 맞춰 실시간으로 변경**  
 - 모바일 환경에서 깜빡임 없이 레이아웃 유지 가능  
-

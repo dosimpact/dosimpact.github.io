@@ -27,11 +27,11 @@ sidebar_position: 2
   - Controlled component : 부모 컴포넌트가 자식의 상태, 이벤트를 관리할 수 있다.  
   - Uncontrolled component : 부모 컴포넌트는 자식의 상태 관리 불가, 별도의 API를 통해 접근해야 한다.  
 
-- Composition vs Compund  
+- Composition vs Compound  
   - Composition 컴포넌트 합성 : 기존의 컴포넌트는 유지하면서, 앞, 뒤, 혹은 감싸는 방식으로 컴포넌트를 확장하는 방식.   
     - 물리에서 합성물의 형태를 생각. -> 물리적 재결합  
     - 예) HoC, Render Props 패턴 등  
-  - Compund 컴포넌트의 혼합 : 컴포넌트의 특성이 바뀌는 조작으로 컴포넌트들을 연결한다.  
+  - Compound 컴포넌트의 혼합 : 컴포넌트의 특성이 바뀌는 조작으로 컴포넌트들을 연결한다.  
     - 물리에서 결합물을 생각. -> 화학적 재결합  
     - 예) Context에 영향을 받는 컴포넌트들, Radix의 Namespace Patterned Component  
 
@@ -39,7 +39,7 @@ sidebar_position: 2
   - 컴포넌트의 props만으로도 어떤 데이터가 필요하고 어떤 데이터를 변경하는지 예측 가능 해야함.  
   - Composition 패턴을 사용 *(재사용성 높이기)* 하면서 Controlled Component로 *(에측 가능한)* 코드를 작성한다.   
 
-- 특정한 목적을 가진 컴포넌트들들은 합성 대신 Compund를 사용해도 좋다.  
+- 특정한 목적을 가진 컴포넌트들들은 합성 대신 Compound를 사용해도 좋다.  
   - 대신 해당 컴포넌트를 사용하는 컨테이너 컴포넌트는 Composition 합성을 사용한다.  
 
 
@@ -51,7 +51,7 @@ sidebar_position: 2
   1.비즈니스 로직이 간단한 경우라면 컴포넌트의 Composition으로 끝내야 한다.    
   2.하지만 props drilling, props hell 등 굉장히 복잡해지는 경우가 있다.  
     - 한 화면에서 복잡한 데이터를 다루는 데스크탑 앱 코드 등..  
-    - props drilling, props hell 을 해결하기 위해 컴포넌트간의 강결합(Compund)로 처리한다.
+    - props drilling, props hell 을 해결하기 위해 컴포넌트간의 강결합(Compound)로 처리한다.
       - 주의, props 처리가 간단해지는 만큼 추후 재사용성은 기대하면 안된다.  
       - 팁, Context를 사용하면 좋지만 리렌더링 최소화를 위해 context-selector를 사용하면 좋다.  
       - 컨벤션, 강결합의 의미로 Namespace pattern을 의도적으로 사용하는 것은 좋다.  
@@ -176,4 +176,3 @@ return (
   </div>
 )
 ```
-

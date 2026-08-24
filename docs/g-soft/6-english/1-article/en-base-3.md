@@ -62,13 +62,13 @@ I am living in a Jeonse house.
 2월달말에 이사가 예정이다.  
 I am scheduled to move out at the end of February
 
-새로운 새입자를 구해야 내가 나갈 수 있다.
+새로운 새 입주자를 구해야 내가 나갈 수 있다.
 I need to find a new tenant so that I can get my deposit back and move out.
 
 나는 그것에 대해 걱정이다. 
 I am worried about it
 
-만약 적시에 새입자가 안나타나면 새로운 집에 가는것에 문제가 생긴다. 
+만약 적시에 새 입주자가 안 나타나면 새로운 집에 가는것에 문제가 생긴다. 
 If a new tenant doesn't show up on time, I will have trouble moving into my new house.
 
 ## 26.01.16  

@@ -49,7 +49,7 @@ import {
   HttpCampaignRepository,
 } from "./adapters/http-repositories";
 
-// 구체 Adapter 생성은 바깥쪽 조립 지점 한곳에서만 수행한다.
+// 구체 Adapter 생성은 바깥쪽 조립 지점 한 곳에서만 수행한다.
 const campaignRepository = new HttpCampaignRepository("/api");
 const campaignBudgetRepository = new HttpCampaignBudgetRepository("/api");
 
@@ -252,7 +252,7 @@ OOP 예제의 예외는 함수형 예제에서 `Result`의 실패 값이 된다.
 
 1. 판단 기준 및 적용 조건
   - DTO는 통신 계약이고 Domain Entity는 행동과 불변식을 가진 업무 모델이므로 같은 타입으로 재사용하지 않는다.
-  - Mapper는 필드 이름, `null`, 통화 단위, enum 차이를 한곳에서 변환하고 알 수 없는 값은 조용히 기본값으로 바꾸지 않는다.
+  - Mapper는 필드 이름, `null`, 통화 단위, enum 차이를 한 곳에서 변환하고 알 수 없는 값은 조용히 기본값으로 바꾸지 않는다.
 
 2. 실행 절차 및 구현 규칙
   - 수신 DTO는 Mapper에서 `Campaign.restore`와 `CampaignBudget.restore`에 필요한 값으로 변환한다.
@@ -474,7 +474,7 @@ export function useChangeCampaignDailyBudget(campaignId: CampaignId) {
 코드 해설
 
 - React Query는 `Campaign` 규칙을 구현하지 않는다. Use Case 실행 시점과 결과의 캐시 수명만 제어한다.
-- key 생성 함수를 한곳에 두면 상세, 목록, 통계 캐시를 잘못 무효화하는 실수를 줄일 수 있다.
+- key 생성 함수를 한 곳에 두면 상세, 목록, 통계 캐시를 잘못 무효화하는 실수를 줄일 수 있다.
 - 낙관적 업데이트가 필요하면 되돌리기 가능한 UI 표현에만 적용하고, 게시처럼 외부 효과가 큰 명령은 서버 응답 후 확정한다.
 
 React Hook 자체는 이미 함수이므로 Hook 전체를 함수형 버전으로 복제할 필요는 없다. 함수형 Application을 주입했다면 Mutation 경계에서 `Result`만 UI 오류로 번역한다.

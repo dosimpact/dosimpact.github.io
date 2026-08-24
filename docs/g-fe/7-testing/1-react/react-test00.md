@@ -9,7 +9,7 @@ sidebar_position: 1
       - [1.Mock Router](#1mock-router)
       - [2.Mock API with MSW](#2mock-api-with-msw)
       - [3.각 테스트의 시간 제한 걸기 Jest](#3각-테스트의-시간-제한-걸기-jest)
-  - [Debuging](#debuging)
+  - [Debugging](#debugging)
   - [테스트를 3단계로 진행합니다.](#테스트를-3단계로-진행합니다)
   - [DOM Testing Library](#dom-testing-library)
     - [Install](#install)
@@ -91,7 +91,7 @@ import { createMemoryHistory } from 'history';
   });
 ```
 
-## Debuging  
+## Debugging  
 
 ```js
 await screen.findByText(/text/);
@@ -229,7 +229,7 @@ await userEvent.click(screen.getByRole('button', { name: /text/ }));
 
 ### fireEvent (@testing-library/react)  
 
-- programatic 하게 이벤트의 모든 세부 사항을 직접 제어 가능  
+- programmatic 하게 이벤트의 모든 세부 사항을 직접 제어 가능  
 - 실제 사용자 상호작용과 다를 수 있음.
 
 
@@ -413,4 +413,3 @@ container에서 querySelectorAll을 통해서 가져오는거랑 차이가 있�
 - **정확성**: `querySelectorAll`은 CSS 선택자에 의존하기 때문에 구조적 변경에 민감할 수 있습니다.      
   `getByText`는 텍스트를 기반으로 하므로 구조적 변경에 덜 민감할 수 있습니다.  
 ```
-

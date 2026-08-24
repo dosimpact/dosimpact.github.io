@@ -51,7 +51,7 @@ www.example.com -> 3000 리액트 서버
 api.example.com -> 4000 api 서버
 db.example.com -> 5432 db 서버
 cache.example.com -> 5555 redis 서버
-jekins.example.com -> 8090 jeknins 서버
+Jenkins.example.com -> 8090 jeknins 서버
 ci.example.com -> 9009 portainer 서버
 ```
 <br/>

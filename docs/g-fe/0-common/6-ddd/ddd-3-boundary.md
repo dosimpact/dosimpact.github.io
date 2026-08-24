@@ -484,7 +484,7 @@ const createGoogleAdsCampaignPublisher = (mutate: MutateCampaigns) =>
     const operation = toGoogleAdsOperation(campaign);
     if (!operation.ok) return operation;
 
-    // 네트워크 부수 효과는 주입된 Adapter 함수 한곳에서만 실행한다.
+    // 네트워크 부수 효과는 주입된 Adapter 함수 한 곳에서만 실행한다.
     const response = await mutate([operation.value]);
     const resourceName = response.results[0]?.resourceName;
 

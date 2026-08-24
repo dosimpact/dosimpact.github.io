@@ -310,7 +310,7 @@ export const POST = async (request: Request) => {
 
 ### eg - gpt tools
 
-- free weahter api : https://api.open-meteo.com/v1/forecast?latitude=38&longitude=123&current=temperature_2m&hourly=temperature_2m&daily=sunrise,sunset&timezone=auto
+- free weather api : https://api.open-meteo.com/v1/forecast?latitude=38&longitude=123&current=temperature_2m&hourly=temperature_2m&daily=sunrise,sunset&timezone=auto
 
 
 ```js

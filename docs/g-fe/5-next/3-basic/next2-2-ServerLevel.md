@@ -10,7 +10,7 @@ sidebar_position: 2
     - [Conventions](#conventions)
     - [GET](#get)
       - [header, cookies](#header-cookies)
-      - [Route Segments Paramters, Query Parameters](#route-segments-paramters-query-parameters)
+      - [Route Segments Parameters, Query Parameters](#route-segments-paramters-query-parameters)
       - [CORS](#cors)
     - [POST](#post)
   - [2.Middleware](#2middleware)
@@ -23,7 +23,7 @@ sidebar_position: 2
   - [4.RSC](#4rsc)
     - [RSC with server actions](#rsc-with-server-actions)
   - [metadata](#metadata)
-  - [directory custome convention](#directory-custome-convention)
+  - [directory custom convention](#directory-custom-convention)
 
 
 ## Server Level Goal  
@@ -67,7 +67,7 @@ test in chrome
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
-  // json resposne
+  // json response
   return NextResponse.json({
     hello: "true",
   });
@@ -85,7 +85,7 @@ export const GET = async () => {
   const sig = headers().get("signature"); // get from header 
   const token = cookies().get("token"); // get from client cookies
 
-  // text message resposne
+  // text message response
   return new NextResponse("ok", {
     status: 200, // status code
     headers: {
@@ -96,7 +96,7 @@ export const GET = async () => {
 };
 ```
 
-#### Route Segments Paramters, Query Parameters
+#### Route Segments Parameters, Query Parameters
 
 ```js
 // TS : app/api/hello/[id]/route.ts
@@ -180,7 +180,7 @@ import { NextResponse, NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  console.log("middleware passed : reqeust pathname", req.nextUrl.pathname);
+  console.log("middleware passed : request pathname", req.nextUrl.pathname);
   return res;
 }
 
@@ -209,7 +209,7 @@ export async function middleware(req: AuthedNextRequest) {
   const supabase = await createServerSideMiddleware(req, res);
   const userResponse = await supabase.auth.getUser();
 
-  // req.user = user , 이런 방식으로 조작한 req 객체를 뒷단에 전달할수 없다. 
+  // req.user = user , 이런 방식으로 조작한 req 객체를 뒷단에 전달할 수 없다. 
   if (userResponse?.data?.user) {
     res.headers.set("x-authenticated", "1"); // 비표준 헤더는 x-를 붙이는 컨벤션  
   }
@@ -402,7 +402,7 @@ export const metadata: Metadata = {
 };
 ```
 
-## directory custome convention
+## directory custom convention
 
 ```
 actions : server actions 들을 넣는 폴더  
@@ -417,6 +417,4 @@ public : 정적파일 리소스
 constants
 
 ```
-
-
 

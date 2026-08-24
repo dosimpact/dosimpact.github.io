@@ -74,4 +74,3 @@ Components : UI를 구성하는 재사용 가능한 인터랙티브 요소.
 
 Patterns : Components를 조합해 만든 상호작용 흐름과 UX 시나리오  
 - Dialog, Flow, Rolling Banner, Modal, Toast 등  
-

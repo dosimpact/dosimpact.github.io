@@ -77,7 +77,7 @@ docker run -it --name "test2" centos /bin/bash
 
 
 ---ubuntu
-docker container run ubuntu:lastest /bin/echo 'hello world'
+docker container run ubuntu:latest /bin/echo 'hello world'
 
 docker container run -it --name "ubuntush" ubuntu bash
 

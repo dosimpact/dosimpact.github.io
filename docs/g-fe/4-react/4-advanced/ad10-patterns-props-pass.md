@@ -268,7 +268,7 @@ function ComponentManipulator() {
 
 ## Render Props 패턴
 
-📌 Render props to chilren
+📌 Render props to children
 - children에게 props를 전달하여 컴포넌트를 합성시키는 방식  
 
 ```jsx
@@ -336,7 +336,7 @@ function Widget() {
 ```
 
 📌 Render props to multiple props   
-- chlidren props뿐 아니라 다른 요소로 렌더러 함수를 받아도 된다.  
+- children props뿐 아니라 다른 요소로 렌더러 함수를 받아도 된다.  
 
 ```jsx
 import { useState } from 'react';
@@ -396,7 +396,7 @@ function Widget() {
           <h2>
             title{' '}
             <button type="button" onClick={onToogle}>
-              toogle
+              toggle
             </button>{' '}
           </h2>
         )}

@@ -112,7 +112,7 @@ function App(): JSX.Element {
             } else {
               Linking.openURL(event.url).catch(err => {
                 Alert(
-                  '앱 실행에 실패했습니다. 설치가 되어있지 않은 경우 설치하기 버튼을 눌러주세요.',
+                  '앱 실행에 실패했습니다. 설치가 되어 있지 않은 경우 설치하기 버튼을 눌러주세요.',
                 );
               });
             }
