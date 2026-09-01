@@ -1,0 +1,10 @@
+{
+  "label": "14.Twenty OSS",
+  "position": 14,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Twenty 오픈소스 코드에서 발견한 프런트엔드 구현 패턴"
+  }
+}

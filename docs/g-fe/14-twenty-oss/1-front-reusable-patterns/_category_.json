@@ -1,0 +1,10 @@
+{
+  "label": "1.Front Reusable Patterns",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Twenty Front 모듈에서 추출한 재사용 가능한 구현 패턴"
+  }
+}
