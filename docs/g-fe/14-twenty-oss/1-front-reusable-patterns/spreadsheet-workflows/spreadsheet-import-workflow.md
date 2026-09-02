@@ -11,6 +11,8 @@
 - `src/modules/spreadsheet-import/hooks/useSpreadsheetImportInitialStep.ts`: 재진입이나 초기 state가 있을 때 step bar의 시작 index를 계산한다.
 
 ```tsx
+// 큰 흐름: 업로드, 시트 선택, 헤더 선택, 컬럼 매칭, 검증, 제출을 step state로 연결하는 wizard workflow 패턴이다.
+
 // filepath: src/modules/spreadsheet-import/hooks/useOpenSpreadsheetImportDialog.ts
 export const useOpenSpreadsheetImportDialog = () => {
   const setSpreadsheetImportDialog = useSetAtomState(
@@ -188,6 +190,8 @@ export const useSpreadsheetImportInitialStep = (initialStep?: SpreadsheetImportS
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Spreadsheet Import Workflow 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/spreadsheet-import/hooks/useOpenObjectRecordsSpreadsheetImportDialog.ts
 const { openSpreadsheetImportDialog } = useOpenSpreadsheetImportDialog();
 

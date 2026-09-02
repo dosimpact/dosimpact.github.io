@@ -12,6 +12,9 @@ record cell의 DOM anchor를 찾아 edit UI를 원래 셀 위치에 portal로 �
 - `src/modules/object-record/record-field-list/anchored-portal/components/RecordFieldListCellEditModePortal.tsx`: field list cell edit portal의 실제 사용처다.
 
 ```tsx
+// 큰 흐름: record cell의 DOM anchor를 찾아 edit UI를 원래 셀 위치에 portal로 꽂는 패턴이다.
+// 핵심 기준: `anchor stays in layout, editor renders through portal`이다.
+
 // filepath: src/modules/object-record/record-inline-cell/components/RecordInlineCellAnchoredPortal.tsx
 import { createPortal } from 'react-dom';
 import { isDefined } from 'twenty-shared/utils';
@@ -143,6 +146,8 @@ export const RecordInlineCellEditMode = ({ children }: Props) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Anchored Portal Field Editor 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-field-list/anchored-portal/components/RecordFieldListCellEditModePortal.tsx
 if (!isDefined(recordFieldListCellEditModePosition) || !isDefined(editedFieldMetadataItem)) {
   return null;

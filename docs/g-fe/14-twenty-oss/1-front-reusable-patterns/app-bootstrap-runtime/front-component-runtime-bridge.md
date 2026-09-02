@@ -13,6 +13,9 @@ database-backed front component를 fetch하고, signed runtime URLs, application
 - `src/modules/front-components/hooks/useFrontComponentExecutionContext.ts`: navigation, side panel, snackbar, upload, clipboard, storage 같은 host capabilities를 renderer API로 변환한다.
 
 ```tsx
+// 큰 흐름: database-backed front component를 fetch하고, signed runtime URLs, application tokens, host communication API를 외부 renderer에 주입하는 패턴이다.
+// 핵심 기준: `host owns permissions and side effects, embedded runtime receives a narrow API`다.
+
 // filepath: src/modules/front-components/components/FrontComponentRenderer.tsx
 export const FrontComponentRenderer = ({
   frontComponentId,
@@ -386,6 +389,8 @@ export const useFrontComponentExecutionContext = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Front Component Runtime Bridge 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/page-layout/widgets/front-component/components/FrontComponentWidgetRenderer.tsx
 const FrontComponentRenderer = lazy(() =>
   import('@/front-components/components/FrontComponentRenderer').then(

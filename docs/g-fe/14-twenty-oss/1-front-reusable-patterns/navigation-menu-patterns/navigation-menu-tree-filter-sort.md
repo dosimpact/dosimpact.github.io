@@ -12,6 +12,9 @@ navigation menu item을 active object/view/permission 기준으로 거르고, po
 - `src/modules/navigation-menu-item/display/hooks/useNavigationMenuItemSectionItems.ts`: orphan item과 folder children을 하나의 section display list로 평탄화한다.
 
 ```tsx
+// 큰 흐름: navigation menu item을 active object/view/permission 기준으로 거르고, position 기준으로 정렬한 뒤 folder tree 표시용 flat list로 바꾸는 패턴이다.
+// 핵심 기준: `raw items in, readable display tree out`이다.
+
 // filepath: src/modules/navigation-menu-item/common/utils/filterAndSortNavigationMenuItems.ts
 export const filterAndSortNavigationMenuItems = (
   navigationMenuItems: NavigationMenuItem[],
@@ -150,6 +153,8 @@ export const useNavigationMenuItemSectionItems = (): NavigationMenuItem[] => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Navigation Menu Tree Filter/Sort 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/navigation-menu-item/display/sections/workspace/components/WorkspaceSectionListReadOnly.tsx
 export const WorkspaceSectionListReadOnly = () => {
   const navigationMenuItems = useNavigationMenuItemSectionItems();

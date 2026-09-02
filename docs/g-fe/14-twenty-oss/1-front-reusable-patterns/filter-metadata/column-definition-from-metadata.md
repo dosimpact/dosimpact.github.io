@@ -13,6 +13,9 @@ object metadata readable fields를 table이 쓰는 column definition 배열로 �
 - `src/modules/object-record/record-index/hooks/useRecordIndexFieldMetadataDerivedStates.ts`: view field state와 metadata를 합쳐 id별 column definition map을 만든다.
 
 ```tsx
+// 큰 흐름: object metadata readable fields를 table이 쓰는 column definition 배열로 변환하고 filter/sort 가능 여부를 붙이는 패턴이다.
+// 핵심 기준: `field metadata becomes column state through one formatter and one availability pass`이다.
+
 // filepath: src/modules/object-record/record-table/types/ColumnDefinition.ts
 export type ColumnDefinition<TFieldMetadata extends FieldMetadata> =
   FieldDefinition<TFieldMetadata> & {
@@ -162,6 +165,8 @@ export const useRecordIndexFieldMetadataDerivedStates = (
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Column Definition From Metadata 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-index/components/RecordIndexContainer.tsx
 const { columnDefinitions } =
   useColumnDefinitionsFromObjectMetadata(objectMetadataItem);

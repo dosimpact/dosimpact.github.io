@@ -13,6 +13,9 @@ many-to-many relation metadata를 picker/display/update가 사용할 수 있는 
 - `src/modules/object-record/record-field/ui/hooks/useUpdateJunctionRelationFromCell.ts`: picker change를 junction record create/delete와 local store update로 변환한다.
 
 ```tsx
+// 큰 흐름: many-to-many relation metadata를 picker/display/update가 사용할 수 있는 junction config로 바꾸는 패턴이다.
+// 핵심 기준: `metadata resolution happens once, UI consumes target records`다.
+
 // filepath: src/modules/object-record/record-field/ui/utils/junction/getJunctionConfig.ts
 export const getJunctionConfig = ({
   settings,
@@ -173,6 +176,8 @@ export const useOpenJunctionRelationFieldInput = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Junction Relation Resolver 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-field/ui/meta-types/input/components/RelationOneToManyFieldInput.tsx
 const { updateJunctionRelationFromCell, junctionConfig } =
   useUpdateJunctionRelationFromCell({

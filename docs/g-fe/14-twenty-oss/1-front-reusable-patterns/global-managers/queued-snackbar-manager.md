@@ -11,6 +11,9 @@
 - `src/modules/ui/feedback/snack-bar-manager/components/SnackBarProvider.tsx`: queue를 fixed-position snackbar UI로 렌더링한다.
 
 ```tsx
+// 큰 흐름: 전역 snackbar queue를 component instance state에 저장하고, provider가 fixed container에 알림을 렌더링하는 패턴이다.
+// 핵심 기준: `caller enqueues a variant, provider owns the queue UI`다.
+
 // filepath: src/modules/ui/feedback/snack-bar-manager/states/snackBarInternalComponentState.ts
 import { SnackBarComponentInstanceContext } from '@/ui/feedback/snack-bar-manager/contexts/SnackBarComponentInstanceContext';
 import { type SnackBarProps } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
@@ -164,6 +167,8 @@ export const SnackBarProvider = ({ children }: React.PropsWithChildren) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Queued Snack Bar Manager 패턴을 실제 호출부에서 조합한다.
+
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 
 export const SaveButton = () => {

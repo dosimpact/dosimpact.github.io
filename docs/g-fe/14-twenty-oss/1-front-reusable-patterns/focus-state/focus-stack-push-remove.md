@@ -12,6 +12,9 @@ Focus 대상이 되는 UI를 stack top으로 올리고, 닫힐 때 `focusId` 또
 - `src/modules/ui/utilities/focus/hooks/useRemoveFocusItemFromFocusStackByComponentType.ts`: 특정 component type의 마지막 item을 제거한다.
 
 ```tsx
+// 큰 흐름: Focus 대상이 되는 UI를 stack top으로 올리고, 닫힐 때 `focusId` 또는 component type으로 제거하는 패턴.
+// 핵심 기준: `focusId`가 같은 item은 중복 push하지 않고 stack top으로 이동시키는 것이다.
+
 // filepath: src/modules/ui/utilities/focus/states/focusStackState.ts
 import { type FocusStackItem } from '@/ui/utilities/focus/types/FocusStackItem';
 import { createAtomState } from '@/ui/utilities/state/jotai/utils/createAtomState';
@@ -142,6 +145,8 @@ export const useRemoveLastFocusItemFromFocusStackByComponentType = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Focus Stack Push/Remove 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/layout/modal/hooks/useModal.tsx
 const openModal = useCallback(
   (modalInstanceId: string) => {

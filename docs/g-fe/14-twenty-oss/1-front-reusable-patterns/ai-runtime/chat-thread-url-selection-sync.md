@@ -14,6 +14,9 @@ AI chat thread 선택을 Jotai state, per-thread draft, full-page URL, side-pane
 - `src/modules/ai/hooks/useSwitchToNewAiChat.ts`: 새 draft thread key로 전환하고 full-page 또는 side-panel chat을 연다.
 
 ```tsx
+// 큰 흐름: AI chat thread 선택을 Jotai state, per-thread draft, full-page URL, side-panel navigation에 동시에 반영하는 패턴이다.
+// 핵심 기준: `Thread selection is state first, URL projection second`다.
+
 // filepath: src/modules/ai/hooks/useSelectAiChatThread.ts
 export const useSelectAiChatThread = () => {
   const { switchThreadWithDraft } = useSwitchAgentChatThreadWithDraft();
@@ -136,6 +139,8 @@ export const useOpenAiChatPage = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Chat Thread URL/Selection Sync 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ai/components/NavigationDrawerAiChatContent.tsx
 export const NavigationDrawerAiChatContent = () => {
   const currentAiChatThread = useAtomStateValue(currentAiChatThreadState);

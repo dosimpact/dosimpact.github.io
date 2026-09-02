@@ -11,6 +11,9 @@ object name, filter, sort, pagination, field selection을 받아 metadata 기반
 - `src/modules/object-record/hooks/useHandleFindManyRecordsCompleted.ts`: connection 결과를 records로 풀고 cursor/hasNextPage atom state를 갱신한다.
 
 ```tsx
+// 큰 흐름: object name, filter, sort, pagination, field selection을 받아 metadata 기반 list query와 cursor state를 한 hook으로 감싸는 패턴이다.
+// 핵심 기준: `caller passes object intent, hook owns GraphQL document and pagination state`다.
+
 // filepath: src/modules/object-record/hooks/useFindManyRecords.ts
 export const useFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
   objectNameSingular,
@@ -198,6 +201,8 @@ export const useHandleFindManyRecordsCompleted = <T>({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Generic Find Many Query Hook 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-index/hooks/useRecordIndexTableQuery.ts
 export const useRecordIndexTableQuery = (objectNameSingular: string) => {
   const params = useFindManyRecordIndexTableParams(objectNameSingular);

@@ -13,6 +13,9 @@ field-level aggregate 요청을 metadata에서 허용되는 GraphQL aggregate fi
 - `src/modules/object-record/record-index/components/RecordIndexGroupAggregateQueryEffect.tsx`: groupBy aggregate 결과를 record group display state에 저장한다.
 
 ```tsx
+// 큰 흐름: field-level aggregate 요청을 metadata에서 허용되는 GraphQL aggregate fields로 변환하고, raw query result를 `{ fieldName: { operation: value } }` 형태로 되돌리는 패턴이다.
+// 핵심 기준: `UI asks for field operations, hook maps them to generated aggregate fields`다.
+
 // filepath: src/modules/object-record/hooks/useAggregateRecords.ts
 export const useAggregateRecords = <T extends AggregateRecordsData>({
   objectNameSingular,
@@ -243,6 +246,8 @@ export const RecordIndexGroupAggregateQueryEffect = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Aggregate Records Query 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-table/record-table-footer/hooks/useAggregateRecordsForRecordTableColumnFooter.tsx
 export const useAggregateRecordsForRecordTableColumnFooter = (
   aggregateFieldMetadataId: string,

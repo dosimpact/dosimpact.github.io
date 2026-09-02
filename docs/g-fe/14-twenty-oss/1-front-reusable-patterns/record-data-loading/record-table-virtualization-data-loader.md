@@ -13,6 +13,9 @@ large record table을 실제 row index와 고정된 virtual row 슬롯으로 분
 - `src/modules/object-record/record-table/virtualization/components/RecordTableVirtualizedRowTreadmillEffect.tsx`: scroll 위치와 속도를 처리하고 필요한 page fetch를 예약한다.
 
 ```tsx
+// 큰 흐름: large record table을 실제 row index와 고정된 virtual row 슬롯으로 분리하고, scroll overscan window에 필요한 page만 lazy fetch하는 패턴이다.
+// 핵심 기준: `virtual rows render fixed slots, data loader maps real indexes to record ids`다.
+
 // filepath: src/modules/object-record/record-table/virtualization/components/RecordTableVirtualizedInitialDataLoadEffect.tsx
 export const RecordTableVirtualizedInitialDataLoadEffect = () => {
   const { recordTableId, objectNameSingular } = useRecordTableContextOrThrow();
@@ -310,6 +313,8 @@ export const RecordTableVirtualizedRowTreadmillEffect = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Record Table Virtualization Data Loader 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-table/components/RecordTableBodyEffectsWrapper.tsx
 export const RecordTableBodyEffectsWrapper = ({ hasRecordGroups, tableBodyRef }) => {
   return (

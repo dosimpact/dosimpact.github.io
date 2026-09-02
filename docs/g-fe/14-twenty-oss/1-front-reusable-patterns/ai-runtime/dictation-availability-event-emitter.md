@@ -15,6 +15,9 @@ Web Speech API 지원 여부를 surface probe로 판정하고, engine lifecycle�
 - `src/modules/ai/dictation/hooks/useDictation.ts`: button이 사용할 `isAvailable/isRecording/toggleDictation` API만 노출한다.
 
 ```tsx
+// 큰 흐름: Web Speech API 지원 여부를 surface probe로 판정하고, engine lifecycle은 작은 event emitter로 UI에 publish하는 패턴이다.
+// 핵심 기준: `Capability detection gates construction, emitter events drive UI state`다.
+
 // filepath: src/modules/ai/dictation/hooks/useDictationAvailability.ts
 export const useDictationAvailability = (): boolean => {
   const hasWebSpeechProvenSilent = useAtomStateValue(
@@ -209,6 +212,8 @@ export const AiChatDictationEffect = ({ onInterimText, onFinalText }) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Dictation Availability/Event Emitter 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ai/components/AiChatEditorSection.tsx
 export const AiChatEditorSection = () => {
   const { editor } = useAiChatEditor();

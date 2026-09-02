@@ -14,6 +14,9 @@ Record context에서 task, note, file, email, calendar action을 같은 action b
 - `src/modules/activities/calendar/hooks/useComposeCalendarEventRelatedRecordAction.ts`: calendar account/recipient 상태를 disabled reason까지 포함한 action으로 감싼다.
 
 ```tsx
+// 큰 흐름: Record context에서 task, note, file, email, calendar action을 같은 action binding 형태로 수집하는 패턴이다.
+// 핵심 기준: `each feature owns its availability and execution, the menu only renders bindings`이다.
+
 // filepath: src/modules/activities/types/RelatedRecordAction.ts
 import { type ReactNode } from 'react';
 import { type IconComponent } from 'twenty-ui/icon';
@@ -181,6 +184,8 @@ export const useComposeCalendarEventRelatedRecordAction = (
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Activity Target Related Record Actions 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/side-panel/pages/create-related-record/components/SidePanelCreateRelatedRecordPage.tsx
 const actionBindings = useRelatedRecordActions({
   targetRecord,

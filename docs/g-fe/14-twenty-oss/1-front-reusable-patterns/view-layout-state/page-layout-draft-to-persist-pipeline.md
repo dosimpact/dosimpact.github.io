@@ -12,6 +12,8 @@ Page layout을 instance-scoped draft state로 편집하고, 저장 시 GraphQL u
 - `src/modules/page-layout/hooks/useResetDraftPageLayoutToPersistedPageLayout.ts`: cancel/reset 시 persisted snapshot으로 draft와 부가 widget draft state를 되돌린다.
 
 ```tsx
+// 큰 흐름: Page layout을 instance-scoped draft state로 편집하고, 저장 시 GraphQL update input으로 변환해 persisted state를 갱신하는 패턴이다.
+
 // filepath: src/modules/page-layout/states/pageLayoutDraftComponentState.ts
 export const pageLayoutDraftComponentState =
   createAtomComponentState<DraftPageLayout>({
@@ -189,6 +191,8 @@ export const useResetDraftPageLayoutToPersistedPageLayout = ({ pageLayoutId, tab
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Page Layout Draft-To-Persist Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/page-layout/widgets/components/DashboardWidgetPlaceholder.tsx
 export const DashboardWidgetPlaceholder = ({ pageLayoutId }: Props) => {
   const { setIsPageLayoutInEditMode } = useSetIsPageLayoutInEditMode(pageLayoutId);

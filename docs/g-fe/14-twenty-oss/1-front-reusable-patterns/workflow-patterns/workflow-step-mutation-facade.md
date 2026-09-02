@@ -13,6 +13,9 @@ workflow step과 edge 변경을 `createStep`, `updateStep`, `deleteStep`, `creat
 - `src/modules/workflow/workflow-steps/hooks/useApplyWorkflowVersionStepChanges.ts`: trigger/steps diff를 component state와 Apollo workflow version cache에 반영한다.
 
 ```tsx
+// 큰 흐름: workflow step과 edge 변경을 `createStep`, `updateStep`, `deleteStep`, `createEdge`, `deleteEdge` 같은 UI용 API로 감싸는 패턴이다.
+// 핵심 기준: `UI calls intent, facade resolves mutable draft and cache updates`다.
+
 // filepath: src/modules/workflow/workflow-steps/hooks/useCreateStep.ts
 export const useCreateStep = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -216,6 +219,8 @@ export const useApplyWorkflowVersionStepChanges = (instanceId?: string) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Workflow Step Mutation Facade 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/workflow/workflow-diagram/components/WorkflowDiagramCanvasEditable.tsx
 const { createEdge } = useCreateEdge();
 const { deleteEdge } = useDeleteEdge();

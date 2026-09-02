@@ -13,6 +13,9 @@
 - `src/modules/client-config/hooks/useCaptcha.ts`: client config, site key, token state를 합쳐 captcha readiness를 계산한다.
 
 ```tsx
+// 큰 흐름: 라우트와 client config를 보고 captcha가 필요한 화면에서만 provider가 외부 script, widget, token refresh를 붙이는 패턴이다.
+// 핵심 기준: `load external runtime only when the current path needs it`다.
+
 // filepath: src/modules/captcha/components/CaptchaProvider.tsx
 export const CaptchaProvider = React.memo(
   ({ children }: React.PropsWithChildren) => {
@@ -204,6 +207,8 @@ export const useCaptcha = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Captcha Script Gated Provider 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/app/components/WorkspaceAppProviders.tsx
 export const WorkspaceAppProviders = () => {
   return (

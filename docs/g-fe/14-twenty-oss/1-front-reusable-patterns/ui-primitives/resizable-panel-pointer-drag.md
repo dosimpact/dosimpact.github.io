@@ -13,6 +13,9 @@ A narrow edge or gap starts document-level pointer tracking, previews width thro
 - `src/modules/ui/theme/utils/getUiZoom.ts`: root zoom 환경에서 pointer delta를 design-pixel width로 보정한다.
 
 ```tsx
+// 큰 흐름: A narrow edge or gap starts document-level pointer tracking, previews width through a CSS variable, then commits or collapses on release.
+// 핵심 기준: `drag previews are cheap, final width is committed once`이다.
+
 // filepath: src/modules/ui/layout/resizable-panel/hooks/useResizablePanel.ts
 const clampWidth = (width: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, width));
@@ -273,6 +276,8 @@ export const getUiZoom = (): number => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Resizable Panel Pointer Drag 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/navigation/navigation-drawer/components/NavigationDrawer.tsx
 const [isResizing, setIsResizing] = useState(false);
 const [navigationDrawerWidth, setNavigationDrawerWidth] = useAtomState(

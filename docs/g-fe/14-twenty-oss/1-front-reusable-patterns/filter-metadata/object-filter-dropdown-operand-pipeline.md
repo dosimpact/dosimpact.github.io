@@ -14,6 +14,9 @@ object filter dropdown이 선택된 field metadata, operand, typed value input�
 - `src/modules/object-record/record-filter/utils/getRecordFilterOperands.ts`: shared filter type/sub-field 규칙에서 허용 operand 목록을 가져온다.
 
 ```tsx
+// 큰 흐름: object filter dropdown이 선택된 field metadata, operand, typed value input을 하나의 `RecordFilter`로 upsert하는 패턴이다.
+// 핵심 기준: `operand changes own value shape, value changes lazily create the filter`이다.
+
 // filepath: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownFilterInput.tsx
 export const ObjectFilterDropdownFilterInput = ({
   filterDropdownId,
@@ -302,6 +305,8 @@ export const getRecordFilterOperands = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Object Filter Dropdown Operand Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownTextInput.tsx
 const { applyObjectFilterDropdownFilterValue } =
   useApplyObjectFilterDropdownFilterValue();

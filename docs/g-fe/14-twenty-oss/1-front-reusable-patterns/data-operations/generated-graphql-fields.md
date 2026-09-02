@@ -11,6 +11,9 @@ runtime object metadata를 GraphQL selection set과 operation document로 변환
 - `src/modules/object-metadata/utils/generateCreateOneRecordMutation.ts`: metadata와 selection set으로 create mutation document를 만든다.
 
 ```tsx
+// 큰 흐름: runtime object metadata를 GraphQL selection set과 operation document로 변환하는 패턴이다.
+// 핵심 기준: `metadata in, typed GraphQL document out`이다.
+
 // filepath: src/modules/object-record/graphql/record-gql-fields/utils/generateDepthRecordGqlFieldsFromObject.ts
 export const generateDepthRecordGqlFieldsFromObject = ({
   objectMetadataItem,
@@ -94,6 +97,8 @@ export const generateCreateOneRecordMutation = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Generated GraphQL Fields 패턴을 실제 호출부에서 조합한다.
+
 const recordGqlFields = generateDepthRecordGqlFieldsFromObject({
   objectMetadataItem,
   objectMetadataItems,

@@ -12,6 +12,9 @@ Select option list와 textarea bulk input을 서로 변환하면서 기존 optio
 - `src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx`: dropdown으로 single/bulk mode를 전환하고 textarea 변경을 form state에 반영한다.
 
 ```tsx
+// 큰 흐름: Select option list와 textarea bulk input을 서로 변환하면서 기존 option metadata를 보존하는 패턴이다.
+// 핵심 기준: `Parse labels, preserve matching option identity`다.
+
 // filepath: src/modules/settings/data-model/fields/forms/select/utils/convertBulkTextToOptions.ts
 import { isDefined } from 'twenty-shared/utils';
 
@@ -99,6 +102,8 @@ export const generateNewSelectOption = (
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Data Model Select Option Bulk Parser 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectForm.tsx
 import { convertBulkTextToOptions } from '@/settings/data-model/fields/forms/select/utils/convertBulkTextToOptions';
 import { convertOptionsToBulkText } from '@/settings/data-model/fields/forms/select/utils/convertOptionsToBulkText';

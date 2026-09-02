@@ -11,6 +11,9 @@ Email composer의 sender, recipients, content, attachments, validation, send act
 - `src/modules/activities/emails/components/EmailComposerFields.tsx`: composer state contract를 받아 recipient field, subject, body, attachments UI에 연결한다.
 
 ```tsx
+// 큰 흐름: Email composer의 sender, recipients, content, attachments, validation, send action을 하나의 hook return contract로 묶는 패턴이다.
+// 핵심 기준: `form component renders fields, state hook owns send readiness and mutation payload`다.
+
 // filepath: src/modules/activities/emails/hooks/useEmailComposerState.ts
 export const useEmailComposerState = ({
   connectedAccountId: initialConnectedAccountId,
@@ -217,6 +220,8 @@ export const EmailComposerFields = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Email Composer State Hook 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/side-panel/pages/compose-email/components/SidePanelComposeEmailPage.tsx
 const composerState = useEmailComposerState({
   connectedAccountId: composeEmailConnectedAccountId ?? '',

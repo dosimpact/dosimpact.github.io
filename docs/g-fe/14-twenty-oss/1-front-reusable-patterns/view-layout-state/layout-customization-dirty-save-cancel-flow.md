@@ -13,6 +13,8 @@
 - `src/modules/layout-customization/hooks/useExitLayoutCustomizationMode.ts`: draft state, selection, side panel, mode flag를 정리한다.
 
 ```tsx
+// 큰 흐름: 여러 편집 영역의 draft state를 하나의 customization mode에서 열고, dirty 계산, save, cancel, exit을 통합하는 패턴이다.
+
 // filepath: src/modules/layout-customization/states/isLayoutCustomizationModeEnabledState.ts
 export const isLayoutCustomizationModeEnabledState = createAtomState<boolean>({
   key: 'isLayoutCustomizationModeEnabledState',
@@ -227,6 +229,8 @@ export const useExitLayoutCustomizationMode = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Layout Customization Dirty/Save/Cancel Flow 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/layout-customization/components/LayoutCustomizationBar.tsx
 const LayoutCustomizationBarContent = () => {
   const { save, isSaving } = useSaveLayoutCustomization();

@@ -12,6 +12,9 @@ Incoming AI stream messages를 message id별 atom에 저장하되, 이전 값과
 - `src/modules/ai/states/agentChatUISessionStartTimeState.ts`: 현재 UI session보다 오래된 persisted/live message side effect를 차단한다.
 
 ```tsx
+// 큰 흐름: Incoming AI stream messages를 message id별 atom에 저장하되, 이전 값과 다른 경우에만 downstream side effect를 실행하는 패턴이다.
+// 핵심 기준: `Diff the stream snapshot before processing expensive live side effects`다.
+
 // filepath: src/modules/ai/hooks/useUpdateStreamingPartsWithDiff.ts
 export const useUpdateStreamingPartsWithDiff = () => {
   const agentChatMessageFamilyCallbackState =
@@ -108,6 +111,8 @@ export const agentChatMessageComponentFamilyState =
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Streaming Parts Diff Sync 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ai/components/AiChatLastMessageWithStreamingState.tsx
 export const AiChatLastMessageWithStreamingState = ({ message }) => {
   const { updateStreamingPartsWithDiff } = useUpdateStreamingPartsWithDiff();

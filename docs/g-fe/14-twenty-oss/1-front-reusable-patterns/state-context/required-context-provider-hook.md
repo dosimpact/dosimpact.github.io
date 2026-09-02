@@ -11,6 +11,9 @@ Provider 밖에서 hook을 호출하면 즉시 에러를 던지는 required cont
 - `src/modules/ui/layout/side-panel/contexts/SidePanelContext.tsx`: side panel 여부처럼 작은 값도 같은 방식으로 정의한다.
 
 ```tsx
+// 큰 흐름: Provider 밖에서 hook을 호출하면 즉시 에러를 던지는 required context 패턴이다.
+// 핵심 기준: `createRequiredContext`가 Provider와 `useXxxOrThrow` hook을 한 번에 만든다는 점이다.
+
 // src/utils/createRequiredContext.ts
 import React, { useContext } from 'react';
 
@@ -81,6 +84,8 @@ export const [SidePanelProvider, useIsInSidePanelOrThrow] =
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Required Context Provider Hook 패턴을 실제 호출부에서 조합한다.
+
 // Provider 사용
 <RecordIndexContextProvider
   value={{

@@ -13,6 +13,9 @@ timeline diff 값을 임시 record store에 넣고 기존 `FieldDisplay` router�
 - `src/modules/activities/timeline-activities/utils/relationFieldChangeValue.ts`: relation diff value shape을 판별한다.
 
 ```tsx
+// 큰 흐름: timeline diff 값을 임시 record store에 넣고 기존 `FieldDisplay` router로 표시하는 패턴이다.
+// 핵심 기준: `forge a read-only record, reuse the field display system`이다.
+
 // filepath: src/modules/activities/timeline-activities/rows/main-object/components/EventFieldDiff.tsx
 export const EventFieldDiff = ({
   fieldDiff,
@@ -218,6 +221,8 @@ export const isRelationFieldChangeValue = (
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Field Diff Value Renderer 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/activities/timeline-activities/rows/main-object/components/EventRowMainObjectUpdated.tsx
 export const EventRowMainObjectUpdated = ({
   event,

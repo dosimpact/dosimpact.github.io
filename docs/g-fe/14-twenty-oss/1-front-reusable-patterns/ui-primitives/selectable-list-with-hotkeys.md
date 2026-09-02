@@ -12,6 +12,9 @@ Arrow-key navigation and Enter selection are attached to a list instance instead
 - `src/modules/ui/layout/selectable-list/hooks/useSelectableList.ts`: 외부에서 selected item을 reset/set 할 수 있는 imperative hook을 제공한다.
 
 ```tsx
+// 큰 흐름: Arrow-key navigation and Enter selection are attached to a list instance instead of each menu rebuilding the same keyboard state.
+// 핵심 기준: `list owns selection state, item owns its Enter action`이다.
+
 // filepath: src/modules/ui/layout/selectable-list/components/SelectableList.tsx
 export const SelectableList = ({
   children,
@@ -340,6 +343,8 @@ export const useSelectableList = (instanceId?: string) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Selectable List With Hotkeys 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/input/components/Select.tsx
 const selectableItemIdArray = filteredOptions.map((option) => option.label);
 

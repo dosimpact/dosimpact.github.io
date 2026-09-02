@@ -12,6 +12,9 @@ Responsive tabs are measured off-screen first, then the visible row renders only
 - `src/modules/ui/layout/tab-list/components/TabList.tsx`: desktop에서는 계산된 tab만 렌더링하고 나머지는 overflow dropdown으로 보낸다.
 
 ```tsx
+// 큰 흐름: Responsive tabs are measured off-screen first, then the visible row renders only the tabs that fit next to the overflow button.
+// 핵심 기준: `measure hidden real controls, then render the fitted visible set`이다.
+
 // filepath: src/modules/ui/layout/tab-list/components/TabListHiddenMeasurements.tsx
 const StyledHiddenMeasurement = styled.div`
   display: flex;
@@ -230,6 +233,8 @@ export const TabList = ({ tabs, componentInstanceId, loading }: TabListProps) =>
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Tab List Hidden Measurement 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/layout/tab-list/components/__stories__/Tablist.stories.tsx
 const tabs = [
   { id: 'general', title: 'General', logo: AVATAR_URL_MOCK },

@@ -11,6 +11,9 @@ GraphQL로 upload target을 만들고, signed URL에 `PUT`한 뒤, complete muta
 - `src/modules/activities/files/hooks/useUploadAttachmentFile.tsx`: generic upload hook을 attachment record 생성 workflow에 연결한다.
 
 ```tsx
+// 큰 흐름: GraphQL로 upload target을 만들고, signed URL에 `PUT`한 뒤, complete mutation으로 파일 record를 확정하는 패턴이다.
+// 핵심 기준: `create target -> PUT bytes -> complete upload`이다.
+
 // filepath: src/modules/file/hooks/useDirectFileUpload.ts
 import { useApolloClient, useMutation } from '@apollo/client/react';
 import { isDefined } from 'twenty-shared/utils';
@@ -163,6 +166,8 @@ export const useUploadAttachmentFile = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Direct File Upload Pipeline 패턴을 실제 호출부에서 조합한다.
+
 import { useDirectFileUpload } from '@/file/hooks/useDirectFileUpload';
 import { FileFolder } from '~/generated-metadata/graphql';
 

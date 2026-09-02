@@ -13,6 +13,9 @@
 - `src/modules/browser-event/hooks/useListenToMetadataOperationBrowserEvent.ts`: metadata name과 operation type으로 metadata event를 필터링한다.
 
 ```tsx
+// 큰 흐름: 브라우저 `CustomEvent`를 typed dispatch/listen hook으로 감싸고, feature hook에서 entity와 operation filter를 붙이는 패턴이다.
+// 핵심 기준: `dispatch generic event, listen through typed filters`다.
+
 // filepath: src/modules/browser-event/utils/dispatchBrowserEvent.ts
 import { isDefined } from 'twenty-shared/utils';
 
@@ -181,6 +184,8 @@ export const useListenToMetadataOperationBrowserEvent = <
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Browser Event Listener 패턴을 실제 호출부에서 조합한다.
+
 import { dispatchBrowserEvent } from '@/browser-event/utils/dispatchBrowserEvent';
 import { useListenToBrowserEvent } from '@/browser-event/hooks/useListenToBrowserEvent';
 

@@ -11,6 +11,9 @@ object name과 metadata를 기준으로 GraphQL mutation, optimistic cache updat
 - `src/modules/object-record/hooks/useDeleteOneRecord.ts`: delete를 `deletedAt` optimistic update로 반영하고 mutation 결과와 동기화한다.
 
 ```tsx
+// 큰 흐름: object name과 metadata를 기준으로 GraphQL mutation, optimistic cache update, record store update, aggregate refetch를 한 hook에 감싸는 패턴이다.
+// 핵심 기준: `feature code calls CRUD, hook owns metadata/cache details`다.
+
 // filepath: src/modules/object-record/hooks/useCreateOneRecord.ts
 import { useApolloCoreClient } from '@/object-metadata/hooks/useApolloCoreClient';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
@@ -161,6 +164,8 @@ export const useDeleteOneRecord = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Object Record CRUD Hook 패턴을 실제 호출부에서 조합한다.
+
 import { useCreateOneRecord } from '@/object-record/hooks/useCreateOneRecord';
 import { useDeleteOneRecord } from '@/object-record/hooks/useDeleteOneRecord';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';

@@ -12,6 +12,9 @@ dnd-kit target을 navigation menu destination으로 변환하고, 주변 item의
 - `src/modules/navigation-menu-item/display/dnd/hooks/useHandleNavigationMenuItemDragAndDrop.ts`: draft mode면 local draft를, favorites면 mutation을 갱신한다.
 
 ```tsx
+// 큰 흐름: dnd-kit target을 navigation menu destination으로 변환하고, 주변 item의 `position` 사이값을 계산해 reorder를 저장하는 패턴이다.
+// 핵심 기준: `drop destination decides folder, position is computed between neighbors`다.
+
 // filepath: src/modules/navigation-menu-item/display/dnd/utils/navigationMenuItemDndKitResolveDropTarget.ts
 export const resolveDropTarget = (
   target: {
@@ -171,6 +174,8 @@ export const useHandleNavigationMenuItemDragAndDrop = (
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Navigation Menu DnD Reorder Position 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/navigation-menu-item/display/dnd/hooks/useNavigationMenuItemDndKit.ts
 export const useNavigationMenuItemDndKit = (section: NavigationSections) => {
   const { handleNavigationMenuItemDragAndDrop } =

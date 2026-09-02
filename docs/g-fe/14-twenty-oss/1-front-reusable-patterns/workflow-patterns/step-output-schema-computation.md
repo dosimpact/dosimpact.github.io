@@ -12,6 +12,9 @@ workflow step 설정과 object metadata를 variable picker가 읽을 수 있는 
 - `src/modules/workflow/graphql/mutations/computeStepOutputSchema.ts`: compute mutation document를 정의한다.
 
 ```tsx
+// 큰 흐름: workflow step 설정과 object metadata를 variable picker가 읽을 수 있는 output schema로 변환하는 패턴이다.
+// 핵심 기준: `frontend-computable schemas are generated locally, persisted schemas are reused`다.
+
 // filepath: src/modules/workflow/workflow-variables/utils/generate/computeStepOutputSchema.ts
 const PERSISTED_OUTPUT_SCHEMA_TYPES = [
   'AI_AGENT',
@@ -236,6 +239,8 @@ export const COMPUTE_STEP_OUTPUT_SCHEMA = gql`
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Step Output Schema Computation 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/workflow/workflow-diagram/components/WorkflowRunVisualizerEffect.tsx
 const { populateStepsOutputSchema } = useStepsOutputSchema();
 

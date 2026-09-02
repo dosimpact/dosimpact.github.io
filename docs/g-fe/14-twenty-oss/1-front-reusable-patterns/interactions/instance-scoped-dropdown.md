@@ -12,6 +12,9 @@
 - `src/modules/ui/layout/dropdown/hooks/useCloseDropdown.ts`: context 또는 props의 dropdown id로 특정 dropdown을 닫는다.
 
 ```tsx
+// 큰 흐름: `dropdownId`를 component instance id로 삼아 dropdown open state, focus stack, active dropdown focus를 분리하는 패턴이다.
+// 핵심 기준: `anchor and content share an instance id`다.
+
 // filepath: src/modules/ui/layout/dropdown/contexts/DropdownComponentInstanceContext.ts
 import { createComponentInstanceContext } from '@/ui/utilities/state/component-state/utils/createComponentInstanceContext';
 
@@ -154,6 +157,8 @@ export const useCloseDropdown = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Instance-scoped Dropdown 패턴을 실제 호출부에서 조합한다.
+
 import { DropdownComponentInstanceContext } from '@/ui/layout/dropdown/contexts/DropdownComponentInstanceContext';
 import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
 import { useOpenDropdown } from '@/ui/layout/dropdown/hooks/useOpenDropdown';

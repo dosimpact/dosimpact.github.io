@@ -11,6 +11,9 @@
 - `src/modules/ui/utilities/state/jotai/utils/createAtomComponentState.ts`: `instanceId`마다 별도 Jotai atom을 캐싱해서 반환한다.
 
 ```tsx
+// 큰 흐름: 같은 atom state 정의를 여러 UI 인스턴스가 독립적으로 쓰도록 `instanceId`별 atom family로 분리하는 패턴이다.
+// 핵심 기준: `one state definition, many isolated instances`다.
+
 // filepath: src/modules/ui/utilities/state/component-state/utils/createComponentInstanceContext.ts
 import { type ComponentInstanceStateContext } from '@/ui/utilities/state/component-state/types/ComponentInstanceStateContext';
 import { type ComponentStateKey } from '@/ui/utilities/state/component-state/types/ComponentStateKey';
@@ -106,6 +109,8 @@ export const createAtomComponentState = <ValueType>({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Component Instance State 패턴을 실제 호출부에서 조합한다.
+
 import { createComponentInstanceContext } from '@/ui/utilities/state/component-state/utils/createComponentInstanceContext';
 import { createAtomComponentState } from '@/ui/utilities/state/jotai/utils/createAtomComponentState';
 import { useAtomComponentState } from '@/ui/utilities/state/jotai/hooks/useAtomComponentState';

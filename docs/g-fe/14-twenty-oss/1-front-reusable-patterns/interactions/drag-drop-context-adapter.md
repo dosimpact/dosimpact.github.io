@@ -11,6 +11,9 @@ dnd-kit의 provider/event를 앱에서 쓰는 `source/destination` drop result�
 - `src/modules/ui/utilities/drag-and-drop/components/DragDropItemSortableCell.tsx`: item을 sortable source로 등록하고 group/index metadata를 dnd data에 넣는다.
 
 ```tsx
+// 큰 흐름: dnd-kit의 provider/event를 앱에서 쓰는 `source/destination` drop result로 변환하는 패턴이다.
+// 핵심 기준: `dnd library events in, app drop result out`이다.
+
 // filepath: src/modules/ui/utilities/drag-and-drop/context/DragDropItemDndContext.tsx
 import { createContext } from 'react';
 
@@ -200,6 +203,8 @@ export const DragDropItemSortableCell = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Drag Drop Context Adapter 패턴을 실제 호출부에서 조합한다.
+
 import { DraggableList } from '@/ui/layout/draggable-list/components/DraggableList';
 import { DragDropItemSortableCell } from '@/ui/utilities/drag-and-drop/components/DragDropItemSortableCell';
 

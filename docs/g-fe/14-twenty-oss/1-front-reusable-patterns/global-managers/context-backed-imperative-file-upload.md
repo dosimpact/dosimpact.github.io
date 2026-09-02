@@ -12,6 +12,9 @@ React Context로 hidden file input을 전역 서비스처럼 열어주는 패턴
 - `src/modules/ui/layout/page/components/DefaultLayout.tsx`: 앱 페이지 트리를 `FileUploadProvider`로 감싸 어디서든 hook을 쓸 수 있게 한다.
 
 ```tsx
+// 큰 흐름: React Context로 hidden file input을 전역 서비스처럼 열어주는 패턴이다.
+// 핵심 기준: `Provider owns the mechanism, caller owns the behavior`다.
+
 // filepath: src/modules/file-upload/contexts/FileUploadContext.ts
 import { createContext } from 'react';
 
@@ -160,6 +163,8 @@ export const DefaultLayout = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Context-backed Imperative File Upload 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-field/ui/meta-types/input/components/FilesFieldInput.tsx
 import { useFileUpload } from '@/file-upload/hooks/useFileUpload';
 import { useCallback, useState } from 'react';

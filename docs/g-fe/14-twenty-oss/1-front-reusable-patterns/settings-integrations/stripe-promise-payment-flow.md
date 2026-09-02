@@ -12,6 +12,9 @@ Stripe publishable key를 cached promise로 로드하고, Elements form 안에�
 - `src/modules/settings/billing/hooks/useSubmitSubscriptionPayment.ts`: subscription payment/setup intent 생성 후 Stripe confirm API로 제출한다.
 
 ```tsx
+// 큰 흐름: Stripe publishable key를 cached promise로 로드하고, Elements form 안에서 setup/payment intent 확인까지 처리하는 패턴이다.
+// 핵심 기준: `Cache Stripe loading outside render, confirm intents inside Elements`다.
+
 // filepath: src/modules/settings/billing/utils/getStripePromise.ts
 import { type Stripe } from '@stripe/stripe-js';
 import { loadStripe } from '@stripe/stripe-js/pure';
@@ -287,6 +290,8 @@ export const useSubmitSubscriptionPayment = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Stripe Promise/Payment Flow 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/settings/billing/components/AddCreditCardModal.tsx
 import { AddPaymentMethodForm } from '@/settings/billing/components/AddPaymentMethodForm';
 import { ModalStatefulWrapper } from '@/ui/layout/modal/components/ModalStatefulWrapper';

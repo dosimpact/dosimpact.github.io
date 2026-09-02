@@ -11,6 +11,9 @@ initial query 실행을 caller가 명령형으로 시작하고, 이후 cursor �
 - `src/modules/object-record/hooks/useFetchMoreRecordsWithPagination.ts`: non-lazy query에서 같은 pagination merge 계약을 제공한다.
 
 ```tsx
+// 큰 흐름: initial query 실행을 caller가 명령형으로 시작하고, 이후 cursor 기반 `fetchMore`를 같은 query identifier 상태로 이어가는 패턴이다.
+// 핵심 기준: `lazy execute seeds cursor state, fetchMore appends unique edges`다.
+
 // filepath: src/modules/object-record/hooks/useLazyFindManyRecords.ts
 export const useLazyFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
   objectNameSingular,
@@ -198,6 +201,8 @@ export const useLazyFetchMoreRecordsWithPagination = <
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Lazy Query Pagination Fetch More 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-index/hooks/useRecordIndexTableLazyQuery.ts
 export const useRecordIndexTableLazyQuery = (objectNameSingular: string) => {
   const params = useFindManyRecordIndexTableParams(objectNameSingular);

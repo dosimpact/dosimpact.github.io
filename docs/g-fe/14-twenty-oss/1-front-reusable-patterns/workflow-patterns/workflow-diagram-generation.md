@@ -13,6 +13,9 @@ workflow trigger와 step 배열을 React Flow가 렌더링할 `nodes` / `edges`�
 - `src/modules/workflow/workflow-diagram/utils/generateWorkflowRunDiagram.ts`: workflow diagram에 run status를 합성하고 열어야 할 pending/running step을 찾는다.
 
 ```tsx
+// 큰 흐름: workflow trigger와 step 배열을 React Flow가 렌더링할 `nodes` / `edges`로 변환하는 패턴이다.
+// 핵심 기준: `domain flow data in, visual graph out`이다.
+
 // filepath: src/modules/workflow/workflow-diagram/utils/generateWorkflowDiagram.ts
 export const generateWorkflowDiagram = ({
   trigger,
@@ -308,6 +311,8 @@ export const generateWorkflowRunDiagram = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Workflow Diagram Generation 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/workflow/workflow-diagram/components/WorkflowRunVisualizerEffect.tsx
 const { diagram: generatedWorkflowRunDiagram, stepToOpenByDefault } =
   generateWorkflowRunDiagram({

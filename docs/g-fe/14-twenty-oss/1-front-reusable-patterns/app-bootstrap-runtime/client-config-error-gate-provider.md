@@ -12,6 +12,9 @@
 - `src/modules/app/components/SharedAppProviders.tsx`: Apollo와 theme 준비 후 config effect와 gate provider를 앱 공통 부트스트랩 계층에 배치한다.
 
 ```tsx
+// 큰 흐름: 앱 부팅에 필요한 client config fetch를 renderless effect가 시작하고, provider가 실패 상태만 full-screen fallback으로 차단하는 패턴이다.
+// 핵심 기준: `bootstrap effect fetches, gate provider decides whether children render`다.
+
 // filepath: src/modules/client-config/states/clientConfigApiStatusState.ts
 type ClientConfigApiStatus = {
   isLoadedOnce: boolean;
@@ -115,6 +118,8 @@ export const SharedAppProviders = ({ children }: PropsWithChildren) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Client Config Error Gate Provider 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/app/components/RootAppProviders.tsx
 export const RootAppProviders = () => {
   return (

@@ -12,6 +12,9 @@ workspace navigation customization을 local draft로 편집한 뒤, save 시 cre
 - `src/modules/navigation-menu-item/edit/utils/buildUpdateInputsFromDraft.ts`: persisted item과 draft item의 변경된 필드만 update payload로 만든다.
 
 ```tsx
+// 큰 흐름: workspace navigation customization을 local draft로 편집한 뒤, save 시 create/delete/recreate/update mutation으로 persisted state에 반영하는 패턴이다.
+// 핵심 기준: `edit draft locally, persist the diff on save`다.
+
 // filepath: src/modules/navigation-menu-item/edit/hooks/useNavigationMenuItemsDraftState.ts
 export const useNavigationMenuItemsDraftState = () => {
   const isLayoutCustomizationModeEnabled = useAtomStateValue(
@@ -204,6 +207,8 @@ export const buildUpdateInputsFromDraft = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Navigation Menu Draft Save Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelEditOrganizeActions.tsx
 export const SidePanelEditOrganizeActions = ({ itemId }: Props) => {
   const { updateItem, deleteItems } = useNavigationMenuItemEditController();

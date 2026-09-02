@@ -13,6 +13,9 @@ Billing plan payload를 한 번 조회하고, plan key, price id, interval 같�
 - `src/modules/settings/billing/hooks/useBaseLicensedPriceByPlanKeyAndInterval.ts`: plan key와 interval로 base licensed price를 고른다.
 
 ```tsx
+// 큰 흐름: Billing plan payload를 한 번 조회하고, plan key, price id, interval 같은 caller-friendly selector hook으로 좁혀 쓰는 패턴이다.
+// 핵심 기준: `Fetch the catalog once, expose small lookup hooks`다.
+
 // filepath: src/modules/settings/billing/hooks/usePlans.ts
 import { useQuery } from '@apollo/client/react';
 import { ListPlansDocument } from '~/generated-metadata/graphql';
@@ -154,6 +157,8 @@ export const useBaseLicensedPriceByPlanKeyAndInterval = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Billing Plan/Price Selector Hooks 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/settings/billing/components/SettingsBillingPlansContent.tsx
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { SettingsBillingPlansWithSubscription } from '@/settings/billing/components/internal/SettingsBillingPlansWithSubscription';

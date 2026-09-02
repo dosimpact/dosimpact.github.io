@@ -12,6 +12,9 @@ workflow run 생성, 중지, 재시도를 UI가 직접 mutation 세부사항 없
 - `src/modules/workflow/hooks/useRunWorkflowRunOpeningInSidePanelEffects.ts`: workflow run cache를 읽고 pending/running form step을 side panel에 자동으로 연다.
 
 ```tsx
+// 큰 흐름: workflow run 생성, 중지, 재시도를 UI가 직접 mutation 세부사항 없이 호출하게 만드는 hook facade 패턴이다.
+// 핵심 기준: `run action hook owns side effects around the mutation`이다.
+
 // filepath: src/modules/workflow/hooks/useRunWorkflowVersion.tsx
 export const useRunWorkflowVersion = () => {
   const apolloCoreClient = useApolloCoreClient();
@@ -200,6 +203,8 @@ export const useRunWorkflowRunOpeningInSidePanelEffects = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Workflow Run Action Hooks 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/command-menu-item/engine-command/record/components/TriggerWorkflowVersionEngineCommand.tsx
 const { runWorkflowVersion } = useRunWorkflowVersion();
 

@@ -12,6 +12,9 @@ Focus stack의 마지막 item을 현재 focus source로 보고, id/item/global h
 - `src/modules/ui/utilities/focus/types/FocusStackItem.ts`: focus item의 공통 shape를 정의한다.
 
 ```tsx
+// 큰 흐름: Focus stack의 마지막 item을 현재 focus source로 보고, id/item/global hotkey config를 selector로 파생하는 패턴.
+// 핵심 기준: UI들이 stack을 직접 읽지 않고 selector를 통해 top focus만 구독하는 것이다.
+
 // filepath: src/modules/ui/utilities/focus/types/FocusStackItem.ts
 import { type FocusComponentInstance } from '@/ui/utilities/focus/types/FocusComponentInstance';
 import { type GlobalHotkeysConfig } from '@/ui/utilities/hotkey/types/GlobalHotkeysConfig';
@@ -77,6 +80,8 @@ export const currentGlobalHotkeysConfigSelector =
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Current Focus Selectors 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/utilities/hotkey/hooks/useHotkeysOnFocusedElementCallback.ts
 const currentFocusId = store.get(currentFocusIdSelector.atom);
 

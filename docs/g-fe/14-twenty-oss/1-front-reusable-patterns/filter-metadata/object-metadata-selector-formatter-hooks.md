@@ -15,6 +15,9 @@ object metadata와 field metadata를 select option, field definition, filterable
 - `src/modules/object-metadata/hooks/useAvailableFieldMetadataItems.ts`: active/readable/non-hidden field 목록을 UI용으로 필터링한다.
 
 ```tsx
+// 큰 흐름: object metadata와 field metadata를 select option, field definition, filterable field list로 바꾸는 selector/formatter hook 패턴이다.
+// 핵심 기준: `metadata stays raw in stores, hooks format it at the UI boundary`이다.
+
 // filepath: src/modules/object-metadata/hooks/useObjectMetadataSelectHelpers.ts
 export const useObjectMetadataSelectHelpers = () => {
   const { getIcon } = useIcons();
@@ -170,6 +173,8 @@ export const useAvailableFieldMetadataItems = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Object Metadata Selector Formatter Hooks 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-filter/hooks/useCreateEmptyRecordFilterFromFieldMetadataItem.ts
 const createEmptyRecordFilterFromFieldMetadataItem = (
   fieldMetadataItem: FieldMetadataItem,

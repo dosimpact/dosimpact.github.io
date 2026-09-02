@@ -11,6 +11,9 @@
 - `src/modules/activities/timeline-activities/components/EventsGroup.tsx`: month separator, vertical bar, row list를 group 단위로 렌더링한다.
 
 ```tsx
+// 큰 흐름: 정렬된 timeline event list를 렌더링 직전에 월 단위 그룹으로 바꾸는 패턴이다.
+// 핵심 기준: `data stays flat, view groups at the edge`다.
+
 // filepath: src/modules/activities/timeline-activities/utils/groupEventsByMonth.ts
 export type EventGroup = {
   month: number;
@@ -115,6 +118,8 @@ export const EventsGroup = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Timeline Events Month Grouping 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/activities/timeline-activities/components/EventList.tsx
 const groupedEvents = groupEventsByMonth(filteredEvents);
 

@@ -13,6 +13,9 @@ sign-out를 BroadcastChannel로 다른 탭에 전파하고, 서버 sign-out 실�
 - `src/modules/app/components/SharedAppProviders.tsx`: pending server sign-out retry를 앱 공통 부트스트랩 effect로 배치한다.
 
 ```tsx
+// 큰 흐름: sign-out를 BroadcastChannel로 다른 탭에 전파하고, 서버 sign-out 실패는 다음 부팅에서 한 번 재시도하는 패턴이다.
+// 핵심 기준: `browser tabs share intent, boot effects reconcile server state`다.
+
 // filepath: src/modules/auth/utils/crossTabSignOut.ts
 const SIGN_OUT_CHANNEL_NAME = 'twenty-sign-out';
 
@@ -118,6 +121,8 @@ export const useMarkSessionActive = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Auth Session Cross-tab Effects 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/app/components/SharedAppProviders.tsx
 export const SharedAppProviders = ({ children }: React.PropsWithChildren) => {
   return (

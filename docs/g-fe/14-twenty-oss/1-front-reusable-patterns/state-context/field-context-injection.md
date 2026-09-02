@@ -11,6 +11,9 @@ Record field 하위 컴포넌트가 record id, field metadata, update hook을 pr
 - `src/modules/object-record/record-field/ui/meta-types/hooks/useTextField.ts`: 개별 field type hook이 context와 record store를 조합해 input에 필요한 값을 반환한다.
 
 ```tsx
+// 큰 흐름: Record field 하위 컴포넌트가 record id, field metadata, update hook을 props drilling 없이 가져가게 하는 패턴이다.
+// 핵심 기준: `FieldContextProvider`가 metadata를 column definition으로 바꾸고, field input/display hook들이 `FieldContext`에서 필요한 값만 꺼내는 것이다.
+
 // filepath: src/modules/object-record/record-field/ui/contexts/FieldContext.ts
 import { createContext, type MouseEvent } from 'react';
 
@@ -196,6 +199,8 @@ export const useTextField = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Field Context Injection 패턴을 실제 호출부에서 조합한다.
+
 // Provider 사용
 <FieldContextProvider
   objectNameSingular="company"

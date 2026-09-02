@@ -12,6 +12,9 @@
 - `src/modules/object-record/record-field-list/components/RecordFieldList.tsx`: object metadata field를 `FieldContext.Provider` 값으로 변환해 router에 전달한다.
 
 ```tsx
+// 큰 흐름: `FieldContext`에 들어온 metadata를 기준으로 display/input 컴포넌트를 고르는 패턴이다.
+// 핵심 기준: `caller provides field metadata, router owns component selection`이다.
+
 // filepath: src/modules/object-record/record-field/ui/contexts/FieldContext.ts
 import { createContext, type MouseEvent } from 'react';
 
@@ -126,6 +129,8 @@ export const FieldDisplay = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Field Meta-Type Router 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-field-list/components/RecordFieldList.tsx
 inlineFieldMetadataItems.map((fieldMetadataItem, index) => {
   const fieldDefinition = formatFieldMetadataItemAsColumnDefinition({

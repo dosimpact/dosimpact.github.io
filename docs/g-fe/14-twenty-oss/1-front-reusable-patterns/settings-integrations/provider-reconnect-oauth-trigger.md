@@ -11,6 +11,9 @@ Connected account provider에 따라 local settings route 또는 external OAuth 
 - `src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx`: account 상태에서 reconnect 메뉴를 노출하고 hook을 호출한다.
 
 ```tsx
+// 큰 흐름: Connected account provider에 따라 local settings route 또는 external OAuth redirect를 선택하는 reconnect trigger 패턴이다.
+// 핵심 기준: `Normalize reconnect intent before provider-specific navigation`이다.
+
 // filepath: src/modules/settings/accounts/hooks/useTriggerProviderReconnect.ts
 import { useCallback } from 'react';
 import { ConnectedAccountProvider, SettingsPath } from 'twenty-shared/types';
@@ -134,6 +137,8 @@ export const useTriggerApisOAuth = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Provider Reconnect OAuth Trigger 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 import { useTriggerProviderReconnect } from '@/settings/accounts/hooks/useTriggerProviderReconnect';
 import { Dropdown } from '@/ui/layout/dropdown/components/Dropdown';

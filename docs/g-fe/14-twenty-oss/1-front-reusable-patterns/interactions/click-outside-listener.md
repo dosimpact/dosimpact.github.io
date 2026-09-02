@@ -11,6 +11,9 @@ document-level `mousedown/click/touch` 이벤트를 조합해 ref 바깥 클릭�
 - `src/modules/ui/utilities/pointer-event/contexts/ClickOutsideListenerContext.tsx`: modal/dropdown처럼 제외해야 하는 click outside id를 하위로 전달한다.
 
 ```tsx
+// 큰 흐름: document-level `mousedown/click/touch` 이벤트를 조합해 ref 바깥 클릭만 callback으로 전달하는 패턴이다.
+// 핵심 기준: `mousedown starts the intent, click confirms outside`다.
+
 // filepath: src/modules/ui/utilities/pointer-event/hooks/useListenClickOutside.ts
 import { clickOutsideListenerIsActivatedComponentState } from '@/ui/utilities/pointer-event/states/clickOutsideListenerIsActivatedComponentState';
 import { clickOutsideListenerIsMouseDownInsideComponentState } from '@/ui/utilities/pointer-event/states/clickOutsideListenerIsMouseDownInsideComponentState';
@@ -189,6 +192,8 @@ export const ClickOutsideListenerContext =
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Click Outside Listener 패턴을 실제 호출부에서 조합한다.
+
 import { useClickOutsideListener } from '@/ui/utilities/pointer-event/hooks/useClickOutsideListener';
 import { useListenClickOutside } from '@/ui/utilities/pointer-event/hooks/useListenClickOutside';
 import { useEffect, useRef } from 'react';

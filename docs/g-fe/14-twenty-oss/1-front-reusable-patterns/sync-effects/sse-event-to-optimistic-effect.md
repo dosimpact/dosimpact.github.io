@@ -13,6 +13,9 @@ SSE subscription payload를 metadata event, optimistic cache update, browser eve
 - `src/modules/sse-db-event/hooks/useDispatchObjectRecordEventsFromSseToBrowserEvents.ts`: SSE record event를 feature들이 구독할 browser event로 재방송한다.
 
 ```tsx
+// 큰 흐름: SSE subscription payload를 metadata event, optimistic cache update, browser event broadcast로 나눠 처리하는 패턴이다.
+// 핵심 기준: `remote event becomes local cache effect plus local browser event`다.
+
 // filepath: src/modules/sse-db-event/hooks/useTriggerEventStreamCreation.ts
 export const useTriggerEventStreamCreation = () => {
   const store = useStore();
@@ -298,6 +301,8 @@ export const useDispatchObjectRecordEventsFromSseToBrowserEvents = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: SSE Event To Optimistic Effect 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/sse-db-event/components/SSEEventStreamEffect.tsx
 export const SSEEventStreamEffect = () => {
   const objectMetadataItems = useAtomStateValue(objectMetadataItemsSelector);

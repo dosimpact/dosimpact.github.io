@@ -11,6 +11,8 @@ Imported header labels를 target fields에 fuzzy match하고, 자동 매칭 결�
 - `src/modules/spreadsheet-import/steps/components/SelectHeaderStep/SelectHeaderStep.tsx`: 사용자가 header row를 고른 뒤 auto-match를 실행한다.
 
 ```tsx
+// 큰 흐름: Imported header labels를 target fields에 fuzzy match하고, 자동 매칭 결과와 후보 목록을 Jotai state에 저장하는 패턴이다.
+
 // filepath: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/states/initialComputedColumnsState.ts
 export const matchColumnsState = createAtomState<SpreadsheetColumns>({
   key: 'MatchColumnsState',
@@ -121,6 +123,8 @@ export const useComputeColumnSuggestionsAndAutoMatch = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Spreadsheet Column Auto-Match 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/spreadsheet-import/steps/components/UploadStep/UploadStep.tsx
 const computeColumnSuggestionsAndAutoMatch =
   useComputeColumnSuggestionsAndAutoMatch();

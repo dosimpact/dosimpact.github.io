@@ -11,6 +11,9 @@ object metadata를 사용해 Apollo normalized cache의 fragment read/write/modi
 - `src/modules/object-record/cache/utils/modifyRecordFromCache.ts`: object typename/id를 계산한 뒤 `cache.modify`를 수행한다.
 
 ```tsx
+// 큰 흐름: object metadata를 사용해 Apollo normalized cache의 fragment read/write/modify를 안전하게 감싸는 패턴이다.
+// 핵심 기준: `cache access follows metadata, not hand-written fragments`다.
+
 // filepath: src/modules/object-record/cache/utils/getRecordFromCache.ts
 export const getRecordFromCache = <TRecord extends ObjectRecord>({
   cache,
@@ -109,6 +112,8 @@ export const modifyRecordFromCache = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Apollo Record Cache Wrappers 패턴을 실제 호출부에서 조합한다.
+
 const cachedRecord = getRecordFromCache({
   cache: apolloCoreClient.cache,
   objectMetadataItem,

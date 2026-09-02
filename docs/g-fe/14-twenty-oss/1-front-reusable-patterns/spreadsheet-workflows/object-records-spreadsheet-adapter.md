@@ -11,6 +11,8 @@ Generic spreadsheet importer를 object metadata, field metadata, relation mappin
 - `src/modules/object-record/spreadsheet-import/utils/spreadsheetImportGetUnicityTableHook.ts`: object unique constraint 기반으로 import row 중복 검사를 붙인다.
 
 ```tsx
+// 큰 흐름: Generic spreadsheet importer를 object metadata, field metadata, relation mapping, batch create mutation에 연결하는 domain adapter 패턴이다.
+
 // filepath: src/modules/object-record/spreadsheet-import/hooks/useOpenObjectRecordsSpreadsheetImportDialog.ts
 export const useOpenObjectRecordsSpreadsheetImportDialog = (
   objectNameSingular: string,
@@ -205,6 +207,8 @@ export const buildRecordFromImportedStructuredRow = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Object Records Spreadsheet Adapter 패턴을 실제 호출부에서 조합한다.
+
 // Any object index action component
 export const ImportPeopleButton = () => {
   const { openObjectRecordsSpreadsheetImportDialog } =

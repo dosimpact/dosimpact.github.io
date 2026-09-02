@@ -13,6 +13,9 @@ Email composer의 free text, chips, pasted addresses를 같은 recipient 배열 
 - `src/modules/activities/emails/recipients/hooks/useEmailRecipientsField.ts`: input commit, chip edit/delete/selection 상태를 recipient pipeline 위에 얹는다.
 
 ```tsx
+// 큰 흐름: Email composer의 free text, chips, pasted addresses를 같은 recipient 배열 모델로 정규화하는 패턴이다.
+// 핵심 기준: `parse at the edge, merge by normalized key, serialize only when sending`이다.
+
 // filepath: src/modules/activities/emails/recipients/utils/parseEmailRecipients.ts
 import { isNonEmptyString } from '@sniptt/guards';
 import { parseEmailAddressList } from 'twenty-shared/utils';
@@ -195,6 +198,8 @@ export const useEmailRecipientsField = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Email Recipient Parse/Merge/Serialize Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/activities/emails/recipients/components/EmailRecipientsFieldInput.tsx
 const {
   inputValue,

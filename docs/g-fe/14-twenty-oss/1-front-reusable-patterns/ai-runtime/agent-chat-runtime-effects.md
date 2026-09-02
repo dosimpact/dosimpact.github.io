@@ -14,6 +14,9 @@ AI chat 화면이 실제로 열린 뒤에만 fetch, stream subscription, preprom
 - `src/modules/ai/components/AgentChatSessionStartTimeEffect.tsx`: UI session 시작 시각을 한 번 기록해 이전 stream side effect를 무시할 기준을 만든다.
 
 ```tsx
+// 큰 흐름: AI chat 화면이 실제로 열린 뒤에만 fetch, stream subscription, preprompt, keepalive, session clock 같은 renderless effects를 붙이는 패턴이다.
+// 핵심 기준: `UI renders the chat surface, runtime effects own the side effects`다.
+
 // filepath: src/modules/ai/components/AgentChatRuntimeEffects.tsx
 export const AgentChatRuntimeEffects = () => {
   const hasAgentChatBeenOpened = useAtomStateValue(hasAgentChatBeenOpenedState);
@@ -171,6 +174,8 @@ export const AgentChatStreamKeepAliveEffect = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Agent Chat Runtime Effects 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/app/components/App.tsx
 export const App = () => {
   return (

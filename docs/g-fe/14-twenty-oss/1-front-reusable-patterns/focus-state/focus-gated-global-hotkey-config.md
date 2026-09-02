@@ -12,6 +12,9 @@
 - `src/modules/ui/utilities/hotkey/hooks/useGlobalHotkeys.ts`: `react-hotkeys-hook`을 앱 정책으로 감싼다.
 
 ```tsx
+// 큰 흐름: 현재 focus item이 가진 `globalHotkeysConfig`로 전역 hotkey 실행 가능 여부를 제어하는 패턴.
+// 핵심 기준: modal/dropdown처럼 keyboard 입력을 먹는 UI가 열릴 때 stack top에 더 엄격한 hotkey config를 올리는 것이다.
+
 // filepath: src/modules/ui/utilities/hotkey/constants/DefaultGlobalHotkeysConfig.ts
 import { type GlobalHotkeysConfig } from '@/ui/utilities/hotkey/types/GlobalHotkeysConfig';
 
@@ -136,6 +139,8 @@ export const useGlobalHotkeys = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Focus-Gated Global Hotkey Config 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/layout/dropdown/hooks/useOpenDropdown.ts
 pushFocusItemToFocusStack({
   focusId: dropdownComponentInstanceId,

@@ -11,6 +11,9 @@ mutation 응답을 기다리지 않고 Apollo connection cache, grouped query ca
 - `src/modules/apollo/optimistic-effect/utils/triggerUpdateRecordOptimisticEffect.ts`: update된 record가 filter/order/group 조건에 맞게 남거나 빠지도록 cache를 동기화한다.
 
 ```tsx
+// 큰 흐름: mutation 응답을 기다리지 않고 Apollo connection cache, grouped query cache, local record store를 먼저 갱신하는 패턴이다.
+// 핵심 기준: `compute optimistic record, write cache, broadcast effect`다.
+
 // filepath: src/modules/object-record/utils/computeOptimisticRecordFromInput.ts
 export const computeOptimisticRecordFromInput = ({
   cache,
@@ -105,6 +108,8 @@ export const triggerUpdateRecordOptimisticEffect = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Optimistic Record Effects 패턴을 실제 호출부에서 조합한다.
+
 const optimisticRecord = computeOptimisticRecordFromInput({
   cache: apolloCoreClient.cache,
   currentWorkspaceMember,

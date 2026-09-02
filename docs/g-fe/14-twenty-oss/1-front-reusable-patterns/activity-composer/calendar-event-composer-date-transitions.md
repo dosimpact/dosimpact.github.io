@@ -12,6 +12,9 @@ Calendar event composer에서 start/end와 all-day mode 전환을 항상 valid r
 - `src/modules/activities/calendar/hooks/useCalendarEventComposer.ts`: date transition helper를 composer state handler로 노출한다.
 
 ```tsx
+// 큰 흐름: Calendar event composer에서 start/end와 all-day mode 전환을 항상 valid range로 유지하는 패턴이다.
+// 핵심 기준: `date inputs call transition helpers instead of patching dates inline`이다.
+
 // filepath: src/modules/activities/calendar/utils/getCalendarEventComposerDefaultDates.ts
 import type { Temporal } from 'temporal-polyfill';
 
@@ -180,6 +183,8 @@ export const useCalendarEventComposer = ({ initialValues, onCreated }) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Calendar Event Composer Date Transitions 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/activities/calendar/components/CalendarEventComposerFields.tsx
 <ComposerFieldRow
   label={t`All day`}

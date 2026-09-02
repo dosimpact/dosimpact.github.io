@@ -11,6 +11,9 @@
 - `src/modules/ui/utilities/hotkey/components/HotkeyEffect.tsx`: UI 없이 hotkey side effect만 붙이는 컴포넌트다.
 
 ```tsx
+// 큰 흐름: 전역 단축키를 등록하되 현재 focus stack의 hotkey 정책을 통과한 경우에만 callback을 실행하는 패턴이다.
+// 핵심 기준: `hotkeys are global, execution is focus-gated`다.
+
 // filepath: src/modules/ui/utilities/hotkey/hooks/useGlobalHotkeys.ts
 import { useGlobalHotkeysCallback } from '@/ui/utilities/hotkey/hooks/useGlobalHotkeysCallback';
 import { pendingHotkeyState } from '@/ui/utilities/hotkey/states/internal/pendingHotkeysState';
@@ -158,6 +161,8 @@ export const HotkeyEffect = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Global Hotkeys 패턴을 실제 호출부에서 조합한다.
+
 import { useGlobalHotkeys } from '@/ui/utilities/hotkey/hooks/useGlobalHotkeys';
 
 export const CommandMenuHotkeys = ({ open }: { open: () => void }) => {

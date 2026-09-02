@@ -11,6 +11,8 @@
 - `src/modules/views/hooks/useSaveCurrentViewFiltersAndSorts.ts`: sort, filter/group, any-field filter 저장 순서를 하나의 save command로 묶는다.
 
 ```tsx
+// 큰 흐름: 화면의 임시 record filter/sort state와 persisted view metadata를 서로 적용하고 저장하는 패턴이다.
+
 // filepath: src/modules/views/hooks/useApplyCurrentViewFiltersToCurrentRecordFilters.ts
 export const useApplyCurrentViewFiltersToCurrentRecordFilters = () => {
   const contextStoreCurrentViewId = useAtomComponentStateValue(
@@ -160,6 +162,8 @@ export const useSaveCurrentViewFiltersAndSorts = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: View Filter/Sort Apply-Save Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/views/components/ViewBarDetails.tsx
 export const ViewBarDetails = () => {
   const { viewFilterGroupsAreDifferentFromRecordFilterGroups } =

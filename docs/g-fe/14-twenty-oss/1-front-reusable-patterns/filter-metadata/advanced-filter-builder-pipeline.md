@@ -14,6 +14,9 @@ advanced filter row가 field 선택, composite sub-field 선택, relation target
 - `src/modules/object-record/advanced-filter/components/AdvancedFilterValueInput.tsx`: operand가 value를 요구할 때 text input 또는 typed dropdown input을 선택한다.
 
 ```tsx
+// 큰 흐름: advanced filter row가 field 선택, composite sub-field 선택, relation target field 선택을 같은 `RecordFilter` draft/upsert pipeline으로 정규화하는 패턴이다.
+// 핵심 기준: `row owns an instance id, apply hooks normalize every selection into a RecordFilter`이다.
+
 // filepath: src/modules/object-record/advanced-filter/components/AdvancedFilterRecordFilterRow.tsx
 export const AdvancedFilterRecordFilterRow = ({
   recordFilterGroup,
@@ -281,6 +284,8 @@ export const AdvancedFilterValueInput = ({ recordFilterId }: Props) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Advanced Filter Builder Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/advanced-filter/components/AdvancedFilterFieldSelectMenu.tsx
 const { applyAdvancedFilterSourceField } =
   useApplyAdvancedFilterSourceField();

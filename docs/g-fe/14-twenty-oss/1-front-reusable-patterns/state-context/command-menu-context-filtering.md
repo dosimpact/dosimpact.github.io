@@ -11,6 +11,9 @@ Command menu item 목록을 현재 화면, object, 선택 상태, preview 상태
 - `src/modules/command-menu-item/contexts/CommandMenuContextProviderContent.tsx`: atom state와 context API를 조합해 실제 표시 가능한 command menu item만 필터링한다.
 
 ```tsx
+// 큰 흐름: Command menu item 목록을 현재 화면, object, 선택 상태, preview 상태에 맞게 provider 안에서 필터링하는 패턴이다.
+// 핵심 기준: `Provider derives available items, consumers only render them`이다.
+
 // filepath: src/modules/command-menu-item/contexts/CommandMenuContext.ts
 import { EMPTY_COMMAND_MENU_CONTEXT_API } from '@/command-menu-item/constants/EmptyCommandMenuContextApi';
 import { CommandMenuItemContainerType } from '@/command-menu-item/types/CommandMenuItemContainerType';
@@ -193,6 +196,8 @@ export const CommandMenuContextProviderContent = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Command Menu Context Filtering 패턴을 실제 호출부에서 조합한다.
+
 // Provider 사용
 <CommandMenuContextProvider
   displayType="dropdownItem"

@@ -13,6 +13,9 @@
 - `src/modules/side-panel/routing/components/SidePanelRoutedPage.tsx`: side panel stack의 current routed location으로 기존 workspace routes를 side panel surface에 렌더링한다.
 
 ```tsx
+// 큰 흐름: 일반 route path를 앱의 main router 대신 side panel navigation stack item으로 변환해 embedded page처럼 여는 패턴이다.
+// 핵심 기준: `Route stays reusable, navigator decides the surface`다.
+
 // filepath: src/modules/side-panel/routing/utils/toSidePanelLocation.ts
 import { parsePath } from 'react-router-dom';
 import { v4 } from 'uuid';
@@ -368,6 +371,8 @@ export const SidePanelRoutedPage = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Side Panel Routed Page Navigation 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/side-panel/hooks/useOpenRecordInSidePanel.ts
 const recordPath = getAppPath(AppPath.RecordShowPage, {
   objectNameSingular,

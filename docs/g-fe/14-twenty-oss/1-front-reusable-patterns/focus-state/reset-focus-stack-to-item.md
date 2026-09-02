@@ -11,6 +11,9 @@
 - `src/modules/ui/utilities/focus/types/FocusComponentType.ts`: stack item이 가리키는 UI component type 목록이다.
 
 ```tsx
+// 큰 흐름: 복잡한 UI 전환 후 focus stack을 하나의 item으로 재초기화하는 패턴.
+// 핵심 기준: 이전 stack을 정리하면서 새 기준 focus item만 남겨 hotkey와 focused-element 판정을 예측 가능하게 만드는 것이다.
+
 // filepath: src/modules/ui/utilities/focus/hooks/useResetFocusStackToFocusItem.ts
 import { useCallback } from 'react';
 
@@ -74,6 +77,8 @@ export enum FocusComponentType {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Reset Focus Stack To Item 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/utilities/focus/hooks/__tests__/useResetFocusStackToFocusItem.test.tsx
 const firstFocusItem = {
   focusId: 'first-focus-id',

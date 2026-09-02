@@ -12,6 +12,9 @@ timeline activity row는 기본 문장을 먼저 렌더링하고, type 설정에
 - `src/modules/activities/timeline-activities/rows/components/EventRowDynamicComponent.tsx`: native row를 항상 렌더링하고 renderer가 있으면 toggle 가능한 card로 추가 렌더링한다.
 
 ```tsx
+// 큰 흐름: timeline activity row는 기본 문장을 먼저 렌더링하고, type 설정에 따라 standard renderer 또는 front component renderer를 접어서 추가하는 패턴이다.
+// 핵심 기준: `native row is the fallback, renderer is optional detail`이다.
+
 // filepath: src/modules/activities/timeline-activities/rows/components/TimelineActivityRenderer.ts
 export type StandardTimelineActivityRendererProps = {
   event: TimelineActivity;
@@ -169,6 +172,8 @@ export const EventRowDynamicComponent = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Dynamic Timeline Activity Renderer 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/activities/timeline-activities/components/EventRow.tsx
 const rendererUniversalIdentifier =
   timelineActivityType?.frontComponentUniversalIdentifier;

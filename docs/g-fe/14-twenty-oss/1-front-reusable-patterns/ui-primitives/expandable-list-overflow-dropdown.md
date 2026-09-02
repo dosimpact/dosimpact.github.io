@@ -12,6 +12,9 @@ Inline chips render until the row overflows, then a compact `+N` chip opens a dr
 - `src/modules/ui/layout/expandable-list/utils/isFirstOverflowingChildElement.ts`: 첫 overflow child index를 DOM width로 판정한다.
 
 ```tsx
+// 큰 흐름: Inline chips render until the row overflows, then a compact `+N` chip opens a dropdown with the full list.
+// 핵심 기준: `inline display is capped by layout, expanded display keeps all children`이다.
+
 // filepath: src/modules/ui/layout/expandable-list/components/ExpandableList.tsx
 export const ExpandableList = ({
   children,
@@ -249,6 +252,8 @@ export const ExpandedListDropdown = ({
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Expandable List Overflow Dropdown 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/ui/field/display/components/EmailsDisplay.tsx
 const emails = useMemo(
   () =>

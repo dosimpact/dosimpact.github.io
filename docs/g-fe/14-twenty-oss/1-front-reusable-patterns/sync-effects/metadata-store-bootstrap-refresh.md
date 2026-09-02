@@ -14,6 +14,9 @@ persisted metadata store를 먼저 읽고, 서버 collection hash와 비교해 s
 - `src/modules/metadata-store/effect-components/IsMinimalMetadataReadyEffect.tsx`: object/view 필수 metadata가 up-to-date가 되면 gate를 연다.
 
 ```tsx
+// 큰 흐름: persisted metadata store를 먼저 읽고, 서버 collection hash와 비교해 stale entity만 다시 가져온 뒤 ready gate를 여는 패턴이다.
+// 핵심 기준: `version bump triggers minimal hash check, stale keys fetch full data`다.
+
 // filepath: src/modules/metadata-store/states/metadataStoreState.ts
 export type MetadataEntityStoreStatus =
   | 'empty'
@@ -292,6 +295,8 @@ export const IsMinimalMetadataReadyEffect = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Metadata Store Bootstrap Refresh 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/sse-db-event/components/SSEClientEffect.tsx
 export const SSEClientEffect = () => {
   const { resyncMetadataStore } = useResyncMetadataStore();

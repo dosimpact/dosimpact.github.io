@@ -13,6 +13,9 @@ Home, AI, Settings처럼 서로 배타적인 navigation drawer mode를 route 상
 - `src/modules/navigation/hooks/useSwitchNavigationDrawerMode.ts`: mode별 side effect, route 이동, drawer 상태 복원을 하나의 명령형 API로 묶는다.
 
 ```tsx
+// 큰 흐름: Home, AI, Settings처럼 서로 배타적인 navigation drawer mode를 route 상태와 memorized location 상태에 맞춰 전환하는 패턴이다.
+// 핵심 기준: `Route-owned modes win, stored tab fills the gaps`다.
+
 // filepath: src/modules/ui/navigation/states/navigationDrawerTabs.ts
 export const NAVIGATION_DRAWER_TABS = {
   NAVIGATION_MENU: 'home',
@@ -215,6 +218,8 @@ export const useSwitchNavigationDrawerMode = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Navigation Mode Switcher 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/navigation/components/MainNavigationDrawerModeSwitcher.tsx
 export const MainNavigationDrawerModeSwitcher = () => {
   const activeNavigationDrawerMode = useActiveNavigationDrawerMode();

@@ -13,6 +13,9 @@ display mode, edit mode, persist, close, focus 복귀를 하나의 cell shell로
 - `src/modules/object-record/record-inline-cell/hooks/useInlineCell.ts`: 외부 컴포넌트가 inline cell을 열고 닫을 때 draft value와 focus stack을 함께 처리한다.
 
 ```tsx
+// 큰 흐름: display mode, edit mode, persist, close, focus 복귀를 하나의 cell shell로 표준화하는 패턴이다.
+// 핵심 기준: `cell owns lifecycle, field input only reports events`다.
+
 // filepath: src/modules/object-record/record-field/ui/contexts/FieldInputEventContext.ts
 import { createContext } from 'react';
 
@@ -175,6 +178,8 @@ export const useInlineCell = (recordFieldComponentInstanceIdFromProps?: string) 
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Inline Cell Edit Lifecycle 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInput.tsx
 export const TextFieldInput = () => {
   const { onEnter, onEscape, onClickOutside } = useContext(FieldInputEventContext);

@@ -11,6 +11,9 @@
 - `src/modules/ui/feedback/dialog-manager/components/DialogManager.tsx`: queue에 들어있는 dialog들을 실제 UI로 렌더링한다.
 
 ```tsx
+// 큰 흐름: 전역 dialog queue를 component instance state에 저장하고, manager 컴포넌트가 queue를 렌더링하는 패턴이다.
+// 핵심 기준: `caller enqueues, manager renders and closes`다.
+
 // filepath: src/modules/ui/feedback/dialog-manager/states/dialogInternalComponentState.ts
 import { DialogComponentInstanceContext } from '@/ui/feedback/dialog-manager/contexts/DialogComponentInstanceContext';
 import { createAtomComponentState } from '@/ui/utilities/state/jotai/utils/createAtomComponentState';
@@ -114,6 +117,8 @@ export const DialogManager = ({ children }: React.PropsWithChildren) => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Queued Dialog Manager 패턴을 실제 호출부에서 조합한다.
+
 import { useDialogManager } from '@/ui/feedback/dialog-manager/hooks/useDialogManager';
 
 export const DeleteButton = () => {

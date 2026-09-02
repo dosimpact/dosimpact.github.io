@@ -12,6 +12,9 @@
 - `src/modules/navigation-menu-item/display/dnd/hooks/useHandleAddToNavigationDrop.ts`: payload type별 draft input을 만들고 edit side panel을 연다.
 
 ```tsx
+// 큰 흐름: 외부 picker/search item을 navigation menu로 drag해서 draft item을 만들고, layout customization side panel을 바로 여는 패턴이다.
+// 핵심 기준: `drag payload registry in, navigation draft item out`이다.
+
 // filepath: src/modules/navigation-menu-item/common/states/addToNavPayloadRegistryState.ts
 export const addToNavPayloadRegistryState = createAtomState<
   Map<string, AddToNavigationDragPayload>
@@ -169,6 +172,8 @@ export const useHandleAddToNavigationDrop = () => {
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Add-To-Navigation Drop Handler 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/navigation-menu-item/edit/side-panel/components/SidePanelNewSidebarItemPage.tsx
 export const SidePanelNewSidebarItemPage = () => {
   return (

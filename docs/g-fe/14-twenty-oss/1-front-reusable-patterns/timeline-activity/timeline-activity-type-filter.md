@@ -12,6 +12,9 @@
 - `src/modules/activities/timeline-activities/utils/keepTimelineActivitiesOfSelectedTypes.ts`: effective filter를 activity list에 적용한다.
 
 ```tsx
+// 큰 흐름: 활성화된 timeline activity type과 record별 선택 필터를 합쳐 실제 list query/display에 쓸 필터로 바꾸는 패턴이다.
+// 핵심 기준: `active type is the allowed set, selected type is the requested set`이다.
+
 // filepath: src/modules/activities/timeline-activities/hooks/useTimelineActivityTypes.ts
 export const useTimelineActivityTypes = () => {
   const { data } = useQuery(FindManyTimelineActivityTypesDocument);
@@ -128,6 +131,8 @@ export const keepTimelineActivitiesOfSelectedTypes = <
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Timeline Activity Type Filter 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/activities/timeline-activities/components/EventList.tsx
 export const EventList = ({ events, targetableObject }: EventListProps) => {
   const {

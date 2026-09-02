@@ -10,6 +10,8 @@ Imported rows에 table hook, row hook, field validation을 순서대로 적용�
 - `src/modules/spreadsheet-import/steps/components/ValidationStep/ValidationStep.tsx`: editable table에서 rows를 재검증하고 valid/invalid rows로 나누어 submit한다.
 
 ```tsx
+// 큰 흐름: Imported rows에 table hook, row hook, field validation을 순서대로 적용하고 UI에서 수정, 필터, 제출 분기를 처리하는 패턴이다.
+
 // filepath: src/modules/spreadsheet-import/utils/dataMutations.ts
 export const addErrorsAndRunHooks = (
   data: (ImportedStructuredRow & Partial<ImportedStructuredRowMetadata>)[],
@@ -205,6 +207,8 @@ export const ValidationStep = ({ initialData, importedColumns, file, onBack }: P
 ## 2. 사용 예제
 
 ```tsx
+// 사용 흐름: Spreadsheet Validation Pipeline 패턴을 실제 호출부에서 조합한다.
+
 // filepath: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 const unmatchedRequiredFields = useMemo(
   () => findUnmatchedRequiredFields(fields, columns),
