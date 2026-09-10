@@ -99,7 +99,7 @@ supabase stop
 ## Deploy to Production
 
 ```js
-# 로그인 후 여러 프로젝트 중 어느것에 연결시킬지 고른다.  
+# 로그인 후 여러 프로젝트 중 어느 것에 연결시킬지 고른다.  
 supabase login
 supabase projects list
 supabase link --project-ref <your-project-id>

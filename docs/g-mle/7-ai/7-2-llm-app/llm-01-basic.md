@@ -76,7 +76,7 @@ GPT: CLM (Causal Language Modeling)
 - 특징: 이전 단어들을 보고 바로 다음 단어를 맞히는 방식입니다.  
 - CLM, 문장을 주고 마지막 단어를 맞추도록 모델링 하는 방법. 생성에 특화되어 있다.  
 - Auto regressive : 나온 문장을 다시 입력으로 나와 다음 단어를 나오게 한다.  
-- GPT ( Generative Pretrainded Transformer )  
+- GPT ( Generative Pretrained Transformer )  
 
 LORA ( Low Rank Adaption )  
 - 파인튜닝할 때 LORA라는 방식을 사용한다.  

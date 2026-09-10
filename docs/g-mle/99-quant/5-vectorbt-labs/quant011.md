@@ -13,13 +13,13 @@ sidebar_position: 11
 - 그 Gap에 대한 데이터를 샘플링 한다.    
 - Gap데이터를 모아서 평균 및 표준정규분포 곡선을 그린다.  
 ![Alt text](image-9.png)
-- 그 정규분포곡선에서 하위 1%일때가 매수하기 좋은 시점이다.    
+- 그 정규분포곡선에서 하위 1%일 때가 매수하기 좋은 시점이다.    
 - 의미 : 지금까지의 Period 중 가장 저가에 매수하는 것  
 
 주의  
 - 상승장 only  
 - 충분히 학습기간이 필요하기에 10일 이상 매매를 금지한다. (초기 데이터의 이상치 제거 필요)  
-- 미래 데이터를 미리 가져와서 평균치를 내면 안되므로 expanding 함수를 이용한다.  
+- 미래 데이터를 미리 가져와서 평균치를 내면 안 되므로 expanding 함수를 이용한다.  
 
 2.분할 매수를 한다.  
 - 시그널 이후 진입시 size값을 이용해 진입한다.  
@@ -125,7 +125,7 @@ plt.hist([df['MA12ZScore']],bins=300,label=['a'])
 plt.legend()
 plt.show()
 
-benchmarkTotlaReturns = ((df['Close'].iloc[-1] - df['Close'].iloc[0]) / df['Close'].iloc[0])*100
+benchmarkTotalReturns = ((df['Close'].iloc[-1] - df['Close'].iloc[0]) / df['Close'].iloc[0])*100
 lastSize = df['size'][-1]
 countGoTrue = df['go'].value_counts()[1]
 countGoHold = df['go'].value_counts()[0]
@@ -136,7 +136,7 @@ print(f"countGoTrue {countGoTrue}")
 print(f"countGoHold {countGoHold}")
 print(f"countSignalMA12ZScoreTrue {countSignalMA12ZScoreTrue}")
 print(f"countSignalMA12ZScoreFalse {countSignalMA12ZScoreFalse}")
-print(f"benchmarkTotlaReturns {benchmarkTotlaReturns}")
+print(f"benchmarkTotalReturns {benchmarkTotalReturns}")
 print(f"lastSize {lastSize}")
 
 # layer:trading
@@ -391,7 +391,7 @@ plt.hist([df['MA12ZScore']],bins=300,label=['a'])
 plt.legend()
 plt.show()
 
-benchmarkTotlaReturns = ((df['Close'].iloc[-1] - df['Close'].iloc[0]) / df['Close'].iloc[0])*100
+benchmarkTotalReturns = ((df['Close'].iloc[-1] - df['Close'].iloc[0]) / df['Close'].iloc[0])*100
 lastSize = df['size'][-1]
 countGoTrue = df['go'].value_counts()[1]
 countGoHold = df['go'].value_counts()[0]
@@ -402,7 +402,7 @@ print(f"countGoTrue {countGoTrue}")
 print(f"countGoHold {countGoHold}")
 print(f"countSignalMA12ZScoreTrue {countSignalMA12ZScoreTrue}")
 print(f"countSignalMA12ZScoreFalse {countSignalMA12ZScoreFalse}")
-print(f"benchmarkTotlaReturns {benchmarkTotlaReturns}")
+print(f"benchmarkTotalReturns {benchmarkTotalReturns}")
 print(f"lastSize {lastSize}")
 
 # layer:trading

@@ -20,7 +20,7 @@ https://github.com/jimmywarting/StreamSaver.js?
 
 stream, file, blob을 저장하는 마법같은 추상화된 함수는 아직 없다.  
 - 현재는 ObjectURLs + a link로 blob(file,image,sound..) 다운로드 링크를 만들 수 있다.  
-- 1. stream 은 ObjectURLs을 만드는것이 불가능하다. (blob 방식은 스트림 데이터를 다 모아야 하므로 오버플로가 발생 가능. )    
+- 1. stream 은 ObjectURLs을 만드는 것이 불가능하다. (blob 방식은 스트림 데이터를 다 모아야 하므로 오버플로가 발생 가능. )    
 - 2. Content-Disposition 헤더를 변경못하는 경우 다운로드 다이얼로그를 못 연다.    
 
 

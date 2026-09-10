@@ -146,7 +146,7 @@ yarn add next-themes
 
 만약에 supabase 서브디렉터리가 있고, 이는 nextjs와 무관하다면 이를 빌드 싸이클에서 제외해야 한다.  
 - tsconfig, next build 모두 설정해야 한다.  
-- 모노래포로 만들어도 좋을것 같다.  
+- 모노래포로 만들어도 좋을 것 같다.  
 
 ```js
 #

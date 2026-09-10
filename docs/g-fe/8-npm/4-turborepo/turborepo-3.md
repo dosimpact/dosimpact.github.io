@@ -65,7 +65,7 @@ pnpm unlink package-name // 의존성 링크 제거
 pnpm list // 현재 의존성 리스트  
 
 // 3.글로벌 의존성 만들기
-// 로컬의 의존성을 다른 레포에서 테스트 할수 있다.  
+// 로컬의 의존성을 다른 레포에서 테스트 할 수 있다.  
 pnpm link --global              // (로컬모듈) 글로벌 링크 만들기
 pnpm link package-name --global // (test) 글로벌의 로컬모듈을 test 레포에 설치(하드 링크 방식)   
 //? pnpm list --global              // (test) 링크 확인  
@@ -198,7 +198,7 @@ export default defineConfig({
   "scripts": {
     "dev": "NODE_ENV=development tsup",
     "build": "NODE_ENV=production tsup",
-    "npm-publihs": ""
+    "npm-publish": ""
   },
   "keywords": [],
   "author": "",
@@ -272,7 +272,7 @@ export * from './calculator-v2/index.js';
   "scripts": {
     "dev": "NODE_ENV=development tsup",
     "build": "NODE_ENV=production tsup",
-    "npm-publihs": ""
+    "npm-publish": ""
   },
   "keywords": [],
   "author": "",
@@ -395,7 +395,7 @@ pnpm link --global
 // 테스트 레포로 가서 방금 만든 로컬 모듈 연결하기  
 // pnpm install 은 필요없다.  
 pnpm link --global @dodo/blocks
-//확인해보기 (잘안된다.?)
+//확인해보기 (잘안 된다.?)
 pnpm list
 
 // 4. 테스트 후 링크제거

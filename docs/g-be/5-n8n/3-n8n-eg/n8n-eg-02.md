@@ -123,7 +123,7 @@ $$;
 - Supabase 벡터 저장 과정
   - Prepare단계에서 사전에 정의된 테이블 스키마와 DB함수를 인자로 넣는다.  
   - Embeddings OpenAI 모델은 text-embedding-3-small 사용한다.  
-  - 청크 사이즈가 너무 작으면 안된다. 5000정도로 진행함.  
+  - 청크 사이즈가 너무 작으면 안 된다. 5000정도로 진행함.  
 
 2.Chat Flow 
 

@@ -135,7 +135,7 @@ LangGraph 예제는 Chapter 17의 추론 기법 전반을 재복제하지 말고
 | `working_memory` | `dict[str, Any]` | 하위목표/가정/임시 결론/미결정 사항 |
 | `next_step` | `dict[str, Any] \| None` | 다음 추론/도구 단계 |
 | `step_trace` | `list[dict[str, Any]]` | 실행 단계 요약(사용자 안전형) |
-| `tool_requests` | `list[dict[str, Any]]` | 추론 루프에서 제안된 도구 요청 |
+| `tool_requests` | `list[dict[str, Any]]` | 추론 루프에서 제안 된 도구 요청 |
 | `observations` | `list[dict[str, Any]]` | 로컬 도구/근거 fixture/검증 결과 |
 | `knowledge_gaps` | `list[str]` | 확인되지 않은 정보/가정 |
 | `errors` | `list[str]` | 검증/전략/도구/파싱/평가 오류 |

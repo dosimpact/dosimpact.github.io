@@ -113,7 +113,7 @@ namespace와 default import 설정에서 발생하는 문제를 해결,
     "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "target": "es6", // 컴파일 대상의 버전, 너무 낮은 버전일수록 코드가 방대해질수있다.                                   
+    "target": "es6", // 컴파일 대상의 버전, 너무 낮은 버전일수록 코드가 방대해질 수 있다.                                   
     /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "lib": ["DOM","DOM.Iterable","ESNext"],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "jsx": "react",                                /* Specify what JSX code is generated. */
@@ -344,7 +344,7 @@ TypeScript 컴파일러가 모듈을 처리하는 방식을 정의.
 ## esModuleInterop(true), allowSyntheticDefaultImports(true)
 
 esModuleInterop(default = true)  
-- node_modules를 가져올때 세부 설정
+- node_modules를 가져올 때 세부 설정
 - CommonJS 모듈을 ES 모듈처럼 사용 가능   
 - https://www.typescriptlang.org/tsconfig/#esModuleInterop  
 
@@ -363,7 +363,7 @@ someLibrary.libraryFunction();
 ```
 
 allowSyntheticDefaultImports (default = true)
-- node_modules를 가져올때 세부 설정  
+- node_modules를 가져올 때 세부 설정  
 - CommonJS 모듈을 ES 모듈처럼 사용할 때, default import 구문을 사용할 수 있다.   
 - https://www.typescriptlang.org/tsconfig/#Interop_Constraints_6252
 

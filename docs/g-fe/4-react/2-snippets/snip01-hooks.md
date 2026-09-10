@@ -359,7 +359,7 @@ export const Portal: React.FC<{ id: string; children: React.ReactNode }> = ({
 
 ## useClickOutside  
 
-- 1.event에 target(실제 이벤트 발생 노드), currentTaget(리스너가 걸린 노드)  
+- 1. event에 target(실제 이벤트 발생 노드), currentTarget(리스너가 걸린 노드)  
 - 2.document.body에 mousedown 이벤트를 리슨한다.    
 - 3.boxRef가 event.target을 contains 하는지 판단한다.   
 
@@ -509,7 +509,7 @@ export function useFadeIn(ref: RefObject<HTMLElement>, duration: number): void {
 📒 개념 scrollWith, clientWidth, offsetWidth는
 - ![img](https://preview.redd.it/diagram-for-offsetwidth-offsetheight-clientwidth-v0-jwjvndwwy6db1.png?auto=webp&s=de7877f7831cc836db0244225726511080df22f3)  
 - 200px 블럭이  50px의 부모에 의해 줄어들어 스크롤이 발생한다. 이때  scrollWith는 200px, clientWidth는 50px이다.  
-  - offsetWidth는 border 즉, 스크롤영역을 포함한 크기이다. 예를들어 70px 이 될 수 있다.   
+  - offsetWidth는 border 즉, 스크롤영역을 포함한 크기이다. 예를 들어 70px 이 될 수 있다.   
 
 📒 개념 RefObject vs MutableRefObject
 - useRef의 타입 중 하나이다. 전자는 변경이 불가능한 ref이다.  

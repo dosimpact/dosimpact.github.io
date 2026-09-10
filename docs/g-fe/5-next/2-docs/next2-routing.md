@@ -33,7 +33,7 @@ next.js에서는 Route segments 단위로 코드 스플릿팅이 된다.
 
 5.소프트 네비게이션 (Soft Navigation)
 - hard navigation : 브라우저의 전체 새로고침   
-- Partial Renderind으로 변경된 부분만 업데이트하여 클라이언트 상태를 유지함.
+- Partial Rendering으로 변경된 부분만 업데이트하여 클라이언트 상태를 유지함.
 
 6.Back and Forward Navigation
 - 스크롤 위치 유지 및 Router Cache를 활용해 빠른 네비게이션 제공.
@@ -57,8 +57,8 @@ next.js에서는 Route segments 단위로 코드 스플릿팅이 된다.
 
 
 ## Route Groups
->URL경로 매커니즘에 영향없이, 디렉터리를 정리하고 싶을때  
-- 예를들어 인증한 사용자만 접근하는 디렉터리, 모두가 접근 가능한 디렉터리, 미인증 사용자만 접근 가능한 디렉터리  
+>URL경로 매커니즘에 영향없이, 디렉터리를 정리하고 싶을 때  
+- 예를 들어 인증한 사용자만 접근하는 디렉터리, 모두가 접근 가능한 디렉터리, 미인증 사용자만 접근 가능한 디렉터리  
 
 ## Dynamic Routes
 >동적 경로에 대한 처리,
@@ -69,4 +69,4 @@ next.js에서는 Route segments 단위로 코드 스플릿팅이 된다.
 >Streaming UI를 app router에 구현했다. @slot 컨벤션을 사용한다.  
 
 ## Intercepting Routes  
->사진 카드를 클릭해서 모달창에 사진 UI을 보여준다. 하지만 현재 링크를 다시 브라우저에 넣으면 사진 페이지로 이동하고 싶을때    
+>사진 카드를 클릭해서 모달창에 사진 UI을 보여준다. 하지만 현재 링크를 다시 브라우저에 넣으면 사진 페이지로 이동하고 싶을 때    

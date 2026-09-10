@@ -77,7 +77,7 @@ console.log(minCoins(coins2, target2)); // 출력: 6 (목표 금액을 만들 �
 
 예상 대진표 https://school.programmers.co.kr/learn/courses/30/lessons/12985
 - 사고과정 : 처음에는 이진탐색으로 접근 했지만, 조건이 틀렸다.
-  - 가정 : 서로 다른 전/후 그룹에 속하면 A,B가 만날것이다 - 틀렸다. ( 다른 그룹에 속해도 안만날 수 있다. )  
+  - 가정: 서로 다른 전/후 그룹에 속하면 A, B가 만날 것이다. 틀렸다. (다른 그룹에 속해도 안 만날 수 있다.)  
 - 전체를 시뮬레이션할 필요는 없다. 관심사만 본다.  
 - 시간복잡도 : N이 2**20승 > 백만 O(log n)
 - 접근 : Top Down Greedy
@@ -134,7 +134,7 @@ function dp(n){
 
 https://app.codility.com/demo/results/trainingZEU6C4-H3A/  
 - 밧줄문제로 치환되었음.  
-- 발상 : 그때 그때 최선은 밧줄 길이가 빨리 끝나는것을 선택하는 것이다.  
+- 발상 : 그때 그때 최선은 밧줄 길이가 빨리 끝나는 것을 선택하는 것이다.  
 - 엣지 케이스 : 배열크기가 0인 경우 캐치.  
 
 ```js
@@ -170,7 +170,7 @@ https://app.codility.com/programmers/lessons/16-greedy_algorithms/tie_ropes/
 function solution(K, A) {
     // k보다 작은 경우 루프를 묶는다. 
     // (교환 논의)  
-    // - 묶는게 낫지 버리는것보다는
+    // - 묶는게 낫지 버리는 것보다는
     // - 하지만, 이미 k 이상인 루프가 있다면 안묶어도 된다. 오히려 별도로 가져가는게 이득  
 
     let tmpSum = 0; 

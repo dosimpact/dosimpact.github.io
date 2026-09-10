@@ -17,7 +17,7 @@ sidebar_position: 0
 ## Report(QuantStats)  
 (백테스팅 결과 리포트)  
 
-- Bemchmark : eg) BTC, ETH  
+- Benchmark : eg) BTC, ETH  
 
 
 ## Strategy  

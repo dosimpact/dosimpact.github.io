@@ -43,7 +43,7 @@ console.log(value.toFixed(2));
 ```js
 import axios, { AxiosError } from 'axios';
 
-// assetion
+// assertion
 export function assertAxiosError(err: unknown): asserts err is AxiosError {
   if (typeof err === 'object' && err !== null && 'isAxiosError' in err) {
     return;

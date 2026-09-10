@@ -163,7 +163,7 @@ terraform init
 terraform plan
 terraform apply
 
-# 프로덕션 환경에서는 굉장히 조심해서 사용할것
+# 프로덕션 환경에서는 굉장히 조심해서 사용할 것
 terraform destroy
 
 # 프로덕션 환경에서는 output 파일을 꼭 사용해라.  

@@ -7,13 +7,13 @@ sidebar_position: 3
 ### 스트림 101 (기초)
 
 Node.js에는 네 가지 기초 스트림 타입이 있습니다. Readable, Writable, Duplex, Transform 스트림입니다.  
-- 읽기 가능한(readable) 스트림은 소비할수 있는 데이터를 추상화한 것입니다. 예를들어 fs.createReadStream 메소드가 그렇죠.  
-- 쓰기 가능한 (writable) 스트림은 데이터를 기록할수 있는 종착점을 추상화한 것입니다. 예를 들어 fs.createWriteStream 메소드가 있죠.  
+- 읽기 가능한(readable) 스트림은 소비할 수 있는 데이터를 추상화한 것입니다. 예를 들어 fs.createReadStream 메소드가 그렇죠.  
+- 쓰기 가능한 (writable) 스트림은 데이터를 기록할 수 있는 종착점을 추상화한 것입니다. 예를 들어 fs.createWriteStream 메소드가 있죠.  
 - 듀플렉스(duplex) 스트림은 읽기/쓰기 모두 가능합니다. 예를 들어 TCP 소켓이 있죠.  
 
 트랜스폼(transform) 스트림은 기본적으로 듀플렉스 스트림입니다.
-- 데이터를 읽거나 기록할 때 수정/변환될수 있는 데이터죠.
-- 예를들어 gzip을 이용해 데이터를 압축하는 zlib.createGzip 스트림이 있습니다.
+- 데이터를 읽거나 기록할 때 수정/변환될 수 있는 데이터죠.
+- 예를 들어 gzip을 이용해 데이터를 압축하는 zlib.createGzip 스트림이 있습니다.
 - 입력은 쓰기 가능한 스트림이고 출력은 읽기 가능한 스트림인 트랜스폼 스트림을 생각할 수 있을 겁니다. - 트랜스폼 스트림이 *"스트림을 통해(through streams)"*라고 불리는 것을 들어 봤을 겁니다.
 - 모든 스트림은 EventEmitter의 인스턴스 입니다. 데이터를 읽거나 쓸 때 사용할 이벤트를 방출(emit) 합니다.
 - 하지만, pipe 메소드를 이용하면 더 간단하게 스트림 데이터를 사용할 수 있습니다.
@@ -25,7 +25,7 @@ Node.js에는 네 가지 기초 스트림 타입이 있습니다. Readable, Writ
 - 하지만, pipe 메소드를 이용하면 더 간단하게 스트림 데이터를 사용할 수 있습니다.
 
 ```
-reableSrc
+readableSrc
 .pipe(transformStream1)
 .pipe(transformStream2)
 .pipe(finalWritableDest)
@@ -36,7 +36,7 @@ reableSrc
 - 에러 처리나 파일의 끝부분 처리,
 - 어떤 스트림이 다른 것들에 비해 느리거나 빠를 경우를 처리합니다.
 
-하지만 스트림은 직접 이벤트와 함께 사용할수 있습니다.
+하지만 스트림은 직접 이벤트와 함께 사용할 수 있습니다.
 
 ```
 - 여기 pipe 메소드가 데이터를 읽고 쓰기위해 주로 하는 것을 나타내는 간단한 코드가 있습니다.
@@ -66,16 +66,16 @@ Writable Streams
 
 읽기 가능한 스트림에서 가장 중요한 이벤트는 다음과 같습니다.
 - data 이벤트: 스트림이 소비자에게 데이터 청크를 전송할 때 발생합니다.
-- end 이벤트: 더 이상 소비할 데이터가 없을때 발생합니다.
+- end 이벤트: 더 이상 소비할 데이터가 없을 때 발생합니다.
 
 쓰기 가능한 스트림에서 가장 중요한 이벤트는 다음과 같습니다.
 - drain 이벤트: 쓰기 가능한 스트림이 더 많은 데이터를 수신할 수 있다는 신호입니다.
-- finish 이벤트: 모든 데이터가 시스템으로 플러시 될때 생성됩니다.
+- finish 이벤트: 모든 데이터가 시스템으로 플러시 될 때 생성됩니다.
 
 
 이벤트와 함수는 커스터마이징된 스트림을 사용하기 위해 함께 사용할 수 있습니다.
-읽기 가능한 스트림을 사용하기 위해 pipe/unpipe 메소드를 사용하거나 read/unshift/resume 메소드를 사용할 수 있습니다. 쓰기 가능한 스트림을 사용하기 위해 우리는 이것을 pipe/unpip의 종착점으로 만들수 있습니다.
-혹은 write 메소드로 쓰고 끝날때 done 메소드를 호출하면 됩니다.
+읽기 가능한 스트림을 사용하기 위해 pipe/unpipe 메서드를 사용하거나 read/unshift/resume 메서드를 사용할 수 있습니다. 쓰기 가능한 스트림을 사용하기 위해 이것을 pipe/unpipe의 종착점으로 만들 수 있습니다.
+혹은 write 메소드로 쓰고 끝날 때 done 메소드를 호출하면 됩니다.
 
 
 ### 읽기 가능한 스트림의 일시 정지 모드와 흐름 모드
@@ -236,7 +236,7 @@ let finalWriteStream = null;
 // });
  
 const myWritableStream = new Writable({
-  write(chunk, encodeing, callback) {
+  write(chunk, encoding, callback) {
     // 스트림을 다르게 설정하지 않는다면 chunk는 보통 버퍼입니다.
     // 위에서는 encoding 인자를 썼지만 보통은 무시할 수 있습니다.
     // callback은 데이터 청크를 처리한 뒤에 호출되는 함수 입니다.
@@ -257,7 +257,7 @@ userDBReadableStream.on("error", () => {
   console.log("Event userDBReadableStream error");
 });
 userDBReadableStream.on("end", () => {
-  // end 이벤트: 더 이상 소비할 데이터가 없을때 발생합니다.
+  // end 이벤트: 더 이상 소비할 데이터가 없을 때 발생합니다.
   console.log("Event userDBReadableStream end");
 });
  
@@ -320,7 +320,7 @@ finalWriteStream.on("error", () => {
 });
  
 finalWriteStream.on("finish", () => {
-  // finish 이벤트: 모든 데이터가 시스템으로 플러시 될때 생성됩니다.
+  // finish 이벤트: 모든 데이터가 시스템으로 플러시 될 때 생성됩니다.
   console.log("Event finalWriteStream finish");
 });
  
@@ -376,7 +376,7 @@ const bootstrap = async () => {
   });
  
   app.get("/2-stream", (req, res) => {
-    // HTPP 응답객체는 쓰기 가능한 객체이다.
+    // HTTP 응답 객체는 쓰기 가능한 객체이다.
     createReadStream("big.file").pipe(res);
   });
  
@@ -455,7 +455,7 @@ const bootstrap = async () => {
  
     const readableStream = Readable({
       read(size) {
-        // 스트림은 버퍼가 찰때까지 read 여러번 호출하여 청크데이터를 요청한다.
+        // 스트림은 버퍼가 찰 때까지 read 여러 번 호출하여 청크데이터를 요청한다.
         // 읽기 로직을 통해 데이터를 Push한다.
         // 다운스트림에서 데이터를 다 소화하면 다시 read가 호출된다. 이는 pipe함수에 의해 관리된다.
         console.log("-->readableStream read event");

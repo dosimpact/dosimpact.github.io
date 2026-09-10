@@ -57,7 +57,7 @@ export class CrawlingTargetEntity {
   isCrawled: boolean;
 
   @Column({ type: 'boolean', default: false, nullable: true })
-  isRewrited: boolean;
+  isRewritten: boolean;
 }
 
 ```

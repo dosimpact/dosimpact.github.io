@@ -134,7 +134,7 @@ ref : https://nextjs.org/docs/app/building-your-application/routing/pages-and-la
 
 ### RCS + AppRouter fullPage,subPage 의 동작이해  
 
-NextJS에서 RootLayout의 로딩 시간을 줄이는것은 매우 중요하다.  
+NextJS에서 RootLayout의 로딩 시간을 줄이는 것은 매우 중요하다.  
 
 - RootLayout 2초 + Home 2초 => 페이지 최초 로딩 2초
 - RootLayout 4초 + Home 2초 => 페이지 최초 로딩 4초 : Root가 느리면 다 같이 느려진다.  

@@ -21,7 +21,7 @@ sidebar_position: 5
 - 문제는 대화가 너무 길어지면 컨텍스트 용량에 한계에 부딪힌다.  
   - 최근 N개의 대화의 메시지만 누적해서 넣는다.  
   - 오래된 메시지는 summary 압축해서 같는다.  
-  - RAG 문서는 별도의 state에 두고 필요한것만 주입.  
+  - RAG 문서는 별도의 state에 두고 필요한 것만 주입.  
   
 ### 2, Context 저장은 thread별 checkpointer로 한다.
 - InMemorySaver, Redis, Postgres에 graph 자체를 저장.  
@@ -135,10 +135,10 @@ return {"messages": [AIMessage(content=f"SQL result: {rows}")]}
           }
       }
 ```
-- state : state["messages"]에 저장되는 메시지 -> 여기에는 저장안되고 있음.  
+- state : state["messages"]에 저장되는 메시지 -> 여기에는 저장안 되고 있음.  
 - graph.stream(..., stream_mode="messages")로 흘러나오는 토큰/청크가 문제.  
 
-해결방법 1. stream output layer에서 필터링  
+해결 방법 1. stream output layer에서 필터링  
 ```py
   for chunk, metadata in graph.stream(...)
       if metadata.get("langgraph_node") == "classify_node":
@@ -146,7 +146,7 @@ return {"messages": [AIMessage(content=f"SQL result: {rows}")]}
       yield chunk
 ```
 
-해결방법 2. 내부 LLM 호출은 streaming 끄기  
+해결 방법 2. 내부 LLM 호출은 streaming 끄기  
 ```py
 internal_llm = ChatOpenAI(model="...", streaming=False)
 ```

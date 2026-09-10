@@ -98,7 +98,7 @@ https://www.youtube.com/watch?v=5f444aZmv64&t=400s
 ![alt](./img/img11.png)  
 
 - *디딤돌 대출과 혼용이 가능하여, 사회초년생이 서울 아파트는 거의 불가능함   
-- *특례로 최대한 많이 대출 받고 싶다면 > 7억짜리 집 알아볼것  
+- *특례로 최대한 많이 대출 받고 싶다면 > 7억짜리 집 알아볼 것  
 - *이자 계산기 > [대출금리이자 Link](https://docs.google.com/spreadsheets/d/1hVQoB78i6JY-W53hkEm6m5NInu4Fya71E9VLkdHTbJw/edit?usp=sharing)
 
 

@@ -97,7 +97,7 @@ brew services restart nginx
   - www.my-coding.site, blog.my-coding.site 등 무한으로 서브도메인을 사용할 수 있다.  
   - 서브도메인이 없는 경우는 @ 라고 쓰면 된다. 
 - CNAME 은 도메인과 도메인을 연결한다.  
-  - 티스토리 블로그를 운영하는데, 개인 도메인을 가지고 싶을때 사용한다.  
+  - 티스토리 블로그를 운영하는데, 개인 도메인을 가지고 싶을 때 사용한다.  
 
 ### A Type 설정 후 도메인 접속 확인  
 
@@ -667,7 +667,7 @@ sudo certbot renew --dry-run
 sudo certbot renew --dry-run -d www.domain.com
 
 # 인증서 갱신
-( 발급시 90일 연장, 30일 남았을때 연장 가능 )
+( 발급시 90일 연장, 30일 남았을 때 연장 가능 )
 sudo certbot renew
 
 ## tip, nginx 설정, nginx 설정파일 경로 지정 

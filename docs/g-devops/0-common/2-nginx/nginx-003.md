@@ -32,11 +32,11 @@ nginx는 upstream server로 부터 데이터를 한번에 받지 않고 버퍼�
 
 
 2.프록시 타임아웃 설정 (Proxy Timeout Configuration)
-- proxy_connect_timeout 60s; 60초 이내 연결 안되면 504 Gateway Timeout 발생   
+- proxy_connect_timeout 60s; 60초 이내 연결 안 되면 504 Gateway Timeout 발생   
 - proxy_send_timeout 60s;  (request) 전송에 대한 타임아웃    
 - proxy_read_timeout 60s;  (response) 수신에 대한 타임아웃  
 
-📌 총 버퍼를 늘리는것의 장점 
+📌 총 버퍼를 늘리는 것의 장점 
 - 메모리 사용량을 늘려 디스크 IO 감소 및 지연시간을 줄인다.    
   - 버퍼의 크기 : CPU 캐시 라인 크기, 메모리 페이지 크기에 맞추는 것이 좋다. ( CPU는 요즘 64바이트, 메모리 페이지 크기는 보통 4KB )  
   - 버퍼의 개수 : 버퍼의 수를 늘려 메모리 사용량을 조절한다.   

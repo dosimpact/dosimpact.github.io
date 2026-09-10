@@ -23,7 +23,7 @@ sidebar_position: 1
 
 서로 다른 파이썬 버전, 프로젝트별로 각 라이브러리가 다르다.  
 격리된 환경의 파이썬 버전 및 라이브러리 설치가 필요하다.  
-이를 도와주는것이  virtualenv  
+이를 도와주는 것이  virtualenv  
 
 ## basic usage
 

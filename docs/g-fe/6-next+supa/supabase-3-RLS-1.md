@@ -135,7 +135,7 @@ where auth.uid() = todos.user_id; -- RLS Policy is implicitly added.
 설명  
 - 이 식은 행 수준 보안이 활성화된 경우 테이블에 대한 INSERT 및 UPDATE 쿼리에 사용됩니다.
 - 표현식이 true로 평가되는 행만 허용됩니다. 삽입된 레코드나 업데이트로 인해 생성된 레코드에 대해 표현식이 false 또는 null로 평가되면 오류가 발생합니다.
-- 이 표현식은 원래 내용이 아닌 행의 제안된 새 내용에 대해 평가됩니다.  
+- 이 표현식은 원래 내용이 아닌 행의 제안 된 새 내용에 대해 평가됩니다.  
 
 CHECK Expression 은 사후 처리 검증을 시도하고 오류라면 롤백한다.   
 - todos 테이블에 대해서 insert : authenticated (로그인 한 사용자만 가능)    

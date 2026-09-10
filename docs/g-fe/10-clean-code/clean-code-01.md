@@ -34,8 +34,8 @@ sidebar_position: 100
 
 프리티어가 못하는 것을 더 공략하자.  
 
-## 📌 좋은 구조를 만드는 원칙  
-- 인지 심리학 기반(사람 기반)으로 원칙을 만드는것은 좋은것 같다.   
+## 1. 좋은 구조를 만드는 원칙
+- 인지 심리학 기반(사람 기반)으로 원칙을 만드는 것은 좋은 것 같다.
 
 #### [공통영역의 원칙 (Common Region)]  
 - 공통영역 내에 배치된 요소들은 그룹으로 인식된다.
@@ -64,7 +64,114 @@ sidebar_position: 100
 디버깅을 하는 과정(코드의 흐름을 읽는 관점)에서 유사한 로직의 바로바로 연결되는 것이 인지 부담이 적다.  
 - 로직에 따라 컴포넌트, 훅을 분리 하자.  
 
-## 📌 좋은 이름 짓기  
+### 1.1 SLAP(Single Level of Abstraction Principle)
+
+목적 : 함수가 하나의 의도를 한 눈에 설명하게 만들고, 세부 구현이 업무 흐름을 가리지 않게 한다.
+
+> 하나의 함수 안에서는 동일한 추상화 수준의 작업만 다룬다.
+
+상세 로직
+
+1. 판단 기준 및 적용 조건
+  - 함수명 아래의 문장들이 모두 “무엇을 한다”를 설명하는지 확인한다. 업무 단계와 배열 순회, JSON 변환, HTTP 헤더 조립 같은 “어떻게 한다”가 한 함수에 섞이면 위반 신호다.
+  - 자세한 구현을 읽지 않고도 상위 함수만으로 사용자 흐름이나 업무 절차를 읽을 수 있어야 한다.
+  - 함수 길이가 짧다고 SLAP을 지킨 것은 아니다. 짧은 함수에서도 상태 갱신과 DOM 조작, 업무 규칙과 DB 쿼리를 섞으면 추상화 수준이 다르다.
+  - 추출한 하위 함수의 이름은 세부 구현을 숨기는 문장이어야 한다. `processData`, `handleLogic` 같은 모호한 이름은 추상화를 만들지 못한다.
+
+2. 실행 절차 및 구현 규칙
+  - 먼저 함수의 목적을 한 문장으로 적고, 그 문장을 구성하는 동일한 수준의 단계만 상위 함수에 남긴다.
+  - 특정 단계 안의 구현 상세는 의도가 드러나는 함수로 추출한다. 필요하면 하위 함수도 다시 같은 원칙으로 나눈다.
+  - 상위 함수은 정책과 순서를, 하위 함수는 계산·변환·I/O 같은 구현을 담는 방식이 읽기 쉽다.
+  - 분리 후에는 기존 행동을 유지하는지 테스트하고, 단순히 한 번만 쓰는 한 줄을 숨기는 무의미한 함수는 만들지 않는다.
+
+React 예제: 이벤트 핸들러에서 사용자 흐름과 저수준 구현이 섞인 경우
+
+```tsx
+// SLAP 위반: 검증, 포맷 변환, HTTP 요청, UI 상태 갱신이 섞여 있다.
+async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  if (!email.includes("@")) {
+    setError("Email을 확인해 주세요.");
+    return;
+  }
+
+  const response = await fetch("/api/newsletter", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email.trim().toLowerCase() }),
+  });
+
+  if (!response.ok) {
+    setError("구독 신청에 실패했습니다.");
+    return;
+  }
+
+  setSubscribed(true);
+}
+```
+
+```tsx
+// 개선: 핸들러는 제출 흐름만 설명한다.
+async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  const result = await subscribeToNewsletter(email);
+  applySubscriptionResult(result);
+}
+
+async function subscribeToNewsletter(email: string) {
+  const normalizedEmail = normalizeEmail(email);
+  validateEmail(normalizedEmail);
+  return requestNewsletterSubscription(normalizedEmail);
+}
+```
+
+Next.js 예제: Route Handler에서 요청 처리 절차와 데이터 접근 구현이 섞인 경우
+
+```ts
+// app/api/orders/route.ts
+export async function POST(request: Request) {
+  const input = await request.json();
+  const order = parseOrderInput(input);
+
+  validateOrder(order);
+  const pricedOrder = calculateOrderPrice(order);
+  const savedOrder = await saveOrder(pricedOrder);
+
+  return Response.json(toOrderResponse(savedOrder), { status: 201 });
+}
+```
+
+Route Handler는 “주문 요청을 처리한다”는 순서를 보여 준다. SQL, `JSON.stringify`, 할인 루프 같은 세부 구현은 `saveOrder`, `toOrderResponse`, `calculateOrderPrice`의 내부로 내려간다.
+
+NestJS 예제: Service 메서드를 업무 흐름의 오케스트레이션으로 유지하는 경우
+
+```ts
+@Injectable()
+export class OrdersService {
+  constructor(
+    private readonly ordersRepository: OrdersRepository,
+    private readonly notifications: NotificationsService,
+  ) {}
+
+  async placeOrder(command: PlaceOrderCommand) {
+    const order = Order.create(command);
+    order.calculatePrice();
+
+    const savedOrder = await this.ordersRepository.save(order);
+    await this.notifications.sendOrderPlaced(savedOrder);
+
+    return savedOrder;
+  }
+}
+```
+
+`placeOrder` 내부에 ORM의 `createQueryBuilder`, email 템플릿 HTML, 금액 포맷 변환을 직접 넣으면 업무 절차와 기술 구현이 섞인다. Repository, Domain 객체, Notification Service의 인터페이스로 세부 사항을 숨기면 Service는 주문 생성 절차를 읽히게 표현한다.
+
+SLAP는 SRP(Single Responsibility Principle)와 관련되지만 판단 초점이 다르다. SRP는 함수나 모듈이 하나의 책임과 변경 이유을 갖는지 묻고, SLAP는 함수 내부의 각 문장이 같은 높이에서 의도를 설명하는지 묻는다. 두 원칙을 함께 적용하면 함수의 책임과 읽기 흐름을 동시에 명확하게 만들 수 있다.
+
+## 2. 좋은 이름 짓기
 
 
 좋은 이름이란 예측이 가능한 것  
@@ -131,7 +238,7 @@ setState, updateState, setProps, updateProps
 useEffect, useCallback, useMemo, useRef
 ```  
 
-## 리팩토링 
+## 3. 리팩토링
 
 클린코드 -> 코드를 처음부터 명확하고 이해하기 쉽게 작성하는 것  
 리팩토링 정의 : 기능을 유지한 채, 코드 구조를 바꾸거나 새로운 패러다임에 맞추는 과정    
@@ -144,4 +251,4 @@ useEffect, useCallback, useMemo, useRef
 - 기존의 기능은 반드시 유지하되, 가장 의존성이 적은 부분부터 시작할 것  
 - 작은 단위로 점진적으로 진행할 것
   - 리팩토링은 한 번에 전체 코드를 수정하는 것이 아니라, 작은 부분씩 진행하는 것이 좋아요. 이렇게 하면 변경 사항을 이해하기 쉽고, 문제를 추적하거나 되돌리기가 쉬워요.  
-- 테스트와 함께 할 것  
+- 테스트와 함께 할 것

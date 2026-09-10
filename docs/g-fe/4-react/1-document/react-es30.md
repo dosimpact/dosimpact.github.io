@@ -126,7 +126,7 @@ type State =
 ## 📌 튜플 정의하기 - 유니온 튜플 
 
 ```js
-// 1. 0번째는 3가지 중 1개가 올 수있다. 1번째 요소도 마찬가지
+// 1. 0번째는 3가지 중 1개가 올 수 있다. 1번째 요소도 마찬가지
 // 하지만 첫번째 요소가 error 라면, Error객체만 2번째 요소가 오면 좋겠다. -> 유니  
 export type Data<T> = ["fetching" | "success" | "error", T | Error | undefined];
 

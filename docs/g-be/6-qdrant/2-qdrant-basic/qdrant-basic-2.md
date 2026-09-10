@@ -85,7 +85,7 @@ PUT collections/star_charts/points
   ]
 }
 ---
-// 유사한것 3개 찾아와 http://snapshots.qdrant.io/midlib.snapshot
+// 유사한 것 3개 찾아와 http://snapshots.qdrant.io/midlib.snapshot
 POST collections/star_charts/points/search
 {
   "vector": [0.2, 0.1, 0.9, 0.7],

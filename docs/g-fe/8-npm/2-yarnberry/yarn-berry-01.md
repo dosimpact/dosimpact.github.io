@@ -45,7 +45,7 @@ yarn
 
 ## Zero Install  
 
-yarn berry는 node_modules에 수많은 디렉터리를 만드는것 대신에, 의존성관리를 zip파일로 한다.    
+yarn berry는 node_modules에 수많은 디렉터리를 만드는 것 대신에, 의존성관리를 zip파일로 한다.    
 - 의존성관리 파일을 모두 github에 올린다면, git clone 만으로도 의존성까지 모두 설치된 상태이다.  
 
 Zero Install : .gitignore 설정만 해주면 된다.  
@@ -95,7 +95,7 @@ If you're not using Zero-Installs:
 yarn dlx @yarnpkg/sdks vscode
 
 
-2.Tyesciprt를 워크스페이스의 버전으로 변경하기. 
+2.TypeScript를 워크스페이스의 버전으로 변경하기. 
 - Ctrl + Shift + P
 - Select Typescript Version
 - Use Workspace Version 클릭

@@ -40,17 +40,17 @@ sidebar_position: 2
 - 파일을 작은 조각 (청크)로 분리해서 읽고, 스트림에 입력하고 필요하다면 일련의 처리 후 출력 스트림으로 내보낸다.
 
 - 청크 : 청크는 파일의 작은 조각이 될 수 있다.  
-  - 예를들어 SQL 쿼리의 0번부터 100번 페이지의 조회 결과를 하나의 청크로 만들 수 있다.  
+  - 예를 들어 SQL 쿼리의 0번부터 100번 페이지의 조회 결과를 하나의 청크로 만들 수 있다.  
   - eg) Chunk[0] = SQL Query ( pageSize = 100, Page = 0 )
 
 - 파이프라인 : 청크단위의 데이터는 2개 이상의 스트림에서 전송되며, 전체 스트림은 파이프라인이라고 한다.
-  - 예를들어 SQL을 읽어서 http 응답으로 쭉 흘려보낼 수 있다.  
+  - 예를 들어 SQL을 읽어서 http 응답으로 쭉 흘려보낼 수 있다.  
   - eg) pipeline = SQL ReadableStream + Http Response WriteableStream
 
 
 ### use case
 
-1.많은 정적파일들이 S3에 존재하는데 이를 압축해서 다운로드 받을때 사용.  
+1.많은 정적파일들이 S3에 존재하는데 이를 압축해서 다운로드 받을 때 사용.  
 
 다음과 같은 과정으로 이루어 진다.  
 - Node.js 에서 다수의 S3의 파일을 읽어서 > 큰 용량의 압축파일을 만들면서 > 브라우저로 보내면서 > 브라우저 받으면서 다운로드
@@ -83,9 +83,9 @@ sidebar_position: 2
 - 이러한 이벤트를 통해서 스트림이 drain (비어있는) 상태인지 pump(채우는) 상태인지 알 수 있다.    
 
 
-### Reable Streams, Writeable Stream 종류  
+### Readable Streams, Writable Stream 종류  
 
-Reable Streams
+Readable Streams
 - HTTP responses(client).
 - HTTP requests(server).
 - fs read streams.

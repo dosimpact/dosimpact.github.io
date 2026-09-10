@@ -20,7 +20,7 @@ sidebar_position: 4
 
 📌 ref의 사용목적 : 컴포넌트가 리렌더링 사이의 일부정보를 유지 & 렌더링 유발하지 않게 하기 위함.  
 - *렌더링 로직에 영향을 미치지 않는 경우 사용한다.   
-- *state는 snapshot처럼 동작한다. 이와 상관없이 최신의 정보를 참조하고 싶을때 사용.  
+- *state는 snapshot처럼 동작한다. 이와 상관없이 최신의 정보를 참조하고 싶을 때 사용.  
 
 📌 useState와 ref의 차이
 - ref는 mutable 가능, state는 immutable 로 리렌더 대기열 넣어야 함. 
@@ -300,7 +300,7 @@ export function useFadeIn(ref: RefObject<HTMLElement>, duration: number): void {
 📌 useEffectEvent(실험)    
 
 - 아직 실험적인 기능이다.  
-- 사용 목적 : useEffect 에서 의존성배열 추가하지 않고 핸들러 함수를 호출하고 싶을때  
+- 사용 목적 : useEffect 에서 의존성배열 추가하지 않고 핸들러 함수를 호출하고 싶을 때  
 
 예) 챌린지 도전하기 4번
 

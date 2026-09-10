@@ -42,7 +42,7 @@ Yarn Berry(pnp) + TurboRepo 으로 모노레포 구성.
 
 ### Guide  
 
-워크스페이스 추가 방법 = 일반 프로젝트 만드는것이랑 같다.  
+워크스페이스 추가 방법 = 일반 프로젝트 만드는 것이랑 같다.  
 - yarn create next-app 과 같은 명령어를 그대로 사용해도 좋다.  
 
 ```sh
@@ -60,14 +60,14 @@ yarn dlx @yarnpkg/sdks vscode
 cd ./apps
 yarn create next-app nextjs-admin --typescript --eslint
 yarn create next-app nextjs-client --typescript --eslint
-(workspace path 업데이트) <folder이름>.code-worspace.json   
+(workspace path 업데이트) <folder이름>.code-workspace.json   
 
 # packages에 리액트+Storybook 프로젝트 추가  
 cd ./packages
 yarn create react-app storybook --template typescript --use-pnp
 yarn add @testing-library/jest-dom
 yarn add -D @types/testing-library__jest-dom
-(workspace path 업데이트) <folder이름>.code-worspace.json   
+(workspace path 업데이트) <folder이름>.code-workspace.json   
 
 yarn dlx sb init
 yarn dlx -p @storybook/cli sb init
@@ -93,4 +93,3 @@ yarn workspace storybook add -D @types/testing-library__jest-dom
 
 ## Ref  
 https://medium.com/@yoontopia94/yarn-workspaces-turborepo-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-monorepo-%EA%B5%AC%EC%B6%95%EA%B8%B0-part-2-517df6de204
-

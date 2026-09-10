@@ -14,8 +14,8 @@ Guide : https://nextjs.org/docs/app/guides/environment-variables
 
 빌드 타임 환경변수  
 - NEXT_PUBLIC_ANALYTICS_ID 처럼 NEXT_PUBLIC 접두사를 붙여야 함. 
-- 빌드 타임때 하드 코딩된 상수로 치환된다. 
-- 아래 처럼 변수를 사용하면 작동이 안된다.   
+- 빌드 타임 때 하드 코딩된 상수로 치환된다. 
+- 아래 처럼 변수를 사용하면 작동이 안 된다.   
 ```js
 // This will NOT be inlined, because it uses a variable
 const varName = 'NEXT_PUBLIC_ANALYTICS_ID'

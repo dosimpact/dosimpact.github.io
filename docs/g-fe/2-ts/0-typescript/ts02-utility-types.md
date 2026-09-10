@@ -151,10 +151,10 @@ const te: Person = {
 ### as const with typeof
 
 ```js
-const myUnionValues = ['opt1','opt2','opt3'] as const // as const를 안쓰면 string 타입으로 추론된다. 런타임때 값이 바뀔꺼야 라고 추론  
+const myUnionValues = ['opt1','opt2','opt3'] as const // as const를 안쓰면 string 타입으로 추론된다. 런타임 때 값이 바뀔꺼야 라고 추론  
 type MyUnionValuesToUnionType = (typeof myUnionValues)[number] // 
 // typeof myUnionValues 는 ['opt1','opt2','opt3'] 이다. 변수의 타입 그 자체를 가져오는 것 
-//  ㄴas const를 안썼다면 string[] 
+//  ㄴas const를 안 썼다면 string[] 
 // [number] 는 해당 타입에 모든 인덱스를 이터레이션 하면서 타입을 유니온으로 모은다. > 'opt1' | 'opt2' | 'opt3'
-//  ㄴas const를 안썼다면 string 이다. 
+//  ㄴas const를 안 썼다면 string 이다. 
 ```

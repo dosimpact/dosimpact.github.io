@@ -237,15 +237,15 @@ URL : https://github.com/vercel/turborepo/tree/main/examples/with-nestjs
 
 1.package.json  
 
-1.1 workspaces 필드를 통해서 하위 워크스페이스를 알수있다.  
+1.1 workspaces 필드를 통해서 하위 워크스페이스를 알 수 있다.  
 - apps에는 web(nextjs), api(nestjs) 2개의 프로젝트가 존재한다.  
 - packages에는 api, ui, config 설정들 (eslint, jest, typescript) 가 있다.  
-  - typescript 설정도 하나의 package로 뺀것이 신기하다.  
+  - typescript 설정도 하나의 package로 뺀 것이 신기하다.  
 - ui 패키지: turbo gen react-component 명령어가 있는데, 보일러 플레이트 코드와 exports를 추가해주는 귀여운 스크립트이다.  
 
 2.api 패키지 
 
-2.1 dto, entities 등 공통으로 사용하는 TS파일을 별도의 패키지로 분리한것이 맘에 든다.  
+2.1 dto, entities 등 공통으로 사용하는 TS파일을 별도의 패키지로 분리한 것이 맘에 든다.  
 2.2 app/web 프로젝트에서 사용하는데, devDependencies로 설치가 되어 있다.  
 - 패키지 버전은 "*"라고 명시되어 있는데, 모든 버전을 쓴다는 의미이고 모노래포랑 관계는 없다.  
 

@@ -90,4 +90,4 @@ const filteredItems = useMemo(() => {
 3. 부드러운 UI: 무거운 작업은 우선순위 낮게 처리
 
 주의사항
-- 컴포넌트 언마운트 혹은 컴포넌트 hidden (팝오버가 닫힐때) debounce cancel 로직을 넣어주면 좋다.  
+- 컴포넌트 언마운트 혹은 컴포넌트 hidden (팝오버가 닫힐 때) debounce cancel 로직을 넣어주면 좋다.  

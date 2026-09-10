@@ -121,7 +121,7 @@ $$;
 - 사용자가 가입이 되는 순간 profiles이라는 테이블로 데이터들을 복사해야 한다.  
   - 이때 trigger, function이 사용된다.  
   - 아래 예시에서
-    - on_auth_user_created : after insert on auth.users 조건일때 트리거  
+    - on_auth_user_created : after insert on auth.users 조건일 때 트리거  
     - 뭐를 ?: handle_new_user 를, 해당 함수에서는 raw_user_meta_data의 json데이터와 profile의 컬럼을 매핑하고 있다.   
 
 ```sql

@@ -5,11 +5,11 @@ sidebar_position: 3
 # 3.Zustand Patterns
 
 - [3.Zustand Patterns](#3zustand-patterns)
-  - [vanlia debounce, debounced state](#vanlia-debounce-debounced-state)
+  - [vanilla debounce, debounced state](#vanilla-debounce-debounced-state)
   - [Fetch (create, AbortController, AxiosError, debouncedFetch)](#fetch-create-abortcontroller-axioserror-debouncedfetch)
 
 
-## vanlia debounce, debounced state  
+## vanilla debounce, debounced state  
 
 ```js
 export function debounce<T>(func: (args: T) => void, delay: number) {

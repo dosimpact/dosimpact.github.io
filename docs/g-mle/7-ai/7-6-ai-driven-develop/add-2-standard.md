@@ -70,7 +70,7 @@ Experimental으로 기능 활성화 필요
 - 1번이 완료되었으니 그 결과물로 2번이 된다. 등  
 
 Backend Service는 명확하게 API Level Testing으로 그 개발이 가능해 보인다.  
-Frontend Service도 playwrigh로 UI Level Testing이 가능해 보인다.  
+Frontend Service도 Playwright로 UI Level Testing이 가능해 보인다.  
 - 재사용 가능한 컴포넌트 -> storybook 
 - 재사용 가능한 순수함수 -> unit testing  
 

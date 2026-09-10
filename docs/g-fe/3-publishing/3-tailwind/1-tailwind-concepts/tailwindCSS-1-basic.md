@@ -58,7 +58,7 @@ sidebar_position: 1
 - 위 디렉티브는 기본 Tailwind의 기본 스타일을 불러옵니다.    
 - 컴파일러는 postcss가 해준다. (필요없는 css 제거 등등 최적화도!)  
 
-- 예를들어 
+- 예를 들어 
   - utilities: Tailwind의 모든 유틸리티 클래스(mt-4, bg-blue-500 등)
   - base: Tailwind의 기본 리셋/노멀라이즈/타이포그래피 등
   - components: Tailwind가 제공하는(거의 없음) 기본 컴포넌트 스타일

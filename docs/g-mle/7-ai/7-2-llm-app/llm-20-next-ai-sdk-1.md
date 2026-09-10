@@ -418,7 +418,7 @@ export default ChatLiteUIStreamCustom;
 - streamText + useCompletion
 
 ```js
-// api/router-hander.ts
+// api/router-handler.ts
 export async function POST(request: NextRequest) {
   const body = await request.json(); // { prompt: string }
 

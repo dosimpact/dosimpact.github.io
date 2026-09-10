@@ -97,7 +97,7 @@ import { createMemoryHistory } from 'history';
 await screen.findByText(/text/);
 screen.debug();
 // <body> 태그를 포함한 전체 DOM출력한다.  
-// 사용자가 마치 화면을 보는것과 같이 인터랙션.  
+// 사용자가 마치 화면을 보는 것과 같이 인터랙션.  
 --- 
     const { container } = render(
       <MemoryRouter initialEntries={['/start']}>
@@ -105,7 +105,7 @@ screen.debug();
       </MemoryRouter>
     );
 console.log(prettyDOM(container));
-// redner대상의 컴포넌트만 DOM을 출력한다.  
+// render대상의 컴포넌트만 DOM을 출력한다.  
 // querySelector 등을 사용해서 요소에 접근 가능.  
 
 ```
@@ -114,7 +114,7 @@ console.log(prettyDOM(container));
 
 1.given  
 - 컴포넌트를 렌더링 합니다.  
-  - ConfigeWrapper를 감싸는게 필요합니다.(router 등)  
+  - ConfigWrapper를 감싸는게 필요합니다.(router 등)  
 
 2.when  
 - 어떠한 유저의 액션
@@ -155,7 +155,7 @@ yarn add @testing-library/user-event
 #### getBy vs findBy vs queryBy
 https://testing-library.com/docs/dom-testing-library/cheatsheet/#queries  
 
-DOM에서 요소를 가져올때 크게 3가지 방식이 있다.  
+DOM에서 요소를 가져올 때 크게 3가지 방식이 있다.  
 1.getBy : await를 하지않고 바로 가져오려고 시도.
 - getByRole 을 통해 접근성 트리를 이용하는 것이 가장 좋다.  
 
@@ -168,7 +168,7 @@ DOM에서 요소를 가져올때 크게 3가지 방식이 있다.
 
 
 #### DOM 요소를 가져오는 방식에는 2가지가 있습니다.  
-- 1.getTextBy을 통해서 가져오는것은 실제 유저의 인식가 닮아있다.  
+- 1.getTextBy을 통해서 가져오는 것은 실제 유저의 인식가 닮아있다.  
 - 2.render 결과에서 querySelector을 이용해 DOM을 직접가져옵니다. 
   - 이는 실제 유저가 아닌 컴퓨터의 로직으로 가져옵니다.  
 

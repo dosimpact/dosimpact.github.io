@@ -55,7 +55,7 @@ PORT=3001
 
 <br/>
 
-## configMoudle 장착
+## configModule 장착
 
 
 ```js
@@ -98,7 +98,7 @@ export class AppModule {}
 ### Joi
 
 - joi , The most powerful schema description language and data validator for JavaScript.
-- JS 모듈이고 index.d.ts 로 정의됨 > 임포트시 * 사용할것
+- JS 모듈이고 index.d.ts 로 정의됨 > 임포트 시 * 사용할 것
 
 ```js
 import { ConfigModule } from '@nestjs/config';
@@ -114,7 +114,7 @@ import * as Joi from 'joi';
 
 <br/>
 
-## configMoudle 사용
+## configModule 사용
 
 global module로 선언을 했기 때문에, 서비스의 생성자에서 configService를 주입받을 수 있다.  
 

@@ -181,7 +181,7 @@ https://carbondesignsystem.com/components/dropdown/usage/
 
 📌 Table  
 - 구성 : 테이블의 타이틀 헤더 영역 + 테이블 + 페이지 네이션 ( pagination, 무한 스크롤, see more 버튼 )  
-- 기술적 고려 사항 : 테이블에 많은 요구사항을 직접 구현해도 좋지만, react-table 혹은 AG Grid를 잘 쓰는것도 필요하다.  
+- 기술적 고려 사항 : 테이블에 많은 요구사항을 직접 구현해도 좋지만, react-table 혹은 AG Grid를 잘 쓰는 것도 필요하다.  
 
 📌 Breadcrumb  
 - 구성 : 페이지 링크 + 화살표 + 현재 페이지  

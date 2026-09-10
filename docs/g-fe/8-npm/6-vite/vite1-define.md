@@ -14,7 +14,7 @@ import react from '@vitejs/plugin-react'
 // define 사용법
 // 1. dev환경  = define에 정의된 변수는 window 전역객체에 들어간다.
 // 2. prod환경 = define에 정의된 변수는 build-time에 치환된다.
-// *치환될때 문자열은 문자열을 벗고 그대로 들어간다. ( JSON.stringify, ''으로 한번더 감싼다.)   
+// *치환될 때 문자열은 문자열을 벗고 그대로 들어간다. ( JSON.stringify, ''으로 한번더 감싼다.)   
 export default defineConfig({
   plugins: [react()],
   define: {
@@ -26,9 +26,9 @@ export default defineConfig({
 
     // case1.1 - 문자열   
     // __APP_VERSION__: 'v1.0.0', // ❌ 문자열로 정의
-    // const defines = {"__APP_VERSION__": v1.0.0 }; // 실제 들어간것은 v1객체가 들어간 코드 형태 
+    // const defines = {"__APP_VERSION__": v1.0.0 }; // 실제 들어간 것은 v1객체가 들어간 코드 형태 
     __APP_VERSION__: JSON.stringify('v1.0.0'), // ✅
-    // const defines = {"__APP_VERSION__": "v1.0.0" }; // 실제 들어간것은 문자열
+    // const defines = {"__APP_VERSION__": "v1.0.0" }; // 실제 들어간 것은 문자열
 
     // case1.2 - 문자열 넣기  
     __API_URL__: 'window.__backend_api_url', // ✅

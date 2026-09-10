@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Code Snippets  
 
-## Nnemonic > privateKey
+## Mnemonic > privateKey
 
 ```js
 /*
@@ -22,7 +22,7 @@ const bootstrap = async () => {
   const mnemonic =
     "물체 일등 이혼 해답 연극 성명 공동 합리적 영역 연세 깜빡 왼쪽";
 
-  const enNnemonic = mnemonic
+  const enMnemonic = mnemonic
     .split(" ")
     .map((word) => {
       const idx = koWordList.findIndex((w) => word === w);
@@ -31,8 +31,8 @@ const bootstrap = async () => {
     })
     .join(" ");
 
-  const seed = await bip39.mnemonicToSeed(enNnemonic);
-  const wallet = ethers.Wallet.fromMnemonic(enNnemonic, "m/44'/60'/0'/0/0");
+  const seed = await bip39.mnemonicToSeed(enMnemonic);
+  const wallet = ethers.Wallet.fromMnemonic(enMnemonic, "m/44'/60'/0'/0/0");
 
   console.log("-->wallet.privateKey : ", wallet.privateKey);
 };

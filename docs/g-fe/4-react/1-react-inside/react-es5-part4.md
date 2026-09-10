@@ -67,9 +67,9 @@ Next.js의 빌드 결과 아래 표현을 볼 수 있다.
 1,정적렌더링 (Static, SSG/ISR) : 빌드 타임에 미리 HTML등 정적리소스를 만들어둠    
 - FCP가 가장 좋은 형태이며 Next는 가능한 정적 렌더링으로 분류하려고 노력한다.  
   - generateStaticParams로 정적세그먼트 id 목록을 만들 수 있다.  
-- ISR 패턴: 정기적으로 다시 HTML을 빌드한다. ( Stale 데이터를 보여주는것이 문제가 안 되는 경우)    
-- On demand static generation : 빌드타임때 생성하지 못한 정적페이지를 요청이 들어올때 만드는 기능  
-  - *동적렌더링과 다르다. 쿠키,헤더, serachParams을 여전히 사용 못함. ( 강제할 수 있으나 렌더링에 반영못함. )  
+- ISR 패턴: 정기적으로 다시 HTML을 빌드한다. ( Stale 데이터를 보여주는 것이 문제가 안 되는 경우)    
+- On demand static generation : 빌드타임 때 생성하지 못한 정적페이지를 요청이 들어올 때 만드는 기능  
+  - *동적 렌더링과 다르다. 쿠키, 헤더, searchParams를 여전히 사용하지 못함. (강제할 수 있으나 렌더링에 반영하지 못함.)  
 
 1-2, 정적페이지 결과물 
 - 1,html : 순수 HTML, 이는 FCP 향상  
@@ -112,9 +112,9 @@ export const dynamic = 'auto' |'force-dynamic' // 기본값 auto, 정적/동적 
 
 1,다계층 케시 전략을 사용한다.    
 - 1,서버사이드 캐시 전략 : Full Router Cache   
-  - 저장 위치 : Server ( HTML + RSC Paylaod 저장 -> 모든 사용자 사용 )  
+  - 저장 위치: Server (HTML + RSC Payload 저장 -> 모든 사용자 사용)  
 - 2,클라이언트 사이드 캐시 전략 : Router Cache (후속 탐색 subsequent navigations)  
-  - 저장 위치 : Browser ( RSC Paylaod 단위 저장 -> 개별 사용자가 끌어와 사용 )  
+  - 저장 위치: Browser (RSC Payload 단위 저장 -> 개별 사용자가 끌어와 사용)  
 - 풀라우트 캐시에는 3가지로 방법으로 캐시된다.  
   - 1, Static : 빌드시점에 미리 캐시
   - 2, SSG/ISR : 요청이 들어오는 경우 생성 후 캐싱된다.  
@@ -137,7 +137,7 @@ export const dynamic = 'auto' |'force-dynamic' // 기본값 auto, 정적/동적 
 ```js
 // app/posts/[id]/page.js
 
-// --- 1, 빌드타임때 정적 세그먼트id 목록으로 SSG + 목록 외 페이지는 404 리턴
+// --- 1, 빌드타임 때 정적 세그먼트id 목록으로 SSG + 목록 외 페이지는 404 리턴
 export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }];
 }
@@ -148,7 +148,7 @@ export default async function Page({ params }) {
   // ...
 }
 
-// ---  2, 빌드타임때 정적 세그먼트id 목록으로 ssg 만드는 경우, 그 이후 요청된 id는 SSR 이후 다시 캐싱
+// ---  2, 빌드타임 때 정적 세그먼트id 목록으로 ssg 만드는 경우, 그 이후 요청된 id는 SSR 이후 다시 캐싱
 export async function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }];
 }
@@ -159,7 +159,7 @@ export default async function Page({ params }) {
   // 처음 요청된 ID라면 여기서 SSR이 일어나고, 이후엔 캐싱된 결과를 보여줌
   const res = await fetch(`.../${params.id}`, { next: { revalidate: 30 } });
 }
-// --- 3, 빌드타임때 정적 세그먼트id 목록으로 SSG 만들지는 않는다. 하지만  그 이후 요청된 id는 SSR 이후 다시 캐싱
+// --- 3, 빌드타임 때 정적 세그먼트id 목록으로 SSG 만들지는 않는다. 하지만  그 이후 요청된 id는 SSR 이후 다시 캐싱
 
 export async function generateStaticParams() {
   return []; // 1. 목록을 아예 정의하지 않음 (빌드 시 아무것도 안 만듦)
@@ -194,7 +194,7 @@ Dynamic, Static 2가지로 분류되면서 일부 컴포넌트 때문에 전체�
 - next.js에서는 fetch를 이용해 Server to Server 데이터 패칭을 해야 한다.   
 - 문제점 : SSR 과정에서 데이터 패칭은 여러 컴포넌트에서 요청한다.   
   - 1,라우터 내 로컬 컴포넌트들에서 중복된 요청을 하는 경우.  
-  - 2,서로 다른 유저의 request에서 요청이 발생하는 경우. (위 1번이 여러번 발생)     
+  - 2,서로 다른 유저의 request에서 요청이 발생하는 경우. (위 1번이 여러 번 발생)     
   - (리액트에서 water fall fetching을 한 번에 처리한다고 생각하면 부하가 상당할 것.)  
   - 1번을 해결하기 위해, 캐시기능이 wrapping된 fetch 라이브러리를 사용해아 한다.   
 - axios등 외부라이브러리를 사용해도 무관하지만 React.cache로 감싸서 직접 캐시를 구현해야 한다.   
@@ -258,7 +258,6 @@ fetch('https://...', { next: { revalidate: 60 } });
   - 트랜지션 컨텍스트 안에서 실행되는 함수이기도 하다.  
 - 리액트에서 UI 업데이트는 2가지로 분류
   - 1,Urgent Update : 즉시 UI가 업데이트 되어야 하는 경우  
-  - 2,Transition Update : 무거운 작업때문에 화면이 멈추는 현상을 해결하기 위함  
+  - 2,Transition Update : 무거운 작업 때문에 화면이 멈추는 현상을 해결하기 위함  
     - eg, 검색어 입력 후 결과 렌더링, 무거운 컴포넌트로의 탭 전환  
     - *리액트에게 렌더링 우선순위를 전달 가능.   
-

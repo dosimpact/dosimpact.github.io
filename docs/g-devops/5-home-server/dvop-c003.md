@@ -33,13 +33,13 @@ sidebar_position: 3
 ## 도메인을 붙이면 좋은 이유 
 
 맥미니 서버를 운용하다보면, 각 포트에 여러 서비스를 만들게 된다.
-예를들어, 
+예를 들어, 
 ```
 3000 리액트 서버
 4000 api 서버
 5432 db 서버
 5555 redis 서버
-8090 jeknins 서버
+8090 Jenkins 서버
 9009 portainer 서버
 ```
 
@@ -51,7 +51,7 @@ www.example.com -> 3000 리액트 서버
 api.example.com -> 4000 api 서버
 db.example.com -> 5432 db 서버
 cache.example.com -> 5555 redis 서버
-Jenkins.example.com -> 8090 jeknins 서버
+Jenkins.example.com -> 8090 Jenkins 서버
 ci.example.com -> 9009 portainer 서버
 ```
 <br/>
@@ -82,7 +82,7 @@ eg) db.domain.com > 123.123.123.123 > nginx 서버 접근 및 라우팅 > mysql 
 도메인 구매하기 (가비아 등)
 - 가비아에서 2000원,1년치 도메인을 구매했다.
 - MY_DOMAIN = www.my-coding.site 
-- 외국 사이트 중 https://www.namecheap.com/ 가 싼것 같다.
+- 외국 사이트 중 https://www.namecheap.com/ 가 싼 것 같다.
 
 공유기 포트포워딩 확인
 - 80, 443 포트가 맥 서버와 연결되었는지 반드시 확인

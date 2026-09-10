@@ -37,7 +37,7 @@ node.js 환경에서 크롤링 방법 및 코드 스니펙을 다룬다.
 
 ### 크롤링 스케줄러  
 
-크롤링을 하는 순간 그 때의 데이터를 수집할뿐 최신 데이터를 보장하지는 않는다.  
+크롤링을 하는 순간 그때의 데이터를 수집할뿐 최신 데이터를 보장하지는 않는다.  
 - 따라서 최신 데이터 유지가 중요하다면, 스케줄러를 이용해 데이터의 refresh를 구현한다.  
 - jenkins batch, cron, node.js bull.js 잡 큐 등으로 구현 가능하다.
 
@@ -48,7 +48,7 @@ node.js 환경에서 크롤링 방법 및 코드 스니펙을 다룬다.
 
 html 분석에 cheerio 라이브러리를 많이 사용한다.  
 - 하지만 라이브러리 사용법을 익혀야 하므로, 순수 바닐라JS만으로 가능한 방법으로 jsdom을 추천
-- query.selecotr등 기존의 알고있는 DOM API 지식으로 가능하다. 
+- query.selector 등 기존에 알고 있는 DOM API 지식으로 가능하다. 
 
 ### 예) a태그 리스트 링크를 수집
 
@@ -76,5 +76,4 @@ console.log("[info] crawlingListPage success ", detailPageList.length);
 
 
 ## dynamic site crawling
-
 

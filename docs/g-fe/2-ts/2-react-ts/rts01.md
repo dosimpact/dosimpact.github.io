@@ -114,7 +114,7 @@ export const Test01 = () => {
 // - readonly Array 는 enum 처럼 생각.
 // - readonly Object 는 freezed object 처럼 생각.
 
-// Extarct Union Literal
+// Extract Union Literal
 const exampleList1 = ['v1', 'v2', 'v3'];
 // type : string[]
 
@@ -170,7 +170,7 @@ type ButtonVariant = "primary" | "secondary";
 
 //1.
 type FlexibleMenuFail = Menu | string;
-// 타이핑 실패, "home" | "products" | "about" 타이핑이 가능하되, string도 받게끔 하고 싶은데 전혀 타이핑이 안된다.
+// 타이핑 실패, "home" | "products" | "about" 타이핑이 가능하되, string도 받게끔 하고 싶은데 전혀 타이핑이 안 된다.
 // tsc에서 Menu | string; 는 아예 string으로 타입을 확장시켜 버린다.
 export const menus2: FlexibleMenuFail[] = [""];
 

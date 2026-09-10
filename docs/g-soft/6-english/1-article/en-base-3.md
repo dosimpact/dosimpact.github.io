@@ -68,7 +68,7 @@ I need to find a new tenant so that I can get my deposit back and move out.
 나는 그것에 대해 걱정이다. 
 I am worried about it
 
-만약 적시에 새 입주자가 안 나타나면 새로운 집에 가는것에 문제가 생긴다. 
+만약 적시에 새 입주자가 안 나타나면 새로운 집에 가는 것에 문제가 생긴다. 
 If a new tenant doesn't show up on time, I will have trouble moving into my new house.
 
 ## 26.01.16  
@@ -82,7 +82,7 @@ I got my blood test results today.
 간관련 수치가 높게 나왔다.  
 My liver function numbers came back high  (*간 수치는 보통 Liver function numbers)  
 
-엄청 심각한것으로 인지하고 나는 곧바로 휴식에 들어갔다.  
+엄청 심각한 것으로 인지하고 나는 곧바로 휴식에 들어갔다.  
 Realizing it was serious, I started resting immediately
 
 영양제, 운동, 특이한 식습관 모두 중단했다. 

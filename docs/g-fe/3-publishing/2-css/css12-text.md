@@ -194,7 +194,7 @@ example - https://play.tailwindcss.com/xCM4Qh2XZ4?size=202x720
   <!-- 
     Case1. 
     - 부모 너비가 줄어드는 상황에서, text2가 먼저 말줄임표로 줄어들고 나머지 항목은 그대로 유지 한다.     
-    - 중요 : truncate은 flex의 자리 차지 싸움에 영향 ( whilt )
+    - 중요 : truncate은 flex의 자리 차지 싸움에 영향 ( width )
   -->
   <div class="flex flex-row items-center gap-2 px-1">
     <span>text1blablabal</span>

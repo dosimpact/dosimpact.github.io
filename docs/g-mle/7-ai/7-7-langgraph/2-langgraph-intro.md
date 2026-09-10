@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 1.Langgrah Intro
+# 1.LangGraph Intro
 
 ## Langgraph의 필요성  
 - 완전 자율 AI에게 명령은 계획, 설계, 실행, 재귀적 테스트 수행을 한다. 이것이 위험이다.  

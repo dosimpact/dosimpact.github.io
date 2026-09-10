@@ -50,7 +50,7 @@ Supabase & Infra
 Supabase 를 사용하자.!  
 - 내부적으로는 PostgreSQL를 사용한다.  
 - 오픈소스라서 직접 온프레미스로 docker를 활용해서 Supabase를 구축할 수 있다.  
-- 재미있을것 같지만 많은 부분들을 이해해야 해서 당장은 프리티어 플린으로 가자. 
+- 재미있을 것 같지만 많은 부분들을 이해해야 해서 당장은 프리티어 플린으로 가자. 
 
 빠르게 구현할 수 있는 기능들  
 - DDL With Admin Tool  
@@ -70,17 +70,17 @@ Supabase 를 사용하자.!
 
 
 2.Server Actions  
-- 매번 API 경로를 따서, 브라우저에서 POST요청을 보내는것은 번거롭다.  
+- 매번 API 경로를 따서, 브라우저에서 POST요청을 보내는 것은 번거롭다.  
 - ServerAction 기능을 사용하면 이를 해결 할 수 있다.  
 - 랜덤한 해시 경로가 생성되며, 브라우저는 이러한 경로를 관리할 필요가 없다.  
-- 그냥 서버의 함수 import 후 부르는것으로 개발자 경험이 향상된다.  
+- 그냥 서버의 함수 import 후 부르는 것으로 개발자 경험이 향상된다.  
 
 
 ### Rendering Level  
 
 #### 1.React Server Component 도입  
 - 줄여서  RSC 라고 한다.  
-- SSR 서버 사이드 렌더링과 함께 혼란스럽지만, 기존의 패러다임을 변화시킬것은 분명하다.  
+- SSR 서버 사이드 렌더링과 함께 혼란스럽지만, 기존의 패러다임을 변화시킬 것은 분명하다.  
 - RSC을 이용해 여러 SSR 전략을 사용할 수 있다.  
 - NextJS은 기본적으로 서버컴포넌트 이므로, 클라이언트 컴포넌트와 같이 로직을 짜게 된다.  
 - 클라이언트 컴포넌트는 `use client` 지시어를 사용하면 된다.  
@@ -125,8 +125,8 @@ SSR : Dynamic Server Side Rendering
   - Time-based Revalidation: Route Handlers, Server Actions
 
 Streaming : 스트리밍 렌더링  
-- SSR은 full page loading 후 hyration이 일어난다.  
-- 부분적으로 페이지를 로딩하고 hyration을 구역별로 할 수 없을까? 
+- SSR은 full page loading 후 hydration이 일어난다.  
+- 부분적으로 페이지를 로딩하고 hydration을 구역별로 할 수 없을까? 
 - Streaming 방식으로 렌더링을 할 수 있다.  
 - 이는 경계가 필요한데, React Suspense + RSC 조합으로 가능하다.   
 
@@ -143,16 +143,16 @@ CSR : 클라이언트 사이드 렌더링
 
 ## 4.TailwindCSS 의 가능성  
 
-원래는 CSS만 아는것으로 만족했다.  
-- 하지만 tailwind CSS를 보고 생산성이 올라가는것을 느꼈다.  
+원래는 CSS만 아는 것으로 만족했다.  
+- 하지만 tailwind CSS를 보고 생산성이 올라가는 것을 느꼈다.  
 - 물론 tailwind like css 를 배우는데 러닝 커브가 있다.  
-- 완적히 몸에 익혔을때는 마크업과 동시에 CSS까지 모두 처리하는 생산성을 보여준다.  
+- 완적히 몸에 익혔을 때는 마크업과 동시에 CSS까지 모두 처리하는 생산성을 보여준다.  
 
 
 ## 5.전역 상태관리는 Zustand  
 
 서버컴포넌트와 서버사이드 렌더링 개념을 받아들이면서 전역상태를 관리하는 게 이상했다.  
-- Redux, Zustand 등 React의 Root Provder로 들어가는 Context 인데,
+- Redux, Zustand 등 React의 Root Provider로 들어가는 Context인데,
 - 서버컴포넌트에 이를 사용하는 게 이해가 되지 않았다.  
 - 이는 컴포넌트 트리 관점에서 Import 모듈 관점에서 계층을 이해해야 한다.  
 

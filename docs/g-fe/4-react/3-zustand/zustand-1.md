@@ -31,7 +31,7 @@ About Zustand
 📌 2.Tearing  
 
 동기적(Sync) 렌더링
-- 리액트의 렌더링 싸이클 로직이 수행될때, 블럭킹 방식으로 진행. 메인스레드를 점유하여 다른 작업 일시적으로 진행 불가.  
+- 리액트의 렌더링 싸이클 로직이 수행될 때, 블럭킹 방식으로 진행. 메인스레드를 점유하여 다른 작업 일시적으로 진행 불가.  
 
 동시적(Concurrent) 렌더링
 - React가 여러 업데이트를 동시에 처리갸능
@@ -43,7 +43,7 @@ React 18의 useSyncExternalStore
 - 외부 상태(external store)를 React의 렌더링 사이클과 정확하게 동기화.  
 - zustand는 React 16/17에서는 폴리필을 사용하지만, 완벽한 tearing 방지는 어렵습니다.  
 - 따라서 리렌더링 자주 발생 + 동시성(Suspense, concurrent rendering) 주의. 
-  - *동시성 관련 API : suspense, useTransition, useDefferredValue 등 이용하여 렌더링를 논블락킹 처리.
+  - *동시성 관련 API: Suspense, useTransition, useDeferredValue 등을 이용하여 렌더링을 논블로킹 처리.
 
 
 📌 Plus
@@ -66,7 +66,7 @@ React 18의 useSyncExternalStore
   - useEffect에서 전역 상태 클린업 코드를 넣어둠 
   - → 새로운 페이지로 네비게이션 후 돌아옴 (Page Router)
   - → 컴포넌트 재생성으로 useEffect 가 작동되면서 클린업 기대
-  - → 실상은 리렌더링으로 클린업 안됨. 
+  - → 실상은 리렌더링으로 클린업 안 됨. 
 
 ## Basic
 
@@ -168,4 +168,3 @@ export const useTodoStore = create<TodoStoreState & TodoStoreAction>()(
 - useSyncExternalStore : https://react.dev/reference/react/useSyncExternalStore
 - https://www.heropy.dev/p/n74Tgc
 - https://ingg.dev/zustand-work/ 
-

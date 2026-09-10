@@ -34,7 +34,7 @@ sidebar_position: 10
 
 3, ReAct 프롬프트
 - 모델 자체의 추론 능력이 뛰어나서 스스로 추론을 잘 해서 원하는 결과를 끌어내면 ReAct 패턴 필요없다. 
-- 그렇지 못한 경우 ReAct 패턴의 프롬프트로 LLM을 여러번 호출을 루프하며 조정하는 것이다.  
+- 그렇지 못한 경우 ReAct 패턴의 프롬프트로 LLM을 여러 번 호출을 루프하며 조정하는 것이다.  
 - **CoT(Chain of Thought)**: 모델이 내부 추론을 텍스트로 펼치는 방식 중심.
 - ReAct 프롬프트로 인해 에이전트는 다음 루프를 따름 
   - Thought → Action → Observation → Answer 루프  

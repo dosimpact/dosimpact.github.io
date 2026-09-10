@@ -61,7 +61,7 @@ docker container rename webserver nginxserver # 컨테이너 이름 변경
 
 docker run | create | start | stop | kill <dockerImageName> <command>
 *run = create && start 이다.
-*kill 바로 종료, stop 은 작업중인것 마져 하고 종료
+*kill 바로 종료, stop 은 작업중인 것 마져 하고 종료
 
 ---nginx
 docker run --name webserver -d -p 6080:80 nginx # 컨테이너 생성 및 실행
@@ -90,10 +90,10 @@ docker rm `docker ps -aq `
 
 
 # 컨테이너 rename
-docker rename origin_name chagned_name
+docker rename origin_name changed_name
 
 
-# 컨테이너 attach detacㄹh
+# 컨테이너 attach, detach
 
 docker start|stop NAME
 docker attach

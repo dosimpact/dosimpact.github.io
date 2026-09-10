@@ -12,13 +12,13 @@ sidebar_position: 11
 💡 Q1.  
 You notice that your power users all have taken some action (e.g. filled out their profile) so you try to encourage all users to fill out their profile to get them more hooked on your product. Does this actually help?  
 
-내 생각 : 아닐것 같다. 그들은 시스템이 아닌 로열유저를 따라하는 것임.  
+내 생각 : 아닐 것 같다. 그들은 시스템이 아닌 로열유저를 따라하는 것임.  
 
 >정답은 Yes or No / 연관관계, 상관관계 질문이다. + A/B Testing + Carrying Capacity  
 - 프로필 작성과 파워유저의 상관관계를 검증해야 한다.  
 - 통제된 A/B 테스트 수행을 통해서 알 수 있다.  
   - B 그룹 : 프로필 작성을 권장, 의무화한다. -> 파워유저의 정의 메트릭까지 올라가는지 인과관계 확인.  
-  - 이때, Churn Rate가 떨어지면 안된다.    
+  - 이때, Churn Rate가 떨어지면 안 된다.    
 
 - help에 대한 정의가 무엇인가? 매출에 도움이란 말인가?, 리텐션에 도움이 되는건지? 더 파고들 필요가 있다. 아래과정 모두 도움의 범주이다.  
 - 연역적으로 TopDown 전개해본다. : 유저 프로필 채움 -> 파워유저로의 Activation -> 리텐션 수치 개선 -> 수익 개선 -> 매출 증가    
@@ -29,7 +29,7 @@ You notice that your power users all have taken some action (e.g. filled out the
 You have 24 hours of downtime, the next day you come back up your traffic is down. Will this have a long-term effect you need to worry about?
 
 내 생각 : 장기적으로 봤을땐 문제 없을듯.
->Inflow, Churn만 봤을때 그 값의 변동만 없으면 다시 MAU를 회복한다. 신뢰도 하락으로 Churn Rate가 올라가면 새로운 C.C가 만들어진다. 대부분의 경우엔 MAU에 리스크는 적다.  
+>Inflow, Churn만 봤을 때 그 값의 변동만 없으면 다시 MAU를 회복한다. 신뢰도 하락으로 Churn Rate가 올라가면 새로운 C.C가 만들어진다. 대부분의 경우엔 MAU에 리스크는 적다.  
 
 💡 Q3.
 You have 100K uniques per day and so does your competitor, but are these 100K people who come back everyday or 700K people who each come once per week? Does it matter?
@@ -69,7 +69,7 @@ a. Active를 어떻게 정의하나?
 
 b. Churn은 어떻게 정의하나?
 - i. 얼마를 안써야 안오는 거라고 정의할까? 1일? 4일?
-- ii. 상식적으로 이정도를 안썼으면 Loss될 것 같다를 정한다. (나중에 바꾸면 안됨!)
+- ii. 상식적으로 이 정도를 안 썼으면 Loss될 것 같다를 정한다. (나중에 바꾸면 안 됨!)
 - 1. ex 사장 : 한 달에 한번 쓰는 앱. 3개월을 Churn으로 정의
 - 2. 토스 송금은? 30%가 이전달에 온 적이 없는 유저
 
@@ -84,7 +84,7 @@ b. Churn은 어떻게 정의하나?
 - MAU는 1달 ~ 2달 안에 알 수 있다.  
 - 즉 CC는 Retention을 측정하면서 알게 된다.  
 - 본질적으로 새로운 유저, 이탈율을 알면 MAU 체력을 알게 된다.  
-- *2가지 숫자를 바꾸는것만이 MAU를 바꿀 수 있다.*  
+- *2가지 숫자를 바꾸는 것만이 MAU를 바꿀 수 있다.*  
   - 광고를 해서 유저를 데려와도 MAU는 정해져 있고,
   - 광고를 하지 않아도 MAU가 늘어날 수 있다.  
 
@@ -106,7 +106,7 @@ b. Churn은 어떻게 정의하나?
 📕 Product Market Fit의 정의    
 
 - Retention의 Plateauing을 봐야 한다.  
-- 사용자가 이탈하다가 어느순간부터 수렴하는 구간이 생기면 계속 쓰는 사용자가 생긴것이다.  
+- 사용자가 이탈하다가 어느순간부터 수렴하는 구간이 생기면 계속 쓰는 사용자가 생긴 것이다.  
 - 광고를 하지 않아도 계속 해서 쓰는 유저가 있으니, 제품에 가치가 있는 것이다.
 
 📕 스타트업과 아닌 회사의 차이점, 린스타트업
@@ -121,7 +121,7 @@ b. Churn은 어떻게 정의하나?
 - 1.떠난 유저들에게 왜 떠났는지 Usability Test를 해야 한다.  
 - 2.Retention 유저들에게 왜 계속쓰는지 분석해야 한다.  
 
-📕 UT를 하는 이유는 나중에 CC를 늘리기 위한 개선을 찾는것.  
+📕 UT를 하는 이유는 나중에 CC를 늘리기 위한 개선을 찾는 것.  
 - 이탈 그룹에 대한 Usability Test
 - 우리가 채우지 못하는 Usecase가 무엇인지 알 수 있습니다.
 - 장기적으로 우리가 Carrying Capacity를 높이기 위해 어떤 기능과 솔루션이 도입 되어야 하는지 알 수 있습니다.
@@ -178,11 +178,11 @@ Aha Moment 정의/특징
 💡 XX라는 행동을 YY라는 날짜 안에 ZZ번 한다.   
 
 아하 모먼트의 형태
-- XX : 만든 서비스가 가치가 있다면(이미 P/M Fit을 찾은 후이므로), 그 서비스의 핵심 가치를 경험할 때 (간편송금이라면 송금을 한다라는 acvitation의 정의조항)을 한번 경험하면 그 가치를 전달받게 됩니다.
-  - 그래서 결국 그 XX라는 행동을 여러번하게 하는 것이 리텐션을 만드는 가장 좋은 무기가 되야하는 게 상식인거죠. 
-  - (만약 아직 Retention이 없다면, PM Fit을 찾기 전인것이고, 그렇다면 아직 서비스에 가치가 없는 것이기 때문에, 아직 AhaMoment를 찾을때가 아닙니다.)
+- XX : 만든 서비스가 가치가 있다면(이미 P/M Fit을 찾은 후이므로), 그 서비스의 핵심 가치를 경험할 때 (간편송금이라면 송금을 한다라는 activation의 정의조항)을 한번 경험하면 그 가치를 전달받게 됩니다.
+  - 그래서 결국 그 XX라는 행동을 여러 번 하게 하는 것이 리텐션을 만드는 가장 좋은 무기가 돼야 하는 게 상식인거죠. 
+  - (만약 아직 Retention이 없다면, PM Fit을 찾기 전인 것이고, 그렇다면 아직 서비스에 가치가 없는 것이기 때문에, 아직 AhaMoment를 찾을 때가 아닙니다.)
 - YY : 매일매일 많은 서비스속에서 복잡한 삶을 사는 인간들은 어떤 서비스를 경험했을 때 오랫동안 기억하거나 상기하지 않습니다.
   - 즉, 일정 시간이 지나면 그 서비스를 써보려고 했었다는 것을 잊어버리게 되는거죠. 그래서 가입한 후에 너무 많은 시간이 지나기 전에 그 서비스를 계속 쓰도록 만드는 가치제안을 해내야합니다.
-- ZZ : 아주아주 훌륭한 서비스가 아니라면 대부분의 경우 그 서비스를 한번 경험해서는 그 서비스를 계속 쓰도록 되지 않습니다. 그래서 여러번 경험시켜야만 보통 리텐션이 생길 수 있습니다. 
+- ZZ : 아주아주 훌륭한 서비스가 아니라면 대부분의 경우 그 서비스를 한번 경험해서는 그 서비스를 계속 쓰도록 되지 않습니다. 그래서 여러 번 경험시켜야만 보통 리텐션이 생길 수 있습니다. 
   - XX가 아주 훌륭한 Recurring Value면 Zz는 1번만일 수도 있지만, 대부분의 경우 그렇지 않고 보통 2~10번이어야 하는 경우가 많습니다  
 

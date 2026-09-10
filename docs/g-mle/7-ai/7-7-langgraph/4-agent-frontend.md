@@ -5334,7 +5334,7 @@ message list, composer, error banner, interrupt form은 component test로 충분
 thread join과 재접속은 단위 테스트보다 Playwright E2E가 적합하다.
 
 ```ts
-import { expect, test } from "@playwright/test";
+import { expect, test } from "@Playwrightt/test";
 
 test("keeps thread state after reload", async ({ page }) => {
   await page.goto("/agents/new");
@@ -6576,7 +6576,7 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - run: npx playwright install --with-deps
+      - run: npx Playwrightt install --with-deps
       - run: npm run test:e2e
 ```
 
@@ -6688,7 +6688,7 @@ npm install @assistant-ui/react @assistant-ui/react-langgraph
 
 ```bash
 npm install -D vitest @testing-library/react @testing-library/jest-dom
-npm install -D @playwright/test
+npm install -D @Playwrightt/test
 ```
 
 기본 폴더:
@@ -6748,7 +6748,7 @@ package script:
     "dev:graph": "npx @langchain/langgraph-cli dev --config langgraph.json --port 2024",
     "graph:up": "npx @langchain/langgraph-cli up --config langgraph.json",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "Playwrightt test"
   }
 }
 ```
@@ -7545,7 +7545,7 @@ renderer catalog 외 component는 실행하지 않는다. AI가 생성한 arbitr
 
 ```ts
 // tests/e2e/thread-join.spec.ts
-import { expect, test } from "@playwright/test";
+import { expect, test } from "@Playwrightt/test";
 
 test("reload keeps thread messages", async ({ page }) => {
   await page.goto("/agents/new");

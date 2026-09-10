@@ -209,7 +209,7 @@ Master Docs Skills
 - 2, BFF Interface Generator gql generator swagger generator
 
 Frontend Skills
-- 1. File Structures Skiil
+- 1. File Structures Skill
 - 2. Mark up with Design system  
 - 3. Controller Logic
 
@@ -219,19 +219,19 @@ Frontend Skills
 - Vercel React composition pattern
 - Vercel Next best practices 
 
-6. Moitoring Design
+6. Monitoring Design
 
-BFF Skiils
-- 1. File Structures Skiil
+BFF Skills
+- 1. File Structures Skill
 - 2.Module, Service, Controller Planner 
-- 3. Moitoring Design
+- 3. Monitoring Design
 - 4. Unit testing
 - 5. Nest.js Best Practices Code Reviewer
 
 Validation Quality gateway Skills
 - 1. Code Level Unit test GW (vitest)
 - 2. API Level e2e (Bruno)
-- 3. Browser Level Testing (playwright)
+- 3. Browser Level Testing (Playwrightt)
 - 4. Storybook component Testing (storybook)
 - 5. Validation Loop Logging Spec w/Bigfoot Cuticle 
 

@@ -17,12 +17,12 @@ sidebar_position: 3
     - Cons, 내가 원하는 
 
 ## 고민 포인트 
-- 1, 임베딩 모델을 어떤것을 써야 하는가?  
+- 1, 임베딩 모델을 어떤 것을 써야 하는가?  
   - OpenAI text-embedding-3-small/large  
   - 한국어 특화 성능이 중요하다면 Upstage의 임베딩 모델  
   - AWS Bedrock을 사용 중이라면 Amazon Titan Text Embeddings v2   
 
-- 2, Vector DB는 어떤것을 사용해야 하는가? 
+- 2, Vector DB는 어떤 것을 사용해야 하는가? 
   - Managed (SaaS): Pinecone (가장 대중적), Weaviate.  
   - AWS Native: OpenSearch Serverless (Knowledge Base for Bedrock 연동 시 기본), PGVector (RDS 사용 시).  
   - Open Source: ChromaDB (프로토타입용), Qdrant (고성능).  
@@ -42,7 +42,7 @@ sidebar_position: 3
 
 - 4, 데이터 소스를 청크할 때 어떤 방식으로 청킹해야 하며, 어떻게 payload를 구성해야 할까?  
 
-- 5, 청킹의 단위를 단순하게 텍스트 크기로 나눈 것 과, 의미론적으로 하나의 완성된 단락으로 나눈것이 크게 차이가 날까?  
+- 5, 청킹의 단위를 단순하게 텍스트 크기로 나눈 것 과, 의미론적으로 하나의 완성된 단락으로 나눈 것이 크게 차이가 날까?  
 
 - 6, 랭크된 검색 결과에서 유사도 점수가 얼마 이상이면 유의미한 결과라고 판단 해야 할 까?  
 

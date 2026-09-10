@@ -9,7 +9,7 @@ sidebar_position: 1
   - [개발환경 구축](#개발환경-구축)
     - [파일 디렉터리 구조](#파일-디렉터리-구조)
     - [확장프로그램 개발버전 테스트 하기](#확장프로그램-개발버전-테스트-하기)
-  - [Esstentials](#esstentials)
+  - [Essentials](#esstentials)
   - [Chrome action](#chrome-action)
   - [Chrome Alarm API](#chrome-alarm-api)
   - [Chrome Storage API](#chrome-storage-api)
@@ -55,7 +55,7 @@ chrome://extensions/ 접속 후
 - 파일 변경사항이 있으면 업데이트(혹은 새로고침) 버튼을 클릭하여 리로드 해야 한다. ( 핫리로드 지원 x )  
 
 
-## Esstentials  
+## Essentials  
 
 ## Chrome action
 

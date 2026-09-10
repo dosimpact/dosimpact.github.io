@@ -312,7 +312,7 @@ PUT collections/multivector_collection/points
   ]
 }
 ---
-// max_sim 스코어 값이 높은것을 가져온다. 
+// max_sim 스코어 값이 높은 것을 가져온다. 
 // - 다중 벡터중 높은값을 기준으로 계산한다.  
 POST collections/multivector_collection/points/query
 {

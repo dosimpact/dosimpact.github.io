@@ -67,9 +67,9 @@ contract SimpleStorage {
 - 권장 : 라이센스를 헤더에 명시 : SPDX-License-Identifier: MIT    
 
 솔리디티 언어로된 코드가 컴파일 되면 바이트 코드로 변환이 된다.  
-- 컴파일 결과 opcode가 보이며, 이는 바이트코드와 매핑된다. opcode를 솔리디티에 적을수도 있다.  
+- 컴파일 결과 opcode가 보이며, 이는 바이트코드와 매핑된다. opcode를 솔리디티에 적을 수도 있다.  
 - EVM은 스택방식이며 LIFO 으로 처리된다.  
-- *컴파일러 버전에 맞추어 만들어진 opcode가 네트워크 버전에 호환이 안될 수 있다.   
+- *컴파일러 버전에 맞추어 만들어진 opcode가 네트워크 버전에 호환이 안 될 수 있다.   
 
 네트워크에 스마트 컨트랙 배포의 의미 
 - Solidity의 관점에서 컨트랙트란 무수한 코드들(함수)과 데이터(상태)가 Ethereum 블록체인의 특정 주소에 존재하는 것.  
@@ -88,7 +88,7 @@ pragma solidity ^0.8.20;
 
 contract Coin {
     // The keyword "public" makes those variables easily readable from outside.
-    // pulbic변수를 외부에서 읽는데 비용이 들지는 않는다.  
+    // public변수를 외부에서 읽는데 비용이 들지는 않는다.  
     address public minter;
     mapping (address => uint) public balances; // mapping은 객체 이다. 
     // address 타입 = 컨트랙트 주소나 외부 사용자들의 키 쌍을 저장
@@ -172,7 +172,7 @@ contract Will {
 
 1.1 함수명 payable : 
 - 이더리움을 해당 계약에 보낼 수 있는 특별한 키워드.  
-- 함수에 적용할 수 있으며, 스마트계약의 잔고에 이더가 저장될 수있도록 코드가 자동으로 추가된다.  
+- 함수에 적용할 수 있으며, 스마트계약의 잔고에 이더가 저장될 수 있도록 코드가 자동으로 추가된다.  
 
 1.2 address payable[]: 
 - 해당 주소는 이더리움을 받을 수 있는 주소로 간주된다.  

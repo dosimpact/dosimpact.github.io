@@ -16,7 +16,7 @@ sidebar_position: 3
 
 
 일급 값  
-- 일급 값이 아닌것은 연산자, try-catch, for loop 등이 있다.  
+- 일급 값이 아닌 것은 연산자, try-catch, for loop 등이 있다.  
 - C++에서는 연산자 자체에 대한 오버로딩이 있어 다루기 더 자유롭다.  
 - 일급 값이 되기 위해서는 1, 변수 할당 가능 2, 함수의 인자나 리턴값으로 사용 가능 해야 한다.  
 - Javascript에서 더하기 + 연산자는 일급 값이 아니다.  
@@ -27,7 +27,7 @@ sidebar_position: 3
 - Javascript => 동적 / Typescript, Java, C++ => 정적  
 
 어떤 값이든 일급함수로 만들 수 있다.  
-- `function plus(a,b){ return a+b; }` 의 경우 별 기능이 없는 것 처럼 보이지만 일급값이 아닌 연산자를 일급 함수로 만든 것 이다.   
+- `function plus(a,b){ return a+b; }` 의 경우 별 기능이 없는 것 처럼 보이지만 일급값이 아닌 연산자를 일급 함수로 만든 것이다.   
 - 고차 함수 : 인자로 함수를 받거나, 함수를 리턴하는 함수이다.  
 - 콜백, 핸들러 : 함수의 인자로 들어가는 함수를 지칭한다. `function myfunc(cb)` 에서 cb  
 
@@ -68,7 +68,7 @@ function withCopyArray(arr,modif){
   return copied
 }
 
-const copiedArr = withCopryArray(originalArr,function(copied){
+const copiedArr = withCopyArray(originalArr,function(copied){
   copied.push(elem)
 })
 ```

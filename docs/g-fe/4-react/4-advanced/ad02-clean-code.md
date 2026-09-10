@@ -52,13 +52,13 @@ sidebar_position: 2
   2.하지만 props drilling, props hell 등 굉장히 복잡해지는 경우가 있다.  
     - 한 화면에서 복잡한 데이터를 다루는 데스크탑 앱 코드 등..  
     - props drilling, props hell 을 해결하기 위해 컴포넌트간의 강결합(Compound)로 처리한다.
-      - 주의, props 처리가 간단해지는 만큼 추후 재사용성은 기대하면 안된다.  
+      - 주의, props 처리가 간단해지는 만큼 추후 재사용성은 기대하면 안 된다.  
       - 팁, Context를 사용하면 좋지만 리렌더링 최소화를 위해 context-selector를 사용하면 좋다.  
       - 컨벤션, 강결합의 의미로 Namespace pattern을 의도적으로 사용하는 것은 좋다.  
       - 리팩토링, 반복되는 로직들을 분리하여 use-funnel과 라이브러리 처럼 추상화 한다.  
 
 ⚠️ Props Drilling을 줄이기 위한 방법  
-- 1.Component Lifing-Up
+- 1. Component Lifting Up
   - 리렌더링을 줄여주는 최적화 효과도 있음.  
 
 ⚠️ Props Hell을 줄이기 위한 방법  

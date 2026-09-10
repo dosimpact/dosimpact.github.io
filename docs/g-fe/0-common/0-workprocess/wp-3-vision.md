@@ -8,7 +8,7 @@ sidebar_position: 3
 1.개발자의 생산성과 퀄리티  
 - (SW 설계) Interface, Design Pattern, Architecture ...  
 - (FE 개발) Markup, State Management, Validator ... 
-- (Moitoring) Loki, Grafana, Alert, Sentry ... 
+- (Monitoring) Loki, Grafana, Alert, Sentry ... 
 
 - 사용자 경험 측면에서의 충분한 고민의 결과물    
 - 유지보수 가능한 잘 짜여진 글(코드)  
@@ -46,7 +46,7 @@ sidebar_position: 3
 1.4 Backend 개발을 잘 이해하고 있는가?  
 - [ ] Process의 이해가 있는가? ( 업무 사고의 틀 )  
 - [ ] Backend 개발자와 커뮤니케이션 가능한 지식이 있는가?  
-  - eg) 아키텍처 패턴이 왜 그렇게 되나요? 오케스트레이터보다는 이벤트 드리븐이 좋을것 같은데요?  
+  - eg) 아키텍처 패턴이 왜 그렇게 되나요? 오케스트레이터보다는 이벤트 드리븐이 좋을 것 같은데요?  
 - [ ] 업무의 입출력을 명확히 하는가? 
   - [ ] API Interface 먼저 선제안하기  
   - [ ] DB Entity에 대한 명확한 이해가 있는지 체크하기   

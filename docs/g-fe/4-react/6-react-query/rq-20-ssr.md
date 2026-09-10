@@ -29,7 +29,7 @@ Request Waterfall 이란?
 1, 단일 요청 워터폴 문제  
 - 상황 : user 정보를 요청 후 user id로 리소스를 요청하는 경우  
   - 1-1, 2번의 요청을 할 필요없이 Backend에서 API을 하나로 통합해서 내려준다.  
-  - 1-2, (요청 간 의존성이 없는 전제) 복수의 useQuers는 직렬로 요청된다. 이는 useQueris로 해결 가능하다.  
+  - 1-2, (요청 간 의존성이 없는 전제) 복수의 useQuery는 직렬로 요청된다. 이는 useQueries로 해결 가능하다.  
 
 ```js
   const usersQuery = useSuspenseQuery({ queryKey: ['users'], queryFn: fetchUsers })

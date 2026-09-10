@@ -2,9 +2,9 @@
 sidebar_position: 15
 ---
 
-# React Patterns - Compoisiton
+# React Patterns - Composition
 
-- [React Patterns - Compoisiton](#react-patterns---compoisiton)
+- [React Patterns - Composition](#react-patterns---compoisiton)
   - [📌 돌아보기, 명령형 vs 선언형](#-돌아보기-명령형-vs-선언형)
   - [Switch](#switch)
   - [Match](#match)
@@ -16,7 +16,7 @@ sidebar_position: 15
 - 선언적(Declarative) : 무엇(what)을 원하는지만 선언 (최종 상태의 목표 설정)  
   - 리액트에서 선언형을 지향하는 이유.
     - 1.UI는 상태에 따라 자동 결정됨 
-      - ( 이 상태일때는 이것을 보여준다. 그 상태까지 나오는 과정은 관심밖 )  
+      - ( 이 상태일 때는 이것을 보여준다. 그 상태까지 나오는 과정은 관심밖 )  
     - 2.추상화와 테스트가능(유지보수성)  
       - 컴포넌트 내부에서 상태를 복잡하게 계산한다면, 내부 로직을 다 들여다봐야 TC작성 가능  
       - 반대로 상태가 선언적으로 딱 4가지 - 그에 따라 보이는게 4가지로 결정된다면 훨씬 쉽다.  

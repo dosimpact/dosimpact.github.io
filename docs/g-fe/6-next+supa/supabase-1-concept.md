@@ -75,7 +75,7 @@ Supabase의 RLS는 "Row-Level Security"의 약자.
 - 원래는 서버단에서 내 포스팅과 다른 사람의 포스팅이 섞이지 않도록 권한체크 해야 한다.     
 - 근데 DB Level에서 이를 해주는 거임  
 - 보안이 향상된 인프라가 있으니 맘놓고 개발 가능!   
-- 권한 체크 API 서버 없이 SPA에서 바로 Supbase를 호출 가능한 이유이다.   
+- 권한 체크 API 서버 없이 SPA에서 바로 Supabase를 호출 가능한 이유이다.   
 
 예)  
 - Todo테이블의 Todo 정보에 대해서 다음 규칙을 DB Level에서 적용 가능  

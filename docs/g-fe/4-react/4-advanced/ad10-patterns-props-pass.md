@@ -350,31 +350,31 @@ function RenderPropsMultiple({
   listItemCount,
 }: {
   children: React.ReactElement;
-  titleRender: (props: { onToogle: () => void }) => React.ReactElement;
+  titleRender: (props: { onToggle: () => void }) => React.ReactElement;
   listItemRender: (props: {
-    onToogle: () => void;
+    onToggle: () => void;
     index: number;
   }) => React.ReactElement;
   listItemCount: number;
 }) {
   const [isHidden, setIsHidden] = useState(false);
 
-  const onToogle = () => {
+  const onToggle = () => {
     setIsHidden((prev) => !prev);
   };
 
   return (
     <div>
       {/* 타이틀 렌더러 위치 지정, 토글 기능 제공 */}
-      <h2>{titleRender({ onToogle })}</h2>
+      <h2>{titleRender({ onToggle })}</h2>
       {/* 스크롤 컨테이너 추가, 리스트 아이템 복사 횟수 조절 */}
       <div style={{ maxHeight: '200px', overflow: 'auto' }}>
         {!isHidden &&
           Array.from({ length: listItemCount }).map((_, index) => {
-            if (!React.isValidElement(listItemRender({ onToogle, index }))) {
+            if (!React.isValidElement(listItemRender({ onToggle, index }))) {
               return null;
             }
-            return React.cloneElement(listItemRender({ onToogle, index }), {
+            return React.cloneElement(listItemRender({ onToggle, index }), {
               key: index,
             });
           })}
@@ -392,19 +392,19 @@ function Widget() {
       {/* 2. render props multiple */}
       <RenderPropsMultiple
         listItemCount={LIST_ITEM_COUNT}
-        titleRender={({ onToogle }) => (
+        titleRender={({ onToggle }) => (
           <h2>
             title{' '}
-            <button type="button" onClick={onToogle}>
+            <button type="button" onClick={onToggle}>
               toggle
             </button>{' '}
           </h2>
         )}
-        listItemRender={({ onToogle, index }) => (
+        listItemRender={({ onToggle, index }) => (
           <div>
             Item {index}
             {index === LIST_ITEM_COUNT - 1 && (
-              <button type="button" onClick={onToogle}>
+              <button type="button" onClick={onToggle}>
                 x
               </button>
             )}

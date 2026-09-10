@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Cypto background  
+# Crypto background  
 
 업비트 투자자보호센터 교육 아티클 : https://upbitcare.com/academy/education/coin   
 

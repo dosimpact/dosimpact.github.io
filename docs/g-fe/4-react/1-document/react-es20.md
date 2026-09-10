@@ -25,7 +25,7 @@ import { createPortal } from 'react-dom';
 </div>
 ```
 1.createPortal 호출 당시 domNode가 선행적으로 존재해야 한다.  
-- domNode가 없다면 렌더링이 안된다.  
+- domNode가 없다면 렌더링이 안 된다.  
 - domNode가 삭제되면 포털도 사라진다.
 - domNode가 동적으로 변경되면 포털도 이동한다. (물론 변경 후 createPortal 재호출 )  
 

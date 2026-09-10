@@ -14,7 +14,7 @@ sidebar_position: 3
 
 
 Goal: Design and organize a method for AI UI generation in an LLM chatbot.  
-문제 : 단순히 LLM과 텍스트 (마크다운)로 이야기 나누는것은 지루하고, 사용자와의 인터랙션에서 한계가 있다.  
+문제 : 단순히 LLM과 텍스트 (마크다운)로 이야기 나누는 것은 지루하고, 사용자와의 인터랙션에서 한계가 있다.  
 솔루션 : Chat bot과 이야기를 나누는 중간에 UI를 보여주면 사용자의 행동을 더 이끌어 낼 수 있다.  
 
 무엇이 가능한가?  
@@ -22,7 +22,7 @@ Goal: Design and organize a method for AI UI generation in an LLM chatbot.
 - 예) 차트 생성, 카드 UI, 테이블 UI, 반응형 UI를 포함한.
 
 한계  
-- A-Z 모든 UI를 LLM이 만드는것은 아니다. 
+- A-Z 모든 UI를 LLM이 만드는 것은 아니다. 
 - 개발자가 재사용 가능한 UI 컴포넌트를 미리 만들어야 한다. 
 - 미리 만든 컴포넌트 안에서 몇개의 문구, 설정값 정도 변경 가능하다. 
   - 예) 
@@ -47,7 +47,7 @@ Goal: Design and organize a method for AI UI generation in an LLM chatbot.
 
 
 📌 가드레일 
-- 입력 가드레일 : zod shcema에서 실패하는 경우, 이를 통한 피드백 루푸 생성  
+- 입력 가드레일 : zod schema에서 실패하는 경우, 이를 통한 피드백 루푸 생성  
 - 출력 가드레일 : tool call 결과 함수가 실패하는 경우 적절한 에러 메시지와 그리고 데이터 스콥에 대한 피드백 출력  
 
 
