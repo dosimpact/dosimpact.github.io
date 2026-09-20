@@ -1,0 +1,11 @@
+{
+  "label": "2.MCP",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Model Context Protocol",
+    "description": "MCP의 핵심 개념, 동작 구조, 제공 기능과 구현 방법"
+  }
+}
