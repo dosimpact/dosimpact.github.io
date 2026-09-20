@@ -15,6 +15,7 @@ sidebar_position: 1
 3. 도메인 모델 만들기
 4. React와 도메인 연결하기
 5. 실전 적용과 검증
+6. 함수형 DDD와 React 적용
 
 ## 2. 각 목차의 핵심 내용
 
@@ -56,3 +57,15 @@ sidebar_position: 1
 - 도메인 규칙, Use Case, Adapter, UI를 구분한 테스트
 - 기존 React 프로젝트에 DDD와 Hexagonal Architecture를 점진적으로 도입하는 순서
 - 비즈니스 복잡도보다 추상화 비용이 커지는 것을 피하는 기준
+
+### 2.6 함수형 DDD와 React 적용
+
+- DDD가 객체지향 전용 설계가 아닌 이유
+- Entity와 Value Object를 불변 데이터로 표현하는 방법
+- Aggregate 행동을 순수한 상태 전이 함수와 `Result`로 구현하는 방법
+- 판별 유니온으로 유효하지 않은 상태를 표현하기 어렵게 만드는 방법
+- Repository와 Use Case를 함수 및 함수 레코드로 구성하는 방법
+- React Component, Hook, Domain 함수의 책임을 구분하는 기준
+- 프런트엔드 검증과 서버의 최종 도메인 검증을 구분하는 방법
+
+다음 글: [함수형 DDD와 React 적용](./ddd-8-functional-react.md)

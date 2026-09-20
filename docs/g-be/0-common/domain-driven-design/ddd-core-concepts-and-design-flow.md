@@ -33,6 +33,14 @@ flowchart TD
 
 DDD의 본질은 패턴의 개수가 아니라 **비즈니스가 사용하는 개념과 규칙을 코드가 얼마나 정확하게 표현하는가**에 있다.
 
+:::note DDD는 객체지향 전용 설계가 아니다
+
+이 글은 익숙한 설명을 위해 class와 객체 메서드를 주로 사용하지만, DDD의 경계와 모델링 원칙은 프로그래밍 패러다임과 무관하다. 함수형 TypeScript와 React에서는 불변 데이터, 판별 유니온, 순수한 상태 전이 함수로 같은 개념을 표현할 수 있다.
+
+구체적인 구현 방법은 [함수형 DDD와 React 적용](../../../g-fe/0-common/6-ddd/ddd-8-functional-react.md)에서 이어서 다룬다.
+
+:::
+
 ## 2. Ubiquitous Language
 
 DDD의 출발점은 비즈니스 언어를 통일하는 것이다. 이를 **Ubiquitous Language(보편 언어)**라고 한다.
